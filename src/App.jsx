@@ -19,7 +19,7 @@ function AnimatedRoutes({ setIsHackathonModalOpen, setIsHireModalOpen }) {
           path="/"
           element={
             <HomePage
-              onOpenResume={() => setIsHireModalOpen(true)}
+              onOpenResume={() => window.open('https://drive.google.com/file/d/1EkjbHJDA0z8kC-Ui1KGVEJw_bvqZm3oo/view', '_blank')}
               onOpenHackathonModal={() => setIsHackathonModalOpen(true)}
               onOpenHireModal={() => setIsHireModalOpen(true)}
             />
@@ -30,7 +30,7 @@ function AnimatedRoutes({ setIsHackathonModalOpen, setIsHireModalOpen }) {
           element={
             <AboutPage
               onOpenHireModal={() => setIsHireModalOpen(true)}
-              onOpenResume={() => setIsHireModalOpen(true)}
+              onOpenResume={() => window.open('https://drive.google.com/file/d/1EkjbHJDA0z8kC-Ui1KGVEJw_bvqZm3oo/view', '_blank')}
             />
           }
         />
@@ -46,7 +46,7 @@ function AnimatedRoutes({ setIsHackathonModalOpen, setIsHireModalOpen }) {
           path="*"
           element={
             <HomePage
-              onOpenResume={() => setIsHireModalOpen(true)}
+              onOpenResume={() => window.open('https://drive.google.com/file/d/1EkjbHJDA0z8kC-Ui1KGVEJw_bvqZm3oo/view', '_blank')}
               onOpenHackathonModal={() => setIsHackathonModalOpen(true)}
               onOpenHireModal={() => setIsHireModalOpen(true)}
             />
@@ -63,7 +63,7 @@ export default function App() {
 
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-[#06070B] text-gray-200 flex flex-col font-sans selection:bg-purple-500/30 selection:text-purple-300 overflow-x-hidden">
+      <div className="min-h-screen bg-[#171717] text-gray-200 flex flex-col font-sans selection:bg-purple-500/30 selection:text-purple-300 overflow-x-hidden">
         
         {/* Floating Capsule Top Navbar */}
         <Navbar />

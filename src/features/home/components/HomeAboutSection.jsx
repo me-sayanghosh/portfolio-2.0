@@ -178,15 +178,14 @@ export default function HomeAboutSection() {
         {techStack.map((tech, i) => (
           <div
             key={i}
-            className="group flex items-center space-x-2 px-3 py-1.5 rounded-xl bg-[#11131C] border border-[#222535] hover:border-white/30 hover:bg-[#161926] transition-all duration-300 cursor-pointer shadow-sm"
+            className="group flex items-center space-x-2 px-3 py-1.5 rounded-xl bg-[#222222] border border-[#333333] hover:border-white/30 hover:bg-[#2a2a2a] transition-all duration-300 cursor-pointer shadow-sm"
           >
-            {/* Tech Logo: Black & White by default, Full Vibrant Color on Hover */}
             <img
               src={tech.iconUrl}
               alt={tech.name}
-              className="w-4 h-4 object-contain filter grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300"
+              className="w-4 h-4 sm:w-4.5 sm:h-4.5 object-contain filter grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:scale-110"
             />
-            <span className="text-xs font-semibold text-gray-300 group-hover:text-white transition-colors duration-300">
+            <span className="text-xs sm:text-sm font-medium text-gray-300 group-hover:text-white transition-colors">
               {tech.name}
             </span>
           </div>
@@ -197,7 +196,7 @@ export default function HomeAboutSection() {
       <div className="flex justify-center">
         <button
           onClick={() => navigate('/about')}
-          className="px-6 py-2 rounded-full border border-white/30 bg-[#12141C] hover:bg-white/15 text-white font-semibold text-xs sm:text-sm shadow-lg transition-all active:scale-95 cursor-pointer flex items-center space-x-2"
+          className="px-6 py-2 rounded-full border border-white/30 bg-[#222222] hover:bg-white/15 text-white font-semibold text-xs sm:text-sm shadow-lg transition-all active:scale-95 cursor-pointer flex items-center space-x-2"
         >
           <span>More About Me</span>
           <ArrowRight className="w-4 h-4" />

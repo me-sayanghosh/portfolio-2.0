@@ -41,7 +41,7 @@ export default function HomeExperienceSection() {
         className="font-bricolage text-3xl sm:text-4xl font-bold text-white mb-6 tracking-tight"
         style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
       >
-        Experience<span className="text-amber-500">.</span>
+        Experience <span className="text-amber-500">.</span>
       </h2>
 
       {/* Experience List */}
@@ -144,7 +144,7 @@ export default function HomeExperienceSection() {
       <div className="flex justify-center mt-8">
         <button
           onClick={() => setShowAll(!showAll)}
-          className="px-6 py-2 rounded-full border border-white/30 bg-[#12141C] hover:bg-white/15 text-white font-semibold text-xs sm:text-sm shadow-lg transition-all active:scale-95 cursor-pointer flex items-center space-x-2"
+          className="px-6 py-2 rounded-full border border-white/30 bg-[#222222] hover:bg-white/15 text-white font-semibold text-xs sm:text-sm shadow-lg transition-all active:scale-95 cursor-pointer flex items-center space-x-2"
         >
           <span>{showAll ? 'Show Less' : 'Show More'}</span>
           {showAll ? (

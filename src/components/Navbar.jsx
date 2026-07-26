@@ -15,7 +15,7 @@ export default function Navbar() {
   return (
     <div className="fixed top-6 left-1/2 -translate-x-1/2 z-50">
       {/* Capsule Navigation Container */}
-      <div className="w-[340px] sm:w-[360px] h-[60px] border border-[#272727] rounded-[40px] p-[8px] gap-[6px] flex flex-row items-center justify-between bg-[#070709]/95 backdrop-blur-xl shadow-2xl relative">
+      <div className="w-[340px] sm:w-[360px] h-[60px] border border-white/10 rounded-[40px] p-[8px] gap-[6px] flex flex-row items-center justify-between bg-[#1f1f1f]/95 backdrop-blur-xl shadow-2xl relative">
         {tabs.map((tab) => {
           const isActive = location.pathname === tab.path;
           return (
@@ -30,7 +30,7 @@ export default function Navbar() {
               {isActive && (
                 <motion.div
                   layoutId="activeTabSpotlight"
-                  className="absolute inset-0 rounded-[30px] border border-[#2f313a] bg-[#111216] overflow-hidden"
+                  className="absolute inset-0 rounded-[30px] border border-white/15 bg-[#262626] overflow-hidden"
                   transition={{
                     type: "spring",
                     stiffness: 450,

@@ -12,7 +12,7 @@ export default function HeroSection({ onOpenResume, onOpenHackathonModal }) {
       <div className="bg-[#000000] border border-black/15 rounded-2xl relative overflow-hidden h-[180px] sm:h-[210px] shadow-2xl flex items-center justify-center">
         
         {/* Top-Right "Open for new projects" Badge */}
-        <div className="absolute top-4 right-4 z-20 flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-[#0F1118] border border-white/10 text-xs font-medium text-white/80 shadow-md">
+        <div className="absolute top-4 right-4 z-20 flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-[#222222] border border-white/10 text-xs font-medium text-white/80 shadow-md">
           <span className="w-2 h-2 rounded-full bg-emerald-300 animate-pulse shadow-[0_0_8px_#10b981]" />
           <span>Open for new projects</span>
         </div>
@@ -58,12 +58,14 @@ export default function HeroSection({ onOpenResume, onOpenHackathonModal }) {
         </div>
 
         {/* My Resume Button (Matching Figma Screenshot) */}
-        <button
-          onClick={onOpenResume}
-          className="mt-3 px-4 py-1 sm:px-5 sm:py-1.5 rounded-full border border-white/40 bg-black/80 hover:bg-white/15 text-white font-urbanist text-xs sm:text-sm font-medium tracking-tight italic transition-all active:scale-95 cursor-pointer shadow-md"
+        <a
+          href="https://drive.google.com/file/d/1EkjbHJDA0z8kC-Ui1KGVEJw_bvqZm3oo/view"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="resume-btn mt-3 px-4 py-1 sm:px-5 sm:py-1.5 rounded-full border border-white/40 bg-black/80 text-white font-urbanist text-xs sm:text-sm font-medium tracking-tight italic active:scale-95 cursor-pointer shadow-md inline-block"
         >
           My Resume
-        </button>
+        </a>
       </div>
 
       {/* Name, Tagline, Bio & Social Links */}
@@ -116,9 +118,9 @@ export default function HeroSection({ onOpenResume, onOpenHackathonModal }) {
               </a>
               {/* Tooltip Popup */}
               <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 scale-95 group-hover:scale-100 transition-all duration-200 pointer-events-none z-30">
-                <div className="bg-[#181A24] border border-white/20 text-white text-[11px] font-semibold px-2.5 py-1 rounded-lg shadow-xl whitespace-nowrap relative">
+                <div className="bg-[#262626] border border-white/20 text-white text-[11px] font-semibold px-2.5 py-1 rounded-lg shadow-xl whitespace-nowrap relative">
                   Twitter / X
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-[#181A24]" />
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-[#262626]" />
                 </div>
               </div>
             </div>
@@ -135,9 +137,9 @@ export default function HeroSection({ onOpenResume, onOpenHackathonModal }) {
               </a>
               {/* Tooltip Popup */}
               <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 scale-95 group-hover:scale-100 transition-all duration-200 pointer-events-none z-30">
-                <div className="bg-[#181A24] border border-white/20 text-white text-[11px] font-semibold px-2.5 py-1 rounded-lg shadow-xl whitespace-nowrap relative">
+                <div className="bg-[#262626] border border-white/20 text-white text-[11px] font-semibold px-2.5 py-1 rounded-lg shadow-xl whitespace-nowrap relative">
                   LinkedIn
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-[#181A24]" />
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-[#262626]" />
                 </div>
               </div>
             </div>
@@ -154,9 +156,9 @@ export default function HeroSection({ onOpenResume, onOpenHackathonModal }) {
               </a>
               {/* Tooltip Popup */}
               <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 scale-95 group-hover:scale-100 transition-all duration-200 pointer-events-none z-30">
-                <div className="bg-[#181A24] border border-white/20 text-white text-[11px] font-semibold px-2.5 py-1 rounded-lg shadow-xl whitespace-nowrap relative">
+                <div className="bg-[#262626] border border-white/20 text-white text-[11px] font-semibold px-2.5 py-1 rounded-lg shadow-xl whitespace-nowrap relative">
                   Email
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-[#181A24]" />
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-[#262626]" />
                 </div>
               </div>
             </div>
@@ -173,9 +175,9 @@ export default function HeroSection({ onOpenResume, onOpenHackathonModal }) {
               </a>
               {/* Tooltip Popup */}
               <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 scale-95 group-hover:scale-100 transition-all duration-200 pointer-events-none z-30">
-                <div className="bg-[#181A24] border border-white/20 text-white text-[11px] font-semibold px-2.5 py-1 rounded-lg shadow-xl whitespace-nowrap relative">
+                <div className="bg-[#262626] border border-white/20 text-white text-[11px] font-semibold px-2.5 py-1 rounded-lg shadow-xl whitespace-nowrap relative">
                   GitHub
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-[#181A24]" />
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-[#262626]" />
                 </div>
               </div>
             </div>
@@ -192,16 +194,16 @@ export default function HeroSection({ onOpenResume, onOpenHackathonModal }) {
               </a>
               {/* Tooltip Popup */}
               <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 scale-95 group-hover:scale-100 transition-all duration-200 pointer-events-none z-30">
-                <div className="bg-[#181A24] border border-white/20 text-white text-[11px] font-semibold px-2.5 py-1 rounded-lg shadow-xl whitespace-nowrap relative">
+                <div className="bg-[#262626] border border-white/20 text-white text-[11px] font-semibold px-2.5 py-1 rounded-lg shadow-xl whitespace-nowrap relative">
                   Instagram
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-[#181A24]" />
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-[#262626]" />
                 </div>
               </div>
             </div>
           </div>
 
           {/* ~ Building Scalable products Pill Badge */}
-          <div className="px-4 py-1.5 rounded-full bg-[#181A22] border border-white/10 text-xs sm:text-sm font-semibold text-white tracking-tight shadow-md flex items-center space-x-1.5">
+          <div className="px-4 py-1.5 rounded-full bg-[#222222] border border-white/10 text-xs sm:text-sm font-semibold text-white tracking-tight shadow-md flex items-center space-x-1.5">
             <span className="text-gray-400 font-mono">~</span>
             <span>Building Scalable products</span>
           </div>
@@ -224,7 +226,7 @@ export default function HeroSection({ onOpenResume, onOpenHackathonModal }) {
               exit={{ scale: 0.85, opacity: 0 }}
               transition={{ type: 'spring', stiffness: 350, damping: 25 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative max-w-md w-full bg-[#12141C] border border-white/20 rounded-3xl overflow-hidden shadow-2xl cursor-default"
+              className="relative max-w-md w-full bg-[#222222] border border-white/20 rounded-3xl overflow-hidden shadow-2xl cursor-default"
             >
               {/* Close Button */}
               <button
@@ -244,7 +246,7 @@ export default function HeroSection({ onOpenResume, onOpenHackathonModal }) {
               </div>
 
               {/* Footer Caption */}
-              <div className="p-4 bg-[#0F1118] border-t border-white/10 flex items-center justify-between text-white">
+              <div className="p-4 bg-[#1a1a1a] border-t border-white/10 flex items-center justify-between text-white">
                 <div>
                   <h3 className="font-bold text-base font-bricolage">Sayan Ghosh</h3>
                   <p className="text-xs text-gray-400 font-sans">Software Engineer & Full-Stack Developer</p>

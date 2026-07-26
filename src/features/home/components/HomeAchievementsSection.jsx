@@ -28,7 +28,7 @@ export default function HomeAchievementsSection() {
         className="font-bricolage text-3xl sm:text-4xl font-bold text-white mb-6 tracking-tight"
         style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
       >
-        Achievements<span className="text-amber-500">.</span>
+        Achievements <span className="text-amber-500">.</span>
       </h2>
 
       {/* Achievements List matching Experience Section Design */}
