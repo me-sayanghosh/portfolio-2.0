@@ -1,8 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import HeroSection from './components/HeroSection';
+import HomeAboutSection from './components/HomeAboutSection';
 import CreationOfAdamBanner from './components/CreationOfAdamBanner';
-import { SkillsSection } from '../skills';
 import { FeatureProjectsSection } from '../projects';
 import { ContactAndSignature } from '../contact';
 
@@ -20,8 +20,9 @@ export default function HomePage({ onOpenResume, onOpenHackathonModal, onOpenHir
         onOpenHackathonModal={onOpenHackathonModal}
       />
       
-      <SkillsSection />
-      
+      {/* About Section on Home Page */}
+      <HomeAboutSection />
+
       <FeatureProjectsSection />
       
       <CreationOfAdamBanner
