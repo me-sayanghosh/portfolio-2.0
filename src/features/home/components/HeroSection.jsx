@@ -1,6 +1,6 @@
 import React from 'react';
 import { Linkedin, Mail, Github, Instagram } from 'lucide-react';
-import AchievementsSection from './AchievementsSection';
+import { AchievementsSection } from '../../achievements';
 
 export default function HeroSection({ onOpenResume, onOpenHackathonModal }) {
   return (

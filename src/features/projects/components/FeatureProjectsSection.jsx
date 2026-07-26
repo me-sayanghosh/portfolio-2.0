@@ -55,13 +55,12 @@ export default function FeatureProjectsSection() {
   return (
     <section className="py-6 max-w-[762px] mx-auto px-4 sm:px-6 relative" onMouseMove={handleMouseMove}>
       
-      {/* Custom Cursor from Figma Hover State (Node 114:354) */}
+      {/* Custom Cursor from Figma Hover State */}
       {hoveredIndex !== null && (
         <div
           className="pointer-events-none fixed z-50 transition-transform duration-75 ease-out transform -translate-x-1/2 -translate-y-1/2 flex items-center space-x-4"
           style={{ left: `${cursorPos.x}px`, top: `${cursorPos.y}px` }}
         >
-          {/* Rotating Text Circle: ✦ VIEW PROJECT ✦ VIEW PROJECT */}
           <div className="relative w-24 h-24 flex items-center justify-center">
             <svg className="w-full h-full animate-spin [animation-duration:8s]" viewBox="0 0 100 100">
               <path
@@ -77,7 +76,6 @@ export default function FeatureProjectsSection() {
             </svg>
           </div>
 
-          {/* Dev Note Box */}
           <div className="bg-[#12151E] border border-white/20 text-white p-3 rounded-xl shadow-2xl backdrop-blur-md max-w-xs">
             <span className="text-xs font-bold text-gray-200 block mb-0.5">Dev Note</span>
             <span className="text-[10px] text-gray-400 block">Custom Cursor While Hovering on Projects.</span>
@@ -98,7 +96,6 @@ export default function FeatureProjectsSection() {
               className="bg-[#12141C] border border-white/10 rounded-3xl p-6 relative overflow-hidden group cursor-pointer shadow-2xl flex flex-col justify-between"
             >
               <div>
-                {/* Tech Pills */}
                 <div className="flex justify-end space-x-1.5 mb-4">
                   {proj.tags.map((t, i) => (
                     <span key={i} className="px-2.5 py-1 rounded-md bg-black/60 text-[10px] font-mono text-gray-300 border border-white/10">
@@ -107,7 +104,6 @@ export default function FeatureProjectsSection() {
                   ))}
                 </div>
 
-                {/* Header: Icon + Title */}
                 <div className="flex items-center space-x-3 mb-2">
                   <div className={`w-8 h-8 rounded-lg ${proj.iconBg} flex items-center justify-center text-white shadow-md`}>
                     <Icon className="w-4 h-4" />
@@ -115,16 +111,13 @@ export default function FeatureProjectsSection() {
                   <h3 className="text-2xl font-black text-white">{proj.title}</h3>
                 </div>
 
-                {/* Subtitle / Dates */}
                 <p className="text-[11px] text-gray-400 font-mono mb-3">{proj.dates}</p>
 
-                {/* Description */}
                 <p className="text-xs text-gray-300 leading-relaxed mb-6">
                   {proj.description}
                 </p>
               </div>
 
-              {/* Laptop Platform Mockup */}
               <div className="relative mt-4 pt-8 pb-4 flex justify-center overflow-hidden rounded-2xl bg-gradient-to-b from-transparent to-black/40">
                 <div className={`absolute bottom-0 w-full h-24 bg-gradient-to-r ${proj.platformBg} opacity-80 rounded-b-2xl`} />
                 <div className="relative z-10 w-full max-w-[280px] transform group-hover:scale-105 transition-transform duration-300">

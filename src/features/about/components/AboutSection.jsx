@@ -1,7 +1,7 @@
 import React from 'react';
-import CreationOfAdamBanner from './CreationOfAdamBanner';
-import ContactAndSignature from './ContactAndSignature';
 import { MessageCircle } from 'lucide-react';
+import CreationOfAdamBanner from '../../home/components/CreationOfAdamBanner';
+import { ContactAndSignature } from '../../contact';
 
 export default function AboutSection({ onOpenHireModal, onOpenResume }) {
   const stories = [

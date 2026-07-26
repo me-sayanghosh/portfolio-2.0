@@ -1,10 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import HeroSection from '../components/HeroSection';
-import SkillsSection from '../components/SkillsSection';
-import FeatureProjectsSection from '../components/FeatureProjectsSection';
-import CreationOfAdamBanner from '../components/CreationOfAdamBanner';
-import ContactAndSignature from '../components/ContactAndSignature';
+import HeroSection from './components/HeroSection';
+import CreationOfAdamBanner from './components/CreationOfAdamBanner';
+import { SkillsSection } from '../skills';
+import { FeatureProjectsSection } from '../projects';
+import { ContactAndSignature } from '../contact';
 
 export default function HomePage({ onOpenResume, onOpenHackathonModal, onOpenHireModal }) {
   return (

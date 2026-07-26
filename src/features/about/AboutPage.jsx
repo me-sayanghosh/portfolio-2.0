@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import AboutSection from '../components/AboutSection';
+import AboutSection from './components/AboutSection';
 
 export default function AboutPage({ onOpenHireModal, onOpenResume }) {
   return (
