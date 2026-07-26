@@ -1,8 +1,10 @@
-import React from 'react';
-import { Linkedin, Mail, Github, Instagram } from 'lucide-react';
-import { AchievementsSection } from '../../achievements';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Linkedin, Mail, Github, Instagram, X } from 'lucide-react';
 
 export default function HeroSection({ onOpenResume, onOpenHackathonModal }) {
+  const [isAvatarModalOpen, setIsAvatarModalOpen] = useState(false);
+
   return (
     <section className="pt-20 sm:pt-24 pb-4 max-w-[762px] mx-auto px-4 sm:px-6">
       
@@ -42,10 +44,14 @@ export default function HeroSection({ onOpenResume, onOpenHackathonModal }) {
 
       {/* Row containing Overlapping Profile Picture (Left) & My Resume Button (Right) */}
       <div className="flex items-start justify-between px-2 sm:px-4 mb-2 relative">
-        {/* Profile Avatar overlapping bottom of black banner */}
-        <div className="w-22 h-22 sm:w-24 sm:h-24 rounded-[18px] overflow-hidden border-2 border-white shadow-2xl flex-shrink-0 relative -mt-11 sm:-mt-12 z-30 bg-black">
+        {/* Profile Avatar overlapping bottom of black banner - Click to Expand */}
+        <div
+          onClick={() => setIsAvatarModalOpen(true)}
+          className="w-22 h-22 sm:w-24 sm:h-24 rounded-[18px] overflow-hidden border-2 border-white shadow-2xl flex-shrink-0 relative -mt-11 sm:-mt-12 z-30 bg-black cursor-pointer group transform-gpu transition-all duration-300 ease-out hover:-rotate-3 hover:scale-105"
+          title="Click to view photo"
+        >
           <img
-            src="/assets/db4e4c670606b40c42a7d9c020a9d0a72812ffc3.jpg"
+            src="/assets/profile-avatar.jpg"
             alt="Sayan Ghosh"
             className="w-full h-full object-cover"
           />
@@ -92,7 +98,7 @@ export default function HeroSection({ onOpenResume, onOpenHackathonModal }) {
           I am Sayan, a dedicated full-stack web developer and programmer working remotely from my workspace in Kalyani, India. As a passionate fresher and self-taught software engineer, I have spent countless hours mastering the modern web ecosystem: engineering high-performance interfaces, developing secure API gateways, and structuring clean database schemas.
         </p>
 
-        {/* Social Icons & Building Internet Products Pill Row */}
+        {/* Social Icons & Building Scalable Products Pill Row */}
         <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
           {/* Social Icons */}
           <div className="flex items-center space-x-4">
@@ -194,13 +200,60 @@ export default function HeroSection({ onOpenResume, onOpenHackathonModal }) {
             </div>
           </div>
 
-          {/* ~ Building internet products Pill Badge */}
+          {/* ~ Building Scalable products Pill Badge */}
           <div className="px-4 py-1.5 rounded-full bg-[#181A22] border border-white/10 text-xs sm:text-sm font-semibold text-white tracking-tight shadow-md flex items-center space-x-1.5">
             <span className="text-gray-400 font-mono">~</span>
             <span>Building Scalable products</span>
           </div>
         </div>
       </div>
+
+      {/* Fullscreen Expanded Profile Picture Modal Lightbox */}
+      <AnimatePresence>
+        {isAvatarModalOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsAvatarModalOpen(false)}
+            className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 cursor-pointer"
+          >
+            <motion.div
+              initial={{ scale: 0.85, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.85, opacity: 0 }}
+              transition={{ type: 'spring', stiffness: 350, damping: 25 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative max-w-md w-full bg-[#12141C] border border-white/20 rounded-3xl overflow-hidden shadow-2xl cursor-default"
+            >
+              {/* Close Button */}
+              <button
+                onClick={() => setIsAvatarModalOpen(false)}
+                className="absolute top-3 right-3 z-20 w-8 h-8 rounded-full bg-black/70 border border-white/20 text-white flex items-center justify-center hover:bg-white/20 transition-all cursor-pointer"
+              >
+                <X className="w-4 h-4" />
+              </button>
+
+              {/* High-res Image */}
+              <div className="w-full max-h-[75vh] overflow-hidden flex items-center justify-center bg-black">
+                <img
+                  src="/assets/profile-avatar.jpg"
+                  alt="Sayan Ghosh Full"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+
+              {/* Footer Caption */}
+              <div className="p-4 bg-[#0F1118] border-t border-white/10 flex items-center justify-between text-white">
+                <div>
+                  <h3 className="font-bold text-base font-bricolage">Sayan Ghosh</h3>
+                  <p className="text-xs text-gray-400 font-sans">Software Engineer & Full-Stack Developer</p>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
     </section>
   );
