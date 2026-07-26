@@ -97,55 +97,101 @@ export default function HeroSection({ onOpenResume, onOpenHackathonModal }) {
           {/* Social Icons */}
           <div className="flex items-center space-x-4">
             {/* X (Twitter) */}
-            <a
-              href="https://x.com/SayanDev01"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-300 hover:text-white transition-colors"
-            >
-              <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-              </svg>
-            </a>
+            <div className="relative group flex flex-col items-center">
+              <a
+                href="https://x.com/SayanDev01"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-300 hover:text-white transition-colors"
+              >
+                <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+              </a>
+              {/* Tooltip Popup */}
+              <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 scale-95 group-hover:scale-100 transition-all duration-200 pointer-events-none z-30">
+                <div className="bg-[#181A24] border border-white/20 text-white text-[11px] font-semibold px-2.5 py-1 rounded-lg shadow-xl whitespace-nowrap relative">
+                  Twitter / X
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-[#181A24]" />
+                </div>
+              </div>
+            </div>
+
             {/* LinkedIn */}
-            <a
-              href="https://www.linkedin.com/in/sayan-ghosh-b7aaa5293/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-300 hover:text-white transition-colors"
-            >
-              <Linkedin className="w-6 h-6" />
-            </a>
+            <div className="relative group flex flex-col items-center">
+              <a
+                href="https://www.linkedin.com/in/sayan-ghosh-b7aaa5293/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-300 hover:text-white transition-colors"
+              >
+                <Linkedin className="w-6 h-6" />
+              </a>
+              {/* Tooltip Popup */}
+              <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 scale-95 group-hover:scale-100 transition-all duration-200 pointer-events-none z-30">
+                <div className="bg-[#181A24] border border-white/20 text-white text-[11px] font-semibold px-2.5 py-1 rounded-lg shadow-xl whitespace-nowrap relative">
+                  LinkedIn
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-[#181A24]" />
+                </div>
+              </div>
+            </div>
+
             {/* Email */}
-            <a
-              href="https://mail.google.com/mail/?view=cm&fs=1&to=sayanghosh1887@gmail.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-300 hover:text-white transition-colors"
-              title="Send Email"
-            >
-              <Mail className="w-6 h-6" />
-            </a>
+            <div className="relative group flex flex-col items-center">
+              <a
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=sayanghosh1887@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-300 hover:text-white transition-colors"
+              >
+                <Mail className="w-6 h-6" />
+              </a>
+              {/* Tooltip Popup */}
+              <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 scale-95 group-hover:scale-100 transition-all duration-200 pointer-events-none z-30">
+                <div className="bg-[#181A24] border border-white/20 text-white text-[11px] font-semibold px-2.5 py-1 rounded-lg shadow-xl whitespace-nowrap relative">
+                  Email
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-[#181A24]" />
+                </div>
+              </div>
+            </div>
+
             {/* GitHub */}
-            <a
-              href="https://github.com/me-sayanghosh"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-300 hover:text-white transition-colors"
-              title="GitHub"
-            >
-              <Github className="w-6 h-6" />
-            </a>
+            <div className="relative group flex flex-col items-center">
+              <a
+                href="https://github.com/me-sayanghosh"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-300 hover:text-white transition-colors"
+              >
+                <Github className="w-6 h-6" />
+              </a>
+              {/* Tooltip Popup */}
+              <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 scale-95 group-hover:scale-100 transition-all duration-200 pointer-events-none z-30">
+                <div className="bg-[#181A24] border border-white/20 text-white text-[11px] font-semibold px-2.5 py-1 rounded-lg shadow-xl whitespace-nowrap relative">
+                  GitHub
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-[#181A24]" />
+                </div>
+              </div>
+            </div>
+
             {/* Instagram */}
-            <a
-              href="https://www.instagram.com/sayann.exe/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-300 hover:text-white transition-colors"
-              title="Instagram"
-            >
-              <Instagram className="w-6 h-6" />
-            </a>
+            <div className="relative group flex flex-col items-center">
+              <a
+                href="https://www.instagram.com/sayann.exe/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-300 hover:text-white transition-colors"
+              >
+                <Instagram className="w-6 h-6" />
+              </a>
+              {/* Tooltip Popup */}
+              <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 scale-95 group-hover:scale-100 transition-all duration-200 pointer-events-none z-30">
+                <div className="bg-[#181A24] border border-white/20 text-white text-[11px] font-semibold px-2.5 py-1 rounded-lg shadow-xl whitespace-nowrap relative">
+                  Instagram
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-[#181A24]" />
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* ~ Building internet products Pill Badge */}
@@ -155,9 +201,6 @@ export default function HeroSection({ onOpenResume, onOpenHackathonModal }) {
           </div>
         </div>
       </div>
-
-      {/* Horizontal Divider Line */}
-      <div className="border-t border-white/10 my-6 sm:my-8" />
 
     </section>
   );

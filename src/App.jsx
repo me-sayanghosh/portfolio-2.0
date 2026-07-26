@@ -4,6 +4,7 @@ import { AnimatePresence } from 'framer-motion';
 import Navbar from './components/Navbar';
 import { HomePage } from './features/home';
 import { AboutPage } from './features/about';
+import { ProjectsPage } from './features/projects';
 import Footer from './components/Footer';
 import ModalPopUp from './components/ModalPopUp';
 import HireMeModal from './components/HireMeModal';
@@ -30,6 +31,14 @@ function AnimatedRoutes({ setIsHackathonModalOpen, setIsHireModalOpen }) {
             <AboutPage
               onOpenHireModal={() => setIsHireModalOpen(true)}
               onOpenResume={() => setIsHireModalOpen(true)}
+            />
+          }
+        />
+        <Route
+          path="/projects"
+          element={
+            <ProjectsPage
+              onOpenHireModal={() => setIsHireModalOpen(true)}
             />
           }
         />

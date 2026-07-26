@@ -9,20 +9,21 @@ export default function Navbar() {
   const tabs = [
     { id: "home", label: "Home", path: "/" },
     { id: "about", label: "About", path: "/about" },
+    { id: "projects", label: "Projects", path: "/projects" },
   ];
 
   return (
     <div className="fixed top-6 left-1/2 -translate-x-1/2 z-50">
       {/* Capsule Navigation Container */}
-      <div className="w-[240px] h-[60px] border border-[#272727] rounded-[40px] p-[8px] gap-[8px] flex flex-row items-center justify-between bg-[#070709]/95 backdrop-blur-xl shadow-2xl relative">
+      <div className="w-[340px] sm:w-[360px] h-[60px] border border-[#272727] rounded-[40px] p-[8px] gap-[6px] flex flex-row items-center justify-between bg-[#070709]/95 backdrop-blur-xl shadow-2xl relative">
         {tabs.map((tab) => {
           const isActive = location.pathname === tab.path;
           return (
             <button
               key={tab.id}
               onClick={() => navigate(tab.path)}
-              className={`relative flex-1 h-full rounded-[30px] flex items-center justify-center text-base font-semibold transition-colors duration-200 select-none ${
-                isActive ? "text-white" : "text-[#474747] hover:text-white"
+              className={`relative flex-1 h-full rounded-[30px] flex items-center justify-center text-sm sm:text-base font-semibold transition-colors duration-200 select-none cursor-pointer ${
+                isActive ? "text-white" : "text-[#888888] hover:text-white"
               }`}
             >
               {/* Animated Active Pill with Spotlight Lamp */}

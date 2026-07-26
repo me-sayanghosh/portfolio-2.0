@@ -2,8 +2,9 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import HeroSection from './components/HeroSection';
 import HomeAboutSection from './components/HomeAboutSection';
+import HomeEducationSection from './components/HomeEducationSection';
+import HomeProjectsSection from './components/HomeProjectsSection';
 import CreationOfAdamBanner from './components/CreationOfAdamBanner';
-import { FeatureProjectsSection } from '../projects';
 import { ContactAndSignature } from '../contact';
 
 export default function HomePage({ onOpenResume, onOpenHackathonModal, onOpenHireModal }) {
@@ -23,7 +24,11 @@ export default function HomePage({ onOpenResume, onOpenHackathonModal, onOpenHir
       {/* About Section on Home Page */}
       <HomeAboutSection />
 
-      <FeatureProjectsSection />
+      {/* Education Section on Home Page */}
+      <HomeEducationSection />
+
+      {/* Projects Section on Home Page */}
+      <HomeProjectsSection />
       
       <CreationOfAdamBanner
         onOpenHireModal={onOpenHireModal}
