@@ -4,7 +4,8 @@ import HeroSection from './components/HeroSection';
 import HomeAboutSection from './components/HomeAboutSection';
 import HomeEducationSection from './components/HomeEducationSection';
 import HomeProjectsSection from './components/HomeProjectsSection';
-import CreationOfAdamBanner from './components/CreationOfAdamBanner';
+import HomeExperienceSection from './components/HomeExperienceSection';
+import HomeAchievementsSection from './components/HomeAchievementsSection';
 import { ContactAndSignature } from '../contact';
 
 export default function HomePage({ onOpenResume, onOpenHackathonModal, onOpenHireModal }) {
@@ -29,10 +30,12 @@ export default function HomePage({ onOpenResume, onOpenHackathonModal, onOpenHir
 
       {/* Projects Section on Home Page */}
       <HomeProjectsSection />
-      
-      <CreationOfAdamBanner
-        onOpenHireModal={onOpenHireModal}
-      />
+
+      {/* Experience Section on Home Page */}
+      <HomeExperienceSection />
+
+      {/* Achievements Section on Home Page */}
+      <HomeAchievementsSection />
       
       <ContactAndSignature />
     </motion.div>

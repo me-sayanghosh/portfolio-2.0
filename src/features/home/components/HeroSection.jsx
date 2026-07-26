@@ -6,7 +6,7 @@ export default function HeroSection({ onOpenResume, onOpenHackathonModal }) {
   const [isAvatarModalOpen, setIsAvatarModalOpen] = useState(false);
 
   return (
-    <section className="pt-20 sm:pt-24 pb-4 max-w-[762px] mx-auto px-4 sm:px-6">
+    <section className="pt-20 sm:pt-24 pb-4 max-w-4xl mx-auto px-4 sm:px-6">
       
       {/* Pure Black Banner Container from Figma */}
       <div className="bg-[#000000] border border-black/15 rounded-2xl relative overflow-hidden h-[180px] sm:h-[210px] shadow-2xl flex items-center justify-center">

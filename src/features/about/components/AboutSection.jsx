@@ -1,6 +1,5 @@
 import React from 'react';
 import { MessageCircle } from 'lucide-react';
-import CreationOfAdamBanner from '../../home/components/CreationOfAdamBanner';
 import { ContactAndSignature } from '../../contact';
 
 export default function AboutSection({ onOpenHireModal, onOpenResume }) {
@@ -147,8 +146,7 @@ export default function AboutSection({ onOpenHireModal, onOpenResume }) {
         </p>
       </div>
 
-      {/* 6. Creation of Adam Banner & Contact */}
-      <CreationOfAdamBanner onOpenHireModal={onOpenHireModal} />
+      {/* Contact */}
       <ContactAndSignature />
 
     </div>

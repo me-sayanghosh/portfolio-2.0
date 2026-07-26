@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { ExternalLink, Github, FolderGit2, Layers, Bot, CloudRain, Paperclip } from 'lucide-react';
-import CreationOfAdamBanner from '../../home/components/CreationOfAdamBanner';
 import { ContactAndSignature } from '../../contact';
 
 export default function ProjectsSection({ onOpenHireModal }) {
@@ -195,8 +194,7 @@ export default function ProjectsSection({ onOpenHireModal }) {
         })}
       </div>
 
-      {/* Creation of Adam Banner & Contact */}
-      <CreationOfAdamBanner onOpenHireModal={onOpenHireModal} />
+      {/* Contact */}
       <ContactAndSignature />
 
     </section>

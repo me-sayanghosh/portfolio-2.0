@@ -30,7 +30,7 @@ export default function HomeProjectsSection() {
   ];
 
   return (
-    <section className="py-6 max-w-[762px] mx-auto px-4 sm:px-6">
+    <section className="py-6 max-w-4xl mx-auto px-4 sm:px-6">
       
       {/* Title with Bricolage Grotesque Font */}
       <h2

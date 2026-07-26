@@ -93,7 +93,7 @@ export default function HomeAboutSection() {
   ];
 
   return (
-    <section className="py-6 max-w-[762px] mx-auto px-4 sm:px-6">
+    <section className="py-6 max-w-4xl mx-auto px-4 sm:px-6">
       
       {/* Title */}
       <h2
