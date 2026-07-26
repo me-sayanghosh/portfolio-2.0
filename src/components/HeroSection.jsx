@@ -1,5 +1,5 @@
 import React from 'react';
-import { Linkedin, Mail, Github } from 'lucide-react';
+import { Linkedin, Mail, Github, Instagram } from 'lucide-react';
 import AchievementsSection from './AchievementsSection';
 
 export default function HeroSection({ onOpenResume, onOpenHackathonModal }) {
@@ -130,8 +130,19 @@ export default function HeroSection({ onOpenResume, onOpenHackathonModal }) {
             target="_blank"
             rel="noopener noreferrer"
             className="text-gray-300 hover:text-white transition-colors"
+            title="GitHub"
           >
             <Github className="w-5 h-5" />
+          </a>
+          {/* Instagram */}
+          <a
+            href="https://www.instagram.com/sayann.exe/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-300 hover:text-white transition-colors"
+            title="Instagram"
+          >
+            <Instagram className="w-5 h-5" />
           </a>
         </div>
       </div>

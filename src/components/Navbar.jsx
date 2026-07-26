@@ -1,28 +1,31 @@
-"use client";
 import React from "react";
 import { motion } from "framer-motion";
+import { useLocation, useNavigate } from "react-router-dom";
 
-export default function Navbar({ activeTab, setActiveTab }) {
+export default function Navbar() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const tabs = [
-    { id: "home", label: "Home" },
-    { id: "about", label: "About" },
+    { id: "home", label: "Home", path: "/" },
+    { id: "about", label: "About", path: "/about" },
   ];
 
   return (
     <div className="fixed top-6 left-1/2 -translate-x-1/2 z-50">
-      {/* Frame 30 Outer Container - Scaled Larger (240px x 60px) */}
+      {/* Capsule Navigation Container */}
       <div className="w-[240px] h-[60px] border border-[#272727] rounded-[40px] p-[8px] gap-[8px] flex flex-row items-center justify-between bg-[#070709]/95 backdrop-blur-xl shadow-2xl relative">
         {tabs.map((tab) => {
-          const isActive = activeTab === tab.id;
+          const isActive = location.pathname === tab.path;
           return (
             <button
               key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
+              onClick={() => navigate(tab.path)}
               className={`relative flex-1 h-full rounded-[30px] flex items-center justify-center text-base font-semibold transition-colors duration-200 select-none ${
                 isActive ? "text-white" : "text-[#474747] hover:text-white"
               }`}
             >
-              {/* Animated Active Pill with Proportional Larger Spotlight Lamp */}
+              {/* Animated Active Pill with Spotlight Lamp */}
               {isActive && (
                 <motion.div
                   layoutId="activeTabSpotlight"
@@ -33,7 +36,7 @@ export default function Navbar({ activeTab, setActiveTab }) {
                     damping: 30,
                   }}
                 >
-                  {/* Layer 1: Soft Ambient Backing Glow (Rectangle 13) */}
+                  {/* Layer 1: Soft Ambient Backing Glow */}
                   <div
                     className="absolute top-100 left-[calc(59%-24px)] w-[29px] h-[35px] pointer-events-none z-0 opacity-40"
                     style={{
@@ -51,7 +54,6 @@ export default function Navbar({ activeTab, setActiveTab }) {
                     height="40"
                     viewBox="0 0 80 40"
                   >
-                    
                     <defs>
                       <linearGradient id="beamFade" x1="0" y1="0" x2="0" y2="1">
                         <stop
@@ -70,7 +72,6 @@ export default function Navbar({ activeTab, setActiveTab }) {
                           stopOpacity="0"
                         />
                       </linearGradient>
-                      {/* Filter region extended beyond the shape (-50%/200%) so blur isn't clipped */}
                       <filter
                         id="beamBlur"
                         x="-50%"
@@ -88,10 +89,9 @@ export default function Navbar({ activeTab, setActiveTab }) {
                     />
                   </svg>
 
-                  {/* Layer 3: Solid Top Lamp Bar (32px x 3px) */}
+                  {/* Layer 3: Solid Top Lamp Bar */}
                   <div
                     className="absolute top-0 left-[calc(50%-16px)] w-[32px] h-[3px] bg-white rounded-full z-20"
-                    
                   />
                 </motion.div>
               )}
