@@ -10,15 +10,15 @@ export default function HeroSection({ onOpenResume, onOpenHackathonModal }) {
       <div className="bg-[#000000] border border-black/15 rounded-2xl relative overflow-hidden h-[180px] sm:h-[210px] shadow-2xl flex items-center justify-center">
         
         {/* Top-Right "Open for new projects" Badge */}
-        <div className="absolute top-4 right-4 z-20 flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-[#0F1118] border border-white/20 text-xs font-medium text-white shadow-md">
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#10b981]" />
+        <div className="absolute top-4 right-4 z-20 flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-[#0F1118] border border-white/10 text-xs font-medium text-white/80 shadow-md">
+          <span className="w-2 h-2 rounded-full bg-emerald-300 animate-pulse shadow-[0_0_8px_#10b981]" />
           <span>Open for new projects</span>
         </div>
 
         {/* Large Grumpy White Cat Image filling full right side of black banner */}
-        <div className="absolute right-0 top-0 bottom-0 w-[200px] sm:w-[270px] pointer-events-none overflow-hidden rounded-r-2xl flex items-center justify-end">
+        <div className="absolute right-0 top-0 bottom-0 w-[500px] sm:w-[270px] pointer-events-none overflow-hidden rounded-r-2xl flex items-center justify-end">
           <img
-            src="/assets/6e3ab355521a13942b5a4a11d3ed107d310428f8.jpg"
+            src="/assets/Cat.png"
             alt="Grumpy Cat"
             className="h-full w-full object-cover object-right"
           />
