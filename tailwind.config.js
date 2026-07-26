@@ -21,7 +21,9 @@ export default {
       },
       fontFamily: {
         sans: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
-        display: ['"Outfit"', '"Urbanist"', '"Bricolage Grotesque"', 'sans-serif'],
+        display: ['"Bricolage Grotesque"', 'sans-serif'],
+        bricolage: ['"Bricolage Grotesque"', 'sans-serif'],
+        helvetica: ['"Helvetica Neue"', 'Helvetica', 'Arial', 'sans-serif'],
         urbanist: ['"Urbanist"', 'sans-serif'],
         mono: ['monospace']
       },

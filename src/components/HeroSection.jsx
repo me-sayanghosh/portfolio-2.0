@@ -25,7 +25,16 @@ export default function HeroSection({ onOpenResume, onOpenHackathonModal }) {
         </div>
 
         {/* Banner Title - Centered Vertically & Horizontally in Black Banner */}
-        <h1 className="font-display text-3xl sm:text-[42px] font-extrabold text-white tracking-[-1.5px] leading-[48px] text-center z-10 px-4">
+        <h1
+          className="font-bricolage font-bold text-3xl sm:text-[40px] text-white text-center z-10 px-4"
+          style={{
+            fontFamily: "'Bricolage Grotesque', sans-serif",
+            fontWeight: 700,
+            fontSize: '40px',
+            lineHeight: '48px',
+            letterSpacing: '-1.6px'
+          }}
+        >
           Finally found me!!
         </h1>
 
@@ -55,7 +64,16 @@ export default function HeroSection({ onOpenResume, onOpenHackathonModal }) {
       <div className="px-1 sm:px-2 mt-2">
         {/* Name & Verified Badge */}
         <div className="flex items-center space-x-2.5 mb-1.5">
-          <h2 className="font-display text-3xl sm:text-[42px] font-extrabold text-white tracking-[-1.5px] leading-[48px]">
+          <h2
+            className="font-bricolage font-bold text-3xl sm:text-[40px] text-white"
+            style={{
+              fontFamily: "'Bricolage Grotesque', sans-serif",
+              fontWeight: 700,
+              fontSize: '40px',
+              lineHeight: '48px',
+              letterSpacing: '-1.6px'
+            }}
+          >
             Sayan Ghosh
           </h2>
           {/* Verified Blue Badge */}
