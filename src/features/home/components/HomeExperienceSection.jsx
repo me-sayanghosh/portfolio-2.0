@@ -33,8 +33,6 @@ export default function HomeExperienceSection() {
     }
   ];
 
-  const visibleExperiences = showAll ? experiences : experiences.slice(0, 2);
-
   return (
     <section className="py-6 max-w-4xl mx-auto px-4 sm:px-6">
       
@@ -46,83 +44,116 @@ export default function HomeExperienceSection() {
         Experience<span className="text-amber-500">.</span>
       </h2>
 
-      {/* Experience List matching Screenshot Design */}
+      {/* Experience List */}
       <div className="space-y-8">
-        <AnimatePresence initial={false}>
-          {visibleExperiences.map((exp) => (
+        {/* Always visible 2 items */}
+        {experiences.slice(0, 2).map((exp) => (
+          <motion.div
+            key={exp.id}
+            whileHover={{ x: 10 }}
+            transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+            className="space-y-1.5 group cursor-pointer transform-gpu"
+          >
+            {/* Header: Title + Dates */}
+            <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 sm:gap-4">
+              <h3 className="text-base sm:text-lg font-bold text-white tracking-tight group-hover:text-white transition-colors">
+                {exp.title}
+              </h3>
+              <span className="text-xs sm:text-sm text-gray-400 font-sans whitespace-nowrap">
+                {exp.dates}
+              </span>
+            </div>
+
+            {/* Location / Company Subtitle */}
+            {exp.location && (
+              <p className="text-xs sm:text-sm text-gray-400 font-sans">
+                {exp.location}
+              </p>
+            )}
+
+            {/* Bullets */}
+            {exp.bullets && (
+              <ul className="space-y-1.5 mt-2 text-xs sm:text-sm text-gray-300 font-sans list-disc list-inside leading-relaxed">
+                {exp.bullets.map((bullet, idx) => (
+                  <li key={idx}>{bullet}</li>
+                ))}
+              </ul>
+            )}
+
+            {/* Description */}
+            {exp.description && (
+              <p className="text-xs sm:text-sm text-gray-300 leading-relaxed font-sans mt-2">
+                {exp.description}
+              </p>
+            )}
+
+            {/* Skills Slash List */}
+            {exp.skills && (
+              <p className="text-xs text-gray-400 font-sans mt-3 leading-normal">
+                {exp.skills}
+              </p>
+            )}
+          </motion.div>
+        ))}
+
+        {/* 3rd Item dynamically toggled */}
+        <AnimatePresence>
+          {showAll && (
             <motion.div
-              key={exp.id}
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
+              key={experiences[2].id}
+              initial={{ opacity: 0, height: 0, y: -8 }}
+              animate={{ opacity: 1, height: 'auto', y: 0 }}
+              exit={{ opacity: 0, height: 0, y: -8 }}
               whileHover={{ x: 10 }}
               transition={{
-                height: { duration: 0.3, ease: 'easeInOut' },
-                opacity: { duration: 0.3 },
+                height: { duration: 0.2, ease: 'easeOut' },
+                opacity: { duration: 0.2 },
                 x: { type: 'spring', stiffness: 400, damping: 25 }
               }}
-              className="space-y-1.5 group cursor-pointer"
+              className="space-y-1.5 group cursor-pointer transform-gpu overflow-hidden"
             >
               {/* Header: Title + Dates */}
               <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 sm:gap-4">
                 <h3 className="text-base sm:text-lg font-bold text-white tracking-tight group-hover:text-white transition-colors">
-                  {exp.title}
+                  {experiences[2].title}
                 </h3>
                 <span className="text-xs sm:text-sm text-gray-400 font-sans whitespace-nowrap">
-                  {exp.dates}
+                  {experiences[2].dates}
                 </span>
               </div>
 
-              {/* Location / Company Subtitle */}
-              {exp.location && (
-                <p className="text-xs sm:text-sm text-gray-400 font-sans">
-                  {exp.location}
-                </p>
-              )}
-
-              {/* Bullets */}
-              {exp.bullets && (
-                <ul className="space-y-1.5 mt-2 text-xs sm:text-sm text-gray-300 font-sans list-disc list-inside leading-relaxed">
-                  {exp.bullets.map((bullet, idx) => (
-                    <li key={idx}>{bullet}</li>
-                  ))}
-                </ul>
-              )}
-
               {/* Description */}
-              {exp.description && (
+              {experiences[2].description && (
                 <p className="text-xs sm:text-sm text-gray-300 leading-relaxed font-sans mt-2">
-                  {exp.description}
+                  {experiences[2].description}
                 </p>
               )}
 
               {/* Skills Slash List */}
-              {exp.skills && (
+              {experiences[2].skills && (
                 <p className="text-xs text-gray-400 font-sans mt-3 leading-normal">
-                  {exp.skills}
+                  {experiences[2].skills}
                 </p>
               )}
             </motion.div>
-          ))}
+          )}
         </AnimatePresence>
       </div>
 
       {/* Show More / Show Less Toggle Button */}
-      {experiences.length > 2 && (
-        <div className="flex justify-center mt-8">
-          <button
-            onClick={() => setShowAll(!showAll)}
-            className="px-6 py-2 rounded-full border border-white/30 bg-[#12141C] hover:bg-white/15 text-white font-semibold text-xs sm:text-sm shadow-lg transition-all active:scale-95 cursor-pointer flex items-center space-x-2"
-          >
-            <span>{showAll ? 'Show Less' : 'Show More'}</span>
-            {showAll ? (
-              <ChevronUp className="w-4 h-4 text-gray-300" />
-            ) : (
-              <ChevronDown className="w-4 h-4 text-gray-300" />
-            )}
-          </button>
-        </div>
-      )}
+      <div className="flex justify-center mt-8">
+        <button
+          onClick={() => setShowAll(!showAll)}
+          className="px-6 py-2 rounded-full border border-white/30 bg-[#12141C] hover:bg-white/15 text-white font-semibold text-xs sm:text-sm shadow-lg transition-all active:scale-95 cursor-pointer flex items-center space-x-2"
+        >
+          <span>{showAll ? 'Show Less' : 'Show More'}</span>
+          {showAll ? (
+            <ChevronUp className="w-4 h-4 text-gray-300" />
+          ) : (
+            <ChevronDown className="w-4 h-4 text-gray-300" />
+          )}
+        </button>
+      </div>
 
     </section>
   );
