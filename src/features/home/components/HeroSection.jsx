@@ -92,66 +92,69 @@ export default function HeroSection({ onOpenResume, onOpenHackathonModal }) {
           I am Sayan, a dedicated full-stack web developer and programmer working remotely from my workspace in Kalyani, India. As a passionate fresher and self-taught software engineer, I have spent countless hours mastering the modern web ecosystem: engineering high-performance interfaces, developing secure API gateways, and structuring clean database schemas.
         </p>
 
-        {/* Social Icons Row */}
-        <div className="flex items-center space-x-4 mb-8">
-          {/* X (Twitter) */}
-          <a
-            href="https://x.com/SayanDev01"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-300 hover:text-white transition-colors"
-          >
-            <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
-              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-            </svg>
-          </a>
-          {/* LinkedIn */}
-          <a
-            href="https://www.linkedin.com/in/sayan-ghosh-b7aaa5293/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-300 hover:text-white transition-colors"
-          >
-            <Linkedin className="w-5 h-5" />
-          </a>
-          {/* Email */}
-          <a
-            href="https://mail.google.com/mail/?view=cm&fs=1&to=sayanghosh1887@gmail.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-300 hover:text-white transition-colors"
-            title="Send Email"
-          >
-            <Mail className="w-5 h-5" />
-          </a>
-          {/* GitHub */}
-          <a
-            href="https://github.com/me-sayanghosh"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-300 hover:text-white transition-colors"
-            title="GitHub"
-          >
-            <Github className="w-5 h-5" />
-          </a>
-          {/* Instagram */}
-          <a
-            href="https://www.instagram.com/sayann.exe/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-300 hover:text-white transition-colors"
-            title="Instagram"
-          >
-            <Instagram className="w-5 h-5" />
-          </a>
+        {/* Social Icons & Building Internet Products Pill Row */}
+        <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
+          {/* Social Icons */}
+          <div className="flex items-center space-x-4">
+            {/* X (Twitter) */}
+            <a
+              href="https://x.com/SayanDev01"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-300 hover:text-white transition-colors"
+            >
+              <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+            {/* LinkedIn */}
+            <a
+              href="https://www.linkedin.com/in/sayan-ghosh-b7aaa5293/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-300 hover:text-white transition-colors"
+            >
+              <Linkedin className="w-6 h-6" />
+            </a>
+            {/* Email */}
+            <a
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=sayanghosh1887@gmail.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-300 hover:text-white transition-colors"
+              title="Send Email"
+            >
+              <Mail className="w-6 h-6" />
+            </a>
+            {/* GitHub */}
+            <a
+              href="https://github.com/me-sayanghosh"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-300 hover:text-white transition-colors"
+              title="GitHub"
+            >
+              <Github className="w-6 h-6" />
+            </a>
+            {/* Instagram */}
+            <a
+              href="https://www.instagram.com/sayann.exe/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-300 hover:text-white transition-colors"
+              title="Instagram"
+            >
+              <Instagram className="w-6 h-6" />
+            </a>
+          </div>
+
+          {/* ~ Building internet products Pill Badge */}
+          <div className="px-4 py-1.5 rounded-full bg-[#181A22] border border-white/10 text-xs sm:text-sm font-semibold text-white tracking-tight shadow-md flex items-center space-x-1.5">
+            <span className="text-gray-400 font-mono">~</span>
+            <span>Building Scalable products</span>
+          </div>
         </div>
       </div>
-
-      {/* Horizontal Divider Line */}
-      <div className="border-t border-white/10 my-6 sm:my-8" />
-
-      {/* Achievements Section */}
-      <AchievementsSection onOpenHackathonModal={onOpenHackathonModal} />
 
       {/* Horizontal Divider Line */}
       <div className="border-t border-white/10 my-6 sm:my-8" />
