@@ -17,8 +17,8 @@ export default function SkillsSection() {
   ];
 
   return (
-    <section className="py-6 max-w-4xl mx-auto px-4 sm:px-6">
-      <h2 className="text-xl font-bold text-white mb-4">Skills</h2>
+    <section className="py-2 max-w-[762px] mx-auto px-4 sm:px-6">
+      <h2 className="font-urbanist text-xl sm:text-2xl font-bold text-white mb-4 text-left">Skills</h2>
       <div className="flex flex-wrap gap-2.5">
         {skills.map((skill, index) => (
           <div
@@ -30,6 +30,9 @@ export default function SkillsSection() {
           </div>
         ))}
       </div>
+
+      {/* Horizontal Divider Line */}
+      <div className="border-t border-white/10 my-6 sm:my-8" />
     </section>
   );
 }

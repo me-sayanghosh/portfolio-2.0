@@ -1,109 +1,128 @@
 import React from 'react';
-import { CheckCircle2, Twitter, Linkedin, Mail, Github, FileText } from 'lucide-react';
+import { Linkedin, Mail, Github } from 'lucide-react';
+import AchievementsSection from './AchievementsSection';
 
-export default function HeroSection({ onOpenResume }) {
+export default function HeroSection({ onOpenResume, onOpenHackathonModal }) {
   return (
-    <section className="pt-24 pb-12 max-w-4xl mx-auto px-4 sm:px-6">
+    <section className="pt-20 sm:pt-24 pb-4 max-w-[762px] mx-auto px-4 sm:px-6">
       
-      {/* Main Header Card from Figma Node 136:18 */}
-      <div className="bg-[#0D0F17] border border-white/10 rounded-3xl p-6 sm:p-10 relative overflow-hidden shadow-2xl">
+      {/* Pure Black Banner Container from Figma */}
+      <div className="bg-[#000000] border border-black/15 rounded-2xl relative overflow-hidden h-[180px] sm:h-[210px] shadow-2xl flex items-center justify-center">
         
-        {/* Top-Right Grumpy Cat & Open for new projects badge */}
-        <div className="flex items-center justify-between mb-8">
-          <div></div>
-          <div className="flex items-center space-x-3">
-            <div className="flex items-center space-x-2 px-3 py-1 rounded-full bg-[#161A24] border border-white/10 text-xs font-medium text-gray-300">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span>Open for new projects</span>
-            </div>
-            <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl overflow-hidden border border-white/15 shadow-md flex-shrink-0">
-              <img
-                src="/assets/6e3ab355521a13942b5a4a11d3ed107d310428f8.jpg"
-                alt="Cat"
-                className="w-full h-full object-cover"
-              />
-            </div>
-          </div>
+        {/* Top-Right "Open for new projects" Badge */}
+        <div className="absolute top-4 right-4 z-20 flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-[#0F1118] border border-white/20 text-xs font-medium text-white shadow-md">
+          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#10b981]" />
+          <span>Open for new projects</span>
         </div>
 
-        {/* Title */}
-        <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight mb-8">
+        {/* Large Grumpy White Cat Image filling full right side of black banner */}
+        <div className="absolute right-0 top-0 bottom-0 w-[200px] sm:w-[270px] pointer-events-none overflow-hidden rounded-r-2xl flex items-center justify-end">
+          <img
+            src="/assets/6e3ab355521a13942b5a4a11d3ed107d310428f8.jpg"
+            alt="Grumpy Cat"
+            className="h-full w-full object-cover object-right"
+          />
+        </div>
+
+        {/* Banner Title - Centered Vertically & Horizontally in Black Banner */}
+        <h1 className="font-display text-3xl sm:text-[42px] font-extrabold text-white tracking-[-1.5px] leading-[48px] text-center z-10 px-4">
           Finally found me!!
         </h1>
 
-        {/* Profile Picture */}
-        <div className="mb-6">
-          <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden border-2 border-white/20 shadow-xl">
-            <img
-              src="/assets/db4e4c670606b40c42a7d9c020a9d0a72812ffc3.jpg"
-              alt="Sayan Ghosh"
-              className="w-full h-full object-cover"
-            />
-          </div>
+      </div>
+
+      {/* Row containing Overlapping Profile Picture (Left) & My Resume Button (Right) */}
+      <div className="flex items-start justify-between px-2 sm:px-4 mb-2 relative">
+        {/* Profile Avatar overlapping bottom of black banner */}
+        <div className="w-22 h-22 sm:w-24 sm:h-24 rounded-[18px] overflow-hidden border-2 border-white shadow-2xl flex-shrink-0 relative -mt-11 sm:-mt-12 z-30 bg-black">
+          <img
+            src="/assets/db4e4c670606b40c42a7d9c020a9d0a72812ffc3.jpg"
+            alt="Sayan Ghosh"
+            className="w-full h-full object-cover"
+          />
         </div>
 
+        {/* My Resume Button (Matching Figma Screenshot) */}
+        <button
+          onClick={onOpenResume}
+          className="mt-3 px-4 py-1 sm:px-5 sm:py-1.5 rounded-full border border-white/40 bg-black/80 hover:bg-white/15 text-white font-urbanist text-xs sm:text-sm font-medium tracking-tight italic transition-all active:scale-95 cursor-pointer shadow-md"
+        >
+          My Resume
+        </button>
+      </div>
+
+      {/* Name, Tagline, Bio & Social Links */}
+      <div className="px-1 sm:px-2 mt-2">
         {/* Name & Verified Badge */}
-        <div className="flex items-center space-x-2 mb-2">
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-white">Sayan Ghosh</h2>
-          <svg className="w-6 h-6 text-blue-500 fill-current" viewBox="0 0 24 24">
-            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+        <div className="flex items-center space-x-2.5 mb-1.5">
+          <h2 className="font-display text-3xl sm:text-[42px] font-extrabold text-white tracking-[-1.5px] leading-[48px]">
+            Sayan Ghosh
+          </h2>
+          {/* Verified Blue Badge */}
+          <svg className="w-6 h-6 sm:w-7 sm:h-7 text-[#1D9BF0] fill-current flex-shrink-0" viewBox="0 0 24 24">
+            <path d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.79-4-4-4-.495 0-.965.084-1.4.238C14.55 2.475 13.18 1.6 11.6 1.6c-1.58 0-2.95.875-3.6 2.148-.435-.154-.905-.238-1.4-.238-2.21 0-4 1.79-4 4 0 .495.084.965.238 1.4C1.575 9.55.7 10.92.7 12.5c0 1.58.875 2.95 2.148 3.6-.154.435-.238.905-.238 1.4 0 2.21 1.79 4 4 4 .495 0 .965-.084 1.4-.238 1.35 1.273 2.72 2.148 4.3 2.148 1.58 0 2.95-.875 3.6-2.148.435.154.905.238 1.4.238 2.21 0 4-1.79 4-4 0-.495-.084-.965-.238-1.4 1.273-1.35 2.148-2.72 2.148-4.3zM9.6 17.2l-4.4-4.4 1.4-1.4 3 3 7.6-7.6 1.4 1.4-9 9z" />
           </svg>
         </div>
 
         {/* Tagline */}
-        <p className="text-base sm:text-lg font-bold text-gray-200 mb-4">
+        <p className="font-sans text-lg sm:text-[20px] font-medium text-gray-200 mb-3 tracking-[-0.8px] leading-[24px]">
           Transforming complex problems into elegant, scalable solution
         </p>
 
         {/* Bio Text */}
-        <p className="text-xs sm:text-sm text-gray-400 leading-relaxed max-w-3xl mb-8">
+        <p className="text-xs sm:text-sm text-gray-400 leading-relaxed max-w-3xl mb-6 font-sans">
           I am Sayan, a dedicated full-stack web developer and programmer working remotely from my workspace in Kalyani, India. As a passionate fresher and self-taught software engineer, I have spent countless hours mastering the modern web ecosystem: engineering high-performance interfaces, developing secure API gateways, and structuring clean database schemas.
         </p>
 
-        {/* Social Icons & Resume Button */}
-        <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-white/10">
-          <div className="flex items-center space-x-4">
-            <a
-              href="https://twitter.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-gray-300 hover:text-white border border-white/10 transition-colors"
-            >
-              <Twitter className="w-4 h-4" />
-            </a>
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-gray-300 hover:text-white border border-white/10 transition-colors"
-            >
-              <Linkedin className="w-4 h-4" />
-            </a>
-            <a
-              href="mailto:sayanghosh1887@gmail.com"
-              className="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-gray-300 hover:text-white border border-white/10 transition-colors"
-            >
-              <Mail className="w-4 h-4" />
-            </a>
-            <a
-              href="https://github.com/me-sayanghosh"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-gray-300 hover:text-white border border-white/10 transition-colors"
-            >
-              <Github className="w-4 h-4" />
-            </a>
-          </div>
-
-          <button
-            onClick={onOpenResume}
-            className="px-5 py-2 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold text-xs sm:text-sm shadow-md transition-all"
+        {/* Social Icons Row */}
+        <div className="flex items-center space-x-4 mb-8">
+          {/* X (Twitter) */}
+          <a
+            href="https://twitter.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-300 hover:text-white transition-colors"
           >
-            My Resume
-          </button>
+            <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+          </a>
+          {/* LinkedIn */}
+          <a
+            href="https://linkedin.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-300 hover:text-white transition-colors"
+          >
+            <Linkedin className="w-5 h-5" />
+          </a>
+          {/* Email */}
+          <a
+            href="mailto:sayanghosh1887@gmail.com"
+            className="text-gray-300 hover:text-white transition-colors"
+          >
+            <Mail className="w-5 h-5" />
+          </a>
+          {/* GitHub */}
+          <a
+            href="https://github.com/me-sayanghosh"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-300 hover:text-white transition-colors"
+          >
+            <Github className="w-5 h-5" />
+          </a>
         </div>
-
       </div>
+
+      {/* Horizontal Divider Line */}
+      <div className="border-t border-white/10 my-6 sm:my-8" />
+
+      {/* Achievements Section */}
+      <AchievementsSection onOpenHackathonModal={onOpenHackathonModal} />
+
+      {/* Horizontal Divider Line */}
+      <div className="border-t border-white/10 my-6 sm:my-8" />
 
     </section>
   );

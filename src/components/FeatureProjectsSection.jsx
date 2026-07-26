@@ -53,7 +53,7 @@ export default function FeatureProjectsSection() {
   ];
 
   return (
-    <section className="py-12 max-w-4xl mx-auto px-4 sm:px-6 relative" onMouseMove={handleMouseMove}>
+    <section className="py-6 max-w-[762px] mx-auto px-4 sm:px-6 relative" onMouseMove={handleMouseMove}>
       
       {/* Custom Cursor from Figma Hover State (Node 114:354) */}
       {hoveredIndex !== null && (

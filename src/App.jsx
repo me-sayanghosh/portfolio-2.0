@@ -40,9 +40,6 @@ export default function App() {
               {/* Main Home V2 Sections */}
               <HeroSection
                 onOpenResume={() => setIsHireModalOpen(true)}
-              />
-              
-              <AchievementsSection
                 onOpenHackathonModal={() => setIsHackathonModalOpen(true)}
               />
               
