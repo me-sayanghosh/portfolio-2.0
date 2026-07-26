@@ -96,7 +96,7 @@ export default function HeroSection({ onOpenResume, onOpenHackathonModal }) {
         <div className="flex items-center space-x-4 mb-8">
           {/* X (Twitter) */}
           <a
-            href="https://twitter.com"
+            href="https://x.com/SayanDev01"
             target="_blank"
             rel="noopener noreferrer"
             className="text-gray-300 hover:text-white transition-colors"
@@ -107,7 +107,7 @@ export default function HeroSection({ onOpenResume, onOpenHackathonModal }) {
           </a>
           {/* LinkedIn */}
           <a
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/in/sayan-ghosh-b7aaa5293/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-gray-300 hover:text-white transition-colors"
@@ -116,8 +116,11 @@ export default function HeroSection({ onOpenResume, onOpenHackathonModal }) {
           </a>
           {/* Email */}
           <a
-            href="mailto:sayanghosh1887@gmail.com"
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=sayanghosh1887@gmail.com"
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-gray-300 hover:text-white transition-colors"
+            title="Send Email"
           >
             <Mail className="w-5 h-5" />
           </a>

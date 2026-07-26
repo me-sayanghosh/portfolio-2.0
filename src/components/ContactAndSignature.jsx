@@ -9,7 +9,12 @@ export default function ContactAndSignature() {
         <div className="space-y-4">
           <div>
             <span className="text-xs text-gray-500 font-mono block mb-0.5">Email</span>
-            <a href="mailto:sayanghosh1887@gmail.com" className="text-sm font-semibold text-gray-200 hover:text-white transition-colors">
+            <a
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=sayanghosh1887@gmail.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm font-semibold text-gray-200 hover:text-white transition-colors"
+            >
               sayanghosh1887@gmail.com
             </a>
           </div>
