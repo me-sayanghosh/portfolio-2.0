@@ -1,7 +1,7 @@
 import React from 'react';
-import { MessageCircle } from 'lucide-react';
 import { ContactAndSignature } from '../../contact';
 import AboutMeBanner from './AboutMeBanner';
+import AboutCollageSection from './AboutCollageSection';
 
 export default function AboutSection({ onOpenHireModal, onOpenResume }) {
   const stories = [
@@ -33,67 +33,8 @@ export default function AboutSection({ onOpenHireModal, onOpenResume }) {
       {/* 1. Top Banner — "a lil bit about me!!" */}
       <AboutMeBanner />
 
-      {/* 2. Interactive Grid Canvas Collage */}
-      <div className="bg-[#0A0C14] border border-white/10 rounded-3xl p-6 sm:p-10 relative overflow-hidden bg-dot-pattern min-h-[480px] flex flex-col justify-between shadow-2xl">
-        
-        {/* Top Right Resume Button */}
-        <div className="flex justify-end">
-          <button
-            onClick={onOpenResume}
-            className="px-5 py-2 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold text-xs sm:text-sm shadow-md transition-all"
-          >
-            My Resume
-          </button>
-        </div>
-
-        {/* Center Grid Elements */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center my-6">
-          
-          {/* Left Speech Bubble & WhatsApp */}
-          <div className="bg-[#121520] border border-white/15 rounded-2xl p-5 shadow-xl relative text-left">
-            <p className="text-xs sm:text-sm text-gray-200 font-medium mb-3">
-              Love great tech or cats ? let’s chat about it i would love to know more
-            </p>
-            <a
-              href="https://wa.me/919339740537"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-all"
-            >
-              <MessageCircle className="w-3.5 h-3.5" />
-              <span>Send “hi” on WhatsApp</span>
-            </a>
-            <span className="text-[10px] text-gray-500 block mt-2">promise i’ll reply faster than Claude</span>
-          </div>
-
-          {/* Center Sayan Portrait */}
-          <div className="flex justify-center">
-            <div className="w-44 h-56 sm:w-52 sm:h-64 rounded-2xl overflow-hidden border-2 border-white/30 shadow-2xl transform -rotate-1 hover:rotate-0 transition-transform">
-              <img
-                src="/assets/4f640adde916bb548ff6329eae65d8d675030cae.jpg"
-                alt="Sayan"
-                className="w-full h-full object-cover"
-              />
-            </div>
-          </div>
-
-          {/* Right Pinned Polaroids Grid */}
-          <div className="grid grid-cols-2 gap-3">
-            <div className="bg-white p-1.5 rounded-xl shadow-lg transform rotate-3">
-              <img src="/assets/ea0ee6ce4406a435c65efae50c3d4f240f15823e.jpg" alt="Guitar" className="w-full h-20 object-cover rounded-lg" />
-            </div>
-            <div className="bg-white p-1.5 rounded-xl shadow-lg transform -rotate-2">
-              <img src="/assets/577c7fc7bcbe4e9bb3e0e6b04aab59e6b30d9600.jpg" alt="Food" className="w-full h-20 object-cover rounded-lg" />
-            </div>
-            <div className="bg-white p-1.5 rounded-xl shadow-lg transform -rotate-3 col-span-2">
-              <img src="/assets/ef58a9a6e7cecb8641b70edfc3e1a44966687bda.jpg" alt="Mountains" className="w-full h-24 object-cover rounded-lg" />
-            </div>
-          </div>
-
-        </div>
-
-        <div></div>
-      </div>
+      {/* 2. Interactive Animated Collage Grid Section */}
+      <AboutCollageSection onOpenResume={onOpenResume} />
 
       {/* 3. Big Highlight Paragraph */}
       <div className="text-xl sm:text-2xl md:text-3xl font-extrabold text-gray-100 leading-snug tracking-tight">
