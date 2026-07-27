@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Linkedin, Mail, Github, Instagram, X } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { ImagesBadge } from '../../../components/ui/images-badge';
 
 export default function HeroSection({ onOpenResume, onOpenHackathonModal }) {
+  const navigate = useNavigate();
   const [isAvatarModalOpen, setIsAvatarModalOpen] = useState(false);
 
   return (
@@ -200,6 +203,21 @@ export default function HeroSection({ onOpenResume, onOpenHackathonModal }) {
                 </div>
               </div>
             </div>
+          </div>
+
+          {/* Gallery View Icon Button (Far Right Edge) */}
+          <div className="ml-auto">
+            <ImagesBadge
+              text="Gallery View"
+              images={[
+                "/assets/collage-elements/mountain_polaroid.png",
+                "/assets/collage-elements/sayan_portrait.png",
+                "/assets/collage-elements/guitar_polaroid.png",
+              ]}
+              hoverSpread={20}
+              hoverRotation={15}
+              onClick={() => navigate('/about')}
+            />
           </div>
         </div>
       </div>
