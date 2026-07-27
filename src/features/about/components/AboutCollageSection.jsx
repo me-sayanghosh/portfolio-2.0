@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function AboutCollageSection({ onOpenResume }) {
   return (
-    <div className="relative w-full aspect-[762/720] rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-[#0D0F15] select-none group/canvas">
+    <div className="relative w-full aspect-[762/720] rounded-2xl overflow-hidden shadow-lg border border-white/0 bg-[#0D0F15] select-none group/canvas">
       
       {/* Background Grid Image Asset */}
       <img

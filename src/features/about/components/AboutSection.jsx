@@ -28,7 +28,7 @@ export default function AboutSection({ onOpenHireModal, onOpenResume }) {
   ];
 
   return (
-    <div className="pt-24 pb-16 max-w-4xl mx-auto px-4 sm:px-6 space-y-16">
+    <div className="pt-16 sm:pt-20 pb-16 max-w-4xl mx-auto px-4 sm:px-6 space-y-6">
       
       {/* 1. Top Banner — "a lil bit about me!!" */}
       <AboutMeBanner />
@@ -37,7 +37,7 @@ export default function AboutSection({ onOpenHireModal, onOpenResume }) {
       <AboutCollageSection onOpenResume={onOpenResume} />
 
       {/* 3. Big Highlight Paragraph */}
-      <div className="text-xl sm:text-2xl md:text-3xl font-extrabold text-gray-100 leading-snug tracking-tight">
+      <div className="text-xl sm:text-2xl md:text-3xl font-extrabold text-gray-100 leading-snug tracking-tight pt-2">
         I might not have years of corporate experience yet, but I have a serious track record of building live, full-stack projects that actually solve problems. I love building things from scratch, especially on the backend. Always down to talk tech, brainstorm API structures, or team up for the next build.
       </div>
 
