@@ -205,8 +205,8 @@ export default function HeroSection({ onOpenResume, onOpenHackathonModal }) {
             </div>
           </div>
 
-          {/* Gallery View Icon Button (Far Right Edge) */}
-          <div className="ml-auto">
+          {/* Gallery View Icon Button (Far Right Edge with Right Gap) */}
+          <div className="ml-auto mr-3 sm:mr-5">
             <ImagesBadge
               text="Gallery View"
               images={[
