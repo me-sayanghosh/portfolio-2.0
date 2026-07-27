@@ -1,6 +1,7 @@
 import React from 'react';
 import { MessageCircle } from 'lucide-react';
 import { ContactAndSignature } from '../../contact';
+import AboutMeBanner from './AboutMeBanner';
 
 export default function AboutSection({ onOpenHireModal, onOpenResume }) {
   const stories = [
@@ -29,31 +30,8 @@ export default function AboutSection({ onOpenHireModal, onOpenResume }) {
   return (
     <div className="pt-24 pb-16 max-w-4xl mx-auto px-4 sm:px-6 space-y-16">
       
-      {/* 1. Top Dog Banner from Figma About Me V1 */}
-      <div className="bg-[#0D0F17] border border-white/10 rounded-3xl p-6 sm:p-8 flex items-center justify-between relative overflow-hidden shadow-2xl">
-        <div className="flex items-center space-x-6">
-          <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-2xl overflow-hidden border border-white/20 flex-shrink-0 shadow-lg">
-            <img
-              src="/assets/1b3b17fb4ccb09b3d62e3836afe1d1e7ea738253.jpg"
-              alt="White Dog with Flower Crown"
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <div>
-            <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight">
-              a lil bit about me!!
-            </h1>
-            <svg className="w-48 sm:w-64 h-4 text-white opacity-80 mt-1" viewBox="0 0 200 20">
-              <path d="M5 10 Q 50 18, 100 8 T 195 12" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
-            </svg>
-          </div>
-        </div>
-
-        <div className="hidden sm:flex items-center space-x-2 px-3 py-1 rounded-full bg-[#161A24] border border-white/10 text-xs font-medium text-gray-300">
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-          <span>Open for new projects</span>
-        </div>
-      </div>
+      {/* 1. Top Banner — "a lil bit about me!!" */}
+      <AboutMeBanner />
 
       {/* 2. Interactive Grid Canvas Collage */}
       <div className="bg-[#0A0C14] border border-white/10 rounded-3xl p-6 sm:p-10 relative overflow-hidden bg-dot-pattern min-h-[480px] flex flex-col justify-between shadow-2xl">
