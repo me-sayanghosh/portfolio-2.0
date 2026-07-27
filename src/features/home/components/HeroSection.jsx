@@ -201,12 +201,6 @@ export default function HeroSection({ onOpenResume, onOpenHackathonModal }) {
               </div>
             </div>
           </div>
-
-          {/* ~ Building Scalable products Pill Badge */}
-          <div className="px-4 py-1.5 rounded-full bg-[#222222] border border-white/10 text-xs sm:text-sm font-semibold text-white tracking-tight shadow-md flex items-center space-x-1.5">
-            <span className="text-gray-400 font-mono">~</span>
-            <span>Building Scalable products</span>
-          </div>
         </div>
       </div>
 
