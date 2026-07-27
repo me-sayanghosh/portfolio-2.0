@@ -96,82 +96,23 @@ export default function HomeAboutSection() {
     <section className="py-6 max-w-4xl mx-auto px-4 sm:px-6">
       
       {/* Title */}
-      <h2
-        className="font-bricolage text-3xl sm:text-4xl font-bold text-white mb-6 tracking-tight"
-        style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
-      >
-        About <span className="text-amber-500">.</span>
-      </h2>
+      
 
       {/* Intro Paragraph 1 */}
-      <p className="text-xs sm:text-sm text-gray-300 leading-relaxed mb-4 font-sans">
-        🔥 Final-year student who spends most days building full-stack products. Currently Building{' '}
+      <p className="text-xs sm:text-sm text-gray-300 leading-relaxed mb-3 font-sans">
+        A Final-year student who spends most days building full-stack products. Currently Building{' '}
         <span className="font-semibold text-white underline underline-offset-4 decoration-white/40 hover:decoration-white transition-colors cursor-pointer">
           DropTalk
         </span>
         , shipping features, fixing bugs, and learning things you don't get from tutorials.
       </p>
 
-      {/* Intro Paragraph 2 with Highlighted Email and Twitter/X */}
-      <p className="text-xs sm:text-sm text-gray-300 leading-relaxed mb-6 font-sans">
-        Let's connect! Reach out via{' '}
-        <a
-          href="https://mail.google.com/mail/?view=cm&fs=1&to=mesayanghosh.dev@gmail.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center px-2.5 py-0.5 rounded-md bg-white/10 border border-white/20 text-white font-semibold hover:bg-white/20 hover:border-amber-400/60 transition-all shadow-sm mx-1"
-        >
-          email <Mail className="w-3.5 h-3.5 ml-1 text-amber-400" />
-        </a>{' '}
-        or{' '}
-        <a
-          href="https://x.com/SayanDev01"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center px-2.5 py-0.5 rounded-md bg-white/10 border border-white/20 text-white font-semibold hover:bg-white/20 hover:border-sky-400/60 transition-all shadow-sm mx-1"
-        >
-          twitter/X <Twitter className="w-3.5 h-3.5 ml-1 text-sky-400" />
-        </a>{' '}
-        to discuss tech, collaborate on projects, or just have an engaging conversation.
+      {/* Connecting Lines to Skills */}
+      <p className="text-xs sm:text-sm text-gray-400 leading-relaxed mb-6 font-sans">
+        Driven by curiosity and hands-on execution, I specialize in architecting scalable backend APIs and responsive web interfaces. Here are the core tools and technologies I work with:
       </p>
-
-      {/* Details List with Urbanist Font & Interactive Hover Animations */}
-      <div className="space-y-2 text-sm sm:text-base font-urbanist mb-8">
-        {/* Sayan Ghosh */}
-        <div className="group cursor-pointer flex items-center space-x-2.5 w-fit">
-          <span className="text-gray-400 text-base inline-block transform group-hover:-rotate-45 group-hover:text-amber-400 transition-all duration-300">
-            ➔
-          </span>
-          <span className="text-gray-200 font-semibold tracking-wide inline-block transform group-hover:translate-x-2 group-hover:text-white transition-all duration-300">
-            Sayan Ghosh
-          </span>
-        </div>
-
-        {/* Kolkata, India */}
-        <div className="group cursor-pointer flex items-center space-x-2.5 w-fit">
-          <span className="text-gray-400 text-base inline-block transform group-hover:-rotate-45 group-hover:text-amber-400 transition-all duration-300">
-            ➔
-          </span>
-          <span className="text-gray-300 tracking-wide inline-block transform group-hover:translate-x-2 group-hover:text-white transition-all duration-300">
-            Kolkata, India
-          </span>
-        </div>
-
-        {/* mesayanghosh.dev@gmail.com */}
-        <div className="group cursor-pointer flex items-center space-x-2.5 w-fit">
-          <span className="text-gray-400 text-base inline-block transform group-hover:-rotate-45 group-hover:text-amber-400 transition-all duration-300">
-            ➔
-          </span>
-          <a
-            href="https://mail.google.com/mail/?view=cm&fs=1&to=mesayanghosh.dev@gmail.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-300 tracking-wide inline-block transform group-hover:translate-x-2 group-hover:text-white transition-all duration-300"
-          >
-            mesayanghosh.dev@gmail.com
-          </a>
-        </div>
-      </div>
+      
+      
 
       {/* Tech Stack Pills Grid: Grayscale B&W by default -> Full Color on Hover */}
       <div className="flex flex-wrap gap-2 sm:gap-2.5 mb-8">

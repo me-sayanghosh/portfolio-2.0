@@ -22,7 +22,7 @@ export default function HomePage({ onOpenResume, onOpenHackathonModal, onOpenHir
         onOpenHackathonModal={onOpenHackathonModal}
       />
       
-      {/* About Section on Home Page */}
+      {/* About & Skills Section */}
       <HomeAboutSection />
 
       {/* Education Section on Home Page */}
