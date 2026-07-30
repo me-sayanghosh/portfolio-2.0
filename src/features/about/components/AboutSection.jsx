@@ -36,9 +36,22 @@ export default function AboutSection({ onOpenHireModal, onOpenResume }) {
       {/* 2. Interactive Animated Collage Grid Section */}
       <AboutCollageSection onOpenResume={onOpenResume} />
 
-      {/* 3. Big Highlight Paragraph */}
-      <div className="text-xl sm:text-2xl md:text-3xl font-extrabold text-gray-100 leading-snug tracking-tight pt-2">
-        Years of corporate experience? Not yet. A track record of shipping live, full-stack products that solve real problems? Absolutely. I like building from scratch, especially on the backend, where the hard problems live. Always happy to talk tech, debate an API structure, or team up on the next build.
+      {/* 3. Bio Section: Large First Paragraph + Small Highlighted Community/Hackathon Paragraphs */}
+      <div className="space-y-6 pt-2">
+        {/* Paragraph 1: Original Large Text Size */}
+        <p className="text-xl sm:text-2xl md:text-3xl font-extrabold text-gray-100 leading-snug tracking-tight">
+          I'm a developer and builder from India who learns by doing — I dive into problems first and check the docs later. Years of corporate experience? Not yet. A track record of shipping live, full-stack products that solve real problems? Absolutely. From backend systems to AI-powered apps, I enjoy building things that work and scale, especially on the backend, where the hard problems live.
+        </p>
+
+        {/* Paragraph 2 & 3: Small Text Style with Orange Highlights */}
+        <div className="space-y-3 text-sm sm:text-base font-normal text-gray-300 leading-relaxed tracking-normal">
+          <p>
+            Beyond coding, <span className="text-orange-400 font-semibold">I love communities and open source</span>. I was part of DevDotCom, a tech community of 2K+ members, and contribute to open-source projects whenever I can.
+          </p>
+          <p>
+            I'm also a hackathon enthusiast, winner of <span className="text-orange-400 font-semibold">4x Hackathons</span>. Always down to talk tech, debate an API structure, System Design, or team up on the next build.
+          </p>
+        </div>
       </div>
 
       {/* 4. 2-Column Story Sections */}
