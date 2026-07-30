@@ -81,42 +81,43 @@ export default function ProjectDetailPage({ onOpenHireModal }) {
           {project.subtitle}
         </p>
 
-        {/* External Links */}
-        <div className="flex flex-wrap items-center gap-3 mt-6">
-          {project.github && (
-            <a
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-full bg-[#222222] border border-white/20 text-white text-xs sm:text-sm font-semibold hover:bg-white/15 hover:border-white/40 transition-all shadow-md active:scale-95 cursor-pointer"
-            >
-              <Github className="w-4 h-4" />
-              <span>View Source Code</span>
-            </a>
-          )}
-
-          {project.live && (
-            <a
-              href={project.live}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-full bg-amber-500 hover:bg-amber-400 text-black text-xs sm:text-sm font-bold transition-all shadow-md active:scale-95 cursor-pointer"
-            >
-              <ExternalLink className="w-4 h-4" />
-              <span>Live Demo</span>
-            </a>
-          )}
-        </div>
       </div>
 
       {/* Main Showcase Image / Banner */}
-      <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden border border-white/15 shadow-2xl mb-12 bg-black">
+      <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden border border-white/15 shadow-2xl mb-6 bg-black">
         <img
           src={project.bannerImg}
           alt={project.title}
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+      </div>
+
+      {/* Buttons Below Image (Picture 1 style) */}
+      <div className="flex items-center space-x-3 mb-10">
+        {project.live && (
+          <a
+            href={project.live}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-2.5 rounded-xl bg-gray-200 text-black hover:bg-white transition-all shadow-md active:scale-95 cursor-pointer flex items-center justify-center border border-white/20"
+            title="Live Demo"
+          >
+            <ExternalLink className="w-4 h-4" />
+          </a>
+        )}
+
+        {project.github && (
+          <a
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center space-x-2 px-4 py-2 rounded-xl bg-[#181A20] border border-white/20 text-white text-xs sm:text-sm font-semibold hover:bg-white/10 transition-all shadow-md active:scale-95 cursor-pointer"
+          >
+            <Github className="w-4 h-4 text-white" />
+            <span className="text-white font-medium">View on GitHub</span>
+          </a>
+        )}
       </div>
 
       {/* Pure Frameless Flowing Content Sections */}
