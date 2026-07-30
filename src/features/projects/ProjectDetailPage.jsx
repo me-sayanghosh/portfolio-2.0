@@ -60,8 +60,16 @@ export default function ProjectDetailPage({ onOpenHireModal }) {
         </button>
 
         {/* Square White Icon Container */}
-        <div className="w-14 h-14 rounded-2xl bg-white border border-white/20 p-2 flex items-center justify-center text-2xl shadow-md shrink-0">
-          {project.icon}
+        <div className="w-14 h-14 rounded-2xl bg-white border border-white/20 p-2.5 flex items-center justify-center shadow-md shrink-0 overflow-hidden">
+          {project.logoImg ? (
+            <img
+              src={project.logoImg}
+              alt={project.title}
+              className="w-full h-full object-contain"
+            />
+          ) : (
+            <span className="text-2xl">{project.icon}</span>
+          )}
         </div>
 
         {/* Title, Category Tag & Subtitle Block */}
