@@ -12,6 +12,11 @@ export default function Navbar() {
     { id: "projects", label: "Projects", path: "/projects" },
   ];
 
+  // Hide navbar on individual project detail pages e.g. /projects/:id
+  if (location.pathname.startsWith('/projects/') && location.pathname !== '/projects') {
+    return null;
+  }
+
   return (
     <div className="fixed top-5 left-1/2 -translate-x-1/2 z-50">
       {/* Capsule Navigation Container */}
