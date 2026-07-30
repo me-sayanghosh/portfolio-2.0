@@ -5,6 +5,7 @@ import Navbar from './components/Navbar';
 import { HomePage } from './features/home';
 import { AboutPage } from './features/about';
 import { ProjectsPage, ProjectDetailPage } from './features/projects';
+import GalleryPage from './features/gallery/GalleryPage';
 import Footer from './components/Footer';
 import ModalPopUp from './components/ModalPopUp';
 import HireMeModal from './components/HireMeModal';
@@ -49,6 +50,10 @@ function AnimatedRoutes({ setIsHackathonModalOpen, setIsHireModalOpen }) {
               onOpenHireModal={() => setIsHireModalOpen(true)}
             />
           }
+        />
+        <Route
+          path="/gallery"
+          element={<GalleryPage />}
         />
         <Route
           path="*"

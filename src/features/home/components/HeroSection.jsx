@@ -216,7 +216,7 @@ export default function HeroSection({ onOpenResume, onOpenHackathonModal }) {
               ]}
               hoverSpread={20}
               hoverRotation={15}
-              onClick={() => navigate('/about')}
+              onClick={() => navigate('/gallery')}
             />
           </div>
         </div>
