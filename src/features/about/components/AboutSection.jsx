@@ -49,7 +49,7 @@ export default function AboutSection({ onOpenHireModal, onOpenResume }) {
             Beyond coding, <span className="text-orange-400 font-semibold">I love communities and open source</span>. I was part of DevDotCom, a tech community of 2K+ members, and contribute to open-source projects whenever I can.
           </p>
           <p>
-            I'm also a hackathon enthusiast, winner of <span className="text-orange-400 font-semibold">4x Hackathons</span>. Always down to talk tech, debate an API structure, System Design, or team up on the next build.
+            I'm also a hackathon enthusiast, Finalist of <span className="text-orange-400 font-semibold">HackFest 2K26</span>. Always down to talk tech, debate an API structure, System Design, or team up on the next build.
           </p>
         </div>
       </div>
