@@ -85,20 +85,35 @@ export const projectsData = [
     title: 'CodeReviewer AI',
     tag: 'Developer Tools',
     tagBg: 'bg-white/20 text-white font-medium',
-    subtitle: 'Engineered an automated agent that reviews PRs and code submissions in real-time.',
+    subtitle: 'Full-stack AI code review web app that analyzes submitted code and returns structured feedback with verdicts, scores, and refactored code.',
     bannerBg: 'from-[#E11D48] to-[#BE123C]',
     bannerImg: '/assets/a3d295e02ea0c5a89aa612766ca75feaf88c9620.jpg',
     logoImg: '/assets/codereviewer-logo.png',
     icon: '🤖',
-    tags: ['FastAPI', 'Node.js', 'Vite', 'Python', 'Docker', 'OpenAI'],
-    overview: 'Engineered a full-stack AI automated agent that reviews pull requests and code submissions in real-time with granular static analysis and refactoring tips.',
+    tags: ['React 19', 'Vite', 'Node.js', 'Express', '@google/genai', 'Gemini 2.5 Flash', 'GSAP', 'Axios', 'React Router'],
+    overview: 'CodeReviewer is a full-stack AI code review application engineered with React 19 and Express that analyzes submitted code in real time, delivering structured feedback across Bugs, Security, Performance, Style, Refactored Code, and risk scoring (0-100) with PASS/WARN/FAIL verdicts.',
     features: [
-      'Automated security vulnerability detection & static code analysis.',
-      'Code refactoring recommendations directly on pull requests.',
-      'FastAPI + Node.js background pipeline.'
+      '🎯 Structured Feedback Sections: Detailed analysis breakdown across Bugs, Security, Performance, Code Style, and Refactored Code.',
+      '🏆 Verdict & Scoring Engine: Automated PASS, WARN, and FAIL verdicts paired with granular scores out of 100.',
+      '🔤 Smart Language Directive Parsing: Auto-detects programming languages via payload tags or first-line comment directives (/python, /c++, lang=java).',
+      '💻 Interactive Review Workspace: Real-time code paste workspace with parsed section views and readable syntax output.',
+      '🛡️ Resilient API Pipeline: Graceful backend validation, quota handling (429), and service fallback mechanisms.'
     ],
-    github: 'https://github.com/me-sayanghosh',
-    live: 'https://github.com/me-sayanghosh'
+    architecture: [
+      { name: 'Backend Pipeline', tech: 'Node.js, Express, @google/genai SDK, Gemini 2.5 Flash, dotenv, cors' },
+      { name: 'Frontend Suite', tech: 'React 19, Vite, React Router, Axios, GSAP' },
+      { name: 'AI Engine', tech: 'Google Gemini AI REST API, Language Directive Lexer' }
+    ],
+    apiEndpoints: [
+      { method: 'POST', path: '/ai/ai-review', desc: 'Submit code payload for real-time AI code review analysis & verdict' }
+    ],
+    setupGuide: [
+      'git clone https://github.com/me-sayanghosh/CodeReviewer.git',
+      'cd CodeReviewer/Backend && npm install && npm start',
+      'cd ../Frontend && npm install && npm run dev'
+    ],
+    github: 'https://github.com/me-sayanghosh/CodeReviewer',
+    live: 'https://github.com/me-sayanghosh/CodeReviewer'
   },
   {
     id: 'veritas-weather',
