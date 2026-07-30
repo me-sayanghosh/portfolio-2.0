@@ -145,24 +145,22 @@ export default function ProjectDetailPage({ onOpenHireModal }) {
         {project.architecture && project.architecture.length > 0 && (
           <div className="space-y-4">
             <h2
-              className="font-bricolage text-2xl sm:text-3xl font-bold text-white tracking-tight flex items-center space-x-2"
+              className="font-bricolage text-2xl sm:text-3xl font-bold text-white tracking-tight flex items-center space-x-1"
               style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
             >
               <span>System Architecture</span>
               <span className="text-amber-500">.</span>
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            <ul className="space-y-3 font-sans">
               {project.architecture.map((arch, i) => (
-                <div key={i} className="p-4 sm:p-5 rounded-xl bg-[#161820] border border-white/10 space-y-1.5">
-                  <span className="text-xs font-bold text-amber-400 block uppercase tracking-wider">
-                    {arch.name}
+                <li key={i} className="flex items-start space-x-3 text-sm sm:text-base text-gray-300 leading-relaxed">
+                  <span className="text-amber-400 text-base mt-0.5 select-none">•</span>
+                  <span>
+                    <strong className="text-white font-semibold">{arch.name}:</strong> {arch.tech}
                   </span>
-                  <p className="text-xs sm:text-sm text-gray-300 font-sans leading-relaxed">
-                    {arch.tech}
-                  </p>
-                </div>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
         )}
 
