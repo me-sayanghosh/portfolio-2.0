@@ -1,22 +1,43 @@
 export const projectsData = [
   {
     id: 'hoopit',
-    title: 'HoopIt',
+    title: 'Hoopit',
     tag: 'web',
     tagBg: 'bg-purple-600 text-white font-bold',
-    subtitle: 'An all-in-one productivity suite combining a powerful URL shortener & click analytics.',
+    subtitle: 'A full-stack URL shortener with real-time analytics, folder organization, and geolocation tracking.',
     bannerBg: 'from-[#EA580C] to-[#C2410C]',
     bannerImg: '/assets/a3d295e02ea0c5a89aa612766ca75feaf88c9620.jpg',
-    icon: '📎',
-    tags: ['React', 'Vite', 'CSS Modules', 'Node.js', 'Express', 'MongoDB'],
-    overview: 'HoopIt is an all-in-one link management suite combining custom URL shorteners, bio link trees, and real-time geo-analytics dashboards.',
+    icon: '🔗',
+    tags: ['Node.js', 'Express', 'React 19', 'Vite', 'MongoDB', 'Mongoose', 'JWT', 'geoip-lite', 'Leaflet', 'Tailwind CSS'],
+    overview: 'Hoopit combines a Node.js + Express backend with a React + Vite frontend to turn long, unwieldy URLs into clean, shareable links — while giving you a full analytics dashboard to track clicks, devices, browsers, referrers, and geolocation in real time.',
     features: [
-      'Custom branded short links with instant QR code generator.',
-      'Detailed click analytics (country, device, referrer breakdown).',
-      'High-throughput MongoDB link redirect engine.'
+      '🔗 Shorten & Custom Aliases: Turn long URLs into clean links with optional custom alias support.',
+      '📁 Folder Organization: Group links into structured folders for easy management.',
+      '📊 Deep Analytics: Track clicks by device, browser, country, city, referrer, and timestamp.',
+      '🗺️ Interactive Map Visualization: Pinpoint visitor click origins on an interactive map powered by Leaflet.',
+      '🔐 Secure Authentication: Cookie-based session handling with JWT-protected dashboard routes.',
+      '🌍 High-Precision Location Tracking: IP-based geolocation via edge headers or geoip-lite.'
     ],
-    github: 'https://github.com/me-sayanghosh/hoopit',
-    live: 'https://github.com/me-sayanghosh/hoopit'
+    architecture: [
+      { name: 'Backend Pipeline', tech: 'Node.js + Express, MongoDB + Mongoose, JWT + cookie-parser' },
+      { name: 'Frontend Suite', tech: 'React 19 + Vite, React Router, Axios, Tailwind CSS' },
+      { name: 'Analytics & Geolocation', tech: 'geoip-lite, UAParser, Leaflet / react-leaflet' }
+    ],
+    apiEndpoints: [
+      { method: 'POST', path: '/api/auth/register', desc: 'Register a new user account' },
+      { method: 'POST', path: '/api/auth/login', desc: 'Authenticate user & issue JWT' },
+      { method: 'POST', path: '/api/create', desc: 'Create a new short URL with optional alias' },
+      { method: 'GET', path: '/r/:shortCode', desc: 'Redirect to original URL & log click metadata' },
+      { method: 'GET', path: '/api/user/analytics/:shortUrl', desc: 'Fetch click analytics for a specific URL' },
+      { method: 'POST', path: '/api/folder', desc: 'Create a new link organization folder' }
+    ],
+    setupGuide: [
+      'git clone https://github.com/me-sayanghosh/Hoopit',
+      'cd Hoopit/Backend && npm install && npm run dev',
+      'cd ../Frontend && npm install && npm run dev'
+    ],
+    github: 'https://github.com/me-sayanghosh/Hoopit',
+    live: 'https://github.com/me-sayanghosh/Hoopit'
   },
   {
     id: 'prepdost',

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Github, ExternalLink, Sparkles, CheckCircle2, Code2 } from 'lucide-react';
+import { ArrowLeft, Github, ExternalLink, Sparkles, CheckCircle2, Code2, Server, Terminal, Layers } from 'lucide-react';
 import { projectsData } from './data/projectsData';
 import { ContactAndSignature } from '../contact';
 
@@ -110,8 +110,10 @@ export default function ProjectDetailPage({ onOpenHireModal }) {
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
       </div>
 
-      {/* Project Overview */}
-      <div className="space-y-10 mb-16">
+      {/* Project Overview & Content Sections */}
+      <div className="space-y-8 mb-16">
+        
+        {/* Overview */}
         <div className="bg-[#12141A] border border-white/10 rounded-3xl p-6 sm:p-8 space-y-4 shadow-xl">
           <div className="flex items-center space-x-2.5 text-amber-400">
             <Sparkles className="w-5 h-5" />
@@ -130,7 +132,7 @@ export default function ProjectDetailPage({ onOpenHireModal }) {
             <div className="flex items-center space-x-2.5 text-emerald-400">
               <CheckCircle2 className="w-5 h-5" />
               <h2 className="font-bricolage text-xl sm:text-2xl font-bold text-white">
-                Key Features & Architecture
+                Core Features
               </h2>
             </div>
             <ul className="space-y-3">
@@ -141,6 +143,96 @@ export default function ProjectDetailPage({ onOpenHireModal }) {
                 </li>
               ))}
             </ul>
+          </div>
+        )}
+
+        {/* Architecture Breakdown */}
+        {project.architecture && project.architecture.length > 0 && (
+          <div className="bg-[#12141A] border border-white/10 rounded-3xl p-6 sm:p-8 space-y-4 shadow-xl">
+            <div className="flex items-center space-x-2.5 text-blue-400">
+              <Layers className="w-5 h-5" />
+              <h2 className="font-bricolage text-xl sm:text-2xl font-bold text-white">
+                System Architecture
+              </h2>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+              {project.architecture.map((arch, i) => (
+                <div key={i} className="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-1.5">
+                  <span className="text-xs font-bold text-amber-400 block uppercase tracking-wider">
+                    {arch.name}
+                  </span>
+                  <p className="text-xs sm:text-sm text-gray-300 font-sans">
+                    {arch.tech}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* API Endpoints Reference */}
+        {project.apiEndpoints && project.apiEndpoints.length > 0 && (
+          <div className="bg-[#12141A] border border-white/10 rounded-3xl p-6 sm:p-8 space-y-4 shadow-xl overflow-hidden">
+            <div className="flex items-center space-x-2.5 text-orange-400">
+              <Server className="w-5 h-5" />
+              <h2 className="font-bricolage text-xl sm:text-2xl font-bold text-white">
+                API Reference
+              </h2>
+            </div>
+            <div className="overflow-x-auto">
+              <table className="w-full text-left text-xs sm:text-sm font-sans border-collapse">
+                <thead>
+                  <tr className="border-b border-white/15 text-gray-400">
+                    <th className="pb-3 pr-4 font-semibold">Method</th>
+                    <th className="pb-3 pr-4 font-semibold">Endpoint</th>
+                    <th className="pb-3 font-semibold">Description</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-white/5">
+                  {project.apiEndpoints.map((api, i) => (
+                    <tr key={i} className="hover:bg-white/5 transition-colors">
+                      <td className="py-2.5 pr-4">
+                        <span
+                          className={`px-2 py-0.5 rounded text-[11px] font-bold ${
+                            api.method === 'GET'
+                              ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
+                              : api.method === 'POST'
+                              ? 'bg-blue-500/20 text-blue-400 border border-blue-500/30'
+                              : api.method === 'PUT'
+                              ? 'bg-amber-500/20 text-amber-400 border border-amber-500/30'
+                              : 'bg-rose-500/20 text-rose-400 border border-rose-500/30'
+                          }`}
+                        >
+                          {api.method}
+                        </span>
+                      </td>
+                      <td className="py-2.5 pr-4 font-mono text-gray-200">{api.path}</td>
+                      <td className="py-2.5 text-gray-400">{api.desc}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
+
+        {/* Getting Started Terminal Box */}
+        {project.setupGuide && project.setupGuide.length > 0 && (
+          <div className="bg-[#12141A] border border-white/10 rounded-3xl p-6 sm:p-8 space-y-4 shadow-xl">
+            <div className="flex items-center space-x-2.5 text-purple-400">
+              <Terminal className="w-5 h-5" />
+              <h2 className="font-bricolage text-xl sm:text-2xl font-bold text-white">
+                Quick Setup
+              </h2>
+            </div>
+            <div className="p-4 rounded-2xl bg-black border border-white/15 font-mono text-xs sm:text-sm text-emerald-400 space-y-2 overflow-x-auto">
+              {project.setupGuide.map((cmd, i) => (
+                <div key={i} className="flex items-center space-x-2">
+                  <span className="text-gray-500 select-none">$</span>
+                  <span>{cmd}</span>
+                </div>
+              ))}
+            </div>
           </div>
         )}
 
