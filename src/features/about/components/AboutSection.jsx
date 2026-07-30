@@ -38,7 +38,7 @@ export default function AboutSection({ onOpenHireModal, onOpenResume }) {
 
       {/* 3. Big Highlight Paragraph */}
       <div className="text-xl sm:text-2xl md:text-3xl font-extrabold text-gray-100 leading-snug tracking-tight pt-2">
-        I might not have years of corporate experience yet, but I have a serious track record of building live, full-stack projects that actually solve problems. I love building things from scratch, especially on the backend. Always down to talk tech, brainstorm API structures, or team up for the next build.
+        Years of corporate experience? Not yet. A track record of shipping live, full-stack products that solve real problems? Absolutely. I like building from scratch, especially on the backend, where the hard problems live. Always happy to talk tech, debate an API structure, or team up on the next build.
       </div>
 
       {/* 4. 2-Column Story Sections */}
