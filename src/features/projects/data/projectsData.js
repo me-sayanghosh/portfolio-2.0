@@ -42,23 +42,43 @@ export const projectsData = [
   },
   {
     id: 'prepdost',
-    title: 'PrepDost — AI Interviewer',
+    title: 'PrepDost',
     tag: 'web',
     tagBg: 'bg-purple-600 text-white font-bold',
-    subtitle: 'A full-stack career platform designed to help job seekers build confidence with AI mock interviews.',
+    subtitle: 'AI-powered interview preparation platform built with MERN + Gemini AI.',
     bannerBg: 'from-[#F59E0B] to-[#D97706]',
     bannerImg: '/assets/b91090124f830732de45724a6f591436543ed934.jpg',
     logoImg: '/assets/prepdost-logo.png',
     icon: '🎓',
-    tags: ['React.js', 'GSAP', 'CSS Modules', 'OpenAI API', 'MongoDB'],
-    overview: 'PrepDost is a full-stack career platform designed to help students and job seekers build confidence with real-time AI mock interviews.',
+    tags: ['React 19', 'Node.js', 'Express 5', 'MongoDB', 'Mongoose', 'Gemini AI', 'JWT', 'Multer', 'pdf-parse', 'Vite', 'Sass', 'Nodemailer'],
+    overview: 'PrepDost helps job seekers prepare for technical and behavioral interviews by generating structured AI interview reports from PDF resume uploads, self-declarations, and job descriptions using Google Gemini AI.',
     features: [
-      'Interactive voice & text AI mock technical interview simulator.',
-      'Role-specific coding challenges for Frontend, Backend, and Full-Stack.',
-      'Comprehensive scoring reports with actionable performance metrics.'
+      '🔐 Authentication: Register, login, logout, protected routes, and JWT-based session flow.',
+      '🔑 Password Recovery: Forgot password, verify reset code, and reset password via SMTP Nodemailer.',
+      '📄 AI Interview Analysis: Upload PDF resume + context to generate AI-powered interview reports via Google Gemini SDK.',
+      '📊 Report History: Fetch all reports and open detailed report by interview ID in private dashboard.',
+      '⚡ Full Stack MERN Architecture: React 19 frontend, Express 5 backend, and MongoDB Atlas persistence.'
     ],
-    github: 'https://github.com/me-sayanghosh/prepdost',
-    live: 'https://github.com/me-sayanghosh/prepdost'
+    architecture: [
+      { name: 'Backend Pipeline', tech: 'Node.js, Express 5, MongoDB + Mongoose, Google Gemini SDK, Multer + pdf-parse' },
+      { name: 'Frontend Suite', tech: 'React 19, React Router, Axios, Sass, Vite' },
+      { name: 'Auth & Email', tech: 'JWT + bcryptjs, Nodemailer SMTP' }
+    ],
+    apiEndpoints: [
+      { method: 'POST', path: '/api/auth/register', desc: 'Register a new user account' },
+      { method: 'POST', path: '/api/auth/login', desc: 'Authenticate user & issue JWT' },
+      { method: 'POST', path: '/api/auth/forgot-password', desc: 'Send password reset verification code via email' },
+      { method: 'POST', path: '/api/interview/generate-report', desc: 'Upload PDF resume & generate AI interview report' },
+      { method: 'GET', path: '/api/interview', desc: 'Fetch user interview report history' },
+      { method: 'GET', path: '/api/interview/report/:interviewId', desc: 'Fetch single interview report details' }
+    ],
+    setupGuide: [
+      'git clone https://github.com/me-sayanghosh/PrepDost.git',
+      'cd PrepDost/Backend && npm install && npm run dev',
+      'cd ../Frontend && npm install && npm run dev'
+    ],
+    github: 'https://github.com/me-sayanghosh/PrepDost',
+    live: 'https://prep-dost.vercel.app'
   },
   {
     id: 'codereviewer-ai',
