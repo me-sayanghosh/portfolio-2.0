@@ -18,7 +18,7 @@ export default function ProjectDetailPage({ onOpenHireModal }) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -15 }}
       transition={{ duration: 0.35, ease: 'easeInOut' }}
-      className="pt-24 pb-16 max-w-4xl mx-auto px-4 sm:px-6"
+      className="pt-20 sm:pt-24 pb-16 max-w-4xl mx-auto px-4 sm:px-6"
     >
       {/* Breadcrumb Navigation */}
       <div className="flex items-center space-x-2 text-xs sm:text-sm text-gray-400 mb-6 font-sans">
@@ -79,7 +79,7 @@ export default function ProjectDetailPage({ onOpenHireModal }) {
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center space-x-2 px-4 py-2 rounded-xl bg-[#222222] border border-white/20 text-white text-xs sm:text-sm font-semibold hover:bg-white/15 hover:border-white/40 transition-all shadow-md active:scale-95 cursor-pointer"
+              className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-full bg-[#222222] border border-white/20 text-white text-xs sm:text-sm font-semibold hover:bg-white/15 hover:border-white/40 transition-all shadow-md active:scale-95 cursor-pointer"
             >
               <Github className="w-4 h-4" />
               <span>View Source Code</span>
@@ -91,7 +91,7 @@ export default function ProjectDetailPage({ onOpenHireModal }) {
               href={project.live}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center space-x-2 px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-black text-xs sm:text-sm font-bold transition-all shadow-md active:scale-95 cursor-pointer"
+              className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-full bg-amber-500 hover:bg-amber-400 text-black text-xs sm:text-sm font-bold transition-all shadow-md active:scale-95 cursor-pointer"
             >
               <ExternalLink className="w-4 h-4" />
               <span>Live Demo</span>
@@ -101,7 +101,7 @@ export default function ProjectDetailPage({ onOpenHireModal }) {
       </div>
 
       {/* Main Showcase Image / Banner */}
-      <div className="relative w-full aspect-[16/9] rounded-3xl overflow-hidden border border-white/15 shadow-2xl mb-12 bg-black">
+      <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden border border-white/15 shadow-2xl mb-10 bg-black">
         <img
           src={project.bannerImg}
           alt={project.title}
@@ -110,15 +110,18 @@ export default function ProjectDetailPage({ onOpenHireModal }) {
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
       </div>
 
-      {/* Project Overview & Content Sections */}
+      {/* Section Blocks matching thatdevguy.in layout */}
       <div className="space-y-8 mb-16">
         
-        {/* Overview */}
-        <div className="bg-[#12141A] border border-white/10 rounded-3xl p-6 sm:p-8 space-y-4 shadow-xl">
-          <div className="flex items-center space-x-2.5 text-amber-400">
-            <Sparkles className="w-5 h-5" />
-            <h2 className="font-bricolage text-xl sm:text-2xl font-bold text-white">
-              Project Overview
+        {/* Project Overview */}
+        <div className="bg-[#111319] border border-white/10 rounded-2xl p-6 sm:p-7 space-y-4 shadow-2xl">
+          <div className="flex items-center space-x-2.5">
+            <Sparkles className="w-5 h-5 text-amber-400" />
+            <h2
+              className="font-bricolage text-xl sm:text-2xl font-bold text-white tracking-tight"
+              style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+            >
+              Project Overview <span className="text-amber-500">.</span>
             </h2>
           </div>
           <p className="text-sm sm:text-base text-gray-300 leading-relaxed font-sans">
@@ -126,19 +129,22 @@ export default function ProjectDetailPage({ onOpenHireModal }) {
           </p>
         </div>
 
-        {/* Key Features */}
+        {/* Core Features */}
         {project.features && project.features.length > 0 && (
-          <div className="bg-[#12141A] border border-white/10 rounded-3xl p-6 sm:p-8 space-y-4 shadow-xl">
-            <div className="flex items-center space-x-2.5 text-emerald-400">
-              <CheckCircle2 className="w-5 h-5" />
-              <h2 className="font-bricolage text-xl sm:text-2xl font-bold text-white">
-                Core Features
+          <div className="bg-[#111319] border border-white/10 rounded-2xl p-6 sm:p-7 space-y-4 shadow-2xl">
+            <div className="flex items-center space-x-2.5">
+              <CheckCircle2 className="w-5 h-5 text-emerald-400" />
+              <h2
+                className="font-bricolage text-xl sm:text-2xl font-bold text-white tracking-tight"
+                style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+              >
+                Core Features <span className="text-amber-500">.</span>
               </h2>
             </div>
             <ul className="space-y-3">
               {project.features.map((feature, i) => (
-                <li key={i} className="flex items-start space-x-3 text-sm sm:text-base text-gray-300 font-sans">
-                  <span className="text-amber-400 text-base mt-0.5">•</span>
+                <li key={i} className="flex items-start space-x-3 text-sm sm:text-base text-gray-300 font-sans leading-relaxed">
+                  <span className="text-amber-400 text-base mt-0.5 select-none">•</span>
                   <span>{feature}</span>
                 </li>
               ))}
@@ -146,22 +152,25 @@ export default function ProjectDetailPage({ onOpenHireModal }) {
           </div>
         )}
 
-        {/* Architecture Breakdown */}
+        {/* System Architecture */}
         {project.architecture && project.architecture.length > 0 && (
-          <div className="bg-[#12141A] border border-white/10 rounded-3xl p-6 sm:p-8 space-y-4 shadow-xl">
-            <div className="flex items-center space-x-2.5 text-blue-400">
-              <Layers className="w-5 h-5" />
-              <h2 className="font-bricolage text-xl sm:text-2xl font-bold text-white">
-                System Architecture
+          <div className="bg-[#111319] border border-white/10 rounded-2xl p-6 sm:p-7 space-y-4 shadow-2xl">
+            <div className="flex items-center space-x-2.5">
+              <Layers className="w-5 h-5 text-blue-400" />
+              <h2
+                className="font-bricolage text-xl sm:text-2xl font-bold text-white tracking-tight"
+                style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+              >
+                System Architecture <span className="text-amber-500">.</span>
               </h2>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
               {project.architecture.map((arch, i) => (
-                <div key={i} className="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-1.5">
+                <div key={i} className="p-4 sm:p-5 rounded-xl bg-[#181B24] border border-white/10 space-y-2">
                   <span className="text-xs font-bold text-amber-400 block uppercase tracking-wider">
                     {arch.name}
                   </span>
-                  <p className="text-xs sm:text-sm text-gray-300 font-sans">
+                  <p className="text-xs sm:text-sm text-gray-300 font-sans leading-relaxed">
                     {arch.tech}
                   </p>
                 </div>
@@ -170,13 +179,16 @@ export default function ProjectDetailPage({ onOpenHireModal }) {
           </div>
         )}
 
-        {/* API Endpoints Reference */}
+        {/* API Reference Table */}
         {project.apiEndpoints && project.apiEndpoints.length > 0 && (
-          <div className="bg-[#12141A] border border-white/10 rounded-3xl p-6 sm:p-8 space-y-4 shadow-xl overflow-hidden">
-            <div className="flex items-center space-x-2.5 text-orange-400">
-              <Server className="w-5 h-5" />
-              <h2 className="font-bricolage text-xl sm:text-2xl font-bold text-white">
-                API Reference
+          <div className="bg-[#111319] border border-white/10 rounded-2xl p-6 sm:p-7 space-y-4 shadow-2xl overflow-hidden">
+            <div className="flex items-center space-x-2.5">
+              <Server className="w-5 h-5 text-orange-400" />
+              <h2
+                className="font-bricolage text-xl sm:text-2xl font-bold text-white tracking-tight"
+                style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+              >
+                API Reference <span className="text-amber-500">.</span>
               </h2>
             </div>
             <div className="overflow-x-auto">
@@ -191,9 +203,9 @@ export default function ProjectDetailPage({ onOpenHireModal }) {
                 <tbody className="divide-y divide-white/5">
                   {project.apiEndpoints.map((api, i) => (
                     <tr key={i} className="hover:bg-white/5 transition-colors">
-                      <td className="py-2.5 pr-4">
+                      <td className="py-3 pr-4">
                         <span
-                          className={`px-2 py-0.5 rounded text-[11px] font-bold ${
+                          className={`px-2.5 py-1 rounded text-[11px] font-bold ${
                             api.method === 'GET'
                               ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
                               : api.method === 'POST'
@@ -206,8 +218,8 @@ export default function ProjectDetailPage({ onOpenHireModal }) {
                           {api.method}
                         </span>
                       </td>
-                      <td className="py-2.5 pr-4 font-mono text-gray-200">{api.path}</td>
-                      <td className="py-2.5 text-gray-400">{api.desc}</td>
+                      <td className="py-3 pr-4 font-mono text-gray-200">{api.path}</td>
+                      <td className="py-3 text-gray-400">{api.desc}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -216,16 +228,19 @@ export default function ProjectDetailPage({ onOpenHireModal }) {
           </div>
         )}
 
-        {/* Getting Started Terminal Box */}
+        {/* Quick Setup Terminal Box */}
         {project.setupGuide && project.setupGuide.length > 0 && (
-          <div className="bg-[#12141A] border border-white/10 rounded-3xl p-6 sm:p-8 space-y-4 shadow-xl">
-            <div className="flex items-center space-x-2.5 text-purple-400">
-              <Terminal className="w-5 h-5" />
-              <h2 className="font-bricolage text-xl sm:text-2xl font-bold text-white">
-                Quick Setup
+          <div className="bg-[#111319] border border-white/10 rounded-2xl p-6 sm:p-7 space-y-4 shadow-2xl">
+            <div className="flex items-center space-x-2.5">
+              <Terminal className="w-5 h-5 text-purple-400" />
+              <h2
+                className="font-bricolage text-xl sm:text-2xl font-bold text-white tracking-tight"
+                style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+              >
+                Quick Setup <span className="text-amber-500">.</span>
               </h2>
             </div>
-            <div className="p-4 rounded-2xl bg-black border border-white/15 font-mono text-xs sm:text-sm text-emerald-400 space-y-2 overflow-x-auto">
+            <div className="p-4 sm:p-5 rounded-xl bg-black border border-white/15 font-mono text-xs sm:text-sm text-emerald-400 space-y-2 overflow-x-auto">
               {project.setupGuide.map((cmd, i) => (
                 <div key={i} className="flex items-center space-x-2">
                   <span className="text-gray-500 select-none">$</span>
@@ -236,20 +251,23 @@ export default function ProjectDetailPage({ onOpenHireModal }) {
           </div>
         )}
 
-        {/* Tech Stack Badges */}
+        {/* Technologies & Tools */}
         {project.tags && (
-          <div className="bg-[#12141A] border border-white/10 rounded-3xl p-6 sm:p-8 space-y-4 shadow-xl">
-            <div className="flex items-center space-x-2.5 text-purple-400">
-              <Code2 className="w-5 h-5" />
-              <h2 className="font-bricolage text-xl sm:text-2xl font-bold text-white">
-                Technologies & Tools
+          <div className="bg-[#111319] border border-white/10 rounded-2xl p-6 sm:p-7 space-y-4 shadow-2xl">
+            <div className="flex items-center space-x-2.5">
+              <Code2 className="w-5 h-5 text-purple-400" />
+              <h2
+                className="font-bricolage text-xl sm:text-2xl font-bold text-white tracking-tight"
+                style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+              >
+                Technologies & Tools <span className="text-amber-500">.</span>
               </h2>
             </div>
             <div className="flex flex-wrap gap-2 sm:gap-2.5">
               {project.tags.map((tech, i) => (
                 <span
                   key={i}
-                  className="px-3.5 py-1.5 rounded-xl bg-[#1e2029] border border-white/15 text-xs sm:text-sm font-medium text-gray-200"
+                  className="px-3.5 py-1.5 rounded-xl bg-[#181B24] border border-white/15 text-xs sm:text-sm font-medium text-gray-200"
                 >
                   {tech}
                 </span>

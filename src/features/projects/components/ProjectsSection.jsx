@@ -7,7 +7,7 @@ export default function ProjectsSection({ onOpenHireModal }) {
   const navigate = useNavigate();
 
   return (
-    <section className="pt-24 pb-16 max-w-5xl mx-auto px-4 sm:px-6">
+    <section className="pt-20 sm:pt-24 pb-16 max-w-4xl mx-auto px-4 sm:px-6">
       {/* Breadcrumb Navigation */}
       <div className="flex items-center space-x-2 text-xs sm:text-sm text-gray-400 mb-3 font-sans">
         <span
