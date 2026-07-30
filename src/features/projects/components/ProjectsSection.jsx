@@ -29,7 +29,7 @@ export default function ProjectsSection({ onOpenHireModal }) {
           Projects<span className="text-amber-500">.</span>
         </h1>
         <p className="text-sm sm:text-base text-gray-400 max-w-2xl leading-relaxed font-sans">
-          Web apps, AI tools, CLI utilities, games and open-source software built by Sayan Ghosh.
+          Web apps, AI tools, Scalable Products and open-source software built by Sayan Ghosh.
         </p>
       </div>
 
