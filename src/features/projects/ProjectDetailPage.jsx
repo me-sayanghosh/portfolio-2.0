@@ -1,15 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Github, ExternalLink, Sparkles, CheckCircle2, Code2, Server, Terminal, Layers } from 'lucide-react';
+import { ArrowLeft, Github, ExternalLink, Sparkles, CheckCircle2, Code2, Server, Terminal, Layers, Download, Copy, Check } from 'lucide-react';
 import { projectsData } from './data/projectsData';
 import { ContactAndSignature } from '../contact';
 
 export default function ProjectDetailPage({ onOpenHireModal }) {
   const { id } = useParams();
   const navigate = useNavigate();
+  const [copied, setCopied] = useState(false);
 
   const project = projectsData.find((p) => p.id === id) || projectsData[0];
+
+  const handleCopyCode = () => {
+    if (project.setupGuide) {
+      navigator.clipboard.writeText(project.setupGuide.join('\n'));
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
+  };
 
   return (
     <motion.div
@@ -120,11 +129,55 @@ export default function ProjectDetailPage({ onOpenHireModal }) {
           </p>
         </div>
 
+        {/* Installation Section matching Picture 2 */}
+        {project.setupGuide && project.setupGuide.length > 0 && (
+          <div className="space-y-3">
+            <h2
+              className="font-bricolage text-2xl sm:text-3xl font-bold text-white tracking-tight"
+              style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+            >
+              Installation
+            </h2>
+
+            {/* Terminal Box matching picture 2 design */}
+            <div className="bg-[#13151D] border border-white/10 rounded-2xl p-4 sm:p-5 space-y-3 shadow-xl">
+              {/* Header Bar */}
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-mono text-gray-400">bash</span>
+                
+                <div className="border border-white/10 rounded-lg p-1 px-2.5 flex items-center space-x-2.5 bg-white/5 text-gray-400 hover:text-white transition-colors">
+                  <Download className="w-3.5 h-3.5 cursor-pointer hover:text-amber-400 transition-colors" />
+                  <button
+                    onClick={handleCopyCode}
+                    className="flex items-center space-x-1 hover:text-amber-400 transition-colors cursor-pointer"
+                    title="Copy code"
+                  >
+                    {copied ? (
+                      <Check className="w-3.5 h-3.5 text-emerald-400" />
+                    ) : (
+                      <Copy className="w-3.5 h-3.5" />
+                    )}
+                  </button>
+                </div>
+              </div>
+
+              {/* Code Lines Container */}
+              <div className="p-4 sm:p-5 rounded-xl bg-[#0C0E12] border border-white/10 font-mono text-xs sm:text-sm text-gray-100 space-y-2 overflow-x-auto">
+                {project.setupGuide.map((cmd, i) => (
+                  <div key={i} className="leading-relaxed">
+                    {cmd}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Core Features Section */}
         {project.features && project.features.length > 0 && (
           <div className="space-y-4">
             <h2
-              className="font-bricolage text-2xl sm:text-3xl font-bold text-white tracking-tight flex items-center space-x-2"
+              className="font-bricolage text-2xl sm:text-3xl font-bold text-white tracking-tight flex items-center space-x-1"
               style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
             >
               <span>Features</span>
@@ -168,7 +221,7 @@ export default function ProjectDetailPage({ onOpenHireModal }) {
         {project.apiEndpoints && project.apiEndpoints.length > 0 && (
           <div className="space-y-4">
             <h2
-              className="font-bricolage text-2xl sm:text-3xl font-bold text-white tracking-tight flex items-center space-x-2"
+              className="font-bricolage text-2xl sm:text-3xl font-bold text-white tracking-tight flex items-center space-x-1"
               style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
             >
               <span>API Reference</span>
@@ -211,35 +264,11 @@ export default function ProjectDetailPage({ onOpenHireModal }) {
           </div>
         )}
 
-        {/* Installation & Quick Setup Terminal Box Section */}
-        {project.setupGuide && project.setupGuide.length > 0 && (
-          <div className="space-y-4">
-            <h2
-              className="font-bricolage text-2xl sm:text-3xl font-bold text-white tracking-tight flex items-center space-x-2"
-              style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
-            >
-              <span>Installation</span>
-              <span className="text-amber-500">.</span>
-            </h2>
-            <div className="p-4 sm:p-5 rounded-xl bg-[#12141A] border border-white/10 font-mono text-xs sm:text-sm text-emerald-400 space-y-2 overflow-x-auto shadow-lg">
-              <div className="text-gray-500 text-xs mb-2 border-b border-white/10 pb-2 flex justify-between items-center">
-                <span>bash</span>
-              </div>
-              {project.setupGuide.map((cmd, i) => (
-                <div key={i} className="flex items-center space-x-2">
-                  <span className="text-gray-500 select-none">$</span>
-                  <span>{cmd}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
         {/* Technologies & Tools Section */}
         {project.tags && (
           <div className="space-y-4">
             <h2
-              className="font-bricolage text-2xl sm:text-3xl font-bold text-white tracking-tight flex items-center space-x-2"
+              className="font-bricolage text-2xl sm:text-3xl font-bold text-white tracking-tight flex items-center space-x-1"
               style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
             >
               <span>Technologies & Tools</span>
