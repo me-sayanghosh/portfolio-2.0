@@ -48,39 +48,39 @@ export default function ProjectDetailPage({ onOpenHireModal }) {
         <span className="text-amber-400 font-medium">{project.title}</span>
       </div>
 
-      {/* Back Button */}
-      <button
-        onClick={() => navigate('/projects')}
-        className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs sm:text-sm font-medium text-gray-300 hover:text-white hover:bg-white/10 transition-all mb-8 cursor-pointer active:scale-95"
-      >
-        <ArrowLeft className="w-4 h-4" />
-        <span>Back to Projects</span>
-      </button>
+      {/* Header Row matching Picture 1 */}
+      <div className="flex items-center space-x-3.5 mb-8">
+        {/* Circular Back Button Arrow */}
+        <button
+          onClick={() => navigate('/projects')}
+          className="w-10 h-10 rounded-full border border-white/15 bg-white/5 flex items-center justify-center text-gray-300 hover:text-white hover:bg-white/10 transition-all shrink-0 active:scale-95 cursor-pointer"
+          title="Back to Projects"
+        >
+          <ArrowLeft className="w-5 h-5" />
+        </button>
 
-      {/* Project Header Title & Category */}
-      <div className="mb-8">
-        <div className="flex items-center space-x-3 mb-3">
-          <span className="text-3xl sm:text-4xl">{project.icon}</span>
-          <span
-            className={`px-3 py-1 rounded-full text-xs font-semibold backdrop-blur-md ${
-              project.tagBg || 'bg-amber-500/20 text-amber-300 border border-amber-500/30'
-            }`}
-          >
-            {project.tag}
-          </span>
+        {/* Square White Icon Container */}
+        <div className="w-14 h-14 rounded-2xl bg-white border border-white/20 p-2 flex items-center justify-center text-2xl shadow-md shrink-0">
+          {project.icon}
         </div>
 
-        <h1
-          className="font-bricolage text-3xl sm:text-5xl font-bold text-white tracking-tight mb-3"
-          style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
-        >
-          {project.title}
-        </h1>
-
-        <p className="text-base sm:text-xl font-medium text-gray-300 leading-relaxed font-sans max-w-3xl">
-          {project.subtitle}
-        </p>
-
+        {/* Title, Category Tag & Subtitle Block */}
+        <div className="flex flex-col justify-center">
+          <div className="flex items-center space-x-3 flex-wrap gap-y-1">
+            <h1
+              className="font-bricolage text-2xl sm:text-3xl font-bold text-white tracking-tight"
+              style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+            >
+              {project.title}
+            </h1>
+            <span className="px-3 py-0.5 rounded-full border border-white/20 text-xs text-gray-300 bg-white/5 font-medium">
+              {project.tag}
+            </span>
+          </div>
+          <p className="text-xs sm:text-sm text-blue-400 font-medium font-sans mt-0.5">
+            {project.subtitle}
+          </p>
+        </div>
       </div>
 
       {/* Main Showcase Image / Banner */}
