@@ -33,29 +33,29 @@ export default function ProjectsSection({ onOpenHireModal }) {
         </p>
       </div>
 
-      {/* 3-Column Projects Grid matching User Screenshot */}
+      {/* 3-Column Projects Grid - Handcrafted Modern Design */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-16">
         {projectsData.map((project) => (
           <div
             key={project.id}
             onClick={() => navigate(`/projects/${project.id}`)}
-            className="group cursor-pointer bg-[#12141A] border border-white/10 hover:border-white/35 rounded-[26px] p-4 flex flex-col justify-between transition-all duration-300 shadow-xl hover:-translate-y-1.5 hover:shadow-amber-500/5 transform-gpu"
+            className="group cursor-pointer bg-[#161820]/60 hover:bg-[#1A1C26] border border-white/5 hover:border-white/20 rounded-2xl p-3.5 sm:p-4 flex flex-col justify-between transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-amber-500/5 hover:-translate-y-1 transform-gpu"
           >
-            {/* Top Preview Image Container */}
+            {/* Top Preview Image Showcase */}
             <div>
-              <div className="relative w-full aspect-[16/9] rounded-[18px] overflow-hidden mb-4 bg-gradient-to-br border border-white/10">
+              <div className="relative w-full aspect-[16/10] rounded-xl overflow-hidden mb-3.5 bg-[#0D0E12] border border-white/10">
                 <img
                   src={project.bannerImg}
                   alt={project.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent pointer-events-none" />
 
                 {/* Top-Left Category Tag Badge */}
-                <div className="absolute top-3 left-3 z-10">
+                <div className="absolute top-2.5 left-2.5 z-10">
                   <span
-                    className={`px-3 py-1 rounded-full text-[11px] font-medium tracking-tight shadow-md backdrop-blur-md ${
-                      project.tagBg || 'bg-black/60 text-white border border-white/20'
+                    className={`px-2.5 py-0.5 rounded-full text-[10px] sm:text-[11px] font-medium tracking-tight shadow-md backdrop-blur-md ${
+                      project.tagBg || 'bg-black/60 text-gray-200 border border-white/15'
                     }`}
                   >
                     {project.tag}
@@ -64,17 +64,19 @@ export default function ProjectsSection({ onOpenHireModal }) {
               </div>
 
               {/* Title & Icon Header */}
-              <div className="flex items-center space-x-2.5 mb-1.5 px-1">
-                <span className="text-xl sm:text-2xl flex-shrink-0">
-                  {project.icon}
-                </span>
-                <h3 className="font-bricolage text-lg sm:text-xl font-bold text-white group-hover:text-amber-400 transition-colors tracking-tight line-clamp-1">
-                  {project.title}
-                </h3>
+              <div className="flex items-center justify-between px-0.5 mb-1">
+                <div className="flex items-center space-x-2 min-w-0">
+                  <span className="text-lg sm:text-xl flex-shrink-0">
+                    {project.icon}
+                  </span>
+                  <h3 className="font-bricolage text-base sm:text-lg font-bold text-white group-hover:text-amber-400 transition-colors tracking-tight line-clamp-1">
+                    {project.title}
+                  </h3>
+                </div>
               </div>
 
               {/* Short Subtitle Description */}
-              <p className="text-xs sm:text-sm text-gray-400 leading-relaxed font-sans line-clamp-2 px-1">
+              <p className="text-xs sm:text-sm text-gray-400 leading-relaxed font-sans line-clamp-2 px-0.5 mt-1">
                 {project.subtitle}
               </p>
             </div>
