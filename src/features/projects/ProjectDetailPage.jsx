@@ -140,7 +140,7 @@ export default function ProjectDetailPage({ onOpenHireModal }) {
             </h2>
 
             {/* Terminal Box matching picture 2 design */}
-            <div className="bg-[#13151D] border border-white/10 rounded-2xl p-4 sm:p-5 space-y-3 shadow-xl">
+            <div className="bg-transparent border border-white/10 rounded-2xl p-4 sm:p-5 space-y-3 shadow-xl">
               {/* Header Bar */}
               <div className="flex items-center justify-between">
                 <span className="text-xs font-mono text-gray-400">bash</span>
@@ -162,7 +162,7 @@ export default function ProjectDetailPage({ onOpenHireModal }) {
               </div>
 
               {/* Code Lines Container */}
-              <div className="p-4 sm:p-5 rounded-xl bg-[#0C0E12] border border-white/10 font-mono text-xs sm:text-sm text-gray-100 space-y-2 overflow-x-auto">
+              <div className="p-4 sm:p-5 rounded-xl bg-white/5 border border-white/10 font-mono text-xs sm:text-sm text-gray-100 space-y-2 overflow-x-auto">
                 {project.setupGuide.map((cmd, i) => (
                   <div key={i} className="leading-relaxed">
                     {cmd}
