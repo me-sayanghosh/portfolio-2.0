@@ -23,7 +23,7 @@ export default function AboutSection({ onOpenHireModal, onOpenResume }) {
     },
     {
       title: "So, Why Hire Me?",
-      body: "I might not come with years of corporate legacy code experience, but that also means I come with zero bad habits. I learn incredibly fast, I thrive in collaborative team environments (shoutout to the DevDotCom community! 🚀), and I will treat your APIs with the utmost respect. If you need someone who is hungry to learn, ready to ship, and fun to work with, I'm your guy. Let's build something awesome."
+      body: "I might not come with years of corporate legacy code experience, but that also means I come with zero bad habits. I learn incredibly fast, I thrive in collaborative team environments ( shoutout to the DevDotCom community! ), and I will treat your APIs with the utmost respect. If you need someone who is hungry to learn, ready to ship, and fun to work with, I'm your guy. Let's build something awesome."
     }
   ];
 
