@@ -278,7 +278,7 @@ export default function ProjectDetailPage({ onOpenHireModal }) {
               {project.tags.map((tech, i) => (
                 <span
                   key={i}
-                  className="px-3.5 py-1.5 rounded-xl bg-[#1e2029] border border-white/15 text-xs sm:text-sm font-medium text-gray-200"
+                  className="px-4 py-1.5 rounded-full bg-white text-black text-xs sm:text-sm font-semibold shadow-sm transition-all hover:bg-gray-200"
                 >
                   {tech}
                 </span>
