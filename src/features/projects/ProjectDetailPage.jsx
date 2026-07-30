@@ -101,7 +101,7 @@ export default function ProjectDetailPage({ onOpenHireModal }) {
       </div>
 
       {/* Main Showcase Image / Banner */}
-      <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden border border-white/15 shadow-2xl mb-10 bg-black">
+      <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden border border-white/15 shadow-2xl mb-12 bg-black">
         <img
           src={project.bannerImg}
           alt={project.title}
@@ -110,40 +110,29 @@ export default function ProjectDetailPage({ onOpenHireModal }) {
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
       </div>
 
-      {/* Section Blocks matching thatdevguy.in layout */}
-      <div className="space-y-8 mb-16">
+      {/* Pure Frameless Flowing Content Sections */}
+      <div className="space-y-12 mb-16">
         
-        {/* Project Overview */}
-        <div className="bg-[#111319] border border-white/10 rounded-2xl p-6 sm:p-7 space-y-4 shadow-2xl">
-          <div className="flex items-center space-x-2.5">
-            <Sparkles className="w-5 h-5 text-amber-400" />
-            <h2
-              className="font-bricolage text-xl sm:text-2xl font-bold text-white tracking-tight"
-              style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
-            >
-              Project Overview <span className="text-amber-500">.</span>
-            </h2>
-          </div>
+        {/* Overview Paragraphs */}
+        <div className="space-y-4">
           <p className="text-sm sm:text-base text-gray-300 leading-relaxed font-sans">
             {project.overview}
           </p>
         </div>
 
-        {/* Core Features */}
+        {/* Core Features Section */}
         {project.features && project.features.length > 0 && (
-          <div className="bg-[#111319] border border-white/10 rounded-2xl p-6 sm:p-7 space-y-4 shadow-2xl">
-            <div className="flex items-center space-x-2.5">
-              <CheckCircle2 className="w-5 h-5 text-emerald-400" />
-              <h2
-                className="font-bricolage text-xl sm:text-2xl font-bold text-white tracking-tight"
-                style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
-              >
-                Core Features <span className="text-amber-500">.</span>
-              </h2>
-            </div>
-            <ul className="space-y-3">
+          <div className="space-y-4">
+            <h2
+              className="font-bricolage text-2xl sm:text-3xl font-bold text-white tracking-tight flex items-center space-x-2"
+              style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+            >
+              <span>Features</span>
+              <span className="text-amber-500">.</span>
+            </h2>
+            <ul className="space-y-3 font-sans">
               {project.features.map((feature, i) => (
-                <li key={i} className="flex items-start space-x-3 text-sm sm:text-base text-gray-300 font-sans leading-relaxed">
+                <li key={i} className="flex items-start space-x-3 text-sm sm:text-base text-gray-300 leading-relaxed">
                   <span className="text-amber-400 text-base mt-0.5 select-none">•</span>
                   <span>{feature}</span>
                 </li>
@@ -152,21 +141,19 @@ export default function ProjectDetailPage({ onOpenHireModal }) {
           </div>
         )}
 
-        {/* System Architecture */}
+        {/* System Architecture Section */}
         {project.architecture && project.architecture.length > 0 && (
-          <div className="bg-[#111319] border border-white/10 rounded-2xl p-6 sm:p-7 space-y-4 shadow-2xl">
-            <div className="flex items-center space-x-2.5">
-              <Layers className="w-5 h-5 text-blue-400" />
-              <h2
-                className="font-bricolage text-xl sm:text-2xl font-bold text-white tracking-tight"
-                style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
-              >
-                System Architecture <span className="text-amber-500">.</span>
-              </h2>
-            </div>
+          <div className="space-y-4">
+            <h2
+              className="font-bricolage text-2xl sm:text-3xl font-bold text-white tracking-tight flex items-center space-x-2"
+              style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+            >
+              <span>System Architecture</span>
+              <span className="text-amber-500">.</span>
+            </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
               {project.architecture.map((arch, i) => (
-                <div key={i} className="p-4 sm:p-5 rounded-xl bg-[#181B24] border border-white/10 space-y-2">
+                <div key={i} className="p-4 sm:p-5 rounded-xl bg-[#161820] border border-white/10 space-y-1.5">
                   <span className="text-xs font-bold text-amber-400 block uppercase tracking-wider">
                     {arch.name}
                   </span>
@@ -179,19 +166,17 @@ export default function ProjectDetailPage({ onOpenHireModal }) {
           </div>
         )}
 
-        {/* API Reference Table */}
+        {/* API Reference Table Section */}
         {project.apiEndpoints && project.apiEndpoints.length > 0 && (
-          <div className="bg-[#111319] border border-white/10 rounded-2xl p-6 sm:p-7 space-y-4 shadow-2xl overflow-hidden">
-            <div className="flex items-center space-x-2.5">
-              <Server className="w-5 h-5 text-orange-400" />
-              <h2
-                className="font-bricolage text-xl sm:text-2xl font-bold text-white tracking-tight"
-                style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
-              >
-                API Reference <span className="text-amber-500">.</span>
-              </h2>
-            </div>
-            <div className="overflow-x-auto">
+          <div className="space-y-4">
+            <h2
+              className="font-bricolage text-2xl sm:text-3xl font-bold text-white tracking-tight flex items-center space-x-2"
+              style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+            >
+              <span>API Reference</span>
+              <span className="text-amber-500">.</span>
+            </h2>
+            <div className="overflow-x-auto border-t border-b border-white/10 py-2">
               <table className="w-full text-left text-xs sm:text-sm font-sans border-collapse">
                 <thead>
                   <tr className="border-b border-white/15 text-gray-400">
@@ -228,19 +213,20 @@ export default function ProjectDetailPage({ onOpenHireModal }) {
           </div>
         )}
 
-        {/* Quick Setup Terminal Box */}
+        {/* Installation & Quick Setup Terminal Box Section */}
         {project.setupGuide && project.setupGuide.length > 0 && (
-          <div className="bg-[#111319] border border-white/10 rounded-2xl p-6 sm:p-7 space-y-4 shadow-2xl">
-            <div className="flex items-center space-x-2.5">
-              <Terminal className="w-5 h-5 text-purple-400" />
-              <h2
-                className="font-bricolage text-xl sm:text-2xl font-bold text-white tracking-tight"
-                style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
-              >
-                Quick Setup <span className="text-amber-500">.</span>
-              </h2>
-            </div>
-            <div className="p-4 sm:p-5 rounded-xl bg-black border border-white/15 font-mono text-xs sm:text-sm text-emerald-400 space-y-2 overflow-x-auto">
+          <div className="space-y-4">
+            <h2
+              className="font-bricolage text-2xl sm:text-3xl font-bold text-white tracking-tight flex items-center space-x-2"
+              style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+            >
+              <span>Installation</span>
+              <span className="text-amber-500">.</span>
+            </h2>
+            <div className="p-4 sm:p-5 rounded-xl bg-[#12141A] border border-white/10 font-mono text-xs sm:text-sm text-emerald-400 space-y-2 overflow-x-auto shadow-lg">
+              <div className="text-gray-500 text-xs mb-2 border-b border-white/10 pb-2 flex justify-between items-center">
+                <span>bash</span>
+              </div>
               {project.setupGuide.map((cmd, i) => (
                 <div key={i} className="flex items-center space-x-2">
                   <span className="text-gray-500 select-none">$</span>
@@ -251,23 +237,21 @@ export default function ProjectDetailPage({ onOpenHireModal }) {
           </div>
         )}
 
-        {/* Technologies & Tools */}
+        {/* Technologies & Tools Section */}
         {project.tags && (
-          <div className="bg-[#111319] border border-white/10 rounded-2xl p-6 sm:p-7 space-y-4 shadow-2xl">
-            <div className="flex items-center space-x-2.5">
-              <Code2 className="w-5 h-5 text-purple-400" />
-              <h2
-                className="font-bricolage text-xl sm:text-2xl font-bold text-white tracking-tight"
-                style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
-              >
-                Technologies & Tools <span className="text-amber-500">.</span>
-              </h2>
-            </div>
+          <div className="space-y-4">
+            <h2
+              className="font-bricolage text-2xl sm:text-3xl font-bold text-white tracking-tight flex items-center space-x-2"
+              style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+            >
+              <span>Technologies & Tools</span>
+              <span className="text-amber-500">.</span>
+            </h2>
             <div className="flex flex-wrap gap-2 sm:gap-2.5">
               {project.tags.map((tech, i) => (
                 <span
                   key={i}
-                  className="px-3.5 py-1.5 rounded-xl bg-[#181B24] border border-white/15 text-xs sm:text-sm font-medium text-gray-200"
+                  className="px-3.5 py-1.5 rounded-xl bg-[#1e2029] border border-white/15 text-xs sm:text-sm font-medium text-gray-200"
                 >
                   {tech}
                 </span>
