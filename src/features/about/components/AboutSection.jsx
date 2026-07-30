@@ -1,9 +1,12 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ContactAndSignature } from '../../contact';
 import AboutMeBanner from './AboutMeBanner';
 import AboutCollageSection from './AboutCollageSection';
 
 export default function AboutSection({ onOpenHireModal, onOpenResume }) {
+  const navigate = useNavigate();
+
   const stories = [
     {
       title: "How It Started: A Dangerous Curiosity",
@@ -28,8 +31,20 @@ export default function AboutSection({ onOpenHireModal, onOpenResume }) {
   ];
 
   return (
-    <div className="pt-16 sm:pt-20 pb-16 max-w-4xl mx-auto px-4 sm:px-6 space-y-6">
+    <div className="pt-20 sm:pt-24 pb-16 max-w-4xl mx-auto px-4 sm:px-6 space-y-6">
       
+      {/* Breadcrumb Navigation */}
+      <div className="flex items-center space-x-2 text-xs sm:text-sm text-gray-400 mb-1 font-sans">
+        <span
+          onClick={() => navigate('/')}
+          className="hover:text-white cursor-pointer transition-colors"
+        >
+          Home
+        </span>
+        <span>/</span>
+        <span className="text-white font-medium">About</span>
+      </div>
+
       {/* 1. Top Banner — "a lil bit about me!!" */}
       <AboutMeBanner />
 
