@@ -15,8 +15,8 @@ export default function HeroSection({ onOpenResume, onOpenHackathonModal }) {
       <div className="bg-[#000000] border border-black/15 rounded-2xl relative overflow-hidden h-[180px] sm:h-[210px] shadow-2xl flex items-center justify-center">
         
         {/* Top-Right "Open for new projects" Badge */}
-        <div className="absolute top-4 right-4 z-20 flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-[#222222] border border-white/10 text-xs font-medium text-white/80 shadow-md">
-          <span className="w-2 h-2 rounded-full bg-emerald-300 animate-pulse shadow-[0_0_8px_#10b981]" />
+        <div className="absolute top-2.5 right-2.5 sm:top-4 sm:right-4 z-20 flex items-center space-x-1.5 sm:space-x-2 px-2.5 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-[#222222]/90 backdrop-blur-sm border border-white/10 text-[10px] sm:text-xs font-medium text-white/80 shadow-md">
+          <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-emerald-300 animate-pulse shadow-[0_0_8px_#10b981]" />
           <span>Open for new projects</span>
         </div>
 
