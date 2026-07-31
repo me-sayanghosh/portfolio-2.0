@@ -38,7 +38,7 @@ export default function FeatureProjectsSection() {
       dates: 'Jan2021–May2021 · MachineLearning',
       description: 'Developed a full-stack AI automated agent that reviews pull requests and code submissions in real-time.',
       platformBg: 'from-rose-600 to-pink-600',
-      laptopImg: '/assets/a3d295e02ea0c5a89aa612766ca75feaf88c9620.jpg'
+      laptopImg: '/assets/codereviewer-banner.png'
     },
     {
       title: 'Veritas AI',

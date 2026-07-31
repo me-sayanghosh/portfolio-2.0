@@ -87,7 +87,7 @@ export const projectsData = [
     tagBg: 'bg-white/20 text-white font-medium',
     subtitle: 'Full-stack AI code review web app that analyzes submitted code and returns structured feedback with verdicts, scores, and refactored code.',
     bannerBg: 'from-[#E11D48] to-[#BE123C]',
-    bannerImg: '/assets/a3d295e02ea0c5a89aa612766ca75feaf88c9620.jpg',
+    bannerImg: '/assets/codereviewer-banner.png',
     logoImg: '/assets/codereviewer-logo.png',
     icon: '🤖',
     tags: ['React 19', 'Vite', 'Node.js', 'Express', '@google/genai', 'Gemini 2.5 Flash', 'GSAP', 'Axios', 'React Router'],
