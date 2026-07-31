@@ -12,12 +12,16 @@ export default function AboutCollageSection({ onOpenResume }) {
       />
 
       {/* Top Right "My Resume" Button (Home Page Style) */}
-      <button
+      <a
+        href="https://drive.google.com/file/d/1EkjbHJDA0z8kC-Ui1KGVEJw_bvqZm3oo/view"
+        target="_blank"
+        rel="noopener noreferrer"
         onClick={onOpenResume}
-        className="resume-btn absolute top-3 sm:top-5 right-3 sm:right-5 px-3 py-1 sm:px-5 sm:py-1.5 rounded-full border border-white/40 bg-[#0D0F15] text-white font-urbanist text-[11px] sm:text-sm font-medium tracking-tight italic active:scale-95 cursor-pointer shadow-lg z-50 transition-transform"
+        style={{ position: 'absolute', top: '14px', right: '14px', left: 'auto' }}
+        className="resume-btn px-3 py-1 sm:px-5 sm:py-1.5 rounded-full border border-white/40 bg-[#0D0F15] text-white font-urbanist text-[11px] sm:text-sm font-medium tracking-tight italic active:scale-95 cursor-pointer shadow-lg z-50 transition-transform flex items-center justify-center"
       >
         My Resume
-      </button>
+      </a>
 
       {/* CENTER MAIN HERO CARD (Figma Frame 20: left 246px, top 158px, width 270px, height 380px) - z-10 below floating elements */}
       <div
