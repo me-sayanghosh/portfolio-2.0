@@ -12,12 +12,12 @@ export const projectsData = [
     tags: ['Node.js', 'Express', 'React 19', 'Vite', 'MongoDB', 'Mongoose', 'JWT', 'geoip-lite', 'Leaflet', 'Tailwind CSS'],
     overview: 'Hoopit combines a Node.js + Express backend with a React + Vite frontend to turn long, unwieldy URLs into clean, shareable links — while giving you a full analytics dashboard to track clicks, devices, browsers, referrers, and geolocation in real time.',
     features: [
-      '🔗 Shorten & Custom Aliases: Turn long URLs into clean links with optional custom alias support.',
-      '📁 Folder Organization: Group links into structured folders for easy management.',
-      '📊 Deep Analytics: Track clicks by device, browser, country, city, referrer, and timestamp.',
-      '🗺️ Interactive Map Visualization: Pinpoint visitor click origins on an interactive map powered by Leaflet.',
-      '🔐 Secure Authentication: Cookie-based session handling with JWT-protected dashboard routes.',
-      '🌍 High-Precision Location Tracking: IP-based geolocation via edge headers or geoip-lite.'
+      'Shorten & Custom Aliases: Turn long URLs into clean links with optional custom alias support.',
+      'Folder Organization: Group links into structured folders for easy management.',
+      'Deep Analytics: Track clicks by device, browser, country, city, referrer, and timestamp.',
+      'Interactive Map Visualization: Pinpoint visitor click origins on an interactive map powered by Leaflet.',
+      'Secure Authentication: Cookie-based session handling with JWT-protected dashboard routes.',
+      'High-Precision Location Tracking: IP-based geolocation via edge headers or geoip-lite.'
     ],
     architecture: [
       { name: 'Backend Pipeline', tech: 'Node.js + Express, MongoDB + Mongoose, JWT + cookie-parser' },
@@ -53,11 +53,11 @@ export const projectsData = [
     tags: ['React 19', 'Node.js', 'Express 5', 'MongoDB', 'Mongoose', 'Gemini AI', 'JWT', 'Multer', 'pdf-parse', 'Vite', 'Sass', 'Nodemailer'],
     overview: 'PrepDost helps job seekers prepare for technical and behavioral interviews by generating structured AI interview reports from PDF resume uploads, self-declarations, and job descriptions using Google Gemini AI.',
     features: [
-      '🔐 Authentication: Register, login, logout, protected routes, and JWT-based session flow.',
-      '🔑 Password Recovery: Forgot password, verify reset code, and reset password via SMTP Nodemailer.',
-      '📄 AI Interview Analysis: Upload PDF resume + context to generate AI-powered interview reports via Google Gemini SDK.',
-      '📊 Report History: Fetch all reports and open detailed report by interview ID in private dashboard.',
-      '⚡ Full Stack MERN Architecture: React 19 frontend, Express 5 backend, and MongoDB Atlas persistence.'
+      'Authentication: Register, login, logout, protected routes, and JWT-based session flow.',
+      'Password Recovery: Forgot password, verify reset code, and reset password via SMTP Nodemailer.',
+      'AI Interview Analysis: Upload PDF resume + context to generate AI-powered interview reports via Google Gemini SDK.',
+      'Report History: Fetch all reports and open detailed report by interview ID in private dashboard.',
+      'Full Stack MERN Architecture: React 19 frontend, Express 5 backend, and MongoDB Atlas persistence.'
     ],
     architecture: [
       { name: 'Backend Pipeline', tech: 'Node.js, Express 5, MongoDB + Mongoose, Google Gemini SDK, Multer + pdf-parse' },
@@ -93,11 +93,11 @@ export const projectsData = [
     tags: ['React 19', 'Vite', 'Node.js', 'Express', '@google/genai', 'Gemini 2.5 Flash', 'GSAP', 'Axios', 'React Router'],
     overview: 'CodeReviewer is a full-stack AI code review application engineered with React 19 and Express that analyzes submitted code in real time, delivering structured feedback across Bugs, Security, Performance, Style, Refactored Code, and risk scoring (0-100) with PASS/WARN/FAIL verdicts.',
     features: [
-      '🎯 Structured Feedback Sections: Detailed analysis breakdown across Bugs, Security, Performance, Code Style, and Refactored Code.',
-      '🏆 Verdict & Scoring Engine: Automated PASS, WARN, and FAIL verdicts paired with granular scores out of 100.',
-      '🔤 Smart Language Directive Parsing: Auto-detects programming languages via payload tags or first-line comment directives (/python, /c++, lang=java).',
-      '💻 Interactive Review Workspace: Real-time code paste workspace with parsed section views and readable syntax output.',
-      '🛡️ Resilient API Pipeline: Graceful backend validation, quota handling (429), and service fallback mechanisms.'
+      'Structured Feedback Sections: Detailed analysis breakdown across Bugs, Security, Performance, Code Style, and Refactored Code.',
+      'Verdict & Scoring Engine: Automated PASS, WARN, and FAIL verdicts paired with granular scores out of 100.',
+      'Smart Language Directive Parsing: Auto-detects programming languages via payload tags or first-line comment directives (/python, /c++, lang=java).',
+      'Interactive Review Workspace: Real-time code paste workspace with parsed section views and readable syntax output.',
+      'Resilient API Pipeline: Graceful backend validation, quota handling (429), and service fallback mechanisms.'
     ],
     architecture: [
       { name: 'Backend Pipeline', tech: 'Node.js, Express, @google/genai SDK, Gemini 2.5 Flash, dotenv, cors' },

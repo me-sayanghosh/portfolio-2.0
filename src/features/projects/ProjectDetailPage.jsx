@@ -193,12 +193,31 @@ export default function ProjectDetailPage({ onOpenHireModal }) {
               <span className="text-amber-500">.</span>
             </h2>
             <ul className="space-y-3 font-sans">
-              {project.features.map((feature, i) => (
-                <li key={i} className="flex items-start space-x-3 text-sm sm:text-base text-gray-300 leading-relaxed">
-                  <span className="text-amber-400 text-base mt-0.5 select-none">•</span>
-                  <span>{feature}</span>
-                </li>
-              ))}
+              {project.features.map((feature, i) => {
+                const cleanFeature = feature.replace(/^(?:\p{Extended_Pictographic}|\p{Emoji_Presentation}|\s)+/u, '');
+                const colonIndex = cleanFeature.indexOf(':');
+
+                if (colonIndex !== -1) {
+                  const title = cleanFeature.slice(0, colonIndex + 1);
+                  const rest = cleanFeature.slice(colonIndex + 1);
+                  return (
+                    <li key={i} className="flex items-start space-x-3 text-sm sm:text-base text-gray-300 leading-relaxed">
+                      <span className="text-amber-400 text-base mt-0.5 select-none">•</span>
+                      <span>
+                        <strong className="text-white font-semibold">{title}</strong>
+                        {rest}
+                      </span>
+                    </li>
+                  );
+                }
+
+                return (
+                  <li key={i} className="flex items-start space-x-3 text-sm sm:text-base text-gray-300 leading-relaxed">
+                    <span className="text-amber-400 text-base mt-0.5 select-none">•</span>
+                    <span>{cleanFeature}</span>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         )}
