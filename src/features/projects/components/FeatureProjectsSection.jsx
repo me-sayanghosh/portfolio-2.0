@@ -18,7 +18,7 @@ export default function FeatureProjectsSection() {
       dates: 'Jan2021–May2021 · MachineLearning',
       description: 'An all-in-one productivity suite combining a powerful URL shortener..',
       platformBg: 'from-orange-600 to-amber-600',
-      laptopImg: '/assets/a3d295e02ea0c5a89aa612766ca75feaf88c9620.jpg'
+      laptopImg: '/assets/hoopit-banner.png'
     },
     {
       title: 'PrepDost',

@@ -6,7 +6,7 @@ export const projectsData = [
     tagBg: 'bg-purple-600 text-white font-bold',
     subtitle: 'A full-stack URL shortener with real-time analytics, folder organization, and geolocation tracking.',
     bannerBg: 'from-[#EA580C] to-[#C2410C]',
-    bannerImg: '/assets/a3d295e02ea0c5a89aa612766ca75feaf88c9620.jpg',
+    bannerImg: '/assets/hoopit-banner.png',
     logoImg: '/assets/hoopit-logo.png',
     icon: '🔗',
     tags: ['Node.js', 'Express', 'React 19', 'Vite', 'MongoDB', 'Mongoose', 'JWT', 'geoip-lite', 'Leaflet', 'Tailwind CSS'],
