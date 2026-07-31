@@ -46,13 +46,13 @@ export default function HeroSection({ onOpenResume, onOpenHackathonModal }) {
         {/* Profile Avatar overlapping bottom of black banner - Click to Expand */}
         <div
           onClick={() => setIsAvatarModalOpen(true)}
-          className="w-22 h-22 sm:w-24 sm:h-24 rounded-[18px] overflow-hidden border-2 border-white shadow-2xl flex-shrink-0 relative -mt-11 sm:-mt-12 z-30 bg-black cursor-pointer group transform-gpu transition-all duration-300 ease-out hover:-rotate-3 hover:scale-105"
+          className="w-20 h-20 sm:w-24 sm:h-24 rounded-[18px] overflow-hidden border-2 border-white shadow-2xl flex-shrink-0 relative -mt-10 sm:-mt-12 z-30 bg-black cursor-pointer group transform-gpu transition-all duration-300 ease-out hover:-rotate-3 hover:scale-105"
           title="Click to view photo"
         >
           <img
             src="/assets/profile-avatar.jpg"
             alt="Sayan Ghosh"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-[center_15%]"
           />
         </div>
 
@@ -241,11 +241,11 @@ export default function HeroSection({ onOpenResume, onOpenHackathonModal }) {
               </button>
 
               {/* High-res Image */}
-              <div className="w-full max-h-[75vh] overflow-hidden flex items-center justify-center bg-black">
+              <div className="w-full max-h-[65vh] overflow-hidden flex items-center justify-center bg-black p-2">
                 <img
                   src="/assets/profile-avatar.jpg"
                   alt="Sayan Ghosh Full"
-                  className="w-full h-full object-cover"
+                  className="max-h-[60vh] sm:max-h-[65vh] w-auto object-contain rounded-2xl"
                 />
               </div>
 
