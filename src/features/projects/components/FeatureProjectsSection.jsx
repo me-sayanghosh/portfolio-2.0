@@ -96,7 +96,7 @@ export default function FeatureProjectsSection() {
               className="bg-[#12141C] border border-white/10 rounded-3xl p-6 relative overflow-hidden group cursor-pointer shadow-2xl flex flex-col justify-between"
             >
               <div>
-                <div className="flex justify-end space-x-1.5 mb-4">
+                <div className="flex flex-wrap justify-end gap-1.5 mb-4">
                   {proj.tags.map((t, i) => (
                     <span key={i} className="px-2.5 py-1 rounded-md bg-black/60 text-[10px] font-mono text-gray-300 border border-white/10">
                       {t}

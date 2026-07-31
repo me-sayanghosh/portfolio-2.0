@@ -27,7 +27,7 @@ export default function HireMeModal({ isOpen, onClose }) {
       
       {/* Modal Card matching Figma Modal Pop Up (Node ID 114:311) */}
       <div
-        className="relative w-full max-w-lg bg-[#0C0F17] border border-white/15 rounded-3xl p-6 sm:p-8 shadow-2xl shadow-orange-950/20 text-left overflow-hidden transform animate-in zoom-in-95 duration-200"
+        className="relative w-full max-w-lg max-h-[90vh] overflow-y-auto bg-[#0C0F17] border border-white/15 rounded-3xl p-6 sm:p-8 shadow-2xl shadow-orange-950/20 text-left transform animate-in zoom-in-95 duration-200"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Subtle Background Glow */}

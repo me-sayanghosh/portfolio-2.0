@@ -14,7 +14,7 @@ export default function AboutCollageSection({ onOpenResume }) {
       {/* Top Right "My Resume" Button (Home Page Style) */}
       <button
         onClick={onOpenResume}
-        className="resume-btn absolute top-[1.94%] left-[83.5%] px-4 py-1 sm:px-5 sm:py-1.5 rounded-full border border-white/40 bg-[#0D0F15] text-white font-urbanist text-xs sm:text-sm font-medium tracking-tight italic active:scale-95 cursor-pointer shadow-lg z-50 transition-transform"
+        className="resume-btn absolute top-3 sm:top-5 right-3 sm:right-5 px-3 py-1 sm:px-5 sm:py-1.5 rounded-full border border-white/40 bg-[#0D0F15] text-white font-urbanist text-[11px] sm:text-sm font-medium tracking-tight italic active:scale-95 cursor-pointer shadow-lg z-50 transition-transform"
       >
         My Resume
       </button>

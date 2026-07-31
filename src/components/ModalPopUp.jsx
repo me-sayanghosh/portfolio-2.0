@@ -24,7 +24,7 @@ export default function ModalPopUp({ isOpen, onClose }) {
     >
       {/* Instagram Story Card Frame matching Figma Node 114:311 */}
       <div
-        className="relative w-full max-w-sm sm:max-w-md bg-[#0D0F17] border border-white/20 rounded-3xl overflow-hidden shadow-2xl flex flex-col justify-between min-h-[580px]"
+        className="relative w-full max-w-sm sm:max-w-md max-h-[90vh] overflow-y-auto bg-[#0D0F17] border border-white/20 rounded-3xl overflow-hidden shadow-2xl flex flex-col justify-between min-h-[500px] sm:min-h-[580px]"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Top Bar: Profile & Close Button */}

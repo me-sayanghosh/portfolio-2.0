@@ -21,7 +21,7 @@ export default function HeroSection({ onOpenResume, onOpenHackathonModal }) {
         </div>
 
         {/* Large Grumpy White Cat Image filling full right side of black banner */}
-        <div className="absolute right-0 top-0 bottom-0 w-[500px] sm:w-[270px] pointer-events-none overflow-hidden rounded-r-2xl flex items-center justify-end">
+        <div className="absolute right-0 top-0 bottom-0 w-[180px] xs:w-[220px] sm:w-[270px] pointer-events-none overflow-hidden rounded-r-2xl flex items-center justify-end opacity-80 sm:opacity-100">
           <img
             src="/assets/Cat.png"
             alt="Grumpy Cat"
@@ -31,13 +31,9 @@ export default function HeroSection({ onOpenResume, onOpenHackathonModal }) {
 
         {/* Banner Title - Centered Vertically & Horizontally in Black Banner */}
         <h1
-          className="font-bricolage font-bold text-3xl sm:text-[40px] text-white text-center z-10 px-4"
+          className="font-bricolage font-bold text-2xl xs:text-3xl sm:text-[40px] text-white text-center z-10 px-4 leading-tight sm:leading-[48px] tracking-[-1.6px]"
           style={{
-            fontFamily: "'Bricolage Grotesque', sans-serif",
-            fontWeight: 700,
-            fontSize: '40px',
-            lineHeight: '48px',
-            letterSpacing: '-1.6px'
+            fontFamily: "'Bricolage Grotesque', sans-serif"
           }}
         >
           Finally found me!!
@@ -76,13 +72,9 @@ export default function HeroSection({ onOpenResume, onOpenHackathonModal }) {
         {/* Name & Verified Badge */}
         <div className="flex items-center space-x-2.5 mb-1.5">
           <h2
-            className="font-bricolage font-bold text-3xl sm:text-[40px] text-white"
+            className="font-bricolage font-bold text-2xl xs:text-3xl sm:text-[40px] text-white leading-tight sm:leading-[48px] tracking-[-1.6px]"
             style={{
-              fontFamily: "'Bricolage Grotesque', sans-serif",
-              fontWeight: 700,
-              fontSize: '40px',
-              lineHeight: '48px',
-              letterSpacing: '-1.6px'
+              fontFamily: "'Bricolage Grotesque', sans-serif"
             }}
           >
             Sayan Ghosh

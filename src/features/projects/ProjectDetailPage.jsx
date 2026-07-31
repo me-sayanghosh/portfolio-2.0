@@ -237,7 +237,7 @@ export default function ProjectDetailPage({ onOpenHireModal }) {
               <span className="text-amber-500">.</span>
             </h2>
             <div className="overflow-x-auto border-t border-b border-white/10 py-2">
-              <table className="w-full text-left text-xs sm:text-sm font-sans border-collapse">
+              <table className="w-full text-left text-xs sm:text-sm font-sans border-collapse min-w-[550px]">
                 <thead>
                   <tr className="border-b border-white/15 text-gray-400">
                     <th className="pb-3 pr-4 font-semibold">Method</th>
