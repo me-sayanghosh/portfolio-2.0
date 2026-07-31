@@ -47,7 +47,7 @@ export const projectsData = [
     tagBg: 'bg-purple-600 text-white font-bold',
     subtitle: 'AI-powered interview preparation platform built with MERN + Gemini AI.',
     bannerBg: 'from-[#F59E0B] to-[#D97706]',
-    bannerImg: '/assets/b91090124f830732de45724a6f591436543ed934.jpg',
+    bannerImg: '/assets/prepdost-banner.png',
     logoImg: '/assets/prepdost-logo.png',
     icon: '🎓',
     tags: ['React 19', 'Node.js', 'Express 5', 'MongoDB', 'Mongoose', 'Gemini AI', 'JWT', 'Multer', 'pdf-parse', 'Vite', 'Sass', 'Nodemailer'],

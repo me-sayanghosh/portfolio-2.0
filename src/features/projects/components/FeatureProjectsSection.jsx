@@ -28,7 +28,7 @@ export default function FeatureProjectsSection() {
       dates: 'Jan2021–May2021 · AI-ML',
       description: 'A full-stack career platform designed to help students and job seekers build confidence...',
       platformBg: 'from-amber-500 to-yellow-600',
-      laptopImg: '/assets/b91090124f830732de45724a6f591436543ed934.jpg'
+      laptopImg: '/assets/prepdost-banner.png'
     },
     {
       title: 'CodeReviewer',
