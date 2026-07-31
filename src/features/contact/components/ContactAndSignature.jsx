@@ -42,7 +42,7 @@ export default function ContactAndSignature() {
           <img
             src="/assets/signature.png"
             alt="Warm Regards, Sayan Ghosh"
-            className="w-28 xs:w-36 sm:w-48 md:w-60 lg:w-72 h-auto opacity-95 hover:opacity-100 transition-opacity mix-blend-screen"
+            className="w-32 xs:w-40 sm:w-56 md:w-64 lg:w-76 h-auto opacity-95 hover:opacity-100 transition-opacity mix-blend-screen"
           />
         </div>
 
