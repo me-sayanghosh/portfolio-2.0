@@ -9,6 +9,7 @@ import GalleryPage from './features/gallery/GalleryPage';
 import Footer from './components/Footer';
 import ModalPopUp from './components/ModalPopUp';
 import HireMeModal from './components/HireMeModal';
+import SmoothScroll from './components/SmoothScroll';
 
 function AnimatedRoutes({ setIsHackathonModalOpen, setIsHireModalOpen }) {
   const location = useLocation();
@@ -76,34 +77,36 @@ export default function App() {
 
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-[#171717] text-gray-200 flex flex-col font-sans selection:bg-purple-500/30 selection:text-purple-300 overflow-x-hidden">
-        
-        {/* Floating Capsule Top Navbar */}
-        <Navbar />
+      <SmoothScroll>
+        <div className="min-h-screen bg-[#171717] text-gray-200 flex flex-col font-sans selection:bg-purple-500/30 selection:text-purple-300 overflow-x-hidden">
+          
+          {/* Floating Capsule Top Navbar */}
+          <Navbar />
 
-        {/* Modular Page Routes */}
-        <main className="flex-grow">
-          <AnimatedRoutes
-            setIsHackathonModalOpen={setIsHackathonModalOpen}
-            setIsHireModalOpen={setIsHireModalOpen}
+          {/* Modular Page Routes */}
+          <main className="flex-grow">
+            <AnimatedRoutes
+              setIsHackathonModalOpen={setIsHackathonModalOpen}
+              setIsHireModalOpen={setIsHireModalOpen}
+            />
+          </main>
+
+          {/* Footer */}
+          <Footer />
+
+          {/* Modals */}
+          <ModalPopUp
+            isOpen={isHackathonModalOpen}
+            onClose={() => setIsHackathonModalOpen(false)}
           />
-        </main>
 
-        {/* Footer */}
-        <Footer />
+          <HireMeModal
+            isOpen={isHireModalOpen}
+            onClose={() => setIsHireModalOpen(false)}
+          />
 
-        {/* Modals */}
-        <ModalPopUp
-          isOpen={isHackathonModalOpen}
-          onClose={() => setIsHackathonModalOpen(false)}
-        />
-
-        <HireMeModal
-          isOpen={isHireModalOpen}
-          onClose={() => setIsHireModalOpen(false)}
-        />
-
-      </div>
+        </div>
+      </SmoothScroll>
     </BrowserRouter>
   );
 }
