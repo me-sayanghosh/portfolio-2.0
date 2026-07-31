@@ -7,15 +7,16 @@ export default function SmoothScroll({ children }) {
   const location = useLocation();
 
   useEffect(() => {
-    // Initialize Lenis Smooth Scroll Engine
+    // Initialize Lenis Ultra Smooth Scroll Engine
     const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      duration: 1.8,
+      easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
       direction: 'vertical',
       gestureDirection: 'vertical',
       smoothWheel: true,
-      wheelMultiplier: 1.0,
-      touchMultiplier: 1.5,
+      wheelMultiplier: 1.15,
+      touchMultiplier: 2.0,
+      autoResize: true,
     });
 
     // Synchronize Lenis raf updates with GSAP Ticker at 60fps/120fps
