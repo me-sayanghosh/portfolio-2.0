@@ -1,11 +1,13 @@
+'use client';
+
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import Masonry from '../../components/ui/Masonry';
 import { ContactAndSignature } from '../contact';
 
 export default function GalleryPage() {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const galleryItems = [
     {
@@ -78,7 +80,7 @@ export default function GalleryPage() {
       {/* Breadcrumbs */}
       <div className="flex items-center space-x-2 text-xs sm:text-sm text-gray-400 mb-3 font-sans">
         <span
-          onClick={() => navigate('/')}
+          onClick={() => router.push('/')}
           className="hover:text-white cursor-pointer transition-colors"
         >
           Home

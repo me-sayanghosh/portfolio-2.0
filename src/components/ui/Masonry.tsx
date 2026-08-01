@@ -1,8 +1,10 @@
+'use client';
+
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import './Masonry.css';
 
-const useMedia = (queries, values, defaultValue) => {
+const useMedia = (queries: string[], values: number[], defaultValue: number) => {
   const get = () => {
     if (typeof window === 'undefined') return defaultValue;
     return values[queries.findIndex(q => matchMedia(q).matches)] ?? defaultValue;
@@ -20,8 +22,8 @@ const useMedia = (queries, values, defaultValue) => {
   return value;
 };
 
-const useMeasure = () => {
-  const ref = useRef(null);
+const useMeasure = (): [React.RefObject<HTMLDivElement | null>, { width: number; height: number }] => {
+  const ref = useRef<HTMLDivElement>(null);
   const [size, setSize] = useState({ width: 0, height: 0 });
 
   useLayoutEffect(() => {
@@ -37,11 +39,11 @@ const useMeasure = () => {
   return [ref, size];
 };
 
-const preloadImages = async urls => {
+const preloadImages = async (urls: string[]) => {
   await Promise.all(
     urls.map(
       src =>
-        new Promise(resolve => {
+        new Promise<void>(resolve => {
           const img = new Image();
           img.src = src;
           img.onload = img.onerror = () => resolve();
@@ -60,7 +62,7 @@ const Masonry = ({
   hoverScale = 0.95,
   blurToFocus = true,
   colorShiftOnHover = false
-}) => {
+}: any) => {
   const columns = useMedia(
     ['(min-width:1500px)', '(min-width:1000px)', '(min-width:600px)', '(min-width:400px)'],
     [4, 3, 2, 2],
@@ -70,7 +72,7 @@ const Masonry = ({
   const [containerRef, { width }] = useMeasure();
   const [imagesReady, setImagesReady] = useState(false);
 
-  const getInitialPosition = item => {
+  const getInitialPosition = (item: any, _index?: number) => {
     const containerRect = containerRef.current?.getBoundingClientRect();
     if (!containerRect) return { x: item.x, y: item.y };
 

@@ -1,7 +1,14 @@
+'use client';
+
 import React, { useState } from 'react';
 import { X, Mail, Phone, MapPin, Copy, Check, MessageCircle, HeartHandshake } from 'lucide-react';
 
-export default function HireMeModal({ isOpen, onClose }) {
+interface ModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export default function HireMeModal({ isOpen, onClose }: ModalProps) {
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [copiedPhone, setCopiedPhone] = useState(false);
 

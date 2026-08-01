@@ -1,13 +1,21 @@
+'use client';
+
 import React, { useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Github, ExternalLink, Sparkles, CheckCircle2, Code2, Server, Terminal, Layers, Download, Copy, Check } from 'lucide-react';
 import { projectsData } from './data/projectsData';
 import { ContactAndSignature } from '../contact';
 
-export default function ProjectDetailPage({ onOpenHireModal }) {
-  const { id } = useParams();
-  const navigate = useNavigate();
+interface ProjectDetailPageProps {
+  onOpenHireModal?: () => void;
+  projectId?: string;
+}
+
+export default function ProjectDetailPage({ onOpenHireModal, projectId }: ProjectDetailPageProps) {
+  const params = useParams();
+  const router = useRouter();
+  const id = projectId || params?.id;
   const [copied, setCopied] = useState(false);
 
   const project = projectsData.find((p) => p.id === id) || projectsData[0];
@@ -32,14 +40,14 @@ export default function ProjectDetailPage({ onOpenHireModal }) {
       {/* Breadcrumb Navigation */}
       <div className="flex items-center space-x-2 text-xs sm:text-sm text-gray-400 mb-6 font-sans">
         <span
-          onClick={() => navigate('/')}
+          onClick={() => router.push('/')}
           className="hover:text-white cursor-pointer transition-colors"
         >
           Home
         </span>
         <span>/</span>
         <span
-          onClick={() => navigate('/projects')}
+          onClick={() => router.push('/projects')}
           className="hover:text-white cursor-pointer transition-colors"
         >
           Projects
@@ -52,7 +60,7 @@ export default function ProjectDetailPage({ onOpenHireModal }) {
       <div className="flex items-center space-x-3.5 mb-8">
         {/* Circular Back Button Arrow */}
         <button
-          onClick={() => navigate('/projects')}
+          onClick={() => router.push('/projects')}
           className="w-10 h-10 rounded-full border border-white/15 bg-white/5 flex items-center justify-center text-gray-300 hover:text-white hover:bg-white/10 transition-all shrink-0 active:scale-95 cursor-pointer"
           title="Back to Projects"
         >

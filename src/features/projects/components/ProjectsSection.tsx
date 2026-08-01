@@ -1,17 +1,19 @@
+'use client';
+
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { projectsData } from '../data/projectsData';
 import { ContactAndSignature } from '../../contact';
 
 export default function ProjectsSection({ onOpenHireModal }) {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   return (
     <section className="pt-20 sm:pt-24 pb-16 max-w-4xl mx-auto px-4 sm:px-6">
       {/* Breadcrumb Navigation */}
       <div className="flex items-center space-x-2 text-xs sm:text-sm text-gray-400 mb-3 font-sans">
         <span
-          onClick={() => navigate('/')}
+          onClick={() => router.push('/')}
           className="hover:text-white cursor-pointer transition-colors"
         >
           Home
@@ -38,7 +40,7 @@ export default function ProjectsSection({ onOpenHireModal }) {
         {projectsData.map((project) => (
           <div
             key={project.id}
-            onClick={() => navigate(`/projects/${project.id}`)}
+            onClick={() => router.push(`/projects/${project.id}`)}
             className="group cursor-pointer bg-[#161820]/60 hover:bg-[#1A1C26] border border-white/5 hover:border-white/20 rounded-2xl p-3.5 sm:p-4 flex flex-col justify-between transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-amber-500/5 hover:-translate-y-1 transform-gpu"
           >
             {/* Top Preview Image Showcase */}
