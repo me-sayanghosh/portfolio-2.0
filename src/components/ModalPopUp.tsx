@@ -1,7 +1,14 @@
+'use client';
+
 import React, { useState } from 'react';
 import { X, Heart } from 'lucide-react';
 
-export default function ModalPopUp({ isOpen, onClose }) {
+interface ModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export default function ModalPopUp({ isOpen, onClose }: ModalProps) {
   const [likes, setLikes] = useState(142);
   const [liked, setLiked] = useState(false);
 

@@ -1,10 +1,12 @@
+'use client';
+
 import React from "react";
 import { motion } from "framer-motion";
-import { useLocation, useNavigate } from "react-router-dom";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function Navbar() {
-  const location = useLocation();
-  const navigate = useNavigate();
+  const pathname = usePathname();
+  const router = useRouter();
 
   const tabs = [
     { id: "home", label: "Home", path: "/" },
@@ -13,7 +15,7 @@ export default function Navbar() {
   ];
 
   // Hide navbar on individual project detail pages e.g. /projects/:id
-  if (location.pathname.startsWith('/projects/') && location.pathname !== '/projects') {
+  if (pathname.startsWith('/projects/') && pathname !== '/projects') {
     return null;
   }
 
@@ -22,11 +24,11 @@ export default function Navbar() {
       {/* Capsule Navigation Container */}
       <div className="w-[270px] sm:w-[290px] h-[46px] border border-white/10 rounded-[30px] p-[5px] gap-[4px] flex flex-row items-center justify-between bg-[#1f1f1f]/95 backdrop-blur-xl shadow-2xl relative">
         {tabs.map((tab) => {
-          const isActive = location.pathname === tab.path;
+          const isActive = pathname === tab.path;
           return (
             <button
               key={tab.id}
-              onClick={() => navigate(tab.path)}
+              onClick={() => router.push(tab.path)}
               className={`relative flex-1 h-full rounded-[22px] flex items-center justify-center text-xs sm:text-sm font-medium transition-colors duration-200 select-none cursor-pointer ${
                 isActive ? "text-white" : "text-[#888888] hover:text-white"
               }`}

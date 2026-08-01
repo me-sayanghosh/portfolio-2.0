@@ -1,9 +1,11 @@
+'use client';
+
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { Mail, Twitter, ArrowRight } from 'lucide-react';
 
 export default function HomeAboutSection() {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const techStack = [
     {
@@ -136,7 +138,7 @@ export default function HomeAboutSection() {
       {/* More About Me Button */}
       <div className="flex justify-center">
         <button
-          onClick={() => navigate('/about')}
+          onClick={() => router.push('/about')}
           className="px-6 py-2 rounded-full border border-white/30 bg-[#222222] hover:bg-white/15 text-white font-semibold text-xs sm:text-sm shadow-lg transition-all active:scale-95 cursor-pointer flex items-center space-x-2"
         >
           <span>More About Me</span>

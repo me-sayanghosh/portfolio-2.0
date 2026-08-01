@@ -1,6 +1,23 @@
+'use client';
+
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { cn } from "../../lib/utils";
+
+interface ImagesBadgeProps {
+  text?: string;
+  images?: string[];
+  className?: string;
+  href?: string;
+  target?: string;
+  onClick?: () => void;
+  folderSize?: { width: number; height: number };
+  teaserImageSize?: { width: number; height: number };
+  hoverImageSize?: { width: number; height: number };
+  hoverTranslateY?: number;
+  hoverSpread?: number;
+  hoverRotation?: number;
+}
 
 export function ImagesBadge({
   text = "Gallery View",
@@ -19,7 +36,7 @@ export function ImagesBadge({
   hoverTranslateY = -35,
   hoverSpread = 20,
   hoverRotation = 15,
-}) {
+}: ImagesBadgeProps) {
   const [isHovered, setIsHovered] = useState(false);
 
   // Limit to max 3 images

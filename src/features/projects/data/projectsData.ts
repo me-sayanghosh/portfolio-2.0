@@ -1,4 +1,37 @@
-export const projectsData = [
+export interface ArchitectureItem {
+  name: string;
+  tech: string;
+}
+
+export interface ApiEndpointItem {
+  method: string;
+  path: string;
+  desc: string;
+}
+
+export interface Project {
+  id: string;
+  title: string;
+  tag: string;
+  tagBg: string;
+  subtitle: string;
+  bannerBg: string;
+  bannerImg: string;
+  logoImg?: string;
+  icon: string;
+  tags: string[];
+  overview: string;
+  features: string[];
+  architecture?: ArchitectureItem[];
+  apiEndpoints?: ApiEndpointItem[];
+  setupGuide?: string[];
+  liveUrl?: string;
+  githubUrl?: string;
+  live?: string;
+  github?: string;
+}
+
+export const projectsData: Project[] = [
   {
     id: 'hoopit',
     title: 'Hoopit',

@@ -1,11 +1,13 @@
+'use client';
+
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { ContactAndSignature } from '../../contact';
 import AboutMeBanner from './AboutMeBanner';
 import AboutCollageSection from './AboutCollageSection';
 
 export default function AboutSection({ onOpenHireModal, onOpenResume }) {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const stories = [
     {
@@ -36,7 +38,7 @@ export default function AboutSection({ onOpenHireModal, onOpenResume }) {
       {/* Breadcrumb Navigation */}
       <div className="flex items-center space-x-2 text-xs sm:text-sm text-gray-400 mb-1 font-sans">
         <span
-          onClick={() => navigate('/')}
+          onClick={() => router.push('/')}
           className="hover:text-white cursor-pointer transition-colors"
         >
           Home

@@ -1,9 +1,11 @@
+'use client';
+
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { ArrowRight } from 'lucide-react';
 
 export default function HomeProjectsSection() {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const projects = [
     {
@@ -45,7 +47,7 @@ export default function HomeProjectsSection() {
         {projects.map((project, idx) => (
           <div
             key={idx}
-            onClick={() => navigate('/projects')}
+            onClick={() => router.push('/projects')}
             className="group bg-[#222222] border border-[#333333] hover:border-white/20 hover:bg-[#2a2a2a] rounded-2xl p-4 sm:p-5 flex items-center space-x-4 transition-colors duration-200 cursor-pointer shadow-md"
           >
             {/* Custom App Logo with Hardware-Accelerated Smooth Hover Pop-up */}
@@ -73,7 +75,7 @@ export default function HomeProjectsSection() {
       {/* see more cool stuff Button */}
       <div className="flex justify-center mt-6">
         <button
-          onClick={() => navigate('/projects')}
+          onClick={() => router.push('/projects')}
           className="px-6 py-2.5 rounded-full border border-white/30 bg-[#222222] hover:bg-white/15 text-white font-semibold text-xs sm:text-sm shadow-lg transition-all active:scale-95 cursor-pointer flex items-center space-x-2"
         >
           <span>see more cool stuff</span>

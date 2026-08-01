@@ -1,11 +1,13 @@
+'use client';
+
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Linkedin, Mail, Github, Instagram, X } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { ImagesBadge } from '../../../components/ui/images-badge';
 
 export default function HeroSection({ onOpenResume, onOpenHackathonModal }) {
-  const navigate = useNavigate();
+  const router = useRouter();
   const [isAvatarModalOpen, setIsAvatarModalOpen] = useState(false);
 
   return (
@@ -208,7 +210,7 @@ export default function HeroSection({ onOpenResume, onOpenHackathonModal }) {
               ]}
               hoverSpread={20}
               hoverRotation={15}
-              onClick={() => navigate('/gallery')}
+              onClick={() => router.push('/gallery')}
             />
           </div>
         </div>

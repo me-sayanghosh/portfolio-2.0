@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import { Paperclip, Layers, Code, Bot, CloudRain } from 'lucide-react';
 
