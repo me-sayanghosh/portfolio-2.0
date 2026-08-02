@@ -14,8 +14,8 @@ export default function Navbar() {
     { id: "projects", label: "Projects", path: "/projects" },
   ];
 
-  // Hide navbar on individual project detail pages e.g. /projects/:id
-  if (pathname.startsWith('/projects/') && pathname !== '/projects') {
+  // Hide navbar on gallery page and individual project detail pages e.g. /projects/:id
+  if (pathname === '/gallery' || pathname.startsWith('/gallery') || (pathname.startsWith('/projects/') && pathname !== '/projects')) {
     return null;
   }
 
