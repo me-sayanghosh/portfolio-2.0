@@ -2,7 +2,6 @@
 
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { gsap } from 'gsap';
-import { Eye } from 'lucide-react';
 import './Masonry.css';
 
 const useMedia = (queries: string[], values: number[], defaultValue: number) => {
@@ -242,14 +241,7 @@ const Masonry = ({
             onMouseEnter={e => handleMouseEnter(e, item)}
             onMouseLeave={e => handleMouseLeave(e, item)}
           >
-            <div className="item-img" style={{ backgroundImage: `url(${item.img})` }}>
-              {/* Centered Eye / View Icon Overlay on Hover */}
-              <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-all duration-300 rounded-[16px] flex items-center justify-center pointer-events-none">
-                <div className="w-11 h-11 rounded-full bg-black/60 border border-white/25 backdrop-blur-md flex items-center justify-center text-white shadow-2xl transform scale-90 group-hover:scale-100 transition-transform">
-                  <Eye className="w-5 h-5 text-white" />
-                </div>
-              </div>
-            </div>
+            <div className="item-img" style={{ backgroundImage: `url(${item.img})` }} />
           </div>
         );
       })}
