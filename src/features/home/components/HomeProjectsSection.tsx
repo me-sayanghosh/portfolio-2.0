@@ -12,21 +12,21 @@ export default function HomeProjectsSection() {
       id: 'hoopit',
       title: 'HoopIt',
       tagline: 'An all-in-one productivity suite & URL analytics platform',
-      logoImg: '/assets/hoopit-logo.png',
+      logoImg: '/assets/hoopit-logo.webp',
       github: 'https://github.com/me-sayanghosh/hoopit'
     },
     {
       id: 'prepdost',
       title: 'PrepDost',
       tagline: 'AI-powered mock interview & career prep platform',
-      logoImg: '/assets/prepdost-logo.png',
+      logoImg: '/assets/prepdost-logo.webp',
       github: 'https://github.com/me-sayanghosh/prepdost'
     },
     {
       id: 'codereviewer',
       title: 'CodeReviewer',
       tagline: 'Real-time AI automated pull request & code review agent',
-      logoImg: '/assets/codereviewer-logo.png',
+      logoImg: '/assets/codereviewer-logo.webp',
       github: 'https://github.com/me-sayanghosh'
     }
   ];

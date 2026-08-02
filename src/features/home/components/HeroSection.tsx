@@ -25,7 +25,7 @@ export default function HeroSection({ onOpenResume, onOpenHackathonModal }) {
         {/* Large Grumpy White Cat Image filling full right side of black banner */}
         <div className="absolute right-0 top-0 bottom-0 w-[180px] xs:w-[220px] sm:w-[270px] pointer-events-none overflow-hidden rounded-r-2xl flex items-center justify-end opacity-80 sm:opacity-100">
           <img
-            src="/assets/Cat.png"
+            src="/assets/Cat.webp"
             alt="Grumpy Cat"
             className="h-full w-full object-cover object-right"
           />
@@ -52,7 +52,7 @@ export default function HeroSection({ onOpenResume, onOpenHackathonModal }) {
           title="Click to view photo"
         >
           <img
-            src="/assets/profile-avatar.jpg"
+            src="/assets/profile-avatar.webp"
             alt="Sayan Ghosh"
             className="w-full h-full object-cover object-[center_15%]"
           />
@@ -204,9 +204,9 @@ export default function HeroSection({ onOpenResume, onOpenHackathonModal }) {
             <ImagesBadge
               text="Gallery View"
               images={[
-                "/assets/collage-elements/mountain_polaroid.png",
-                "/assets/collage-elements/sayan_portrait.png",
-                "/assets/collage-elements/guitar_polaroid.png",
+                "/assets/collage-elements/mountain_polaroid.webp",
+                "/assets/collage-elements/sayan_portrait.webp",
+                "/assets/collage-elements/guitar_polaroid.webp",
               ]}
               hoverSpread={20}
               hoverRotation={15}
@@ -245,7 +245,7 @@ export default function HeroSection({ onOpenResume, onOpenHackathonModal }) {
               {/* High-res Image */}
               <div className="w-full max-h-[65vh] overflow-hidden flex items-center justify-center bg-black p-2">
                 <img
-                  src="/assets/profile-avatar.jpg"
+                  src="/assets/profile-avatar.webp"
                   alt="Sayan Ghosh Full"
                   className="max-h-[60vh] sm:max-h-[65vh] w-auto object-contain rounded-2xl"
                 />

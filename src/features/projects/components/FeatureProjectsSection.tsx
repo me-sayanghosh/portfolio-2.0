@@ -20,7 +20,7 @@ export default function FeatureProjectsSection() {
       dates: 'Jan2021–May2021 · MachineLearning',
       description: 'An all-in-one productivity suite combining a powerful URL shortener..',
       platformBg: 'from-orange-600 to-amber-600',
-      laptopImg: '/assets/hoopit-banner.png'
+      laptopImg: '/assets/hoopit-banner.webp'
     },
     {
       title: 'PrepDost',
@@ -30,7 +30,7 @@ export default function FeatureProjectsSection() {
       dates: 'Jan2021–May2021 · AI-ML',
       description: 'A full-stack career platform designed to help students and job seekers build confidence...',
       platformBg: 'from-amber-500 to-yellow-600',
-      laptopImg: '/assets/prepdost-banner.png'
+      laptopImg: '/assets/prepdost-banner.webp'
     },
     {
       title: 'CodeReviewer',
@@ -40,7 +40,7 @@ export default function FeatureProjectsSection() {
       dates: 'Jan2021–May2021 · MachineLearning',
       description: 'Developed a full-stack AI automated agent that reviews pull requests and code submissions in real-time.',
       platformBg: 'from-rose-600 to-pink-600',
-      laptopImg: '/assets/codereviewer-banner.png'
+      laptopImg: '/assets/codereviewer-banner.webp'
     },
     {
       title: 'Veritas AI',
@@ -50,7 +50,7 @@ export default function FeatureProjectsSection() {
       dates: 'Jan2021–May2021 · MachineLearning',
       description: 'Engineered a visually striking weather forecasting engine displaying complex meteorological datasets.',
       platformBg: 'from-slate-600 to-gray-700',
-      laptopImg: '/assets/b91090124f830732de45724a6f591436543ed934.jpg'
+      laptopImg: '/assets/b91090124f830732de45724a6f591436543ed934.webp'
     }
   ];
 
