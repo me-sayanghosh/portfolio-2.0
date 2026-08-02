@@ -95,7 +95,7 @@ export default function FeatureProjectsSection() {
               key={idx}
               onMouseEnter={() => setHoveredIndex(idx)}
               onMouseLeave={() => setHoveredIndex(null)}
-              className="bg-[#363636] border border-white/10 rounded-3xl p-6 relative overflow-hidden group cursor-pointer shadow-2xl flex flex-col justify-between"
+              className="bg-[#17110d] border border-white/10 rounded-3xl p-6 relative overflow-hidden group cursor-pointer shadow-2xl flex flex-col justify-between"
             >
               <div>
                 <div className="flex flex-wrap justify-end gap-1.5 mb-4">

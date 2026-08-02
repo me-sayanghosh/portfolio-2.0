@@ -41,7 +41,7 @@ export default function ProjectsSection({ onOpenHireModal }) {
           <div
             key={project.id}
             onClick={() => router.push(`/projects/${project.id}`)}
-            className="group cursor-pointer bg-[#363636] hover:bg-[#424242] border border-white/10 hover:border-white/20 rounded-2xl p-3.5 sm:p-4 flex flex-col justify-between transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-amber-500/5 hover:-translate-y-1 transform-gpu"
+            className="group cursor-pointer bg-[#17110d] hover:bg-[#221a14] border border-white/10 hover:border-white/20 rounded-2xl p-3.5 sm:p-4 flex flex-col justify-between transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-amber-500/5 hover:-translate-y-1 transform-gpu"
           >
             {/* Top Preview Image Showcase */}
             <div>
