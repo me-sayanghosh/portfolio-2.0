@@ -80,7 +80,7 @@ export default function PWAInstallPrompt() {
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: 30, scale: 0.95 }}
         transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-        className="fixed bottom-6 right-6 z-50 max-w-md w-[calc(100vw-3rem)] sm:w-auto p-4 rounded-2xl bg-[#1a1a1a]/95 backdrop-blur-xl border border-amber-500/30 shadow-[0_10px_30px_rgba(245,158,11,0.15)] text-white"
+        className="fixed bottom-6 right-6 z-50 max-w-md w-[calc(100vw-3rem)] sm:w-auto p-4 rounded-2xl bg-[#1a1a1a]/95 backdrop-blur-xl border border-amber-500/30 text-white"
       >
         <div className="flex items-start gap-3">
           <div className="relative p-2.5 rounded-xl bg-gradient-to-br from-amber-500/20 to-amber-700/20 border border-amber-500/30 text-amber-400 shrink-0">
@@ -99,7 +99,7 @@ export default function PWAInstallPrompt() {
             <div className="mt-3 flex items-center gap-2">
               <button
                 onClick={handleInstallClick}
-                className="px-3.5 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-neutral-950 font-semibold text-xs transition-colors flex items-center gap-1.5 shadow-md shadow-amber-500/20"
+                className="px-3.5 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-neutral-950 font-semibold text-xs transition-colors flex items-center gap-1.5"
               >
                 <Download className="w-3.5 h-3.5" />
                 Install Now
