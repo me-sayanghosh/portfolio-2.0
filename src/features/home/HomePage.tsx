@@ -25,14 +25,14 @@ export default function HomePage({ onOpenResume, onOpenHackathonModal, onOpenHir
       {/* About & Skills Section */}
       <HomeAboutSection />
 
-      {/* Education Section on Home Page */}
-      <HomeEducationSection />
+      {/* Experience Section on Home Page */}
+      <HomeExperienceSection />
 
       {/* Projects Section on Home Page */}
       <HomeProjectsSection />
 
-      {/* Experience Section on Home Page */}
-      <HomeExperienceSection />
+      {/* Education Section on Home Page */}
+      <HomeEducationSection />
 
       {/* Achievements Section on Home Page */}
       <HomeAchievementsSection />
