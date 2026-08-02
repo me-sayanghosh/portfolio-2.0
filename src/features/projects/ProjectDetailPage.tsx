@@ -5,7 +5,6 @@ import { useParams, useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Github, ExternalLink, Sparkles, CheckCircle2, Code2, Server, Terminal, Layers, Download, Copy, Check } from 'lucide-react';
 import { projectsData } from './data/projectsData';
-import { ContactAndSignature } from '../contact';
 
 interface ProjectDetailPageProps {
   onOpenHireModal?: () => void;
@@ -128,7 +127,7 @@ export default function ProjectDetailPage({ onOpenHireModal, projectId }: Projec
             href={project.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center space-x-2 px-4 py-2 rounded-xl bg-[#181A20] border border-white/20 text-white text-xs sm:text-sm font-semibold hover:bg-white/10 transition-all shadow-md active:scale-95 cursor-pointer"
+            className="inline-flex items-center space-x-2 px-4 py-2 rounded-xl bg-[#17110d] border border-white/20 text-white text-xs sm:text-sm font-semibold hover:bg-white/10 transition-all shadow-md active:scale-95 cursor-pointer"
           >
             <Github className="w-4 h-4 text-white" />
             <span className="text-white font-medium">View on GitHub</span>
@@ -323,8 +322,6 @@ export default function ProjectDetailPage({ onOpenHireModal, projectId }: Projec
           </div>
         )}
       </div>
-
-      <ContactAndSignature />
     </motion.div>
   );
 }

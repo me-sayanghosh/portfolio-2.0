@@ -1,70 +1,128 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { X } from 'lucide-react';
 import Masonry from '../../components/ui/Masonry';
-import { ContactAndSignature } from '../contact';
 
 export default function GalleryPage() {
   const router = useRouter();
+  const [selectedItem, setSelectedItem] = useState<any | null>(null);
+
+  // Close lightbox on Escape key press
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setSelectedItem(null);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   const galleryItems = [
     {
       id: '1',
-      title: 'Hackfest 2K26 Finalist Team',
-      img: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80',
-      url: 'https://github.com/me-sayanghosh',
-      height: 500
+      title: 'Community Tech Keynote & Meetup',
+      img: '/gallery/gallery-1.jpg',
+      height: 480
     },
     {
       id: '2',
-      title: 'DevDotCom 2K+ Tech Community Meetup',
-      img: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80',
-      url: 'https://github.com/me-sayanghosh',
-      height: 380
+      title: 'Hackfest & Tech Meetup Highlights',
+      img: '/gallery/gallery-2.jpg',
+      height: 480
     },
     {
       id: '3',
-      title: 'Late Night Backend Architecture Setup',
-      img: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80',
-      url: 'https://github.com/me-sayanghosh',
-      height: 600
-    },
-    {
-      id: '4',
-      title: 'App-e-teaser 12hr Hyperthon 1st Runner Up',
-      img: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80',
-      url: 'https://github.com/me-sayanghosh',
-      height: 420
-    },
-    {
-      id: '5',
-      title: 'JISTECH Hackathon Winner 2025',
-      img: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80',
-      url: 'https://github.com/me-sayanghosh',
-      height: 460
-    },
-    {
-      id: '6',
-      title: 'HoopIt Product Launch & Demo',
-      img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
-      url: 'https://github.com/me-sayanghosh/hoopit',
+      title: 'Engineering Showcase & Team Session',
+      img: '/gallery/gallery-3.jpg',
       height: 520
     },
     {
+      id: '4',
+      title: 'Hackathon Finalist Presentation',
+      img: '/gallery/gallery-4.jpg',
+      height: 520
+    },
+    {
+      id: '5',
+      title: 'Tech Summit & Speaker Moments',
+      img: '/gallery/gallery-5.jpg',
+      height: 520
+    },
+    {
+      id: '6',
+      title: 'Community Keynote & Team Moments',
+      img: '/gallery/gallery-6.jpg',
+      height: 270
+    },
+    {
       id: '7',
-      title: 'PrepDost AI Interviewer Dashboard',
-      img: 'https://images.unsplash.com/photo-1607799279861-4dd421887fb3?auto=format&fit=crop&w=800&q=80',
-      url: 'https://github.com/me-sayanghosh/prepdost',
-      height: 400
+      title: 'Developer Conference Stage',
+      img: '/gallery/gallery-7.jpg',
+      height: 270
     },
     {
       id: '8',
-      title: 'Open Source Community Code Review',
-      img: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80',
-      url: 'https://github.com/me-sayanghosh',
+      title: 'Dev Community Meetup & Networking',
+      img: '/gallery/gallery-8.jpg',
+      height: 270
+    },
+    {
+      id: '9',
+      title: 'Late Night Build Sessions',
+      img: '/gallery/gallery-9.jpg',
+      height: 220
+    },
+    {
+      id: '10',
+      title: 'Hackathon Winner Celebration',
+      img: '/gallery/gallery-10.jpg',
+      height: 270
+    },
+    {
+      id: '11',
+      title: 'Product Showcase & Demo Night',
+      img: '/gallery/gallery-11.jpg',
+      height: 270
+    },
+    {
+      id: '12',
+      title: 'Building Scalable AI Systems',
+      img: '/gallery/gallery-12.jpg',
+      height: 270
+    },
+    {
+      id: '13',
+      title: 'Open Source Code Review & Demo',
+      img: '/gallery/gallery-13.jpg',
+      height: 270
+    },
+    {
+      id: '14',
+      title: 'Tech Workshop & Mentorship',
+      img: '/gallery/gallery-14.jpg',
       height: 480
+    },
+    {
+      id: '15',
+      title: 'Community Event & Networking',
+      img: '/gallery/gallery-15.jpg',
+      height: 480
+    },
+    {
+      id: '16',
+      title: 'Open Source & Engineering Milestones',
+      img: '/gallery/gallery-16.jpg',
+      height: 480
+    },
+    {
+      id: '17',
+      title: 'Personal Coding & Creative Snapshot',
+      img: '/gallery/gallery-17.jpg',
+      height: 540
     }
   ];
 
@@ -75,7 +133,7 @@ export default function GalleryPage() {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -15 }}
       transition={{ duration: 0.35, ease: 'easeInOut' }}
-      className="pt-24 pb-16 max-w-5xl mx-auto px-4 sm:px-6"
+      className="pt-6 sm:pt-10 pb-16 max-w-6xl mx-auto px-2.5 sm:px-6"
     >
       {/* Breadcrumbs */}
       <div className="flex items-center space-x-2 text-xs sm:text-sm text-gray-400 mb-3 font-sans">
@@ -103,9 +161,10 @@ export default function GalleryPage() {
       </div>
 
       {/* Masonry Grid */}
-      <div className="mb-16">
+      <div>
         <Masonry
           items={galleryItems}
+          onItemClick={(item: any) => setSelectedItem(item)}
           ease="power3.out"
           duration={0.6}
           stagger={0.05}
@@ -117,7 +176,44 @@ export default function GalleryPage() {
         />
       </div>
 
-      <ContactAndSignature />
+      {/* High-Resolution Image Lightbox Modal */}
+      <AnimatePresence>
+        {selectedItem && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            onClick={() => setSelectedItem(null)}
+            className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-xl flex items-center justify-center p-4 sm:p-8"
+          >
+            {/* Top-Right Close Button */}
+            <button
+              onClick={() => setSelectedItem(null)}
+              className="absolute top-4 right-4 sm:top-6 sm:right-6 z-10 w-11 h-11 rounded-full border border-white/20 bg-white/10 hover:bg-white/20 text-gray-300 hover:text-white flex items-center justify-center transition-all cursor-pointer shadow-2xl active:scale-95"
+              title="Close (Esc)"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            {/* Lightbox Image Box */}
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ type: 'spring', stiffness: 350, damping: 28 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative max-w-4xl max-h-[88vh] rounded-2xl overflow-hidden shadow-2xl border border-white/15 bg-black/40 flex items-center justify-center"
+            >
+              <img
+                src={selectedItem.img}
+                alt={selectedItem.title || 'Gallery view'}
+                className="max-h-[85vh] max-w-full w-auto h-auto object-contain rounded-2xl select-none"
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 }

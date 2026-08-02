@@ -54,6 +54,7 @@ const preloadImages = async (urls: string[]) => {
 
 const Masonry = ({
   items,
+  onItemClick,
   ease = 'power3.out',
   duration = 0.6,
   stagger = 0.05,
@@ -64,9 +65,9 @@ const Masonry = ({
   colorShiftOnHover = false
 }: any) => {
   const columns = useMedia(
-    ['(min-width:1500px)', '(min-width:1000px)', '(min-width:600px)', '(min-width:400px)'],
-    [4, 3, 2, 2],
-    1
+    ['(min-width: 768px)'],
+    [3],
+    2
   );
 
   const [containerRef, { width }] = useMeasure();
@@ -115,7 +116,7 @@ const Masonry = ({
     return items.map(child => {
       const col = colHeights.indexOf(Math.min(...colHeights));
       const x = columnWidth * col;
-      const height = child.height / 2;
+      const height = columnWidth * (child.height / 360);
       const y = colHeights[col];
 
       colHeights[col] += height;
@@ -229,36 +230,18 @@ const Masonry = ({
           <div
             key={item.id}
             data-key={item.id}
-            className="item-wrapper"
-            onClick={() => item.url && window.open(item.url, '_blank', 'noopener')}
+            className="item-wrapper group"
+            onClick={() => {
+              if (onItemClick) {
+                onItemClick(item);
+              } else if (item.url) {
+                window.open(item.url, '_blank', 'noopener');
+              }
+            }}
             onMouseEnter={e => handleMouseEnter(e, item)}
             onMouseLeave={e => handleMouseLeave(e, item)}
           >
-            <div className="item-img" style={{ backgroundImage: `url(${item.img})` }}>
-              {item.title && (
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 rounded-[10px] p-4 flex items-end">
-                  <span className="text-white text-xs font-bold font-sans tracking-wide">
-                    {item.title}
-                  </span>
-                </div>
-              )}
-              {colorShiftOnHover && (
-                <div
-                  className="color-overlay"
-                  style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    width: '100%',
-                    height: '100%',
-                    background: 'linear-gradient(45deg, rgba(255,0,150,0.5), rgba(0,150,255,0.5))',
-                    opacity: 0,
-                    pointerEvents: 'none',
-                    borderRadius: '8px'
-                  }}
-                />
-              )}
-            </div>
+            <div className="item-img" style={{ backgroundImage: `url(${item.img})` }} />
           </div>
         );
       })}
