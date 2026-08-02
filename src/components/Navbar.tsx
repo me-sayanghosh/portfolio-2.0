@@ -37,68 +37,35 @@ export default function Navbar() {
               {isActive && (
                 <motion.div
                   layoutId="activeTabSpotlight"
-                  className="absolute inset-0 rounded-[22px] border border-white/15 bg-[#262626] overflow-hidden"
+                  className="absolute inset-0 rounded-[22px] border border-white/15 bg-[#262626] overflow-hidden transform-gpu"
                   transition={{
                     type: "spring",
-                    stiffness: 450,
+                    stiffness: 380,
                     damping: 30,
+                    mass: 0.8,
                   }}
                 >
-                  {/* Layer 1: Soft Ambient Backing Glow */}
+                  {/* Layer 1: GPU-Accelerated Spotlight Beam Glow */}
                   <div
-                    className="absolute top-10 left-[calc(50%-12px)] w-[24px] h-[28px] pointer-events-none z-0 opacity-40"
+                    className="absolute top-0 left-1/2 -translate-x-1/2 w-[56px] h-[32px] pointer-events-none z-10"
                     style={{
                       background:
-                        "linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%)",
-                      filter: "blur(2px)",
+                        "radial-gradient(ellipse 55% 85% at 50% 0%, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.25) 45%, rgba(255, 255, 255, 0) 100%)",
                     }}
                   />
 
-                  {/* Layer 2: Soft Flaring Trapezoidal Light Beam */}
-                  <svg
-                    className="absolute top-0 left-1/2 -translate-x-1/2 pointer-events-none"
-                    width="70"
-                    height="32"
-                    viewBox="0 0 70 32"
-                  >
-                    <defs>
-                      <linearGradient id="beamFade" x1="0" y1="0" x2="0" y2="1">
-                        <stop
-                          offset="0%"
-                          stopColor="#FFFFFF"
-                          stopOpacity="0.85"
-                        />
-                        <stop
-                          offset="50%"
-                          stopColor="#FFFFFF"
-                          stopOpacity="0.22"
-                        />
-                        <stop
-                          offset="100%"
-                          stopColor="#FFFFFF"
-                          stopOpacity="0"
-                        />
-                      </linearGradient>
-                      <filter
-                        id="beamBlur"
-                        x="-50%"
-                        y="-50%"
-                        width="200%"
-                        height="200%"
-                      >
-                        <feGaussianBlur stdDeviation="2" />
-                      </filter>
-                    </defs>
-                    <polygon
-                      points="22,0 48,0 62,28 8,28"
-                      fill="url(#beamFade)"
-                      filter="url(#beamBlur)"
-                    />
-                  </svg>
-
-                  {/* Layer 3: Solid Top Lamp Bar */}
+                  {/* Layer 2: Soft Ambient Base Glow */}
                   <div
-                    className="absolute top-0 left-[calc(50%-13px)] w-[26px] h-[2.5px] bg-white rounded-full z-20"
+                    className="absolute top-1 left-1/2 -translate-x-1/2 w-[36px] h-[20px] pointer-events-none z-0 opacity-50"
+                    style={{
+                      background:
+                        "radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 80%)",
+                    }}
+                  />
+
+                  {/* Layer 3: Solid Top Lamp Bar with Crisp Flare */}
+                  <div
+                    className="absolute top-0 left-1/2 -translate-x-1/2 w-[26px] h-[2px] bg-white rounded-full z-20 shadow-[0_0_8px_1px_rgba(255,255,255,0.9)]"
                   />
                 </motion.div>
               )}
