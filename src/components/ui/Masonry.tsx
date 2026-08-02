@@ -39,16 +39,44 @@ const useMeasure = (): [React.RefObject<HTMLDivElement | null>, { width: number;
   return [ref, size];
 };
 
-const preloadImages = async (urls: string[]) => {
-  await Promise.all(
-    urls.map(
-      src =>
-        new Promise<void>(resolve => {
-          const img = new Image();
-          img.src = src;
-          img.onload = img.onerror = () => resolve();
-        })
-    )
+const MasonryItem = ({ item, onItemClick, handleMouseEnter, handleMouseLeave }: any) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  return (
+    <div
+      data-key={item.id}
+      className="item-wrapper group"
+      onClick={() => {
+        if (onItemClick) {
+          onItemClick(item);
+        } else if (item.url) {
+          window.open(item.url, '_blank', 'noopener');
+        }
+      }}
+      onMouseEnter={e => handleMouseEnter(e, item)}
+      onMouseLeave={e => handleMouseLeave(e, item)}
+    >
+      <div className="item-img relative overflow-hidden bg-neutral-900/90">
+        {/* Skeleton Shimmer Loading Placeholder */}
+        {!isLoaded && (
+          <div className="absolute inset-0 bg-neutral-800/80 animate-pulse flex items-center justify-center">
+            <div className="w-8 h-8 rounded-full border-2 border-amber-500/30 border-t-amber-500 animate-spin" />
+          </div>
+        )}
+
+        {/* Real Image */}
+        <img
+          src={item.img}
+          alt={item.title || 'Gallery item'}
+          loading="lazy"
+          decoding="async"
+          onLoad={() => setIsLoaded(true)}
+          className={`w-full h-full object-cover transition-all duration-500 ease-out ${
+            isLoaded ? 'opacity-100 scale-100 blur-0' : 'opacity-0 scale-105 blur-sm'
+          }`}
+        />
+      </div>
+    </div>
   );
 };
 
@@ -71,7 +99,6 @@ const Masonry = ({
   );
 
   const [containerRef, { width }] = useMeasure();
-  const [imagesReady, setImagesReady] = useState(false);
 
   const getInitialPosition = (item: any, _index?: number) => {
     const containerRect = containerRef.current?.getBoundingClientRect();
@@ -103,10 +130,6 @@ const Masonry = ({
     }
   };
 
-  useEffect(() => {
-    preloadImages(items.map(i => i.img)).then(() => setImagesReady(true));
-  }, [items]);
-
   const grid = useMemo(() => {
     if (!width) return [];
 
@@ -133,7 +156,7 @@ const Masonry = ({
   const hasMounted = useRef(false);
 
   useLayoutEffect(() => {
-    if (!imagesReady) return;
+    if (!grid.length) return;
 
     grid.forEach((item, index) => {
       const selector = `[data-key="${item.id}"]`;
@@ -175,9 +198,9 @@ const Masonry = ({
 
     hasMounted.current = true;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [grid, imagesReady, stagger, animateFrom, blurToFocus, duration, ease]);
+  }, [grid, stagger, animateFrom, blurToFocus, duration, ease]);
 
-  const handleMouseEnter = (e, item) => {
+  const handleMouseEnter = (e: any, item: any) => {
     const element = e.currentTarget;
     const selector = `[data-key="${item.id}"]`;
 
@@ -200,7 +223,7 @@ const Masonry = ({
     }
   };
 
-  const handleMouseLeave = (e, item) => {
+  const handleMouseLeave = (e: any, item: any) => {
     const element = e.currentTarget;
     const selector = `[data-key="${item.id}"]`;
 
@@ -225,26 +248,15 @@ const Masonry = ({
 
   return (
     <div ref={containerRef} className="list" style={{ minHeight: `${maxGridHeight}px` }}>
-      {grid.map(item => {
-        return (
-          <div
-            key={item.id}
-            data-key={item.id}
-            className="item-wrapper group"
-            onClick={() => {
-              if (onItemClick) {
-                onItemClick(item);
-              } else if (item.url) {
-                window.open(item.url, '_blank', 'noopener');
-              }
-            }}
-            onMouseEnter={e => handleMouseEnter(e, item)}
-            onMouseLeave={e => handleMouseLeave(e, item)}
-          >
-            <div className="item-img" style={{ backgroundImage: `url(${item.img})` }} />
-          </div>
-        );
-      })}
+      {grid.map(item => (
+        <MasonryItem
+          key={item.id}
+          item={item}
+          onItemClick={onItemClick}
+          handleMouseEnter={handleMouseEnter}
+          handleMouseLeave={handleMouseLeave}
+        />
+      ))}
     </div>
   );
 };
