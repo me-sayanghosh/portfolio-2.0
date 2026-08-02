@@ -39,7 +39,7 @@ export default function ModalPopUp({ isOpen, onClose }: ModalProps) {
           <div className="flex items-center space-x-3">
             <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-purple-500 shadow-md">
               <img
-                src="/assets/db4e4c670606b40c42a7d9c020a9d0a72812ffc3.jpg"
+                src="/assets/db4e4c670606b40c42a7d9c020a9d0a72812ffc3.webp"
                 alt="Sayan"
                 className="w-full h-full object-cover"
               />
@@ -66,7 +66,7 @@ export default function ModalPopUp({ isOpen, onClose }: ModalProps) {
         {/* Center Hackathon Photo */}
         <div className="absolute inset-0 z-0">
           <img
-            src="/assets/8b8d4eda03123921d4025488d9fc0e95485a2fcc.jpg"
+            src="/assets/8b8d4eda03123921d4025488d9fc0e95485a2fcc.webp"
             alt="GeeksforGeeks Kolkata Hackfest 2k26"
             className="w-full h-full object-cover filter brightness-90"
           />

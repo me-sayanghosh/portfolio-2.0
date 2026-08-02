@@ -22,9 +22,9 @@ interface ImagesBadgeProps {
 export function ImagesBadge({
   text = "Gallery View",
   images = [
-    "/assets/collage-elements/mountain_polaroid.png",
-    "/assets/collage-elements/sayan_portrait.png",
-    "/assets/collage-elements/guitar_polaroid.png",
+    "/assets/collage-elements/mountain_polaroid.webp",
+    "/assets/collage-elements/sayan_portrait.webp",
+    "/assets/collage-elements/guitar_polaroid.webp",
   ],
   className,
   href,

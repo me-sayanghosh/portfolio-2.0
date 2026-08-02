@@ -42,7 +42,7 @@ export default function ContactAndSignature() {
         {/* Right Column Custom Signature */}
         <div className="flex items-center justify-end shrink-0">
           <img
-            src="/assets/signature.png"
+            src="/assets/signature.webp"
             alt="Warm Regards, Sayan Ghosh"
             className="w-32 xs:w-40 sm:w-56 md:w-64 lg:w-76 h-auto opacity-95 hover:opacity-100 transition-opacity mix-blend-screen"
           />
