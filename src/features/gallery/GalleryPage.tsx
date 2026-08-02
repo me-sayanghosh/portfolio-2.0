@@ -11,73 +11,122 @@ export default function GalleryPage() {
   const galleryItems = [
     {
       id: '1',
-      title: 'Hackfest & Tech Meetup Highlights',
+      title: 'Community Tech Keynote & Meetup',
       img: '/gallery/gallery-1.jpg',
       url: 'https://github.com/me-sayanghosh',
       height: 480
     },
     {
       id: '2',
-      title: 'Community Keynote & Team Moments',
+      title: 'Hackfest & Tech Meetup Highlights',
       img: '/gallery/gallery-2.jpg',
       url: 'https://github.com/me-sayanghosh',
-      height: 270
+      height: 480
     },
     {
       id: '3',
-      title: 'Developer Conference Stage',
+      title: 'Engineering Showcase & Team Session',
       img: '/gallery/gallery-3.jpg',
       url: 'https://github.com/me-sayanghosh',
-      height: 270
+      height: 520
     },
     {
       id: '4',
-      title: 'Late Night Build Sessions',
+      title: 'Hackathon Finalist Presentation',
       img: '/gallery/gallery-4.jpg',
       url: 'https://github.com/me-sayanghosh',
-      height: 220
+      height: 520
     },
     {
       id: '5',
-      title: 'Hackathon Winner Celebration',
+      title: 'Tech Summit & Speaker Moments',
       img: '/gallery/gallery-5.jpg',
       url: 'https://github.com/me-sayanghosh',
-      height: 270
+      height: 520
     },
     {
       id: '6',
-      title: 'Product Showcase & Demo Night',
+      title: 'Community Keynote & Team Moments',
       img: '/gallery/gallery-6.jpg',
       url: 'https://github.com/me-sayanghosh',
       height: 270
     },
     {
       id: '7',
-      title: 'Building Scalable AI Systems',
+      title: 'Developer Conference Stage',
       img: '/gallery/gallery-7.jpg',
       url: 'https://github.com/me-sayanghosh',
       height: 270
     },
     {
       id: '8',
-      title: 'Tech Workshop & Mentorship',
+      title: 'Dev Community Meetup & Networking',
       img: '/gallery/gallery-8.jpg',
       url: 'https://github.com/me-sayanghosh',
-      height: 480
+      height: 270
     },
     {
       id: '9',
-      title: 'Community Event & Networking',
+      title: 'Late Night Build Sessions',
       img: '/gallery/gallery-9.jpg',
+      url: 'https://github.com/me-sayanghosh',
+      height: 220
+    },
+    {
+      id: '10',
+      title: 'Hackathon Winner Celebration',
+      img: '/gallery/gallery-10.jpg',
+      url: 'https://github.com/me-sayanghosh',
+      height: 270
+    },
+    {
+      id: '11',
+      title: 'Product Showcase & Demo Night',
+      img: '/gallery/gallery-11.jpg',
+      url: 'https://github.com/me-sayanghosh',
+      height: 270
+    },
+    {
+      id: '12',
+      title: 'Building Scalable AI Systems',
+      img: '/gallery/gallery-12.jpg',
+      url: 'https://github.com/me-sayanghosh',
+      height: 270
+    },
+    {
+      id: '13',
+      title: 'Open Source Code Review & Demo',
+      img: '/gallery/gallery-13.jpg',
+      url: 'https://github.com/me-sayanghosh',
+      height: 270
+    },
+    {
+      id: '14',
+      title: 'Tech Workshop & Mentorship',
+      img: '/gallery/gallery-14.jpg',
       url: 'https://github.com/me-sayanghosh',
       height: 480
     },
     {
-      id: '10',
-      title: 'Open Source & Engineering Milestones',
-      img: '/gallery/gallery-10.jpg',
+      id: '15',
+      title: 'Community Event & Networking',
+      img: '/gallery/gallery-15.jpg',
       url: 'https://github.com/me-sayanghosh',
       height: 480
+    },
+    {
+      id: '16',
+      title: 'Open Source & Engineering Milestones',
+      img: '/gallery/gallery-16.jpg',
+      url: 'https://github.com/me-sayanghosh',
+      height: 480
+    },
+    {
+      id: '17',
+      title: 'Personal Coding & Creative Snapshot',
+      img: '/gallery/gallery-17.jpg',
+      url: 'https://github.com/me-sayanghosh',
+      height: 540
     }
   ];
 
