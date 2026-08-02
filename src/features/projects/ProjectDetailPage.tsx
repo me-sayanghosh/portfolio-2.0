@@ -5,7 +5,6 @@ import { useParams, useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Github, ExternalLink, Sparkles, CheckCircle2, Code2, Server, Terminal, Layers, Download, Copy, Check } from 'lucide-react';
 import { projectsData } from './data/projectsData';
-import { ContactAndSignature } from '../contact';
 
 interface ProjectDetailPageProps {
   onOpenHireModal?: () => void;
@@ -323,8 +322,6 @@ export default function ProjectDetailPage({ onOpenHireModal, projectId }: Projec
           </div>
         )}
       </div>
-
-      <ContactAndSignature />
     </motion.div>
   );
 }
