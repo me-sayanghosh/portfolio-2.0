@@ -4,7 +4,6 @@ import React from 'react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import Masonry from '../../components/ui/Masonry';
-import { ContactAndSignature } from '../contact';
 
 export default function GalleryPage() {
   const router = useRouter();
@@ -12,57 +11,71 @@ export default function GalleryPage() {
   const galleryItems = [
     {
       id: '1',
-      title: 'Hackfest 2K26 Finalist Team',
-      img: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80',
+      title: 'Hackfest & Tech Meetup Highlights',
+      img: '/gallery/gallery-1.jpg',
       url: 'https://github.com/me-sayanghosh',
-      height: 500
+      height: 480
     },
     {
       id: '2',
-      title: 'DevDotCom 2K+ Tech Community Meetup',
-      img: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80',
+      title: 'Community Keynote & Team Moments',
+      img: '/gallery/gallery-2.jpg',
       url: 'https://github.com/me-sayanghosh',
-      height: 380
+      height: 270
     },
     {
       id: '3',
-      title: 'Late Night Backend Architecture Setup',
-      img: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80',
+      title: 'Developer Conference Stage',
+      img: '/gallery/gallery-3.jpg',
       url: 'https://github.com/me-sayanghosh',
-      height: 600
+      height: 270
     },
     {
       id: '4',
-      title: 'App-e-teaser 12hr Hyperthon 1st Runner Up',
-      img: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80',
+      title: 'Late Night Build Sessions',
+      img: '/gallery/gallery-4.jpg',
       url: 'https://github.com/me-sayanghosh',
-      height: 420
+      height: 220
     },
     {
       id: '5',
-      title: 'JISTECH Hackathon Winner 2025',
-      img: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80',
+      title: 'Hackathon Winner Celebration',
+      img: '/gallery/gallery-5.jpg',
       url: 'https://github.com/me-sayanghosh',
-      height: 460
+      height: 270
     },
     {
       id: '6',
-      title: 'HoopIt Product Launch & Demo',
-      img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
-      url: 'https://github.com/me-sayanghosh/hoopit',
-      height: 520
+      title: 'Product Showcase & Demo Night',
+      img: '/gallery/gallery-6.jpg',
+      url: 'https://github.com/me-sayanghosh',
+      height: 270
     },
     {
       id: '7',
-      title: 'PrepDost AI Interviewer Dashboard',
-      img: 'https://images.unsplash.com/photo-1607799279861-4dd421887fb3?auto=format&fit=crop&w=800&q=80',
-      url: 'https://github.com/me-sayanghosh/prepdost',
-      height: 400
+      title: 'Building Scalable AI Systems',
+      img: '/gallery/gallery-7.jpg',
+      url: 'https://github.com/me-sayanghosh',
+      height: 270
     },
     {
       id: '8',
-      title: 'Open Source Community Code Review',
-      img: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80',
+      title: 'Tech Workshop & Mentorship',
+      img: '/gallery/gallery-8.jpg',
+      url: 'https://github.com/me-sayanghosh',
+      height: 480
+    },
+    {
+      id: '9',
+      title: 'Community Event & Networking',
+      img: '/gallery/gallery-9.jpg',
+      url: 'https://github.com/me-sayanghosh',
+      height: 480
+    },
+    {
+      id: '10',
+      title: 'Open Source & Engineering Milestones',
+      img: '/gallery/gallery-10.jpg',
       url: 'https://github.com/me-sayanghosh',
       height: 480
     }
@@ -103,7 +116,7 @@ export default function GalleryPage() {
       </div>
 
       {/* Masonry Grid */}
-      <div className="mb-16">
+      <div>
         <Masonry
           items={galleryItems}
           ease="power3.out"
@@ -116,8 +129,6 @@ export default function GalleryPage() {
           colorShiftOnHover={false}
         />
       </div>
-
-      <ContactAndSignature />
     </motion.div>
   );
 }

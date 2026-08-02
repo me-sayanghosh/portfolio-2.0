@@ -6,8 +6,8 @@ import { usePathname } from 'next/navigation';
 export default function Footer() {
   const pathname = usePathname();
 
-  // Hide footer on individual project detail pages (/projects/[id])
-  if (pathname && pathname.startsWith('/projects/') && pathname !== '/projects') {
+  // Hide footer on gallery page (/gallery) and individual project detail pages (/projects/[id])
+  if (pathname === '/gallery' || pathname?.startsWith('/gallery') || (pathname?.startsWith('/projects/') && pathname !== '/projects')) {
     return null;
   }
 
