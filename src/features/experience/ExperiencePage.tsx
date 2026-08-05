@@ -1,14 +1,29 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { motion } from 'framer-motion';
-import { Briefcase, Calendar, MapPin, Sparkles } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronDown, ChevronUp, Briefcase, Code2, Layers, Users } from 'lucide-react';
 import { experiencesData } from './data/experiencesData';
 import { ContactAndSignature } from '../contact';
 
 export default function ExperiencePage() {
   const router = useRouter();
+  const [expandedId, setExpandedId] = useState<string | null>(null);
+
+  const toggleExpand = (id: string) => {
+    setExpandedId(prev => (prev === id ? null : id));
+  };
+
+  const getFallbackIcon = (id: string) => {
+    switch (id) {
+      case 'phicsit': return Code2;
+      case 'sewakunj': return Code2;
+      case 'freelance': return Layers;
+      case 'devdotcommunity': return Users;
+      default: return Briefcase;
+    }
+  };
 
   return (
     <motion.div
@@ -40,76 +55,95 @@ export default function ExperiencePage() {
           Experience<span className="text-amber-500">.</span>
         </h1>
         <p className="text-sm sm:text-base text-gray-400 max-w-2xl leading-relaxed font-sans">
-          A comprehensive breakdown of my professional roles, developer internships, freelance products, and community leadership.
+          A detailed timeline of my engineering roles, developer internships, freelance products, and community initiatives.
         </p>
       </div>
 
-      {/* Experience List / Timeline */}
-      <div className="space-y-6 pt-4">
-        {experiencesData.map((exp, index) => (
-          <motion.div
-            key={exp.id}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: index * 0.1 }}
-            className="p-6 sm:p-7 rounded-2xl bg-[#1a1a1a]/80 border border-white/10 hover:border-amber-500/30 transition-all duration-300 backdrop-blur-sm group"
-          >
-            {/* Header: Title + Type Badge + Dates */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
-              <div className="flex items-center gap-3 flex-wrap">
-                {exp.logo && (
-                  <div className="w-8 h-8 rounded-lg bg-black border border-white/10 p-1 flex items-center justify-center shrink-0">
-                    <img src={exp.logo} alt={exp.company} className="w-full h-full object-contain" />
+      {/* Flat List / Accordion View */}
+      <div className="divide-y divide-white/10 border-t border-b border-white/10">
+        {experiencesData.map((exp) => {
+          const isExpanded = expandedId === exp.id;
+          const FallbackIcon = getFallbackIcon(exp.id);
+
+          return (
+            <div
+              key={exp.id}
+              className="py-4 sm:py-5 transition-colors hover:bg-white/[0.02] px-2 sm:px-3 rounded-xl cursor-pointer group"
+              onClick={() => toggleExpand(exp.id)}
+            >
+              {/* Row Header: Logo + Title/Company/Location + Dates + Chevron */}
+              <div className="flex items-center justify-between gap-3 sm:gap-4 select-none">
+                
+                {/* Left Side: Logo & Info */}
+                <div className="flex items-center gap-3 sm:gap-4 min-w-0 flex-1">
+                  
+                  {/* Square Logo / Icon Container */}
+                  <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-black border border-white/10 flex items-center justify-center shrink-0 overflow-hidden shadow-inner">
+                    {exp.logo ? (
+                      <img src={exp.logo} alt={exp.company} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                    ) : (
+                      <FallbackIcon className="w-5 h-5 sm:w-6 sm:h-6 text-white group-hover:scale-110 transition-transform duration-300" />
+                    )}
                   </div>
-                )}
-                <h2 className="text-lg sm:text-xl font-bold text-white tracking-tight group-hover:text-amber-400 transition-colors">
-                  {exp.title}
-                </h2>
-                {exp.type && (
-                  <span className="px-2.5 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-medium">
-                    {exp.type}
-                  </span>
-                )}
-              </div>
-              <div className="flex items-center gap-1.5 text-xs sm:text-sm text-gray-400 font-sans shrink-0">
-                <Calendar className="w-3.5 h-3.5 text-amber-500" />
-                <span>{exp.dates}</span>
-              </div>
-            </div>
 
-            {/* Company & Location */}
-            <div className="flex items-center gap-4 text-xs sm:text-sm text-gray-300 font-sans mb-4">
-              <div className="flex items-center gap-1.5">
-                <Briefcase className="w-3.5 h-3.5 text-gray-400" />
-                <span className="font-semibold text-white">{exp.company}</span>
-              </div>
-              {exp.location && (
-                <div className="flex items-center gap-1.5 text-gray-400">
-                  <MapPin className="w-3.5 h-3.5" />
-                  <span>{exp.location}</span>
+                  {/* Title & Subtitle */}
+                  <div className="min-w-0 flex-1">
+                    <h2 className="text-sm sm:text-base font-bold text-white tracking-tight group-hover:text-amber-400 transition-colors truncate">
+                      {exp.title} <span className="text-gray-400 font-normal">· {exp.company}</span>
+                    </h2>
+                    <p className="text-xs sm:text-sm text-gray-400 font-sans mt-0.5 truncate">
+                      {exp.location}
+                    </p>
+                  </div>
                 </div>
-              )}
+
+                {/* Right Side: Dates & Chevron */}
+                <div className="flex items-center gap-2 sm:gap-3 shrink-0 text-xs sm:text-sm text-gray-400 font-sans">
+                  <span className="hidden sm:inline">{exp.dates}</span>
+                  <span className="sm:hidden text-xs">{exp.dates.split('-')[0]}</span>
+                  {isExpanded ? (
+                    <ChevronUp className="w-4 h-4 text-amber-500 transition-transform duration-200" />
+                  ) : (
+                    <ChevronDown className="w-4 h-4 text-gray-400 group-hover:text-white transition-transform duration-200" />
+                  )}
+                </div>
+
+              </div>
+
+              {/* Expandable Details Content */}
+              <AnimatePresence>
+                {isExpanded && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0, marginTop: 0 }}
+                    animate={{ opacity: 1, height: 'auto', marginTop: 16 }}
+                    exit={{ opacity: 0, height: 0, marginTop: 0 }}
+                    transition={{ duration: 0.25, ease: 'easeInOut' }}
+                    className="overflow-hidden pl-0 sm:pl-[60px]"
+                  >
+                    <div className="pt-2 border-t border-white/5 space-y-3">
+                      {exp.description && (
+                        <p className="text-xs sm:text-sm text-gray-300 leading-relaxed font-sans">
+                          {exp.description}
+                        </p>
+                      )}
+
+                      {exp.bullets && exp.bullets.length > 0 && (
+                        <ul className="space-y-1.5 text-xs sm:text-sm text-gray-300 font-sans list-disc list-inside leading-relaxed">
+                          {exp.bullets.map((bullet, idx) => (
+                            <li key={idx} className="marker:text-amber-500">
+                              <span className="pl-1">{bullet}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
             </div>
-
-            {/* Description */}
-            {exp.description && (
-              <p className="text-xs sm:text-sm text-gray-300 leading-relaxed font-sans mb-4">
-                {exp.description}
-              </p>
-            )}
-
-            {/* Bullet Points */}
-            {exp.bullets && exp.bullets.length > 0 && (
-              <ul className="space-y-2 text-xs sm:text-sm text-gray-300 font-sans list-disc list-inside leading-relaxed">
-                {exp.bullets.map((bullet, idx) => (
-                  <li key={idx} className="marker:text-amber-500">
-                    <span className="pl-1">{bullet}</span>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </motion.div>
-        ))}
+          );
+        })}
       </div>
 
       {/* Footer Contact */}
