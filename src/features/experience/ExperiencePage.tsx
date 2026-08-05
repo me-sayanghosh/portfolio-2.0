@@ -57,6 +57,11 @@ export default function ExperiencePage() {
             {/* Header: Title + Type Badge + Dates */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
               <div className="flex items-center gap-3 flex-wrap">
+                {exp.logo && (
+                  <div className="w-8 h-8 rounded-lg bg-black border border-white/10 p-1 flex items-center justify-center shrink-0">
+                    <img src={exp.logo} alt={exp.company} className="w-full h-full object-contain" />
+                  </div>
+                )}
                 <h2 className="text-lg sm:text-xl font-bold text-white tracking-tight group-hover:text-amber-400 transition-colors">
                   {exp.title}
                 </h2>

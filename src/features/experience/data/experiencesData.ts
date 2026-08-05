@@ -9,9 +9,26 @@ export interface ExperienceItem {
   bullets?: string[];
   skills?: string[];
   type?: 'Full-time' | 'Internship' | 'Freelance' | 'Community';
+  logo?: string;
 }
 
 export const experiencesData: ExperienceItem[] = [
+  {
+    id: 'phicsit',
+    title: 'SDE  Intern',
+    role: 'SDE  Intern',
+    company: 'PHICSIT InfoTech Pvt. Ltd.',
+    dates: 'Aug 2, 2026 - Present',
+    location: 'Remote',
+    type: 'Internship',
+    logo: '/assets/phicsit-logo.webp',
+    description: 'Working as an SDE Intern at PHICSIT InfoTech Pvt. Ltd., building robust software features and scalable backend services.',
+    bullets: [
+      'Engineered scalable full-stack web applications and high-performance server APIs.',
+      'Collaborated with cross-functional engineering teams to implement production features and optimize database queries.'
+    ],
+    skills: ['Software Engineering', 'FullStack Development', 'REST APIs', 'Node.js', 'React', 'Database Design']
+  },
   {
     id: 'freelance',
     title: 'Freelance FullStack Developer',
@@ -36,6 +53,7 @@ export const experiencesData: ExperienceItem[] = [
     dates: 'Feb 13, 2025 - Jun 20, 2026',
     location: 'Remote, Gujarat',
     type: 'Internship',
+    logo: '/assets/sewakunj-logo.webp',
     description: "Improved Sewakunj Technologies's web application platform by resolving critical performance bottlenecks, squashing complex bugs, and optimizing server-side APIs for production launch readiness.",
     bullets: [
       'Engineered backend optimizations and database query refinements, improving API response times significantly.',
