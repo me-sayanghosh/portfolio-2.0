@@ -81,6 +81,7 @@ export const experiencesData: ExperienceItem[] = [
     dates: 'Jan 2025 - Present',
     location: 'Remote',
     type: 'Community',
+    logo: '/assets/devdotcommunity-logo.webp',
     description: 'At **DevDotCommunity**, I lead community initiatives, organize developer hackathons, and facilitate technical knowledge-sharing workshops for a growing network of 2,000+ developers.',
     bullets: [
       'Coordinated over 5+ major **tech events & hackathons** to foster developer engagement and hands-on learning.',

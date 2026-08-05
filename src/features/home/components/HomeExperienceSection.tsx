@@ -45,6 +45,7 @@ export default function HomeExperienceSection() {
       location: 'Remote',
       dates: 'January 2025 - Present',
       icon: Users,
+      logo: '/assets/devdotcommunity-logo.webp',
       logoBg: 'bg-black'
     }
   ];
