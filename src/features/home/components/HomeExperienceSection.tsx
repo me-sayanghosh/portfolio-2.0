@@ -72,15 +72,14 @@ export default function HomeExperienceSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: index * 0.08 }}
               whileHover={{ y: -2 }}
-              onClick={() => router.push('/experience')}
-              className="p-4 sm:p-5 rounded-2xl bg-[#181818]/90 border border-white/10 hover:border-white/20 hover:bg-[#1f1f1f] transition-all duration-300 flex items-center gap-4 cursor-pointer group shadow-sm"
+              className="p-4 sm:p-5 rounded-2xl bg-[#181818]/90 border border-white/10 hover:border-white/20 hover:bg-[#1f1f1f] transition-all duration-300 flex items-center gap-4 group shadow-sm"
             >
               {/* Left Square Logo / Icon Container */}
               <div className={`w-12 h-12 sm:w-14 sm:h-14 rounded-xl ${exp.logoBg} border border-white/10 flex items-center justify-center shrink-0 overflow-hidden shadow-inner`}>
                 {exp.logo ? (
-                  <img src={exp.logo} alt={exp.company} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
+                  <img src={exp.logo} alt={exp.company} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
                 ) : (
-                  <IconComponent className="w-6 h-6 sm:w-7 sm:h-7 text-white group-hover:scale-110 transition-transform duration-300" />
+                  <IconComponent className="w-6 h-6 sm:w-7 sm:h-7 text-white group-hover:scale-105 transition-transform duration-300" />
                 )}
               </div>
 
