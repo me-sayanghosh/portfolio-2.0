@@ -24,6 +24,51 @@ export default function ExperiencePage() {
     }
   };
 
+  const renderFormattedText = (text: string) => {
+    const parts = [];
+    const regex = /\[([^\]]+)\]\(([^)]+)\)|\*\*([^*]+)\*\*/g;
+    let lastIndex = 0;
+    let match;
+
+    while ((match = regex.exec(text)) !== null) {
+      if (match.index > lastIndex) {
+        parts.push(text.substring(lastIndex, match.index));
+      }
+
+      if (match[1] && match[2]) {
+        // Link [text](url) -> orange bold link
+        parts.push(
+          <a
+            key={match.index}
+            href={match[2]}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
+            className="text-orange-500 hover:text-orange-400 font-bold underline underline-offset-2 transition-colors"
+          >
+            {match[1]}
+          </a>
+        );
+      } else if (match[3]) {
+        // Bold **text** -> orange highlighted bold text (or white for company name if needed)
+        const isCompany = match[3].includes('PHICSIT') || match[3].includes('Outbox') || match[3].includes('Sewakunj');
+        parts.push(
+          <strong key={match.index} className={isCompany ? "text-white font-extrabold" : "text-orange-400 font-bold"}>
+            {match[3]}
+          </strong>
+        );
+      }
+
+      lastIndex = regex.lastIndex;
+    }
+
+    if (lastIndex < text.length) {
+      parts.push(text.substring(lastIndex));
+    }
+
+    return parts;
+  };
+
   return (
     <motion.div
       key="experience-page"
@@ -59,7 +104,7 @@ export default function ExperiencePage() {
       </div>
 
       {/* Flat List / Accordion View */}
-      <div className="divide-y divide-white/10 border-t border-b border-white/0">
+      <div className="divide-y divide-white/10 border-t border-b border-white/10">
         {experiencesData.map((exp) => {
           const isExpanded = expandedId === exp.id;
           const FallbackIcon = getFallbackIcon(exp.id);
@@ -67,7 +112,7 @@ export default function ExperiencePage() {
           return (
             <div
               key={exp.id}
-              className="py-4 sm:py-5 transition-colors hover:bg-white/[0.02] px-2 sm:px-3 rounded-xl cursor-pointer group"
+              className="py-4 sm:py-5 px-2 sm:px-3 rounded-xl cursor-pointer group"
               onClick={() => toggleExpand(exp.id)}
             >
               {/* Row Header: Logo + Title/Company/Location + Dates + Chevron */}
@@ -79,15 +124,15 @@ export default function ExperiencePage() {
                   {/* Square Logo / Icon Container */}
                   <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-black border border-white/10 flex items-center justify-center shrink-0 overflow-hidden shadow-inner">
                     {exp.logo ? (
-                      <img src={exp.logo} alt={exp.company} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                      <img src={exp.logo} alt={exp.company} className="w-full h-full object-cover" />
                     ) : (
-                      <FallbackIcon className="w-5 h-5 sm:w-6 sm:h-6 text-white group-hover:scale-110 transition-transform duration-300" />
+                      <FallbackIcon className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                     )}
                   </div>
 
                   {/* Title & Subtitle */}
                   <div className="min-w-0 flex-1">
-                    <h2 className="text-sm sm:text-base font-bold text-white tracking-tight group-hover:text-amber-400 transition-colors truncate">
+                    <h2 className="text-sm sm:text-base font-bold text-white tracking-tight truncate">
                       {exp.title} <span className="text-gray-400 font-normal">· {exp.company}</span>
                     </h2>
                     <p className="text-xs sm:text-sm text-gray-400 font-sans mt-0.5 truncate">
@@ -103,7 +148,7 @@ export default function ExperiencePage() {
                   {isExpanded ? (
                     <ChevronUp className="w-4 h-4 text-amber-500 transition-transform duration-200" />
                   ) : (
-                    <ChevronDown className="w-4 h-4 text-gray-400 group-hover:text-white transition-transform duration-200" />
+                    <ChevronDown className="w-4 h-4 text-gray-400 transition-transform duration-200" />
                   )}
                 </div>
 
@@ -119,21 +164,27 @@ export default function ExperiencePage() {
                     transition={{ duration: 0.25, ease: 'easeInOut' }}
                     className="overflow-hidden pl-0 sm:pl-[60px]"
                   >
-                    <div className="pt-2 border-t border-white/5 space-y-3">
+                    <div className="pt-2 border-t border-white/5 space-y-3.5">
                       {exp.description && (
                         <p className="text-xs sm:text-sm text-gray-300 leading-relaxed font-sans">
-                          {exp.description}
+                          {renderFormattedText(exp.description)}
                         </p>
                       )}
 
                       {exp.bullets && exp.bullets.length > 0 && (
-                        <ul className="space-y-1.5 text-xs sm:text-sm text-gray-300 font-sans list-disc list-inside leading-relaxed">
+                        <ul className="space-y-2 text-xs sm:text-sm text-gray-300 font-sans list-disc list-inside leading-relaxed">
                           {exp.bullets.map((bullet, idx) => (
-                            <li key={idx} className="marker:text-amber-500">
-                              <span className="pl-1">{bullet}</span>
+                            <li key={idx} className="marker:text-orange-500">
+                              <span className="pl-1.5">{renderFormattedText(bullet)}</span>
                             </li>
                           ))}
                         </ul>
+                      )}
+
+                      {exp.outroDescription && (
+                        <p className="text-xs sm:text-sm text-gray-300 leading-relaxed font-sans pt-1">
+                          {renderFormattedText(exp.outroDescription)}
+                        </p>
                       )}
                     </div>
                   </motion.div>
