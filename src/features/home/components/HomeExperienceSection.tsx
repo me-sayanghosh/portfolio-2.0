@@ -20,15 +20,6 @@ export default function HomeExperienceSection() {
       logoBg: 'bg-black'
     },
     {
-      id: 'freelance',
-      title: 'Freelance FullStack Developer',
-      company: 'Self-Employed',
-      location: 'Remote',
-      dates: 'October 2025 - Present',
-      icon: Layers,
-      logoBg: 'bg-black'
-    },
-    {
       id: 'sewakunj',
       title: 'FullStack Developer Intern',
       company: 'Sewakunj Technologies',
@@ -36,6 +27,15 @@ export default function HomeExperienceSection() {
       dates: 'February 13, 2025 - June 20, 2026',
       icon: Code2,
       logo: '/assets/sewakunj-logo.webp',
+      logoBg: 'bg-black'
+    },
+    {
+      id: 'freelance',
+      title: 'Freelance FullStack Developer',
+      company: 'Self-Employed',
+      location: 'Remote',
+      dates: 'October 2025 - Present',
+      icon: Layers,
       logoBg: 'bg-black'
     },
     {

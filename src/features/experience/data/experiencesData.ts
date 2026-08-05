@@ -15,8 +15,8 @@ export interface ExperienceItem {
 export const experiencesData: ExperienceItem[] = [
   {
     id: 'phicsit',
-    title: 'SDE  Intern',
-    role: 'SDE  Intern',
+    title: 'SDE Intern',
+    role: 'SDE Intern',
     company: 'PHICSIT InfoTech Pvt. Ltd.',
     dates: 'Aug 2, 2026 - Present',
     location: 'Remote',
@@ -28,22 +28,6 @@ export const experiencesData: ExperienceItem[] = [
       'Collaborated with cross-functional engineering teams to implement production features and optimize database queries.'
     ],
     skills: ['Software Engineering', 'FullStack Development', 'REST APIs', 'Node.js', 'React', 'Database Design']
-  },
-  {
-    id: 'freelance',
-    title: 'Freelance FullStack Developer',
-    role: 'FullStack Developer',
-    company: 'Self-Employed / Client Projects',
-    dates: 'Oct 2025 - Present',
-    location: 'Remote',
-    type: 'Freelance',
-    description: 'Delivering end-to-end full-stack web solutions and API architectures for diverse clients worldwide.',
-    bullets: [
-      'Designed and developed user-centric interfaces focused on performance, usability, accessibility, and scalability.',
-      'Architected RESTful backend services, database schemas, and seamless third-party API integrations.',
-      'Collaborated directly with clients to translate business requirements into reliable, production-ready digital products.'
-    ],
-    skills: ['TypeScript', 'React', 'Next.js', 'Node.js', 'Express', 'MongoDB', 'PostgreSQL', 'Tailwind CSS']
   },
   {
     id: 'sewakunj',
@@ -61,6 +45,22 @@ export const experiencesData: ExperienceItem[] = [
       'Collaborated closely with cross-functional engineering teams in an Agile environment to ensure web app scalability and launch readiness.'
     ],
     skills: ['FullStack Development', 'Bug Fixing', 'Backend Optimization', 'Node.js', 'React', 'Team Collaboration', 'Scalability']
+  },
+  {
+    id: 'freelance',
+    title: 'Freelance FullStack Developer',
+    role: 'FullStack Developer',
+    company: 'Self-Employed / Client Projects',
+    dates: 'Oct 2025 - Present',
+    location: 'Remote',
+    type: 'Freelance',
+    description: 'Delivering end-to-end full-stack web solutions and API architectures for diverse clients worldwide.',
+    bullets: [
+      'Designed and developed user-centric interfaces focused on performance, usability, accessibility, and scalability.',
+      'Architected RESTful backend services, database schemas, and seamless third-party API integrations.',
+      'Collaborated directly with clients to translate business requirements into reliable, production-ready digital products.'
+    ],
+    skills: ['TypeScript', 'React', 'Next.js', 'Node.js', 'Express', 'MongoDB', 'PostgreSQL', 'Tailwind CSS']
   },
   {
     id: 'devdotcommunity',
