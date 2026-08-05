@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, ChevronUp, Briefcase, Code2, Layers, Users } from 'lucide-react';
 import { experiencesData } from './data/experiencesData';
-import { ContactAndSignature } from '../contact';
 
 export default function ExperiencePage() {
   const router = useRouter();
@@ -145,9 +144,6 @@ export default function ExperiencePage() {
           );
         })}
       </div>
-
-      {/* Footer Contact */}
-      <ContactAndSignature />
     </motion.div>
   );
 }
