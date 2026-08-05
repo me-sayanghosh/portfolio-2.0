@@ -9,7 +9,10 @@ const STATIC_ASSETS = [
   '/icons/icon-512x512.png',
   '/icons/icon-maskable-512x512.png',
   '/icons/apple-touch-icon.png',
-  '/assets/profile-avatar.webp'
+  '/assets/profile-avatar.webp',
+  '/assets/phicsit-logo.webp',
+  '/assets/sewakunj-logo.webp',
+  '/assets/devdotcommunity-logo.webp'
 ];
 
 // Install Event: Cache app shell

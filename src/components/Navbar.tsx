@@ -11,6 +11,7 @@ export default function Navbar() {
   const tabs = [
     { id: "home", label: "Home", path: "/" },
     { id: "about", label: "About", path: "/about" },
+    { id: "experience", label: "Experience", path: "/experience" },
     { id: "projects", label: "Projects", path: "/projects" },
   ];
 
@@ -21,7 +22,8 @@ export default function Navbar() {
 
   const getActiveIndex = () => {
     if (pathname === '/about') return 1;
-    if (pathname === '/projects') return 2;
+    if (pathname === '/experience') return 2;
+    if (pathname === '/projects') return 3;
     return 0;
   };
 
@@ -30,7 +32,7 @@ export default function Navbar() {
   return (
     <div className="fixed top-5 left-1/2 -translate-x-1/2 z-50">
       {/* Capsule Navigation Container */}
-      <div className="w-[270px] sm:w-[290px] h-[46px] border border-white/10 rounded-[30px] p-[5px] flex flex-row items-center justify-between bg-[#1f1f1f]/95 backdrop-blur-xl shadow-2xl relative">
+      <div className="w-[340px] sm:w-[380px] h-[46px] border border-white/10 rounded-[30px] p-[5px] flex flex-row items-center justify-between bg-[#1f1f1f]/95 backdrop-blur-xl shadow-2xl relative">
         
         {/* Persistent Pure-Horizontal Animated Spotlight Slider */}
         <motion.div
@@ -41,7 +43,7 @@ export default function Navbar() {
             damping: 32,
             mass: 0.7,
           }}
-          className="absolute top-[5px] left-[5px] w-[calc((100%-10px)/3)] h-[36px] rounded-[22px] border border-white/15 bg-[#262626] overflow-hidden transform-gpu pointer-events-none z-0"
+          className="absolute top-[5px] left-[5px] w-[calc((100%-10px)/4)] h-[36px] rounded-[22px] border border-white/15 bg-[#262626] overflow-hidden transform-gpu pointer-events-none z-0"
         >
           {/* Layer 1: GPU-Accelerated Spotlight Beam Glow */}
           <div
