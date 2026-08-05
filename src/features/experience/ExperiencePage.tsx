@@ -59,7 +59,7 @@ export default function ExperiencePage() {
       </div>
 
       {/* Flat List / Accordion View */}
-      <div className="divide-y divide-white/10 border-t border-b border-white/10">
+      <div className="divide-y divide-white/10 border-t border-b border-white/0">
         {experiencesData.map((exp) => {
           const isExpanded = expandedId === exp.id;
           const FallbackIcon = getFallbackIcon(exp.id);
