@@ -8,7 +8,7 @@ import { experiencesData } from './data/experiencesData';
 
 export default function ExperiencePage() {
   const router = useRouter();
-  const [expandedId, setExpandedId] = useState<string | null>(null);
+  const [expandedId, setExpandedId] = useState<string | null>(experiencesData[0]?.id || 'phicsit');
 
   const toggleExpand = (id: string) => {
     setExpandedId(prev => (prev === id ? null : id));
@@ -104,7 +104,7 @@ export default function ExperiencePage() {
       </div>
 
       {/* Flat List / Accordion View */}
-      <div className="divide-y divide-white/10 border-t border-b border-white/10">
+      <div className="divide-y divide-white/10 border-t border-b border-white/0">
         {experiencesData.map((exp) => {
           const isExpanded = expandedId === exp.id;
           const FallbackIcon = getFallbackIcon(exp.id);
