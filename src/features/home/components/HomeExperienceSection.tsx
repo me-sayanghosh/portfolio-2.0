@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, ChevronUp } from 'lucide-react';
+import { ChevronDown, ChevronUp, ArrowRight } from 'lucide-react';
 
 export default function HomeExperienceSection() {
+  const router = useRouter();
   const [showAll, setShowAll] = useState(false);
 
   const experiences = [
@@ -140,11 +142,11 @@ export default function HomeExperienceSection() {
         </AnimatePresence>
       </div>
 
-      {/* Show More / Show Less Toggle Button */}
-      <div className="flex justify-center mt-8">
+      {/* Action Buttons: Show More / View Full Experience Page */}
+      <div className="flex flex-wrap items-center justify-center gap-3 mt-8">
         <button
           onClick={() => setShowAll(!showAll)}
-          className="px-6 py-2 rounded-full border border-white/30 bg-[#222222] hover:bg-white/15 text-white font-semibold text-xs sm:text-sm shadow-lg transition-all active:scale-95 cursor-pointer flex items-center space-x-2"
+          className="px-5 py-2 rounded-full border border-white/20 bg-[#222222] hover:bg-white/15 text-gray-300 hover:text-white font-semibold text-xs sm:text-sm transition-all active:scale-95 cursor-pointer flex items-center space-x-2"
         >
           <span>{showAll ? 'Show Less' : 'Show More'}</span>
           {showAll ? (
@@ -152,6 +154,14 @@ export default function HomeExperienceSection() {
           ) : (
             <ChevronDown className="w-4 h-4 text-gray-300" />
           )}
+        </button>
+
+        <button
+          onClick={() => router.push('/experience')}
+          className="px-6 py-2 rounded-full border border-amber-500/40 bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 font-semibold text-xs sm:text-sm shadow-lg transition-all active:scale-95 cursor-pointer flex items-center space-x-2"
+        >
+          <span>View All Experiences</span>
+          <ArrowRight className="w-4 h-4" />
         </button>
       </div>
 
