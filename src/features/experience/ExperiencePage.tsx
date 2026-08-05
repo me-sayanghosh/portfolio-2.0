@@ -100,27 +100,13 @@ export default function ExperiencePage() {
 
             {/* Bullet Points */}
             {exp.bullets && exp.bullets.length > 0 && (
-              <ul className="space-y-2 mb-5 text-xs sm:text-sm text-gray-300 font-sans list-disc list-inside leading-relaxed">
+              <ul className="space-y-2 text-xs sm:text-sm text-gray-300 font-sans list-disc list-inside leading-relaxed">
                 {exp.bullets.map((bullet, idx) => (
                   <li key={idx} className="marker:text-amber-500">
                     <span className="pl-1">{bullet}</span>
                   </li>
                 ))}
               </ul>
-            )}
-
-            {/* Skills Badges */}
-            {exp.skills && exp.skills.length > 0 && (
-              <div className="flex flex-wrap gap-2 pt-2 border-t border-white/5">
-                {exp.skills.map((skill, sIdx) => (
-                  <span
-                    key={sIdx}
-                    className="px-2.5 py-1 rounded-lg bg-[#222222] border border-[#333333] text-xs font-medium text-gray-300 group-hover:border-amber-500/20 transition-colors"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
             )}
           </motion.div>
         ))}
