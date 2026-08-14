@@ -60,7 +60,7 @@ export default function HeroSection({ onOpenResume, onOpenHackathonModal }) {
 
         {/* My Resume Button (Matching Figma Screenshot) */}
         <a
-          href="https://drive.google.com/file/d/1EkjbHJDA0z8kC-Ui1KGVEJw_bvqZm3oo/view"
+          href="https://drive.google.com/file/d/1DHve9dCBtZaNsVG_SMCtDCqEZXKMvxxB/view?usp=sharing"
           target="_blank"
           rel="noopener noreferrer"
           className="resume-btn mt-3 px-4 py-1 sm:px-5 sm:py-1.5 rounded-full border border-white/40 bg-black/80 text-white font-urbanist text-xs sm:text-sm font-medium tracking-tight italic active:scale-95 cursor-pointer shadow-md inline-block"
