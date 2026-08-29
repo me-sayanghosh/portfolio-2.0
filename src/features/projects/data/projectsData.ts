@@ -71,6 +71,7 @@ export const projectsData: Project[] = [
       'cd ../Frontend && npm install && npm run dev'
     ],
     github: 'https://github.com/me-sayanghosh/Hoopit',
+    live: 'https://hoopit.vercel.app/',
   },
   {
     id: 'prepdost',
@@ -145,6 +146,7 @@ export const projectsData: Project[] = [
       'cd ../Frontend && npm install && npm run dev'
     ],
     github: 'https://github.com/me-sayanghosh/CodeReviewer',
+    live: 'https://code-reviewer-chi-cyan.vercel.app/',
   },
   {
     id: 'veritas-weather',
