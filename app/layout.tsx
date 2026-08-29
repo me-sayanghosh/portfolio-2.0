@@ -48,7 +48,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ModalProvider>
           <SmoothScroll>
             <Navbar />
-            <main className="min-h-screen">
+            <main className="min-h-screen pb-24 md:pb-0">
               {children}
             </main>
             <Footer />
