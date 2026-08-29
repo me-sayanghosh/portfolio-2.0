@@ -71,7 +71,6 @@ export const projectsData: Project[] = [
       'cd ../Frontend && npm install && npm run dev'
     ],
     github: 'https://github.com/me-sayanghosh/Hoopit',
-    live: 'https://github.com/me-sayanghosh/Hoopit'
   },
   {
     id: 'prepdost',
@@ -146,7 +145,6 @@ export const projectsData: Project[] = [
       'cd ../Frontend && npm install && npm run dev'
     ],
     github: 'https://github.com/me-sayanghosh/CodeReviewer',
-    live: 'https://github.com/me-sayanghosh/CodeReviewer'
   },
   {
     id: 'veritas-weather',
@@ -165,6 +163,5 @@ export const projectsData: Project[] = [
       'Fast client-side caching & responsive UI.'
     ],
     github: 'https://github.com/me-sayanghosh',
-    live: 'https://github.com/me-sayanghosh'
   }
 ];
