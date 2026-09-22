@@ -133,7 +133,7 @@ export default function HomeAboutSection() {
                 }}
                 className="absolute bottom-full left-1/2 mb-2.5 z-50 pointer-events-none w-72 sm:w-80"
               >
-                <div className="w-full aspect-[16/9] rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl shadow-black/90 bg-black">
+                <div className="w-full aspect-[16/9] rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl shadow-black/90 bg-black border border-white/15">
                   <img
                     src="/assets/osconnect-preview.webp"
                     alt="Open Source Connect India"
