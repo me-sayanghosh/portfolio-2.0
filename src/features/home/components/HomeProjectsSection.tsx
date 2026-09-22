@@ -23,11 +23,18 @@ export default function HomeProjectsSection() {
       github: 'https://github.com/me-sayanghosh/prepdost'
     },
     {
+      id: 'droptalk',
+      title: 'DropTalk',
+      tagline: 'High-velocity encrypted chat workspace with real-time sockets & AI copilot',
+      logoImg: '/assets/droptalk-logo.webp',
+      github: 'https://github.com/me-sayanghosh/DropTalk'
+    },
+    {
       id: 'codereviewer',
       title: 'CodeReviewer',
       tagline: 'Real-time AI automated pull request & code review agent',
       logoImg: '/assets/codereviewer-logo.webp',
-      github: 'https://github.com/me-sayanghosh'
+      github: 'https://github.com/me-sayanghosh/CodeReviewer'
     }
   ];
 
