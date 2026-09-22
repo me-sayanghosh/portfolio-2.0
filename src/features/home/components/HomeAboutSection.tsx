@@ -5,9 +5,15 @@ import { useRouter } from 'next/navigation';
 import { Mail, Twitter, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion';
 
-export default function HomeAboutSection() {
-  const router = useRouter();
-  const [isOsConnectHovered, setIsOsConnectHovered] = useState(false);
+interface TextLinkPreviewProps {
+  href: string;
+  text: string;
+  imgSrc: string;
+  alt: string;
+}
+
+function TextLinkPreview({ href, text, imgSrc, alt }: TextLinkPreviewProps) {
+  const [isHovered, setIsHovered] = useState(false);
   const mouseX = useMotionValue(0);
   const springX = useSpring(mouseX, { stiffness: 260, damping: 20 });
   const rotateX = useTransform(springX, [-30, 30], [-3, 3]);
@@ -19,14 +25,57 @@ export default function HomeAboutSection() {
     mouseX.set(offset * 0.6);
   };
 
-  const handleMouseEnter = () => {
-    setIsOsConnectHovered(true);
-  };
+  return (
+    <span
+      className="relative inline-block"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={() => {
+        setIsHovered(false);
+        mouseX.set(0);
+      }}
+    >
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="font-semibold text-white underline underline-offset-4 decoration-white/40 hover:decoration-white transition-colors cursor-pointer"
+      >
+        {text}
+      </a>
 
-  const handleMouseLeave = () => {
-    setIsOsConnectHovered(false);
-    mouseX.set(0);
-  };
+      <AnimatePresence>
+        {isHovered && (
+          <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2.5 z-50 pointer-events-none w-72 sm:w-80">
+            <motion.div
+              style={{ x: springX, rotate: rotateX }}
+              initial={{ opacity: 0, y: 14, scale: 0.88 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 8, scale: 0.92 }}
+              transition={{
+                type: 'spring',
+                stiffness: 380,
+                damping: 24,
+                mass: 0.6,
+              }}
+            >
+              <div className="w-full aspect-[16/9] rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl shadow-black/90 bg-black border border-white/15">
+                <img
+                  src={imgSrc}
+                  alt={alt}
+                  className="w-full h-full object-cover block"
+                />
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+    </span>
+  );
+}
+
+export default function HomeAboutSection() {
+  const router = useRouter();
 
   const techStack = [
     {
