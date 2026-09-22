@@ -173,55 +173,19 @@ export default function HomeAboutSection() {
       {/* Intro Paragraph 1 */}
       <p className="text-xs sm:text-sm text-gray-300 leading-relaxed mb-3 font-sans">
         A Final-year student who spends most days building full-stack products. Recently built{' '}
-        <span
-          className="relative inline-block"
-          onMouseEnter={handleMouseEnter}
-          onMouseMove={handleMouseMove}
-          onMouseLeave={handleMouseLeave}
-        >
-          <a
-            href="https://osci.osconnect.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-semibold text-white underline underline-offset-4 decoration-white/40 hover:decoration-white transition-colors cursor-pointer"
-          >
-            OSConnect
-          </a>
-
-          <AnimatePresence>
-            {isOsConnectHovered && (
-              <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2.5 z-50 pointer-events-none w-72 sm:w-80">
-                <motion.div
-                  style={{ x: springX, rotate: rotateX }}
-                  initial={{ opacity: 0, y: 14, scale: 0.88 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: 8, scale: 0.92 }}
-                  transition={{
-                    type: 'spring',
-                    stiffness: 380,
-                    damping: 24,
-                    mass: 0.6,
-                  }}
-                >
-                  <div className="w-full aspect-[16/9] rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl shadow-black/90 bg-black border border-white/15">
-                    <img
-                      src="/assets/osconnect-preview.webp"
-                      alt="Open Source Connect India"
-                      className="w-full h-full object-cover block"
-                    />
-                  </div>
-                </motion.div>
-              </div>
-            )}
-          </AnimatePresence>
-        </span>
+        <TextLinkPreview
+          href="https://osci.osconnect.org/"
+          text="OSConnect"
+          imgSrc="/assets/osconnect-preview.webp"
+          alt="Open Source Connect India"
+        />
         , that uses 1000+ users. Currently Building{' '}
-        <span
-          onClick={() => router.push('/projects/droptalk')}
-          className="font-semibold text-white underline underline-offset-4 decoration-white/40 hover:decoration-white transition-colors cursor-pointer"
-        >
-          DropTalk
-        </span>
+        <TextLinkPreview
+          href="https://drop-talk.vercel.app/"
+          text="DropTalk"
+          imgSrc="/assets/droptalk-banner.webp"
+          alt="DropTalk Workspace"
+        />
         , shipping features, fixing bugs, and learning things you don't get from tutorials.
       </p>
 
