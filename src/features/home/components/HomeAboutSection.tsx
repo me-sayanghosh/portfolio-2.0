@@ -1,11 +1,13 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Mail, Twitter, ArrowRight } from 'lucide-react';
+import { Mail, Twitter, ArrowRight, ExternalLink } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function HomeAboutSection() {
   const router = useRouter();
+  const [isOsConnectHovered, setIsOsConnectHovered] = useState(false);
 
   const techStack = [
     {
@@ -103,8 +105,48 @@ export default function HomeAboutSection() {
       {/* Intro Paragraph 1 */}
       <p className="text-xs sm:text-sm text-gray-300 leading-relaxed mb-3 font-sans">
         A Final-year student who spends most days building full-stack products. Recently built{' '}
-        <span className="font-semibold text-white underline underline-offset-4 decoration-white/40 hover:decoration-white transition-colors cursor-pointer">
-          OSConnect
+        <span
+          className="relative inline-block"
+          onMouseEnter={() => setIsOsConnectHovered(true)}
+          onMouseLeave={() => setIsOsConnectHovered(false)}
+        >
+          <a
+            href="https://osci.osconnect.org/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold text-white underline underline-offset-4 decoration-white/40 hover:decoration-white transition-colors cursor-pointer"
+          >
+            OSConnect
+          </a>
+
+          <AnimatePresence>
+            {isOsConnectHovered && (
+              <motion.div
+                initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 6, scale: 0.95 }}
+                transition={{ duration: 0.2, ease: 'easeOut' }}
+                className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3.5 z-50 pointer-events-none w-72 sm:w-80"
+              >
+                <div className="bg-[#141416] border border-white/20 rounded-2xl p-2 shadow-2xl shadow-black/80 backdrop-blur-md overflow-hidden">
+                  <div className="relative w-full aspect-[16/9] rounded-xl overflow-hidden border border-white/10 bg-black">
+                    <img
+                      src="/assets/osconnect-preview.webp"
+                      alt="Open Source Connect India"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                    <div className="absolute bottom-2 left-2.5 right-2.5 flex items-center justify-between text-[11px] text-white font-medium">
+                      <span className="truncate drop-shadow-md">Open Source Connect India</span>
+                      <span className="text-[10px] text-amber-400 font-mono ml-2 shrink-0">osci.osconnect.org ↗</span>
+                    </div>
+                  </div>
+                </div>
+                {/* Downward Caret Arrow */}
+                <div className="w-3 h-3 bg-[#141416] border-r border-b border-white/20 transform rotate-45 mx-auto -mt-1.5 shadow-md" />
+              </motion.div>
+            )}
+          </AnimatePresence>
         </span>
         , that uses 1000+ users. Currently Building{' '}
         <span
