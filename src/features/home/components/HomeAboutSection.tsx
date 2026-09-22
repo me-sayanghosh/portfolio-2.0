@@ -102,8 +102,15 @@ export default function HomeAboutSection() {
 
       {/* Intro Paragraph 1 */}
       <p className="text-xs sm:text-sm text-gray-300 leading-relaxed mb-3 font-sans">
-        A Final-year student who spends most days building full-stack products. Recently built OSConnect,that uses 1000+ users.  Currently Building{' '}
+        A Final-year student who spends most days building full-stack products. Recently built{' '}
         <span className="font-semibold text-white underline underline-offset-4 decoration-white/40 hover:decoration-white transition-colors cursor-pointer">
+          OSConnect
+        </span>
+        , that uses 1000+ users. Currently Building{' '}
+        <span
+          onClick={() => router.push('/projects/droptalk')}
+          className="font-semibold text-white underline underline-offset-4 decoration-white/40 hover:decoration-white transition-colors cursor-pointer"
+        >
           DropTalk
         </span>
         , shipping features, fixing bugs, and learning things you don't get from tutorials.
