@@ -102,7 +102,7 @@ export default function HomeAboutSection() {
 
       {/* Intro Paragraph 1 */}
       <p className="text-xs sm:text-sm text-gray-300 leading-relaxed mb-3 font-sans">
-        A Final-year student who spends most days building full-stack products. Currently Building{' '}
+        A Final-year student who spends most days building full-stack products. Recently built OSConnect,that uses 1000+ users.  Currently Building{' '}
         <span className="font-semibold text-white underline underline-offset-4 decoration-white/40 hover:decoration-white transition-colors cursor-pointer">
           DropTalk
         </span>
