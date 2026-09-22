@@ -46,8 +46,8 @@ function TextLinkPreview({ href, text, imgSrc, alt }: TextLinkPreviewProps) {
 
       <AnimatePresence>
         {isHovered && (
-          <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2.5 z-50 pointer-events-none w-72 sm:w-80">
-            <motion.div
+          <span className="block absolute bottom-full left-1/2 -translate-x-1/2 mb-2.5 z-50 pointer-events-none w-72 sm:w-80">
+            <motion.span
               style={{ x: springX, rotate: rotateX }}
               initial={{ opacity: 0, y: 14, scale: 0.88 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -58,16 +58,17 @@ function TextLinkPreview({ href, text, imgSrc, alt }: TextLinkPreviewProps) {
                 damping: 24,
                 mass: 0.6,
               }}
+              className="block"
             >
-              <div className="w-full aspect-[16/9] rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl shadow-black/90 bg-black border border-white/15">
+              <span className="block w-full aspect-[16/9] rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl shadow-black/90 bg-black border border-white/15">
                 <img
                   src={imgSrc}
                   alt={alt}
                   className="w-full h-full object-cover block"
                 />
-              </div>
-            </motion.div>
-          </div>
+              </span>
+            </motion.span>
+          </span>
         )}
       </AnimatePresence>
     </span>
