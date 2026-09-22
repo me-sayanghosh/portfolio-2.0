@@ -9,6 +9,13 @@ export default function HomeProjectsSection() {
 
   const projects = [
     {
+      id: 'droptalk',
+      title: 'DropTalk',
+      tagline: 'High-velocity encrypted chat workspace with real-time sockets & AI copilot',
+      logoImg: '/assets/droptalk-logo.webp',
+      github: 'https://github.com/me-sayanghosh/DropTalk'
+    },
+    {
       id: 'hoopit',
       title: 'HoopIt',
       tagline: 'An all-in-one productivity suite & URL analytics platform',
@@ -21,13 +28,6 @@ export default function HomeProjectsSection() {
       tagline: 'AI-powered mock interview & career prep platform',
       logoImg: '/assets/prepdost-logo.webp',
       github: 'https://github.com/me-sayanghosh/prepdost'
-    },
-    {
-      id: 'droptalk',
-      title: 'DropTalk',
-      tagline: 'High-velocity encrypted chat workspace with real-time sockets & AI copilot',
-      logoImg: '/assets/droptalk-logo.webp',
-      github: 'https://github.com/me-sayanghosh/DropTalk'
     },
     {
       id: 'codereviewer',

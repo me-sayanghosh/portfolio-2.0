@@ -33,6 +33,48 @@ export interface Project {
 
 export const projectsData: Project[] = [
   {
+    id: 'droptalk',
+    title: 'DropTalk',
+    tag: 'web',
+    tagBg: 'bg-blue-600 text-white font-bold',
+    subtitle: 'A high-velocity real-time encrypted chat workspace with E2EE, AI copilot, threaded replies, and presence mapping.',
+    bannerBg: 'from-[#1D4ED8] to-[#1E3A8A]',
+    bannerImg: '/assets/droptalk-banner.webp',
+    logoImg: '/assets/droptalk-logo.webp',
+    icon: '💬',
+    tags: ['React', 'Vite', 'Node.js', 'Express', 'Socket.IO', 'MongoDB', 'Redis', 'Gemini AI', 'JWT', 'WebCrypto API'],
+    overview: 'DropTalk is a feature-based modular real-time chat application engineered with React (Vite), Node.js (Express), Socket.IO, MongoDB, and Redis. It delivers end-to-end RSA/AES encryption, instant WebSocket broadcasts, AI-powered summaries & suggestions via Gemini, threaded replies, real-time presence mapping, role-based moderation, and offline message queueing.',
+    features: [
+      'E2EE RSA-OAEP Encryption: Client-side key generation with server-side public key distribution — zero plaintext on the wire.',
+      'Real-Time Socket Sync: Instant WebSocket broadcasts via Socket.IO with Redis adapter for multi-instance scaling.',
+      'Gemini AI Copilot: AI-powered conversation summaries and smart reply suggestions powered by Google Gemini.',
+      'Threaded Replies & Read Receipts: Full thread support with delivery and read receipt tracking.',
+      'Real-Time Presence Map: Live user presence heartbeat tracking with Redis-backed online/offline states.',
+      'Role-Based Moderation: Kick, ban, mute, and role elevation controls for room administrators.',
+      'Offline Message Queueing: Messages queued for offline users and synced on reconnect via backfill.'
+    ],
+    architecture: [
+      { name: 'Backend Pipeline', tech: 'Node.js, Express, Socket.IO, MongoDB + Mongoose, Redis, JWT, bcryptjs' },
+      { name: 'Frontend Suite', tech: 'React, Vite, Socket.IO-client, WebCrypto API, custom glassmorphism UI' },
+      { name: 'AI & Encryption', tech: 'Google Gemini AI (summaries & suggestions), RSA-OAEP + AES-GCM E2EE' }
+    ],
+    apiEndpoints: [
+      { method: 'POST', path: '/api/auth/register', desc: 'Register user & generate E2EE key pair' },
+      { method: 'POST', path: '/api/auth/login', desc: 'Authenticate user & issue JWT session' },
+      { method: 'GET', path: '/api/keys/:userId', desc: 'Fetch public key for E2EE handshake' },
+      { method: 'POST', path: '/api/rooms', desc: 'Create a new chat room' },
+      { method: 'GET', path: '/api/messages/:roomId', desc: 'Backfill message history for a room' },
+      { method: 'POST', path: '/api/ai/summarize', desc: 'Generate Gemini AI conversation summary' }
+    ],
+    setupGuide: [
+      'git clone https://github.com/me-sayanghosh/DropTalk',
+      'cd DropTalk/server && npm install && npm run dev',
+      'cd ../client && npm install && npm run dev'
+    ],
+    github: 'https://github.com/me-sayanghosh/DropTalk',
+    live: 'https://drop-talk.vercel.app/',
+  },
+  {
     id: 'hoopit',
     title: 'Hoopit',
     tag: 'web',
@@ -147,48 +189,6 @@ export const projectsData: Project[] = [
     ],
     github: 'https://github.com/me-sayanghosh/CodeReviewer',
     live: 'https://code-reviewer-chi-cyan.vercel.app/',
-  },
-  {
-    id: 'droptalk',
-    title: 'DropTalk',
-    tag: 'web',
-    tagBg: 'bg-blue-600 text-white font-bold',
-    subtitle: 'A high-velocity real-time encrypted chat workspace with E2EE, AI copilot, threaded replies, and presence mapping.',
-    bannerBg: 'from-[#1D4ED8] to-[#1E3A8A]',
-    bannerImg: '/assets/droptalk-banner.webp',
-    logoImg: '/assets/droptalk-logo.webp',
-    icon: '💬',
-    tags: ['React', 'Vite', 'Node.js', 'Express', 'Socket.IO', 'MongoDB', 'Redis', 'Gemini AI', 'JWT', 'WebCrypto API'],
-    overview: 'DropTalk is a feature-based modular real-time chat application engineered with React (Vite), Node.js (Express), Socket.IO, MongoDB, and Redis. It delivers end-to-end RSA/AES encryption, instant WebSocket broadcasts, AI-powered summaries & suggestions via Gemini, threaded replies, real-time presence mapping, role-based moderation, and offline message queueing.',
-    features: [
-      'E2EE RSA-OAEP Encryption: Client-side key generation with server-side public key distribution — zero plaintext on the wire.',
-      'Real-Time Socket Sync: Instant WebSocket broadcasts via Socket.IO with Redis adapter for multi-instance scaling.',
-      'Gemini AI Copilot: AI-powered conversation summaries and smart reply suggestions powered by Google Gemini.',
-      'Threaded Replies & Read Receipts: Full thread support with delivery and read receipt tracking.',
-      'Real-Time Presence Map: Live user presence heartbeat tracking with Redis-backed online/offline states.',
-      'Role-Based Moderation: Kick, ban, mute, and role elevation controls for room administrators.',
-      'Offline Message Queueing: Messages queued for offline users and synced on reconnect via backfill.'
-    ],
-    architecture: [
-      { name: 'Backend Pipeline', tech: 'Node.js, Express, Socket.IO, MongoDB + Mongoose, Redis, JWT, bcryptjs' },
-      { name: 'Frontend Suite', tech: 'React, Vite, Socket.IO-client, WebCrypto API, custom glassmorphism UI' },
-      { name: 'AI & Encryption', tech: 'Google Gemini AI (summaries & suggestions), RSA-OAEP + AES-GCM E2EE' }
-    ],
-    apiEndpoints: [
-      { method: 'POST', path: '/api/auth/register', desc: 'Register user & generate E2EE key pair' },
-      { method: 'POST', path: '/api/auth/login', desc: 'Authenticate user & issue JWT session' },
-      { method: 'GET', path: '/api/keys/:userId', desc: 'Fetch public key for E2EE handshake' },
-      { method: 'POST', path: '/api/rooms', desc: 'Create a new chat room' },
-      { method: 'GET', path: '/api/messages/:roomId', desc: 'Backfill message history for a room' },
-      { method: 'POST', path: '/api/ai/summarize', desc: 'Generate Gemini AI conversation summary' }
-    ],
-    setupGuide: [
-      'git clone https://github.com/me-sayanghosh/DropTalk',
-      'cd DropTalk/server && npm install && npm run dev',
-      'cd ../client && npm install && npm run dev'
-    ],
-    github: 'https://github.com/me-sayanghosh/DropTalk',
-    live: 'https://drop-talk.vercel.app/',
   },
   {
     id: 'veritas-weather',
