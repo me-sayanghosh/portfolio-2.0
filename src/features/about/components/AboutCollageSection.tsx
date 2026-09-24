@@ -15,7 +15,7 @@ export default function AboutCollageSection({ onOpenResume }) {
 
       {/* Top Right "My Resume" Button (Home Page Style) */}
       <a
-        href="https://drive.google.com/file/d/1DHve9dCBtZaNsVG_SMCtDCqEZXKMvxxB/view?usp=sharing"
+        href="https://drive.google.com/file/d/1BDbRffBGX90nvU7LLViVe49WQHWtxnj3/view?usp=sharing"
         target="_blank"
         rel="noopener noreferrer"
         onClick={onOpenResume}
