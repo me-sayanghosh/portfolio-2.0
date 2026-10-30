@@ -36,7 +36,7 @@ export const blogsData: BlogItem[] = [
     date: 'Oct 29, 2026',
     readTime: '7 min read',
     tags: ['Vibe Coding', 'AI Workflows', 'Productivity', 'Engineering'],
-    coverImage: '/assets/blogs/vibe-coding-guide.svg',
+    coverImage: '/assets/blogs/vibe-coding-guide.png',
     author: {
       name: 'Sayan Ghosh',
       role: 'Associate Software Engineer',
