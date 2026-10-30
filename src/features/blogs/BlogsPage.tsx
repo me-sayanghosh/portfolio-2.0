@@ -109,8 +109,20 @@ export default function BlogsPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.25, delay: idx * 0.05 }}
               onClick={() => router.push(`/blogs/${blog.id}`)}
-              className="group cursor-pointer p-5 sm:p-6 rounded-2xl bg-[#171717]/90 hover:bg-[#202020] border border-white/10 hover:border-amber-500/30 transition-all duration-300 shadow-md hover:shadow-xl hover:shadow-amber-500/5"
+              className="group cursor-pointer p-4 sm:p-5 rounded-2xl bg-[#171717]/90 hover:bg-[#1e1e1e] border border-white/10 hover:border-amber-500/30 transition-all duration-300 shadow-md hover:shadow-xl hover:shadow-amber-500/5"
             >
+              {/* Cover Banner Image */}
+              {blog.coverImage && (
+                <div className="relative w-full aspect-[16/9] sm:aspect-[2.2/1] rounded-xl overflow-hidden mb-4 bg-[#141414] border border-white/10">
+                  <img
+                    src={blog.coverImage}
+                    alt={blog.title}
+                    className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500 ease-out"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none" />
+                </div>
+              )}
+
               <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-2.5">
                 {/* Tags & Meta */}
                 <div className="flex flex-wrap items-center gap-2">

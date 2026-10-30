@@ -162,6 +162,17 @@ export default function BlogDetailPage({ blogId }: BlogDetailPageProps) {
         </div>
       </header>
 
+      {/* Featured Hero Cover Banner */}
+      {blog.coverImage && (
+        <div className="relative w-full aspect-[16/9] sm:aspect-[21/9] rounded-2xl overflow-hidden mb-10 bg-[#141414] border border-white/10 shadow-2xl">
+          <img
+            src={blog.coverImage}
+            alt={blog.title}
+            className="w-full h-full object-cover"
+          />
+        </div>
+      )}
+
       {/* Article Content Sections */}
       <article className="space-y-8 font-sans text-gray-300 leading-relaxed text-sm sm:text-base">
         {blog.sections.map((section, idx) => (
@@ -256,9 +267,18 @@ export default function BlogDetailPage({ blogId }: BlogDetailPageProps) {
               <div
                 key={article.id}
                 onClick={() => router.push(`/blogs/${article.id}`)}
-                className="group cursor-pointer p-5 rounded-xl bg-[#171717] hover:bg-[#202020] border border-white/10 hover:border-amber-500/30 transition-all duration-300 shadow-md flex flex-col justify-between"
+                className="group cursor-pointer p-4 sm:p-5 rounded-xl bg-[#171717] hover:bg-[#202020] border border-white/10 hover:border-amber-500/30 transition-all duration-300 shadow-md flex flex-col justify-between"
               >
                 <div>
+                  {article.coverImage && (
+                    <div className="relative w-full aspect-[16/9] rounded-lg overflow-hidden mb-3 bg-[#141414] border border-white/10">
+                      <img
+                        src={article.coverImage}
+                        alt={article.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                    </div>
+                  )}
                   <div className="flex items-center justify-between text-[11px] text-gray-400 mb-2">
                     <span className="text-amber-400 font-medium">
                       {article.tags[0]}
