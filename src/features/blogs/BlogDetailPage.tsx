@@ -103,18 +103,6 @@ export default function BlogDetailPage({ blogId }: BlogDetailPageProps) {
 
       {/* Article Header */}
       <header className="mb-6 sm:mb-8 space-y-3 sm:space-y-4">
-        {/* Tags */}
-        <div className="flex flex-wrap gap-1.5">
-          {blog.tags.map((tag) => (
-            <span
-              key={tag}
-              className="px-2.5 py-0.5 rounded-full text-[10px] sm:text-xs font-semibold bg-amber-500/10 border border-amber-500/20 text-amber-400"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
-
         {/* Title */}
         <h1
           className="font-bricolage text-2xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight leading-tight"
@@ -279,10 +267,7 @@ export default function BlogDetailPage({ blogId }: BlogDetailPageProps) {
                       />
                     </div>
                   )}
-                  <div className="flex items-center justify-between text-[10px] sm:text-[11px] text-gray-400 mb-1.5">
-                    <span className="text-amber-400 font-medium">
-                      {article.tags[0]}
-                    </span>
+                  <div className="flex items-center justify-end text-[10px] sm:text-[11px] text-gray-400 mb-1.5">
                     <span>{article.readTime}</span>
                   </div>
                   <h4 className="text-xs sm:text-base font-bold text-white group-hover:text-amber-400 transition-colors line-clamp-2 mb-1.5 leading-snug">
