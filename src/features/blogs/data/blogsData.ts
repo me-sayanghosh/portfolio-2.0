@@ -159,7 +159,7 @@ git commit -m "feat(payments): add stripe webhook handler with signature verific
     date: 'Oct 24, 2026',
     readTime: '6 min read',
     tags: ['AI Agents', 'Prompt Engineering', 'Best Practices', 'Developer Tools'],
-    coverImage: '/assets/blogs/prompting-ai-agents.svg',
+    coverImage: '/assets/blogs/prompting-ai-agents.png',
     author: {
       name: 'Sayan Ghosh',
       role: 'Associate Software Engineer',
