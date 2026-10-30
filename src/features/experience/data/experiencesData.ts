@@ -25,11 +25,10 @@ export const experiencesData: ExperienceItem[] = [
     logo: '/assets/realai-logo.png',
     description: 'At **RealAI Solutions**, I work as an Associate Software Engineer within the Software Development and R&D department, developing AI-enabled applications, scalable backend systems, APIs, and data-processing pipelines across artificial intelligence, agriculture, and industrial automation.',
     bullets: [
-      'Architect, develop, test, debug, and maintain software applications and backend services using **Python**.',
+      'Architect, develop, maintain and itegrating **ML Modeles** with Scalable backend systems.',
       'Contribute to the research and development of **AI-enabled applications** and intelligent data-processing workflows.',
-      'Build robust **RESTful APIs** and integration endpoints connecting AI modules with core platform services.',
-      'Engineer backend automation workflows supporting smart agriculture and industrial automation initiatives.',
-      'Collaborate with technical leads, project managers, and engineering teams to deliver scalable, production-grade solutions.'
+      'Fixed critical **automation bugs**, improving reliability and reducing failures.',
+      'Collaborated with product and support teams to ship fast, stable fixes.'
     ],
     outroDescription: 'This full-time engineering role allows me to delve deep into production-grade Python architectures, AI system integration, and intelligent automation. It reinforces my experience in designing scalable backend services that bridge modern AI algorithms with reliable, real-world software applications.',
     skills: ['Python', 'Artificial Intelligence', 'Backend Engineering', 'REST APIs', 'Data Processing', 'Automation', 'System Design']
