@@ -10,6 +10,16 @@ export default function HomeExperienceSection() {
 
   const experiences = [
     {
+      id: 'realai',
+      title: 'Associate Software Engineer (Python)',
+      company: 'RealAI Solutions Pvt. Ltd.',
+      location: 'Remote',
+      dates: 'Oct 12, 2026 - Present',
+      icon: Code2,
+      logo: '/assets/realai-logo.png',
+      logoBg: 'bg-black'
+    },
+    {
       id: 'phicsit',
       title: 'SDE Intern',
       company: 'PHICSIT InfoTech Pvt. Ltd.',
@@ -63,7 +73,7 @@ export default function HomeExperienceSection() {
 
       {/* Compact Experience Card List matching requested UI */}
       <div className="space-y-3.5">
-        {experiences.slice(0, 2).map((exp, index) => {
+        {experiences.slice(0, 3).map((exp, index) => {
           const IconComponent = exp.icon || Briefcase;
           return (
             <motion.div

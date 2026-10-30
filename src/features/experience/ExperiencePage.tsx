@@ -16,6 +16,7 @@ export default function ExperiencePage() {
 
   const getFallbackIcon = (id: string) => {
     switch (id) {
+      case 'realai': return Code2;
       case 'phicsit': return Code2;
       case 'sewakunj': return Code2;
       case 'freelance': return Layers;
@@ -51,7 +52,7 @@ export default function ExperiencePage() {
         );
       } else if (match[3]) {
         // Bold **text** -> orange highlighted bold text (or white for company name if needed)
-        const isCompany = match[3].includes('PHICSIT') || match[3].includes('Outbox') || match[3].includes('Sewakunj');
+        const isCompany = match[3].includes('RealAI') || match[3].includes('PHICSIT') || match[3].includes('Outbox') || match[3].includes('Sewakunj');
         parts.push(
           <strong key={match.index} className={isCompany ? "text-white font-extrabold" : "text-orange-400 font-bold"}>
             {match[3]}
