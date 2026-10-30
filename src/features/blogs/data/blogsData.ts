@@ -95,7 +95,7 @@ git commit -m "feat(payments): add stripe webhook handler with signature verific
     date: 'Oct 27, 2026',
     readTime: '8 min read',
     tags: ['Security', 'Vibe Coding', 'DevSecOps', 'AI Agents'],
-    coverImage: '/assets/blogs/vibe-coding-security.svg',
+    coverImage: '/assets/blogs/vibe-coding-security.png',
     author: {
       name: 'Sayan Ghosh',
       role: 'Associate Software Engineer',
