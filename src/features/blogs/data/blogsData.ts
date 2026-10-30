@@ -283,7 +283,7 @@ async def get_user_profile(user_id: str):
     date: 'Oct 16, 2026',
     readTime: '6 min read',
     tags: ['Frontend', 'React', 'Web Dev', 'Career', 'Next.js'],
-    coverImage: '/assets/blogs/is-frontend-dev-dead.svg',
+    coverImage: '/assets/blogs/is-frontend-dev-dead.png',
     author: {
       name: 'Sayan Ghosh',
       role: 'Associate Software Engineer',
