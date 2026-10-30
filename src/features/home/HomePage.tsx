@@ -4,6 +4,7 @@ import HeroSection from './components/HeroSection';
 import HomeAboutSection from './components/HomeAboutSection';
 import HomeEducationSection from './components/HomeEducationSection';
 import HomeProjectsSection from './components/HomeProjectsSection';
+import HomeBlogSection from './components/HomeBlogSection';
 import HomeExperienceSection from './components/HomeExperienceSection';
 import HomeAchievementsSection from './components/HomeAchievementsSection';
 import { ContactAndSignature } from '../contact';
@@ -30,6 +31,9 @@ export default function HomePage({ onOpenResume, onOpenHackathonModal, onOpenHir
 
       {/* Projects Section on Home Page */}
       <HomeProjectsSection />
+
+      {/* Blogs Section on Home Page */}
+      <HomeBlogSection />
 
       {/* Education Section on Home Page */}
       <HomeEducationSection />
