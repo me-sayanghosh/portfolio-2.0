@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import {
-  ArrowLeft,
   Calendar,
   Clock,
   Share2,
@@ -53,7 +52,7 @@ export default function BlogDetailPage({ blogId }: BlogDetailPageProps) {
       className="pt-16 sm:pt-24 pb-28 sm:pb-24 max-w-4xl mx-auto px-4 sm:px-6"
     >
       {/* Breadcrumb Navigation */}
-      <div className="flex items-center space-x-2 text-xs sm:text-sm text-gray-400 mb-4 sm:mb-6 font-sans">
+      <div className="flex items-center space-x-2 text-xs sm:text-sm text-gray-400 mb-6 sm:mb-8 font-sans">
         <span
           onClick={() => router.push('/')}
           className="hover:text-white cursor-pointer transition-colors"
@@ -71,34 +70,6 @@ export default function BlogDetailPage({ blogId }: BlogDetailPageProps) {
         <span className="text-amber-400 font-medium truncate max-w-[140px] sm:max-w-md">
           {blog.title}
         </span>
-      </div>
-
-      {/* Top Navigation Row: Back Button + Share */}
-      <div className="flex items-center justify-between gap-3 mb-6 sm:mb-8">
-        <button
-          onClick={() => router.push('/blogs')}
-          className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1.5 rounded-full bg-[#1b1b1b] border border-white/10 hover:border-white/25 active:scale-95 text-gray-300 hover:text-white text-xs sm:text-sm font-medium transition-all cursor-pointer shadow-sm"
-        >
-          <ArrowLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-          <span>All Articles</span>
-        </button>
-
-        <button
-          onClick={handleCopyLink}
-          className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1.5 rounded-full bg-[#1b1b1b] border border-white/10 hover:border-amber-500/30 active:scale-95 text-gray-300 hover:text-white text-xs sm:text-sm font-medium transition-all cursor-pointer shadow-sm"
-        >
-          {copiedLink ? (
-            <>
-              <Check className="w-3.5 h-3.5 text-emerald-400" />
-              <span className="text-emerald-400">Copied!</span>
-            </>
-          ) : (
-            <>
-              <Share2 className="w-3.5 h-3.5 text-gray-400" />
-              <span>Share</span>
-            </>
-          )}
-        </button>
       </div>
 
       {/* Article Header */}
@@ -148,14 +119,36 @@ export default function BlogDetailPage({ blogId }: BlogDetailPageProps) {
         </div>
       </header>
 
-      {/* Featured Hero Cover Banner */}
+      {/* Featured Hero Cover Banner + Share Action Below Picture */}
       {blog.coverImage && (
-        <div className="relative w-full aspect-[16/9] sm:aspect-[21/9] rounded-xl sm:rounded-2xl overflow-hidden mb-8 sm:mb-10 bg-[#111111] border border-white/10 shadow-2xl">
-          <img
-            src={blog.coverImage}
-            alt={blog.title}
-            className="w-full h-full object-cover"
-          />
+        <div className="mb-8 sm:mb-10 space-y-3">
+          <div className="relative w-full aspect-[16/9] sm:aspect-[21/9] rounded-xl sm:rounded-2xl overflow-hidden bg-[#111111] border border-white/10 shadow-2xl">
+            <img
+              src={blog.coverImage}
+              alt={blog.title}
+              className="w-full h-full object-cover"
+            />
+          </div>
+
+          {/* Share Button Below Picture */}
+          <div className="flex items-center justify-end">
+            <button
+              onClick={handleCopyLink}
+              className="inline-flex items-center gap-1.5 sm:gap-2 px-3.5 sm:px-4 py-1.5 rounded-full bg-[#1b1b1b] border border-white/10 hover:border-amber-500/30 active:scale-95 text-gray-300 hover:text-white text-xs sm:text-sm font-medium transition-all cursor-pointer shadow-sm"
+            >
+              {copiedLink ? (
+                <>
+                  <Check className="w-3.5 h-3.5 text-emerald-400" />
+                  <span className="text-emerald-400">Copied!</span>
+                </>
+              ) : (
+                <>
+                  <Share2 className="w-3.5 h-3.5 text-gray-400" />
+                  <span>Share</span>
+                </>
+              )}
+            </button>
+          </div>
         </div>
       )}
 
