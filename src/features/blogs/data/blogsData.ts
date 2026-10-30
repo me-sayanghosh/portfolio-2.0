@@ -279,10 +279,10 @@ async def get_user_profile(user_id: str):
     id: 'is-frontend-dev-dead',
     slug: 'is-frontend-dev-dead',
     title: 'Is Frontend Development Dead? The Real Shift in Modern Web Engineering',
-    excerpt: 'AI can crank out Tailwind buttons in seconds, but real frontend engineering isn\'t dead—it evolved into distributed state, edge streaming, and deep web performance.',
+    excerpt: "AI can crank out Tailwind buttons in seconds, but real frontend engineering isn't dead—it evolved into distributed state, edge streaming, and deep web performance.",
     date: 'Oct 16, 2026',
     readTime: '6 min read',
-    tags: ['Frontend', 'React', 'Web Dev', 'Career', 'Next.js'],
+    tags: ['Frontend', 'React', 'Web Dev', 'Next.js'],
     coverImage: '/assets/blogs/is-frontend-dev-dead.png',
     author: {
       name: 'Sayan Ghosh',
