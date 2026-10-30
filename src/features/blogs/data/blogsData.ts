@@ -216,7 +216,7 @@ VERIFICATION: Run 'npx tsc --noEmit' and ensure zero TypeScript errors before co
     date: 'Oct 20, 2026',
     readTime: '9 min read',
     tags: ['Backend', 'System Design', 'Python', 'Architecture', 'Redis'],
-    coverImage: '/assets/blogs/scalable-backend-architecture.svg',
+    coverImage: '/assets/blogs/scalable-backend-architecture.png',
     author: {
       name: 'Sayan Ghosh',
       role: 'Associate Software Engineer',
