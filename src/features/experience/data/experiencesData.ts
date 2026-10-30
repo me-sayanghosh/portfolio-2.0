@@ -15,6 +15,25 @@ export interface ExperienceItem {
 
 export const experiencesData: ExperienceItem[] = [
   {
+    id: 'realai',
+    title: 'Associate Software Engineer',
+    role: 'Associate Software Engineer',
+    company: 'RealAI Solutions Pvt. Ltd.',
+    dates: 'Oct 12, 2026 - Present',
+    location: 'Remote',
+    type: 'Full-time',
+    logo: '/assets/realai-logo.png',
+    description: 'At **RealAI Solutions**, I work as an Associate Software Engineer within the Software Development and R&D department, developing AI-enabled applications, scalable backend systems, APIs, and data-processing pipelines across artificial intelligence, agriculture, and industrial automation.',
+    bullets: [
+      'Architect, develop, maintain and itegrating **ML Modeles** with Scalable backend systems.',
+      'Contribute to the research and development of **AI-enabled applications** and intelligent data-processing workflows.',
+      'Fixed critical **automation bugs**, improving reliability and reducing failures.',
+      'Collaborated with product and support teams to ship fast, stable fixes.'
+    ],
+    outroDescription: 'This full-time engineering role allows me to delve deep into production-grade Python architectures, AI system integration, and intelligent automation. It reinforces my experience in designing scalable backend services that bridge modern AI algorithms with reliable, real-world software applications.',
+    skills: ['Python', 'Artificial Intelligence', 'Backend Engineering', 'REST APIs', 'Data Processing', 'Automation', 'System Design']
+  },
+  {
     id: 'phicsit',
     title: 'SDE Intern',
     role: 'SDE Intern',
