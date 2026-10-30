@@ -172,7 +172,7 @@ export default function BlogDetailPage({ blogId }: BlogDetailPageProps) {
 
             {/* Section Body */}
             {section.body && (
-              <p className="text-gray-300 leading-relaxed text-xs sm:text-base">
+              <p className="text-gray-300 leading-relaxed text-xs sm:text-base whitespace-pre-line">
                 {section.body}
               </p>
             )}
