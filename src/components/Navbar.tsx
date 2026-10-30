@@ -3,7 +3,7 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname, useRouter } from "next/navigation";
-import { House, UserRound, Briefcase, BookOpen } from "lucide-react";
+import { House, UserRound, Briefcase, BookOpen, Newspaper } from "lucide-react";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -14,6 +14,7 @@ export default function Navbar() {
     { id: "about", label: "About", path: "/about" },
     { id: "experience", label: "Experience", path: "/experience" },
     { id: "projects", label: "Projects", path: "/projects" },
+    { id: "blogs", label: "Blogs", path: "/blogs" },
   ];
 
   const mobileTabs = [
@@ -21,6 +22,7 @@ export default function Navbar() {
     { id: "about", label: "About", path: "/about", Icon: UserRound },
     { id: "experience", label: "Experience", path: "/experience", Icon: Briefcase },
     { id: "projects", label: "Projects", path: "/projects", Icon: BookOpen },
+    { id: "blogs", label: "Blogs", path: "/blogs", Icon: Newspaper },
   ];
 
   // Hide navbar on gallery page and individual project detail pages e.g. /projects/:id
@@ -33,18 +35,20 @@ export default function Navbar() {
   }
 
   const getActiveIndex = () => {
-    if (pathname === "/about") return 1;
-    if (pathname === "/experience") return 2;
-    if (pathname === "/projects") return 3;
+    if (pathname === "/about" || pathname.startsWith("/about")) return 1;
+    if (pathname === "/experience" || pathname.startsWith("/experience")) return 2;
+    if (pathname === "/projects" || pathname.startsWith("/projects")) return 3;
+    if (pathname === "/blogs" || pathname.startsWith("/blogs")) return 4;
     return 0;
   };
 
   const activeIndex = getActiveIndex();
 
   const getMobileActiveId = () => {
-    if (pathname === "/about") return "about";
-    if (pathname === "/experience") return "experience";
-    if (pathname === "/projects") return "projects";
+    if (pathname === "/about" || pathname.startsWith("/about")) return "about";
+    if (pathname === "/experience" || pathname.startsWith("/experience")) return "experience";
+    if (pathname === "/projects" || pathname.startsWith("/projects")) return "projects";
+    if (pathname === "/blogs" || pathname.startsWith("/blogs")) return "blogs";
     return "home";
   };
 
@@ -54,7 +58,7 @@ export default function Navbar() {
     <>
       {/* ─── Desktop Spotlight Navbar (md and above) ─── */}
       <div className="hidden md:flex fixed top-5 left-1/2 -translate-x-1/2 z-50">
-        <div className="w-[340px] sm:w-[380px] h-[46px] border border-white/10 rounded-[30px] p-[5px] flex flex-row items-center justify-between bg-[#1f1f1f]/95 backdrop-blur-xl shadow-2xl relative">
+        <div className="w-[420px] sm:w-[460px] h-[46px] border border-white/10 rounded-[30px] p-[5px] flex flex-row items-center justify-between bg-[#1f1f1f]/95 backdrop-blur-xl shadow-2xl relative">
           {/* Persistent Pure-Horizontal Animated Spotlight Slider */}
           <motion.div
             animate={{ x: `${activeIndex * 100}%` }}
@@ -64,7 +68,7 @@ export default function Navbar() {
               damping: 32,
               mass: 0.7,
             }}
-            className="absolute top-[5px] left-[5px] w-[calc((100%-10px)/4)] h-[36px] rounded-[22px] border border-white/15 bg-[#262626] overflow-hidden transform-gpu pointer-events-none z-0"
+            className="absolute top-[5px] left-[5px] w-[calc((100%-10px)/5)] h-[36px] rounded-[22px] border border-white/15 bg-[#262626] overflow-hidden transform-gpu pointer-events-none z-0"
           >
             {/* Layer 1: GPU-Accelerated Spotlight Beam Glow */}
             <div

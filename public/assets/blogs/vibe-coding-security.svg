@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <defs>
+    <radialGradient id="secGlow1" cx="30%" cy="25%" r="60%">
+      <stop offset="0%" stop-color="#ef4444" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#090a0f" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="secGlow2" cx="75%" cy="75%" r="55%">
+      <stop offset="0%" stop-color="#f97316" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#090a0f" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ef4444"/>
+      <stop offset="100%" stop-color="#ea580c"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="675" fill="#0b0d10"/>
+  <rect width="1200" height="675" fill="url(#secGlow1)"/>
+  <rect width="1200" height="675" fill="url(#secGlow2)"/>
+
+  <!-- Background Grid -->
+  <g stroke="#ffffff" stroke-opacity="0.03" stroke-width="1">
+    <path d="M0 75 H1200 M0 150 H1200 M0 225 H1200 M0 300 H1200 M0 375 H1200 M0 450 H1200 M0 525 H1200 M0 600 H1200"/>
+    <path d="M150 0 V675 M300 0 V675 M450 0 V675 M600 0 V675 M750 0 V675 M900 0 V675 M1050 0 V675"/>
+  </g>
+
+  <!-- Left: Content -->
+  <g transform="translate(100, 140)">
+    <rect x="0" y="0" width="190" height="36" rx="18" fill="#ef4444" fill-opacity="0.15" stroke="#ef4444" stroke-width="1.5" stroke-opacity="0.4"/>
+    <circle cx="20" cy="18" r="5" fill="#ef4444"/>
+    <text x="36" y="23" font-family="-apple-system, sans-serif" font-size="14" font-weight="700" fill="#f87171" letter-spacing="1">CYBERSECURITY</text>
+
+    <text x="0" y="95" font-family="-apple-system, BlinkMacSystemFont, 'Bricolage Grotesque', sans-serif" font-size="52" font-weight="900" fill="#ffffff" letter-spacing="-1.5">
+      Security is Priority #1
+    </text>
+    <text x="0" y="160" font-family="-apple-system, BlinkMacSystemFont, 'Bricolage Grotesque', sans-serif" font-size="52" font-weight="900" fill="#f87171" letter-spacing="-1.5">
+      in the Vibe Coding Era
+    </text>
+
+    <text x="0" y="215" font-family="-apple-system, sans-serif" font-size="20" fill="#9ca3af" font-weight="400">
+      Prevent hallucinated packages, shell escape traps &amp; credential leaks.
+    </text>
+
+    <!-- Checklist Pillars -->
+    <g transform="translate(0, 270)">
+      <g transform="translate(0, 0)">
+        <circle cx="12" cy="12" r="10" fill="#ef4444" fill-opacity="0.2"/>
+        <path d="M7 12 L11 16 L17 8" stroke="#ef4444" stroke-width="2" fill="none"/>
+        <text x="32" y="17" font-family="-apple-system, sans-serif" font-size="16" font-weight="600" fill="#e5e7eb">Slopsquatting &amp; Dependency Poisoning</text>
+      </g>
+      <g transform="translate(0, 40)">
+        <circle cx="12" cy="12" r="10" fill="#ef4444" fill-opacity="0.2"/>
+        <path d="M7 12 L11 16 L17 8" stroke="#ef4444" stroke-width="2" fill="none"/>
+        <text x="32" y="17" font-family="-apple-system, sans-serif" font-size="16" font-weight="600" fill="#e5e7eb">Strict Sandbox Isolation &amp; Least Privilege</text>
+      </g>
+      <g transform="translate(0, 80)">
+        <circle cx="12" cy="12" r="10" fill="#ef4444" fill-opacity="0.2"/>
+        <path d="M7 12 L11 16 L17 8" stroke="#ef4444" stroke-width="2" fill="none"/>
+        <text x="32" y="17" font-family="-apple-system, sans-serif" font-size="16" font-weight="600" fill="#e5e7eb">Zero Prompt Credential Leakage</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Right: Shield & Cyber Visual -->
+  <g transform="translate(800, 160)">
+    <!-- Glowing Shield Outer Frame -->
+    <path d="M150 40 L280 90 V240 C280 340 150 400 150 400 C150 400 20 340 20 240 V90 Z" fill="#181417" stroke="#ef4444" stroke-width="2.5" stroke-opacity="0.8" filter="drop-shadow(0 0 35px rgba(239,68,68,0.3))"/>
+    
+    <!-- Inner Shield Gradient -->
+    <path d="M150 65 L255 105 V230 C255 315 150 365 150 365 C150 365 45 315 45 230 V105 Z" fill="#201518" stroke="#f97316" stroke-width="1.5" stroke-opacity="0.4"/>
+
+    <!-- Lock Icon in Shield -->
+    <g transform="translate(115, 160)">
+      <rect x="0" y="30" width="70" height="55" rx="8" fill="url(#shieldGrad)"/>
+      <path d="M15 30 V18 C15 7 24 0 35 0 C46 0 55 7 55 18 V30" stroke="#f87171" stroke-width="7" fill="none"/>
+      <circle cx="35" cy="54" r="6" fill="#ffffff"/>
+      <path d="M35 58 V68" stroke="#ffffff" stroke-width="4"/>
+    </g>
+
+    <!-- Radar Scan Line -->
+    <line x1="20" y1="210" x2="280" y2="210" stroke="#f87171" stroke-width="2" stroke-dasharray="6,4" stroke-opacity="0.6"/>
+
+    <!-- Alert Tag -->
+    <g transform="translate(40, 420)">
+      <rect width="220" height="42" rx="10" fill="#1f1416" stroke="#ef4444" stroke-width="1.5"/>
+      <text x="110" y="26" text-anchor="middle" font-family="monospace" font-size="13" font-weight="700" fill="#f87171">STATUS: DEFENDED</text>
+    </g>
+  </g>
+</svg>
