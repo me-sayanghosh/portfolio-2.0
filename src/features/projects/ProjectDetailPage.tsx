@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Github, ExternalLink, Sparkles, CheckCircle2, Code2, Server, Terminal, Layers, Download, Copy, Check } from 'lucide-react';
+import { ArrowLeft, Github, ExternalLink, Terminal, Download, Copy, Check } from 'lucide-react';
 import { projectsData } from './data/projectsData';
 
 interface ProjectDetailPageProps {
