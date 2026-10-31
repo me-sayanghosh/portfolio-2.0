@@ -37,7 +37,7 @@ export default function ProjectDetailPage({ onOpenHireModal, projectId }: Projec
       className="pt-3 sm:pt-24 pb-16 max-w-4xl mx-auto px-4 sm:px-6"
     >
       {/* Breadcrumb Navigation */}
-      <div className="flex items-center space-x-2 text-xs sm:text-sm text-gray-400 mb-6 font-sans">
+      <div className="flex items-center space-x-2 text-xs sm:text-sm text-gray-400 mb-2.5 sm:mb-4 font-sans">
         <span
           onClick={() => router.push('/')}
           className="hover:text-white cursor-pointer transition-colors"

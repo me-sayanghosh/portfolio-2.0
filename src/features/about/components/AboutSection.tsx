@@ -33,10 +33,10 @@ export default function AboutSection({ onOpenHireModal, onOpenResume }) {
   ];
 
   return (
-    <div className="pt-3 sm:pt-24 pb-16 max-w-4xl mx-auto px-4 sm:px-6 space-y-6">
+    <div className="pt-3 sm:pt-24 pb-16 max-w-4xl mx-auto px-4 sm:px-6">
       
       {/* Breadcrumb Navigation */}
-      <div className="flex items-center space-x-2 text-xs sm:text-sm text-gray-400 mb-1 font-sans">
+      <div className="flex items-center space-x-2 text-xs sm:text-sm text-gray-400 mb-2.5 font-sans">
         <span
           onClick={() => router.push('/')}
           className="hover:text-white cursor-pointer transition-colors"
@@ -47,8 +47,9 @@ export default function AboutSection({ onOpenHireModal, onOpenResume }) {
         <span className="text-white font-medium">About</span>
       </div>
 
-      {/* 1. Top Banner — "a lil bit about me!!" */}
-      <AboutMeBanner />
+      <div className="space-y-6">
+        {/* 1. Top Banner — "a lil bit about me!!" */}
+        <AboutMeBanner />
 
       {/* 2. Interactive Animated Collage Grid Section */}
       <AboutCollageSection onOpenResume={onOpenResume} />
@@ -97,6 +98,7 @@ export default function AboutSection({ onOpenHireModal, onOpenResume }) {
 
       {/* Contact */}
       <ContactAndSignature />
+      </div>
 
     </div>
   );
