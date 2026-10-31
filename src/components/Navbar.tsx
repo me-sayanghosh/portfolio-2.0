@@ -1,13 +1,23 @@
 'use client';
 
-import React from "react";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname, useRouter } from "next/navigation";
-import { House, UserRound, Briefcase, BookOpen, Newspaper } from "lucide-react";
+import {
+  House,
+  CircleUser,
+  Monitor,
+  Briefcase,
+  Users,
+  BookOpen,
+  Moon,
+  Menu,
+} from "lucide-react";
 
 export default function Navbar() {
   const pathname = usePathname();
   const router = useRouter();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const tabs = [
     { id: "home", label: "Home", path: "/" },
@@ -17,12 +27,12 @@ export default function Navbar() {
     { id: "blogs", label: "Blogs", path: "/blogs" },
   ];
 
-  const mobileTabs = [
-    { id: "home", label: "Home", path: "/", Icon: House },
-    { id: "about", label: "About", path: "/about", Icon: UserRound },
-    { id: "experience", label: "Experience", path: "/experience", Icon: Briefcase },
-    { id: "projects", label: "Projects", path: "/projects", Icon: BookOpen },
-    { id: "blogs", label: "Blogs", path: "/blogs", Icon: Newspaper },
+  const mobileMenuItems = [
+    { id: "about", label: "About", path: "/about", icon: CircleUser },
+    { id: "projects", label: "Projects", path: "/projects", icon: Monitor },
+    { id: "experience", label: "Experience", path: "/experience", icon: Briefcase },
+    { id: "guestbook", label: "Guestbook", path: "/guestbook", icon: Users },
+    { id: "blogs", label: "Blog", path: "/blogs", icon: BookOpen },
   ];
 
   // Hide navbar on gallery page and individual project detail pages e.g. /projects/:id
@@ -44,15 +54,15 @@ export default function Navbar() {
 
   const activeIndex = getActiveIndex();
 
-  const getMobileActiveId = () => {
-    if (pathname === "/about" || pathname.startsWith("/about")) return "about";
-    if (pathname === "/experience" || pathname.startsWith("/experience")) return "experience";
-    if (pathname === "/projects" || pathname.startsWith("/projects")) return "projects";
-    if (pathname === "/blogs" || pathname.startsWith("/blogs")) return "blogs";
-    return "home";
+  const isItemActive = (path: string) => {
+    if (path === "/") return pathname === "/";
+    return pathname === path || (path !== "/" && pathname.startsWith(path));
   };
 
-  const mobileActiveId = getMobileActiveId();
+  const handleNavClick = (path: string) => {
+    // Navigate to route without closing dropdown or altering menu state
+    router.push(path);
+  };
 
   return (
     <>
@@ -112,70 +122,118 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* ─── Mobile Floating Bottom Capsule Navbar (below md) ─── */}
-      <div
-        className="md:hidden fixed bottom-5 left-1/2 -translate-x-1/2 z-50"
-        style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
-      >
-        <div className="flex items-center gap-1 px-2 py-1.5 rounded-full bg-[#161616]/95 backdrop-blur-xl border border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.85)]">
-          {mobileTabs.map((tab, idx) => {
-            const isActive = mobileActiveId === tab.id;
+      {/* ─── Mobile Sticky Top Island Navbar (below md) ─── */}
+      {/* Floating Island in-flow: Content starts cleanly below top bar or dropdown without static black background */}
+      <div className="md:hidden sticky top-0 z-40 bg-transparent pt-2.5 px-2 sm:px-3 pb-1.5 transition-all duration-300 w-full">
+        <div className="w-full max-w-xl mx-auto">
+          {/* Floating Top Header Bar - Sleek & Compact Proportions */}
+          <div className="h-[52px] p-1.5 px-2 rounded-[20px] bg-[#141414]/90 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.6)] flex items-center justify-between">
+            {/* Left: Home Icon Pill Button */}
+            <button
+              onClick={() => router.push("/")}
+              aria-label="Home"
+              className={`w-9 h-9 rounded-xl flex items-center justify-center transition-all cursor-pointer active:scale-95 ${
+                pathname === "/"
+                  ? "text-white bg-[#262626] shadow-sm"
+                  : "text-white bg-[#222222] hover:bg-[#282828]"
+              }`}
+            >
+              <House className="w-[18px] h-[18px]" strokeWidth={1.75} />
+            </button>
 
-            return (
+            {/* Right: Theme Indicator + Hamburger Menu Pill Button */}
+            <div className="flex items-center gap-3 pr-0.5">
+              {/* Theme Indicator (Moon) */}
               <button
-                key={tab.id}
-                onClick={() => router.push(tab.path)}
-                aria-label={tab.label}
-                className="relative flex flex-col items-center justify-center cursor-pointer select-none focus:outline-none"
+                type="button"
+                aria-label="Theme indicator"
+                className="w-8 h-8 rounded-lg flex items-center justify-center text-gray-300 hover:text-white hover:bg-white/5 active:scale-95 transition-all cursor-pointer"
               >
-                {/* Active warm glow disc */}
-                {isActive && (
-                  <motion.div
-                    layoutId="activeMobileNavPill"
-                    className="absolute inset-0 rounded-full border border-orange-500/30"
-                    style={{
-                      background:
-                        "radial-gradient(circle at center, rgba(255, 92, 0, 0.30) 0%, rgba(255, 92, 0, 0.10) 55%, rgba(22, 22, 22, 0.0) 100%)",
-                      boxShadow: "0 0 16px rgba(255, 92, 0, 0.22)",
-                    }}
-                    transition={{
-                      type: "spring",
-                      stiffness: 400,
-                      damping: 35,
-                      mass: 0.6,
-                    }}
-                  />
-                )}
-
-                {/* Icon + orange dot wrapper */}
-                <div className="relative flex flex-col items-center justify-center w-11 h-11">
-                  <tab.Icon
-                    className={`w-[22px] h-[22px] transition-colors duration-200 ${
-                      isActive ? "text-white" : "text-[#888888]"
-                    }`}
-                    strokeWidth={isActive ? 2 : 1.75}
-                  />
-
-                  {/* Active indicator dot */}
-                  <AnimatePresence>
-                    {isActive && (
-                      <motion.span
-                        key="dot"
-                        initial={{ opacity: 0, scale: 0.4 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.4 }}
-                        transition={{ duration: 0.2, ease: "easeOut" }}
-                        className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#ff5c00]"
-                        style={{
-                          boxShadow: "0 0 5px 1px rgba(255,92,0,0.75)",
-                        }}
-                      />
-                    )}
-                  </AnimatePresence>
-                </div>
+                <Moon className="w-[18px] h-[18px]" strokeWidth={1.75} />
               </button>
-            );
-          })}
+
+              {/* Hamburger Button (Always 3 lines inside rounded square pill) */}
+              <button
+                onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+                aria-label="Toggle menu"
+                className="w-9 h-9 rounded-xl bg-[#222222] hover:bg-[#282828] active:scale-95 transition-all flex items-center justify-center text-white cursor-pointer"
+              >
+                <Menu className="w-5 h-5 text-white" strokeWidth={1.75} />
+              </button>
+            </div>
+          </div>
+
+          {/* Floating Dropdown Menu Card (Pushes content down with silky smooth spring physics) */}
+          <AnimatePresence>
+            {isMobileMenuOpen && (
+              <motion.div
+                initial={{ opacity: 0, height: 0, marginTop: 0 }}
+                animate={{
+                  opacity: 1,
+                  height: "auto",
+                  marginTop: 8,
+                  transition: {
+                    height: {
+                      type: "spring",
+                      stiffness: 340,
+                      damping: 30,
+                      mass: 0.8,
+                    },
+                    opacity: { duration: 0.2, ease: "easeOut" },
+                    marginTop: { duration: 0.18 },
+                  },
+                }}
+                exit={{
+                  opacity: 0,
+                  height: 0,
+                  marginTop: 0,
+                  transition: {
+                    height: { duration: 0.22, ease: [0.16, 1, 0.3, 1] },
+                    opacity: { duration: 0.14, ease: "easeIn" },
+                    marginTop: { duration: 0.18 },
+                  },
+                }}
+                className="overflow-hidden"
+              >
+                <div className="p-2 rounded-[20px] bg-[#141414]/95 backdrop-blur-2xl border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,0.85)] flex flex-col space-y-0.5">
+                  {mobileMenuItems.map((item, index) => {
+                    const active = isItemActive(item.path);
+                    const Icon = item.icon;
+
+                    return (
+                      <motion.button
+                        key={item.id}
+                        initial={{ opacity: 0, y: -4 }}
+                        animate={{
+                          opacity: 1,
+                          y: 0,
+                          transition: {
+                            delay: 0.02 + index * 0.02,
+                            duration: 0.18,
+                            ease: "easeOut",
+                          },
+                        }}
+                        onClick={() => handleNavClick(item.path)}
+                        className={`flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl text-left transition-all duration-150 cursor-pointer select-none w-full active:scale-[0.99] ${
+                          active
+                            ? "bg-[#262626] text-white font-medium shadow-sm"
+                            : "text-gray-300 hover:text-white hover:bg-white/[0.04] active:bg-white/[0.06]"
+                        }`}
+                      >
+                        <Icon
+                          className={`w-[19px] h-[19px] shrink-0 transition-colors ${
+                            active ? "text-white" : "text-gray-400"
+                          }`}
+                          strokeWidth={1.75}
+                        />
+                        <span className="text-[14.5px] font-medium tracking-tight">{item.label}</span>
+                      </motion.button>
+                    );
+                  })}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </div>
     </>

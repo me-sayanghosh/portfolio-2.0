@@ -9,9 +9,9 @@ export default function ProjectsSection({ onOpenHireModal }) {
   const router = useRouter();
 
   return (
-    <section className="pt-20 sm:pt-24 pb-16 max-w-4xl mx-auto px-4 sm:px-6">
+    <section className="pt-3 sm:pt-24 pb-16 max-w-4xl mx-auto px-4 sm:px-6">
       {/* Breadcrumb Navigation */}
-      <div className="flex items-center space-x-2 text-xs sm:text-sm text-gray-400 mb-3 font-sans">
+      <div className="flex items-center space-x-2 text-xs sm:text-sm text-gray-400 mb-2.5 font-sans">
         <span
           onClick={() => router.push('/')}
           className="hover:text-white cursor-pointer transition-colors"
@@ -23,14 +23,14 @@ export default function ProjectsSection({ onOpenHireModal }) {
       </div>
 
       {/* Page Title & Description */}
-      <div className="mb-10">
+      <div className="mb-6 sm:mb-8">
         <h1
-          className="font-bricolage text-4xl sm:text-5xl font-bold text-white tracking-tight mb-3"
+          className="font-bricolage text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight mb-2 sm:mb-2.5"
           style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
         >
           Projects<span className="text-amber-500">.</span>
         </h1>
-        <p className="text-sm sm:text-base text-gray-400 max-w-2xl leading-relaxed font-sans">
+        <p className="text-xs sm:text-sm md:text-base text-gray-400 max-w-2xl leading-relaxed font-sans">
           Web apps, AI tools, Scalable Products and open-source software built by Sayan Ghosh.
         </p>
       </div>
