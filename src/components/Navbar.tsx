@@ -60,7 +60,7 @@ export default function Navbar() {
   };
 
   const handleNavClick = (path: string) => {
-    // Navigate without changing the dropdown state (dropdown stays open)
+    // Navigate to route without closing dropdown or altering menu state
     router.push(path);
   };
 
@@ -122,84 +122,83 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* ─── Mobile Sticky Top Navbar with In-Flow Dropdown (below md) ─── */}
-      <div className="md:hidden sticky top-0 z-50 bg-[#121212]/95 backdrop-blur-md pt-3.5 px-4 pb-2 transition-all duration-300">
-        <div className="max-w-lg mx-auto">
-          {/* Floating Top Header Bar */}
-          <div className="h-[50px] px-4 rounded-2xl bg-[#161616] border border-white/10 shadow-[0_4px_24px_rgba(0,0,0,0.5)] flex items-center justify-between">
-            {/* Left: Home Icon Button */}
+      {/* ─── Mobile Floating Island Navbar (below md) ─── */}
+      {/* Floating Island: No full-width static banner, content scrolls behind */}
+      <div className="md:hidden fixed top-3 left-4 right-4 z-50 max-w-lg mx-auto pointer-events-none">
+        {/* Floating Top Header Capsule */}
+        <div className="h-[50px] px-4 rounded-2xl bg-[#141414]/85 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.6)] flex items-center justify-between pointer-events-auto">
+          {/* Left: Home Icon Button */}
+          <button
+            onClick={() => router.push("/")}
+            aria-label="Home"
+            className={`w-9 h-9 rounded-xl flex items-center justify-center transition-all cursor-pointer ${
+              pathname === "/"
+                ? "text-white bg-white/10"
+                : "text-gray-300 hover:text-white hover:bg-white/5 active:scale-95"
+            }`}
+          >
+            <House className="w-[18px] h-[18px]" strokeWidth={1.75} />
+          </button>
+
+          {/* Right: Theme Indicator + Hamburger Menu Toggle */}
+          <div className="flex items-center gap-3">
+            {/* Theme Indicator (Moon) */}
             <button
-              onClick={() => router.push("/")}
-              aria-label="Home"
-              className={`w-9 h-9 rounded-xl flex items-center justify-center transition-all cursor-pointer ${
-                pathname === "/"
-                  ? "text-white bg-white/10"
-                  : "text-gray-300 hover:text-white hover:bg-white/5 active:scale-95"
-              }`}
+              type="button"
+              aria-label="Theme indicator"
+              className="w-9 h-9 rounded-xl flex items-center justify-center text-gray-300 hover:text-white hover:bg-white/5 active:scale-95 transition-all cursor-pointer"
             >
-              <House className="w-[18px] h-[18px]" strokeWidth={1.75} />
+              <Moon className="w-[18px] h-[18px]" strokeWidth={1.75} />
             </button>
 
-            {/* Right: Theme Indicator + Hamburger Menu Toggle */}
-            <div className="flex items-center gap-3">
-              {/* Theme Indicator (Moon) */}
-              <button
-                type="button"
-                aria-label="Theme indicator"
-                className="w-9 h-9 rounded-xl flex items-center justify-center text-gray-300 hover:text-white hover:bg-white/5 active:scale-95 transition-all cursor-pointer"
-              >
-                <Moon className="w-[18px] h-[18px]" strokeWidth={1.75} />
-              </button>
-
-              {/* Hamburger Button (Always 3 lines, toggles dropdown on click) */}
-              <button
-                onClick={() => setIsMobileMenuOpen((prev) => !prev)}
-                aria-label="Toggle menu"
-                className="w-9 h-9 rounded-xl flex items-center justify-center text-gray-300 hover:text-white hover:bg-white/5 active:scale-95 transition-all cursor-pointer"
-              >
-                <Menu className="w-5 h-5 text-gray-300" strokeWidth={1.75} />
-              </button>
-            </div>
+            {/* Hamburger Button (Always 3 lines, toggles dropdown on click) */}
+            <button
+              onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+              aria-label="Toggle menu"
+              className="w-9 h-9 rounded-xl flex items-center justify-center text-gray-300 hover:text-white hover:bg-white/5 active:scale-95 transition-all cursor-pointer"
+            >
+              <Menu className="w-5 h-5 text-gray-300" strokeWidth={1.75} />
+            </button>
           </div>
-
-          {/* Floating Dropdown Menu Card (Pushes content down, stays open on click) */}
-          <AnimatePresence>
-            {isMobileMenuOpen && (
-              <motion.div
-                initial={{ opacity: 0, y: -6, height: 0 }}
-                animate={{ opacity: 1, y: 0, height: "auto" }}
-                exit={{ opacity: 0, y: -6, height: 0 }}
-                transition={{ duration: 0.22, ease: "easeOut" }}
-                className="mt-2.5 p-2 rounded-2xl bg-[#161616] border border-white/10 shadow-[0_16px_40px_rgba(0,0,0,0.7)] flex flex-col space-y-1 overflow-hidden"
-              >
-                {mobileMenuItems.map((item) => {
-                  const active = isItemActive(item.path);
-                  const Icon = item.icon;
-
-                  return (
-                    <button
-                      key={item.id}
-                      onClick={() => handleNavClick(item.path)}
-                      className={`flex items-center gap-3.5 px-3.5 py-3 rounded-xl text-left transition-colors cursor-pointer select-none w-full ${
-                        active
-                          ? "bg-[#262626] text-white font-medium shadow-sm"
-                          : "text-gray-300 hover:text-white hover:bg-white/[0.04] active:bg-white/[0.06]"
-                      }`}
-                    >
-                      <Icon
-                        className={`w-[19px] h-[19px] shrink-0 transition-colors ${
-                          active ? "text-white" : "text-gray-400"
-                        }`}
-                        strokeWidth={1.75}
-                      />
-                      <span className="text-[15px] tracking-tight">{item.label}</span>
-                    </button>
-                  );
-                })}
-              </motion.div>
-            )}
-          </AnimatePresence>
         </div>
+
+        {/* Floating Dropdown Menu Card */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -8, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -8, scale: 0.98 }}
+              transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+              className="mt-2.5 p-2 rounded-2xl bg-[#141414]/95 backdrop-blur-2xl border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,0.85)] flex flex-col space-y-1 overflow-hidden pointer-events-auto"
+            >
+              {mobileMenuItems.map((item) => {
+                const active = isItemActive(item.path);
+                const Icon = item.icon;
+
+                return (
+                  <button
+                    key={item.id}
+                    onClick={() => handleNavClick(item.path)}
+                    className={`flex items-center gap-3.5 px-3.5 py-3 rounded-xl text-left transition-colors cursor-pointer select-none w-full ${
+                      active
+                        ? "bg-[#262626] text-white font-medium shadow-sm"
+                        : "text-gray-300 hover:text-white hover:bg-white/[0.04] active:bg-white/[0.06]"
+                    }`}
+                  >
+                    <Icon
+                      className={`w-[19px] h-[19px] shrink-0 transition-colors ${
+                        active ? "text-white" : "text-gray-400"
+                      }`}
+                      strokeWidth={1.75}
+                    />
+                    <span className="text-[15px] tracking-tight">{item.label}</span>
+                  </button>
+                );
+              })}
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </>
   );
