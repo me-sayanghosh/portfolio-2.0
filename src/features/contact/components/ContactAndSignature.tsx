@@ -4,7 +4,7 @@ import React from 'react';
 
 export default function ContactAndSignature() {
   return (
-    <section className="py-6 sm:py-10 max-w-4xl mx-auto px-4 sm:px-6">
+    <section id="contact" className="py-6 sm:py-10 max-w-4xl mx-auto px-4 sm:px-6">
       <div className="flex flex-row items-center justify-between gap-4 sm:gap-8 pt-6 sm:pt-8 border-t border-white/10">
         
         {/* Left Column Contact Details */}

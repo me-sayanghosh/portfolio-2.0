@@ -1,13 +1,23 @@
 'use client';
 
-import React from "react";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname, useRouter } from "next/navigation";
-import { House, UserRound, Briefcase, BookOpen, Newspaper } from "lucide-react";
+import {
+  House,
+  CircleUser,
+  Monitor,
+  Briefcase,
+  Users,
+  BookOpen,
+  Moon,
+  Menu,
+} from "lucide-react";
 
 export default function Navbar() {
   const pathname = usePathname();
   const router = useRouter();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const tabs = [
     { id: "home", label: "Home", path: "/" },
@@ -17,12 +27,12 @@ export default function Navbar() {
     { id: "blogs", label: "Blogs", path: "/blogs" },
   ];
 
-  const mobileTabs = [
-    { id: "home", label: "Home", path: "/", Icon: House },
-    { id: "about", label: "About", path: "/about", Icon: UserRound },
-    { id: "experience", label: "Experience", path: "/experience", Icon: Briefcase },
-    { id: "projects", label: "Projects", path: "/projects", Icon: BookOpen },
-    { id: "blogs", label: "Blogs", path: "/blogs", Icon: Newspaper },
+  const mobileMenuItems = [
+    { id: "about", label: "About", path: "/about", icon: CircleUser },
+    { id: "projects", label: "Projects", path: "/projects", icon: Monitor },
+    { id: "experience", label: "Experience", path: "/experience", icon: Briefcase },
+    { id: "guestbook", label: "Guestbook", path: "/guestbook", icon: Users },
+    { id: "blogs", label: "Blog", path: "/blogs", icon: BookOpen },
   ];
 
   // Hide navbar on gallery page and individual project detail pages e.g. /projects/:id
@@ -44,15 +54,15 @@ export default function Navbar() {
 
   const activeIndex = getActiveIndex();
 
-  const getMobileActiveId = () => {
-    if (pathname === "/about" || pathname.startsWith("/about")) return "about";
-    if (pathname === "/experience" || pathname.startsWith("/experience")) return "experience";
-    if (pathname === "/projects" || pathname.startsWith("/projects")) return "projects";
-    if (pathname === "/blogs" || pathname.startsWith("/blogs")) return "blogs";
-    return "home";
+  const isItemActive = (path: string) => {
+    if (path === "/") return pathname === "/";
+    return pathname === path || (path !== "/" && pathname.startsWith(path));
   };
 
-  const mobileActiveId = getMobileActiveId();
+  const handleNavClick = (path: string) => {
+    // Navigate without changing the dropdown state (dropdown stays open)
+    router.push(path);
+  };
 
   return (
     <>
@@ -112,70 +122,83 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* ─── Mobile Floating Bottom Capsule Navbar (below md) ─── */}
-      <div
-        className="md:hidden fixed bottom-5 left-1/2 -translate-x-1/2 z-50"
-        style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
-      >
-        <div className="flex items-center gap-1 px-2 py-1.5 rounded-full bg-[#161616]/95 backdrop-blur-xl border border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.85)]">
-          {mobileTabs.map((tab, idx) => {
-            const isActive = mobileActiveId === tab.id;
+      {/* ─── Mobile Sticky Top Navbar with In-Flow Dropdown (below md) ─── */}
+      <div className="md:hidden sticky top-0 z-50 bg-[#121212]/95 backdrop-blur-md pt-3.5 px-4 pb-2 transition-all duration-300">
+        <div className="max-w-lg mx-auto">
+          {/* Floating Top Header Bar */}
+          <div className="h-[50px] px-4 rounded-2xl bg-[#161616] border border-white/10 shadow-[0_4px_24px_rgba(0,0,0,0.5)] flex items-center justify-between">
+            {/* Left: Home Icon Button */}
+            <button
+              onClick={() => router.push("/")}
+              aria-label="Home"
+              className={`w-9 h-9 rounded-xl flex items-center justify-center transition-all cursor-pointer ${
+                pathname === "/"
+                  ? "text-white bg-white/10"
+                  : "text-gray-300 hover:text-white hover:bg-white/5 active:scale-95"
+              }`}
+            >
+              <House className="w-[18px] h-[18px]" strokeWidth={1.75} />
+            </button>
 
-            return (
+            {/* Right: Theme Indicator + Hamburger Menu Toggle */}
+            <div className="flex items-center gap-3">
+              {/* Theme Indicator (Moon) */}
               <button
-                key={tab.id}
-                onClick={() => router.push(tab.path)}
-                aria-label={tab.label}
-                className="relative flex flex-col items-center justify-center cursor-pointer select-none focus:outline-none"
+                type="button"
+                aria-label="Theme indicator"
+                className="w-9 h-9 rounded-xl flex items-center justify-center text-gray-300 hover:text-white hover:bg-white/5 active:scale-95 transition-all cursor-pointer"
               >
-                {/* Active warm glow disc */}
-                {isActive && (
-                  <motion.div
-                    layoutId="activeMobileNavPill"
-                    className="absolute inset-0 rounded-full border border-orange-500/30"
-                    style={{
-                      background:
-                        "radial-gradient(circle at center, rgba(255, 92, 0, 0.30) 0%, rgba(255, 92, 0, 0.10) 55%, rgba(22, 22, 22, 0.0) 100%)",
-                      boxShadow: "0 0 16px rgba(255, 92, 0, 0.22)",
-                    }}
-                    transition={{
-                      type: "spring",
-                      stiffness: 400,
-                      damping: 35,
-                      mass: 0.6,
-                    }}
-                  />
-                )}
-
-                {/* Icon + orange dot wrapper */}
-                <div className="relative flex flex-col items-center justify-center w-11 h-11">
-                  <tab.Icon
-                    className={`w-[22px] h-[22px] transition-colors duration-200 ${
-                      isActive ? "text-white" : "text-[#888888]"
-                    }`}
-                    strokeWidth={isActive ? 2 : 1.75}
-                  />
-
-                  {/* Active indicator dot */}
-                  <AnimatePresence>
-                    {isActive && (
-                      <motion.span
-                        key="dot"
-                        initial={{ opacity: 0, scale: 0.4 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.4 }}
-                        transition={{ duration: 0.2, ease: "easeOut" }}
-                        className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#ff5c00]"
-                        style={{
-                          boxShadow: "0 0 5px 1px rgba(255,92,0,0.75)",
-                        }}
-                      />
-                    )}
-                  </AnimatePresence>
-                </div>
+                <Moon className="w-[18px] h-[18px]" strokeWidth={1.75} />
               </button>
-            );
-          })}
+
+              {/* Hamburger Button (Always 3 lines, toggles dropdown on click) */}
+              <button
+                onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+                aria-label="Toggle menu"
+                className="w-9 h-9 rounded-xl flex items-center justify-center text-gray-300 hover:text-white hover:bg-white/5 active:scale-95 transition-all cursor-pointer"
+              >
+                <Menu className="w-5 h-5 text-gray-300" strokeWidth={1.75} />
+              </button>
+            </div>
+          </div>
+
+          {/* Floating Dropdown Menu Card (Pushes content down, stays open on click) */}
+          <AnimatePresence>
+            {isMobileMenuOpen && (
+              <motion.div
+                initial={{ opacity: 0, y: -6, height: 0 }}
+                animate={{ opacity: 1, y: 0, height: "auto" }}
+                exit={{ opacity: 0, y: -6, height: 0 }}
+                transition={{ duration: 0.22, ease: "easeOut" }}
+                className="mt-2.5 p-2 rounded-2xl bg-[#161616] border border-white/10 shadow-[0_16px_40px_rgba(0,0,0,0.7)] flex flex-col space-y-1 overflow-hidden"
+              >
+                {mobileMenuItems.map((item) => {
+                  const active = isItemActive(item.path);
+                  const Icon = item.icon;
+
+                  return (
+                    <button
+                      key={item.id}
+                      onClick={() => handleNavClick(item.path)}
+                      className={`flex items-center gap-3.5 px-3.5 py-3 rounded-xl text-left transition-colors cursor-pointer select-none w-full ${
+                        active
+                          ? "bg-[#262626] text-white font-medium shadow-sm"
+                          : "text-gray-300 hover:text-white hover:bg-white/[0.04] active:bg-white/[0.06]"
+                      }`}
+                    >
+                      <Icon
+                        className={`w-[19px] h-[19px] shrink-0 transition-colors ${
+                          active ? "text-white" : "text-gray-400"
+                        }`}
+                        strokeWidth={1.75}
+                      />
+                      <span className="text-[15px] tracking-tight">{item.label}</span>
+                    </button>
+                  );
+                })}
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </div>
     </>
