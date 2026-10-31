@@ -124,41 +124,41 @@ export default function Navbar() {
 
       {/* ─── Mobile Sticky Top Island Navbar (below md) ─── */}
       {/* Floating Island in-flow: Content starts cleanly below top bar or dropdown without static black background */}
-      <div className="md:hidden sticky top-0 z-40 bg-transparent pt-3.5 px-4 pb-2 transition-all duration-300">
-        <div className="max-w-lg mx-auto">
-          {/* Floating Top Header Bar with Increased Size */}
-          <div className="h-[56px] px-4 sm:px-5 rounded-2xl bg-[#141414]/90 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.6)] flex items-center justify-between">
-            {/* Left: Home Icon Button */}
+      <div className="md:hidden sticky top-0 z-40 bg-transparent pt-2.5 px-2 sm:px-3 pb-1.5 transition-all duration-300 w-full">
+        <div className="w-full max-w-xl mx-auto">
+          {/* Floating Top Header Bar - Sleek & Compact Proportions */}
+          <div className="h-[52px] p-1.5 px-2 rounded-[20px] bg-[#141414]/90 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.6)] flex items-center justify-between">
+            {/* Left: Home Icon Pill Button */}
             <button
               onClick={() => router.push("/")}
               aria-label="Home"
-              className={`w-10 h-10 rounded-xl flex items-center justify-center transition-all cursor-pointer ${
+              className={`w-9 h-9 rounded-xl flex items-center justify-center transition-all cursor-pointer active:scale-95 ${
                 pathname === "/"
-                  ? "text-white bg-white/10"
-                  : "text-gray-300 hover:text-white hover:bg-white/5 active:scale-95"
+                  ? "text-white bg-[#262626] shadow-sm"
+                  : "text-white bg-[#222222] hover:bg-[#282828]"
               }`}
             >
-              <House className="w-5 h-5" strokeWidth={1.75} />
+              <House className="w-[18px] h-[18px]" strokeWidth={1.75} />
             </button>
 
-            {/* Right: Theme Indicator + Hamburger Menu Toggle */}
-            <div className="flex items-center gap-3">
+            {/* Right: Theme Indicator + Hamburger Menu Pill Button */}
+            <div className="flex items-center gap-3 pr-0.5">
               {/* Theme Indicator (Moon) */}
               <button
                 type="button"
                 aria-label="Theme indicator"
-                className="w-10 h-10 rounded-xl flex items-center justify-center text-gray-300 hover:text-white hover:bg-white/5 active:scale-95 transition-all cursor-pointer"
+                className="w-8 h-8 rounded-lg flex items-center justify-center text-gray-300 hover:text-white hover:bg-white/5 active:scale-95 transition-all cursor-pointer"
               >
-                <Moon className="w-5 h-5" strokeWidth={1.75} />
+                <Moon className="w-[18px] h-[18px]" strokeWidth={1.75} />
               </button>
 
-              {/* Hamburger Button (Always 3 lines, toggles dropdown on click) */}
+              {/* Hamburger Button (Always 3 lines inside rounded square pill) */}
               <button
                 onClick={() => setIsMobileMenuOpen((prev) => !prev)}
                 aria-label="Toggle menu"
-                className="w-10 h-10 rounded-xl flex items-center justify-center text-gray-300 hover:text-white hover:bg-white/5 active:scale-95 transition-all cursor-pointer"
+                className="w-9 h-9 rounded-xl bg-[#222222] hover:bg-[#282828] active:scale-95 transition-all flex items-center justify-center text-white cursor-pointer"
               >
-                <Menu className="w-[22px] h-[22px] text-gray-300" strokeWidth={1.75} />
+                <Menu className="w-5 h-5 text-white" strokeWidth={1.75} />
               </button>
             </div>
           </div>
@@ -171,16 +171,16 @@ export default function Navbar() {
                 animate={{
                   opacity: 1,
                   height: "auto",
-                  marginTop: 12,
+                  marginTop: 8,
                   transition: {
                     height: {
                       type: "spring",
-                      stiffness: 320,
-                      damping: 28,
+                      stiffness: 340,
+                      damping: 30,
                       mass: 0.8,
                     },
-                    opacity: { duration: 0.22, ease: "easeOut" },
-                    marginTop: { duration: 0.2 },
+                    opacity: { duration: 0.2, ease: "easeOut" },
+                    marginTop: { duration: 0.18 },
                   },
                 }}
                 exit={{
@@ -188,14 +188,14 @@ export default function Navbar() {
                   height: 0,
                   marginTop: 0,
                   transition: {
-                    height: { duration: 0.25, ease: [0.16, 1, 0.3, 1] },
-                    opacity: { duration: 0.16, ease: "easeIn" },
-                    marginTop: { duration: 0.2 },
+                    height: { duration: 0.22, ease: [0.16, 1, 0.3, 1] },
+                    opacity: { duration: 0.14, ease: "easeIn" },
+                    marginTop: { duration: 0.18 },
                   },
                 }}
                 className="overflow-hidden"
               >
-                <div className="p-2.5 rounded-2xl bg-[#141414]/95 backdrop-blur-2xl border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,0.85)] flex flex-col space-y-1">
+                <div className="p-2 rounded-[20px] bg-[#141414]/95 backdrop-blur-2xl border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,0.85)] flex flex-col space-y-0.5">
                   {mobileMenuItems.map((item, index) => {
                     const active = isItemActive(item.path);
                     const Icon = item.icon;
@@ -208,25 +208,25 @@ export default function Navbar() {
                           opacity: 1,
                           y: 0,
                           transition: {
-                            delay: 0.03 + index * 0.025,
-                            duration: 0.2,
+                            delay: 0.02 + index * 0.02,
+                            duration: 0.18,
                             ease: "easeOut",
                           },
                         }}
                         onClick={() => handleNavClick(item.path)}
-                        className={`flex items-center gap-4 px-4 py-3.5 rounded-xl text-left transition-all duration-150 cursor-pointer select-none w-full active:scale-[0.99] ${
+                        className={`flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl text-left transition-all duration-150 cursor-pointer select-none w-full active:scale-[0.99] ${
                           active
                             ? "bg-[#262626] text-white font-medium shadow-sm"
                             : "text-gray-300 hover:text-white hover:bg-white/[0.04] active:bg-white/[0.06]"
                         }`}
                       >
                         <Icon
-                          className={`w-5 h-5 shrink-0 transition-colors ${
+                          className={`w-[19px] h-[19px] shrink-0 transition-colors ${
                             active ? "text-white" : "text-gray-400"
                           }`}
                           strokeWidth={1.75}
                         />
-                        <span className="text-[15.5px] font-medium tracking-tight">{item.label}</span>
+                        <span className="text-[14.5px] font-medium tracking-tight">{item.label}</span>
                       </motion.button>
                     );
                   })}
