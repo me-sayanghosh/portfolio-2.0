@@ -25,8 +25,6 @@ export interface Project {
   architecture?: ArchitectureItem[];
   apiEndpoints?: ApiEndpointItem[];
   setupGuide?: string[];
-  liveUrl?: string;
-  githubUrl?: string;
   live?: string;
   github?: string;
 }

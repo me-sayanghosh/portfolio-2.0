@@ -3,40 +3,12 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import { ArrowRight } from 'lucide-react';
+import { projectsData } from '../../projects/data/projectsData';
 
 export default function HomeProjectsSection() {
   const router = useRouter();
 
-  const projects = [
-    {
-      id: 'droptalk',
-      title: 'DropTalk',
-      tagline: 'High-velocity encrypted chat workspace with real-time sockets & AI copilot',
-      logoImg: '/assets/droptalk-logo.webp',
-      github: 'https://github.com/me-sayanghosh/DropTalk'
-    },
-    {
-      id: 'hoopit',
-      title: 'HoopIt',
-      tagline: 'An all-in-one productivity suite & URL analytics platform',
-      logoImg: '/assets/hoopit-logo.webp',
-      github: 'https://github.com/me-sayanghosh/hoopit'
-    },
-    {
-      id: 'prepdost',
-      title: 'PrepDost',
-      tagline: 'AI-powered mock interview & career prep platform',
-      logoImg: '/assets/prepdost-logo.webp',
-      github: 'https://github.com/me-sayanghosh/prepdost'
-    },
-    {
-      id: 'codereviewer',
-      title: 'CodeReviewer',
-      tagline: 'Real-time AI automated pull request & code review agent',
-      logoImg: '/assets/codereviewer-logo.webp',
-      github: 'https://github.com/me-sayanghosh/CodeReviewer'
-    }
-  ];
+  const featuredProjects = projectsData.slice(0, 4);
 
   return (
     <section className="py-6 max-w-4xl mx-auto px-4 sm:px-6">
@@ -51,9 +23,9 @@ export default function HomeProjectsSection() {
 
       {/* Optimized Smooth Projects List */}
       <div className="space-y-3.5 mb-8">
-        {projects.map((project, idx) => (
+        {featuredProjects.map((project) => (
           <div
-            key={idx}
+            key={project.id}
             onClick={() => router.push('/projects')}
             className="group bg-[#222222] border border-[#333333] hover:border-white/20 hover:bg-[#2a2a2a] rounded-2xl p-4 sm:p-5 flex items-center space-x-4 transition-colors duration-200 cursor-pointer shadow-md"
           >
@@ -72,7 +44,7 @@ export default function HomeProjectsSection() {
                 {project.title}
               </h3>
               <p className="text-xs sm:text-sm text-gray-400 font-sans truncate">
-                {project.tagline}
+                {project.subtitle}
               </p>
             </div>
           </div>

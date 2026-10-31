@@ -3,62 +3,13 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { Briefcase, Code2, Users, Layers } from 'lucide-react';
+import { Briefcase } from 'lucide-react';
+import { experiencesData } from '../../experience/data/experiencesData';
 
 export default function HomeExperienceSection() {
   const router = useRouter();
 
-  const experiences = [
-    {
-      id: 'realai',
-      title: 'Associate Software Engineer (Python)',
-      company: 'RealAI Solutions Pvt. Ltd.',
-      location: 'Remote',
-      dates: 'Oct 12, 2026 - Present',
-      icon: Code2,
-      logo: '/assets/realai-logo.png',
-      logoBg: 'bg-black'
-    },
-    {
-      id: 'phicsit',
-      title: 'SDE Intern',
-      company: 'PHICSIT InfoTech Pvt. Ltd.',
-      location: 'Remote',
-      dates: 'Aug 2, 2026 - Present',
-      icon: Code2,
-      logo: '/assets/phicsit-logo.webp',
-      logoBg: 'bg-black'
-    },
-    {
-      id: 'sewakunj',
-      title: 'FullStack Developer Intern',
-      company: 'Sewakunj Technologies',
-      location: 'Remote, Gujarat',
-      dates: 'February 13, 2025 - June 20, 2026',
-      icon: Code2,
-      logo: '/assets/sewakunj-logo.webp',
-      logoBg: 'bg-black'
-    },
-    {
-      id: 'freelance',
-      title: 'Freelance FullStack Developer',
-      company: 'Self-Employed',
-      location: 'Remote',
-      dates: 'October 2025 - Present',
-      icon: Layers,
-      logoBg: 'bg-black'
-    },
-    {
-      id: 'devdotcommunity',
-      title: 'Core Member',
-      company: 'DevDotCommunity',
-      location: 'Remote',
-      dates: 'January 2025 - Present',
-      icon: Users,
-      logo: '/assets/devdotcommunity-logo.webp',
-      logoBg: 'bg-black'
-    }
-  ];
+  const featuredExperiences = experiencesData.slice(0, 3);
 
   return (
     <section className="py-6 max-w-4xl mx-auto px-4 sm:px-6">
@@ -73,8 +24,7 @@ export default function HomeExperienceSection() {
 
       {/* Compact Experience Card List matching requested UI */}
       <div className="space-y-3.5">
-        {experiences.slice(0, 3).map((exp, index) => {
-          const IconComponent = exp.icon || Briefcase;
+        {featuredExperiences.map((exp, index) => {
           return (
             <motion.div
               key={exp.id}
@@ -85,11 +35,11 @@ export default function HomeExperienceSection() {
               className="p-4 sm:p-5 rounded-2xl bg-[#181818]/90 border border-white/10 hover:border-white/20 hover:bg-[#1f1f1f] transition-all duration-300 flex items-center gap-4 group shadow-sm"
             >
               {/* Left Square Logo / Icon Container */}
-              <div className={`w-12 h-12 sm:w-14 sm:h-14 rounded-xl ${exp.logoBg} border border-white/10 flex items-center justify-center shrink-0 overflow-hidden shadow-inner`}>
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-black border border-white/10 flex items-center justify-center shrink-0 overflow-hidden shadow-inner">
                 {exp.logo ? (
                   <img src={exp.logo} alt={exp.company} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
                 ) : (
-                  <IconComponent className="w-6 h-6 sm:w-7 sm:h-7 text-white group-hover:scale-105 transition-transform duration-300" />
+                  <Briefcase className="w-6 h-6 sm:w-7 sm:h-7 text-white group-hover:scale-105 transition-transform duration-300" />
                 )}
               </div>
 
