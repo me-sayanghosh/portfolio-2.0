@@ -33,7 +33,7 @@ export default function AboutSection({ onOpenHireModal, onOpenResume }) {
   ];
 
   return (
-    <div className="pt-20 sm:pt-24 pb-16 max-w-4xl mx-auto px-4 sm:px-6 space-y-6">
+    <div className="pt-3 sm:pt-24 pb-16 max-w-4xl mx-auto px-4 sm:px-6 space-y-6">
       
       {/* Breadcrumb Navigation */}
       <div className="flex items-center space-x-2 text-xs sm:text-sm text-gray-400 mb-1 font-sans">

@@ -16,7 +16,7 @@ export default function BlogsPage() {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -15 }}
       transition={{ duration: 0.35, ease: 'easeInOut' }}
-      className="pt-20 sm:pt-24 pb-16 sm:pb-24 max-w-4xl mx-auto px-4 sm:px-6"
+      className="pt-3 sm:pt-24 pb-16 sm:pb-24 max-w-4xl mx-auto px-4 sm:px-6"
     >
       {/* Breadcrumb Navigation */}
       <div className="flex items-center space-x-2 text-xs sm:text-sm text-gray-400 mb-3 sm:mb-4 font-sans">

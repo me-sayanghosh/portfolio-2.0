@@ -122,83 +122,119 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* ─── Mobile Floating Island Navbar (below md) ─── */}
-      {/* Floating Island: No full-width static banner, content scrolls behind */}
-      <div className="md:hidden fixed top-3 left-4 right-4 z-50 max-w-lg mx-auto pointer-events-none">
-        {/* Floating Top Header Capsule */}
-        <div className="h-[50px] px-4 rounded-2xl bg-[#141414]/85 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.6)] flex items-center justify-between pointer-events-auto">
-          {/* Left: Home Icon Button */}
-          <button
-            onClick={() => router.push("/")}
-            aria-label="Home"
-            className={`w-9 h-9 rounded-xl flex items-center justify-center transition-all cursor-pointer ${
-              pathname === "/"
-                ? "text-white bg-white/10"
-                : "text-gray-300 hover:text-white hover:bg-white/5 active:scale-95"
-            }`}
-          >
-            <House className="w-[18px] h-[18px]" strokeWidth={1.75} />
-          </button>
-
-          {/* Right: Theme Indicator + Hamburger Menu Toggle */}
-          <div className="flex items-center gap-3">
-            {/* Theme Indicator (Moon) */}
+      {/* ─── Mobile Sticky Top Island Navbar (below md) ─── */}
+      {/* Floating Island in-flow: Content starts cleanly below top bar or dropdown without static black background */}
+      <div className="md:hidden sticky top-0 z-40 bg-transparent pt-3.5 px-4 pb-2 transition-all duration-300">
+        <div className="max-w-lg mx-auto">
+          {/* Floating Top Header Bar with Increased Size */}
+          <div className="h-[56px] px-4 sm:px-5 rounded-2xl bg-[#141414]/90 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.6)] flex items-center justify-between">
+            {/* Left: Home Icon Button */}
             <button
-              type="button"
-              aria-label="Theme indicator"
-              className="w-9 h-9 rounded-xl flex items-center justify-center text-gray-300 hover:text-white hover:bg-white/5 active:scale-95 transition-all cursor-pointer"
+              onClick={() => router.push("/")}
+              aria-label="Home"
+              className={`w-10 h-10 rounded-xl flex items-center justify-center transition-all cursor-pointer ${
+                pathname === "/"
+                  ? "text-white bg-white/10"
+                  : "text-gray-300 hover:text-white hover:bg-white/5 active:scale-95"
+              }`}
             >
-              <Moon className="w-[18px] h-[18px]" strokeWidth={1.75} />
+              <House className="w-5 h-5" strokeWidth={1.75} />
             </button>
 
-            {/* Hamburger Button (Always 3 lines, toggles dropdown on click) */}
-            <button
-              onClick={() => setIsMobileMenuOpen((prev) => !prev)}
-              aria-label="Toggle menu"
-              className="w-9 h-9 rounded-xl flex items-center justify-center text-gray-300 hover:text-white hover:bg-white/5 active:scale-95 transition-all cursor-pointer"
-            >
-              <Menu className="w-5 h-5 text-gray-300" strokeWidth={1.75} />
-            </button>
+            {/* Right: Theme Indicator + Hamburger Menu Toggle */}
+            <div className="flex items-center gap-3">
+              {/* Theme Indicator (Moon) */}
+              <button
+                type="button"
+                aria-label="Theme indicator"
+                className="w-10 h-10 rounded-xl flex items-center justify-center text-gray-300 hover:text-white hover:bg-white/5 active:scale-95 transition-all cursor-pointer"
+              >
+                <Moon className="w-5 h-5" strokeWidth={1.75} />
+              </button>
+
+              {/* Hamburger Button (Always 3 lines, toggles dropdown on click) */}
+              <button
+                onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+                aria-label="Toggle menu"
+                className="w-10 h-10 rounded-xl flex items-center justify-center text-gray-300 hover:text-white hover:bg-white/5 active:scale-95 transition-all cursor-pointer"
+              >
+                <Menu className="w-[22px] h-[22px] text-gray-300" strokeWidth={1.75} />
+              </button>
+            </div>
           </div>
+
+          {/* Floating Dropdown Menu Card (Pushes content down with silky smooth spring physics) */}
+          <AnimatePresence>
+            {isMobileMenuOpen && (
+              <motion.div
+                initial={{ opacity: 0, height: 0, marginTop: 0 }}
+                animate={{
+                  opacity: 1,
+                  height: "auto",
+                  marginTop: 12,
+                  transition: {
+                    height: {
+                      type: "spring",
+                      stiffness: 320,
+                      damping: 28,
+                      mass: 0.8,
+                    },
+                    opacity: { duration: 0.22, ease: "easeOut" },
+                    marginTop: { duration: 0.2 },
+                  },
+                }}
+                exit={{
+                  opacity: 0,
+                  height: 0,
+                  marginTop: 0,
+                  transition: {
+                    height: { duration: 0.25, ease: [0.16, 1, 0.3, 1] },
+                    opacity: { duration: 0.16, ease: "easeIn" },
+                    marginTop: { duration: 0.2 },
+                  },
+                }}
+                className="overflow-hidden"
+              >
+                <div className="p-2.5 rounded-2xl bg-[#141414]/95 backdrop-blur-2xl border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,0.85)] flex flex-col space-y-1">
+                  {mobileMenuItems.map((item, index) => {
+                    const active = isItemActive(item.path);
+                    const Icon = item.icon;
+
+                    return (
+                      <motion.button
+                        key={item.id}
+                        initial={{ opacity: 0, y: -4 }}
+                        animate={{
+                          opacity: 1,
+                          y: 0,
+                          transition: {
+                            delay: 0.03 + index * 0.025,
+                            duration: 0.2,
+                            ease: "easeOut",
+                          },
+                        }}
+                        onClick={() => handleNavClick(item.path)}
+                        className={`flex items-center gap-4 px-4 py-3.5 rounded-xl text-left transition-all duration-150 cursor-pointer select-none w-full active:scale-[0.99] ${
+                          active
+                            ? "bg-[#262626] text-white font-medium shadow-sm"
+                            : "text-gray-300 hover:text-white hover:bg-white/[0.04] active:bg-white/[0.06]"
+                        }`}
+                      >
+                        <Icon
+                          className={`w-5 h-5 shrink-0 transition-colors ${
+                            active ? "text-white" : "text-gray-400"
+                          }`}
+                          strokeWidth={1.75}
+                        />
+                        <span className="text-[15.5px] font-medium tracking-tight">{item.label}</span>
+                      </motion.button>
+                    );
+                  })}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
-
-        {/* Floating Dropdown Menu Card */}
-        <AnimatePresence>
-          {isMobileMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, y: -8, scale: 0.98 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -8, scale: 0.98 }}
-              transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-2.5 p-2 rounded-2xl bg-[#141414]/95 backdrop-blur-2xl border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,0.85)] flex flex-col space-y-1 overflow-hidden pointer-events-auto"
-            >
-              {mobileMenuItems.map((item) => {
-                const active = isItemActive(item.path);
-                const Icon = item.icon;
-
-                return (
-                  <button
-                    key={item.id}
-                    onClick={() => handleNavClick(item.path)}
-                    className={`flex items-center gap-3.5 px-3.5 py-3 rounded-xl text-left transition-colors cursor-pointer select-none w-full ${
-                      active
-                        ? "bg-[#262626] text-white font-medium shadow-sm"
-                        : "text-gray-300 hover:text-white hover:bg-white/[0.04] active:bg-white/[0.06]"
-                    }`}
-                  >
-                    <Icon
-                      className={`w-[19px] h-[19px] shrink-0 transition-colors ${
-                        active ? "text-white" : "text-gray-400"
-                      }`}
-                      strokeWidth={1.75}
-                    />
-                    <span className="text-[15px] tracking-tight">{item.label}</span>
-                  </button>
-                );
-              })}
-            </motion.div>
-          )}
-        </AnimatePresence>
       </div>
     </>
   );
