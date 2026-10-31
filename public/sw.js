@@ -1,4 +1,4 @@
-const CACHE_NAME = 'sayan-portfolio-v1';
+const CACHE_NAME = 'sayan-portfolio-v2';
 const STATIC_ASSETS = [
   '/',
   '/about',
@@ -45,8 +45,13 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   const { request } = event;
 
-  // Ignore non-GET requests or browser extension requests
-  if (request.method !== 'GET' || !request.url.startsWith('http')) {
+  // Ignore non-GET requests, extension requests, or Next.js dev/HMR assets
+  if (
+    request.method !== 'GET' ||
+    !request.url.startsWith('http') ||
+    request.url.includes('/_next/webpack-hmr') ||
+    request.url.includes('/_next/static/webpack/')
+  ) {
     return;
   }
 
