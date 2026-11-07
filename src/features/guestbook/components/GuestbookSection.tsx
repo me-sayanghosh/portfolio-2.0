@@ -5,6 +5,7 @@ import { useSession, signOut } from 'next-auth/react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { LogOut, Trash2, Loader2, MessageSquare, Sparkles } from 'lucide-react';
 import GuestbookModal from './GuestbookModal';
+import { CloudShader } from '@/components/ui/cloud-shader';
 import { timeAgo } from '../../../lib/utils/timeAgo';
 
 interface Entry {
@@ -102,14 +103,16 @@ export default function GuestbookSection() {
 
   return (
     <div className="space-y-8 mt-4">
-      {/* ─── Artistic Quote Banner with Rotating Circular Badge (Matching thatdevguy.in) ─── */}
-      <div className="keep-dark relative overflow-hidden rounded-2xl h-48 sm:h-60 bg-gradient-to-br from-zinc-800 via-zinc-900 to-black border border-zinc-200/80 dark:border-white/10 shadow-xl flex items-center justify-center p-6 text-center select-none group">
-        {/* Subtle Background Glow & Pattern */}
-        <div className="keep-dark absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(245,158,11,0.15)_0%,_rgba(0,0,0,0.6)_70%)] pointer-events-none" />
-        <div className="keep-dark absolute -inset-x-20 -top-20 h-40 bg-gradient-to-b from-amber-500/10 via-transparent to-transparent blur-3xl pointer-events-none" />
+      {/* ─── Artistic Quote Banner with Cloud Shader & Rotating Circular Badge ─── */}
+      <div className="relative overflow-hidden rounded-2xl h-48 sm:h-60 border border-zinc-200/80 dark:border-white/10 shadow-xl flex items-center justify-center p-6 text-center select-none group">
+        {/* Aceternity Cloud Shader Background */}
+        <CloudShader className="absolute inset-0 w-full h-full min-h-0 pointer-events-none" speed={1} count={6} />
+
+        {/* Subtle Overlay Vignette for Text Contrast & Depth */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-black/25 pointer-events-none" />
 
         {/* Centered Atmospheric Serif Quote */}
-        <h2 className="keep-dark relative z-10 font-serif italic text-2xl sm:text-3xl md:text-4xl !text-white/95 tracking-tight max-w-lg leading-snug drop-shadow-md">
+        <h2 className="relative z-10 font-serif italic text-2xl sm:text-3xl md:text-4xl text-white tracking-tight max-w-lg leading-snug drop-shadow-[0_2px_10px_rgba(0,0,0,0.65)]">
           &ldquo;Write something. Future me will smile.&rdquo;
         </h2>
 
@@ -124,7 +127,7 @@ export default function GuestbookSection() {
               d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
               fill="none"
             />
-            <text className="text-[9.5px] uppercase tracking-[3.8px] fill-amber-500/80 font-mono font-medium">
+            <text className="text-[9.5px] uppercase tracking-[3.8px] fill-white/85 font-mono font-medium drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]">
               <textPath href="#circlePath">
                 think • design • execute •
               </textPath>
