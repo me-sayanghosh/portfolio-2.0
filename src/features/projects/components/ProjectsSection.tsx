@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { projectsData } from '../data/projectsData';
@@ -12,25 +12,6 @@ interface ProjectsSectionProps {
 
 export default function ProjectsSection({ onOpenHireModal }: ProjectsSectionProps) {
   const router = useRouter();
-  const [selectedTag, setSelectedTag] = useState<string>('All');
-
-  // Extract unique categories
-  const categories = useMemo(() => {
-    const tags = new Set<string>();
-    tags.add('All');
-    projectsData.forEach((p) => {
-      if (p.tag) tags.add(p.tag);
-    });
-    return Array.from(tags);
-  }, []);
-
-  // Filtered projects
-  const filteredProjects = useMemo(() => {
-    if (selectedTag === 'All') return projectsData;
-    return projectsData.filter(
-      (p) => p.tag?.toLowerCase() === selectedTag.toLowerCase()
-    );
-  }, [selectedTag]);
 
   // Dynamic gradient styling for category badge (matching thatdevguy.in)
   const getTagGradient = (tag: string) => {
@@ -87,32 +68,11 @@ export default function ProjectsSection({ onOpenHireModal }: ProjectsSectionProp
         <p className="text-xs sm:text-sm md:text-base text-neutral-600 dark:text-gray-400 max-w-2xl leading-relaxed font-sans">
           Web apps, AI tools, Scalable Products and open-source software built by Sayan Ghosh.
         </p>
-
-        {/* Category Filter Pills */}
-        <div className="flex flex-wrap items-center gap-2 mt-3 pt-2">
-          {categories.map((category) => {
-            const isActive = selectedTag === category;
-            return (
-              <button
-                key={category}
-                type="button"
-                onClick={() => setSelectedTag(category)}
-                className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-200 cursor-pointer ${
-                  isActive
-                    ? 'bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 shadow-sm'
-                    : 'bg-neutral-100 dark:bg-white/[0.04] text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-200 dark:hover:bg-white/[0.08] border border-black/5 dark:border-white/10'
-                }`}
-              >
-                {category === 'All' ? 'All Projects' : category}
-              </button>
-            );
-          })}
-        </div>
       </header>
 
       {/* Projects Grid: 3-column squircle layout matching thatdevguy.in */}
       <section aria-label="Project list" className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 mb-16">
-        {filteredProjects.map((project, index) => (
+        {projectsData.map((project, index) => (
           <article key={project.id} className="h-full">
             <Link
               href={`/projects/${project.id}`}
