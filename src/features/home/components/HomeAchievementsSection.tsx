@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useModal } from '../../../context/ModalContext';
+import BlurFade, { BLUR_FADE_DELAY } from '../../../components/ui/blur-fade';
 
 export default function HomeAchievementsSection() {
   const { openHackathonModal } = useModal();
@@ -29,35 +30,38 @@ export default function HomeAchievementsSection() {
     <section className="py-6 max-w-4xl mx-auto px-4 sm:px-6">
       
       {/* Title with Bricolage Grotesque Font */}
-      <h2
-        className="font-bricolage text-3xl sm:text-4xl font-bold text-white mb-6 tracking-tight"
-        style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
-      >
-        Achievements <span className="text-amber-500">.</span>
-      </h2>
+      <BlurFade delay={BLUR_FADE_DELAY * 17}>
+        <h2
+          className="font-bricolage text-3xl sm:text-4xl font-bold text-white mb-6 tracking-tight"
+          style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+        >
+          Achievements <span className="text-amber-500">.</span>
+        </h2>
+      </BlurFade>
 
       {/* Achievements List matching Experience Section Design */}
       <div className="space-y-6">
-        {achievements.map((ach) => (
-          <motion.div
-            key={ach.id}
-            id={ach.id}
-            whileHover={{ x: 10 }}
-            transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-            onClick={() => {
-              if (ach.id === 'gfg-hackfest') {
-                openHackathonModal();
-              }
-            }}
-            className={`space-y-1 group ${ach.id === 'gfg-hackfest' ? 'cursor-pointer' : ''}`}
-          >
-            <h3 className="text-base sm:text-lg font-bold text-white tracking-tight group-hover:text-amber-400 transition-colors">
-              {ach.title}
-            </h3>
-            <p className="text-xs sm:text-sm text-gray-400 font-sans">
-              {ach.event}
-            </p>
-          </motion.div>
+        {achievements.map((ach, index) => (
+          <BlurFade key={ach.id} delay={BLUR_FADE_DELAY * 18 + index * 0.05}>
+            <motion.div
+              id={ach.id}
+              whileHover={{ x: 10 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+              onClick={() => {
+                if (ach.id === 'gfg-hackfest') {
+                  openHackathonModal();
+                }
+              }}
+              className={`space-y-1 group ${ach.id === 'gfg-hackfest' ? 'cursor-pointer' : ''}`}
+            >
+              <h3 className="text-base sm:text-lg font-bold text-white tracking-tight group-hover:text-amber-400 transition-colors">
+                {ach.title}
+              </h3>
+              <p className="text-xs sm:text-sm text-gray-400 font-sans">
+                {ach.event}
+              </p>
+            </motion.div>
+          </BlurFade>
         ))}
       </div>
 

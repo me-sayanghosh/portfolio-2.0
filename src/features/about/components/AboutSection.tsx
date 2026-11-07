@@ -7,6 +7,7 @@ import AboutMeBanner from './AboutMeBanner';
 import AboutCollageSection from './AboutCollageSection';
 import DirectionAwareAboutHero from '@/src/components/ui/direction-aware-selection';
 import AboutBentoAndCommitsSection from './AboutBentoAndCommitsSection';
+import BlurFade, { BLUR_FADE_DELAY } from '@/src/components/ui/blur-fade';
 
 export default function AboutSection({ onOpenResume }: { onOpenResume?: () => void }) {
   const router = useRouter();
@@ -38,74 +39,90 @@ export default function AboutSection({ onOpenResume }: { onOpenResume?: () => vo
     <div className="pt-3 sm:pt-24 pb-16 max-w-4xl mx-auto px-4 sm:px-6">
       
       {/* Breadcrumb Navigation */}
-      <div className="flex items-center space-x-2 text-xs sm:text-sm text-gray-400 mb-2.5 font-sans">
-        <span
-          onClick={() => router.push('/')}
-          className="hover:text-white cursor-pointer transition-colors"
-        >
-          Home
-        </span>
-        <span>/</span>
-        <span className="text-white font-medium">About</span>
-      </div>
+      <BlurFade delay={BLUR_FADE_DELAY * 1}>
+        <div className="flex items-center space-x-2 text-xs sm:text-sm text-gray-400 mb-2.5 font-sans">
+          <span
+            onClick={() => router.push('/')}
+            className="hover:text-white cursor-pointer transition-colors"
+          >
+            Home
+          </span>
+          <span>/</span>
+          <span className="text-white font-medium">About</span>
+        </div>
+      </BlurFade>
 
       <div className="space-y-6">
         {/* 1. Top Banner — "a lil bit about me!!" */}
-        <AboutMeBanner />
+        <BlurFade delay={BLUR_FADE_DELAY * 2}>
+          <AboutMeBanner />
+        </BlurFade>
 
-      {/* 2. Interactive Animated Collage Grid Section */}
-      <AboutCollageSection onOpenResume={onOpenResume} />
+        {/* 2. Interactive Animated Collage Grid Section */}
+        <BlurFade delay={BLUR_FADE_DELAY * 3}>
+          <AboutCollageSection onOpenResume={onOpenResume} />
+        </BlurFade>
 
-      {/* 3. Bio Section: Large First Paragraph + Small Highlighted Community/Hackathon Paragraphs */}
-      <div className="space-y-6 pt-2">
-        {/* Paragraph 1: Direction Aware Selection Micro-interaction */}
-        <DirectionAwareAboutHero
-          color="#3074FE"
-          showSize={true}
-          bounce={0.15}
-          hint="hover here"
-        />
+        {/* 3. Bio Section: Large First Paragraph + Small Highlighted Community/Hackathon Paragraphs */}
+        <BlurFade delay={BLUR_FADE_DELAY * 4}>
+          <div className="space-y-6 pt-2">
+            {/* Paragraph 1: Direction Aware Selection Micro-interaction */}
+            <DirectionAwareAboutHero
+              color="#3074FE"
+              showSize={true}
+              bounce={0.15}
+              hint="hover here"
+            />
 
-        {/* Paragraph 2 & 3: Small Text Style with Orange Highlights */}
-        <div className="space-y-3 text-sm sm:text-base font-normal text-neutral-600 dark:text-gray-300 leading-relaxed tracking-normal">
-          <p>
-            Beyond coding, <span className="text-orange-500 dark:text-orange-400 font-semibold">I love communities and open source</span>. I was part of DevDotCom, a tech community of 2K+ members, and contribute to open-source projects whenever I can.
-          </p>
-          <p>
-            I'm also a hackathon enthusiast, Finalist of <span className="text-orange-500 dark:text-orange-400 font-semibold">HackFest 2K26</span>. Always down to talk tech, debate an API structure, System Design, or team up on the next build.
-          </p>
+            {/* Paragraph 2 & 3: Small Text Style with Orange Highlights */}
+            <div className="space-y-3 text-sm sm:text-base font-normal text-neutral-600 dark:text-gray-300 leading-relaxed tracking-normal">
+              <p>
+                Beyond coding, <span className="text-orange-500 dark:text-orange-400 font-semibold">I love communities and open source</span>. I was part of DevDotCom, a tech community of 2K+ members, and contribute to open-source projects whenever I can.
+              </p>
+              <p>
+                I'm also a hackathon enthusiast, Finalist of <span className="text-orange-500 dark:text-orange-400 font-semibold">HackFest 2K26</span>. Always down to talk tech, debate an API structure, System Design, or team up on the next build.
+              </p>
+            </div>
+          </div>
+        </BlurFade>
+
+        {/* Bento Grid ("I'm here" + "Skills") & GitHub Heatmap ("Commits Over Claims .") */}
+        <BlurFade delay={BLUR_FADE_DELAY * 5}>
+          <AboutBentoAndCommitsSection />
+        </BlurFade>
+
+        {/* 4. 2-Column Story Sections */}
+        <div className="space-y-10 pt-6">
+          {stories.map((story, index) => (
+            <BlurFade key={index} delay={BLUR_FADE_DELAY * 6 + index * 0.04}>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-6 border-t border-neutral-200 dark:border-white/10">
+                <h3 className="text-lg font-bold text-neutral-900 dark:text-white md:col-span-1">
+                  {story.title}
+                </h3>
+                <p className="text-xs sm:text-sm text-neutral-600 dark:text-gray-300 leading-relaxed md:col-span-2">
+                  {story.body}
+                </p>
+              </div>
+            </BlurFade>
+          ))}
         </div>
-      </div>
 
-      {/* Bento Grid ("I'm here" + "Skills") & GitHub Heatmap ("Commits Over Claims .") */}
-      <AboutBentoAndCommitsSection />
-
-      {/* 4. 2-Column Story Sections */}
-      <div className="space-y-10 pt-6">
-        {stories.map((story, index) => (
-          <div key={index} className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-6 border-t border-neutral-200 dark:border-white/10">
-            <h3 className="text-lg font-bold text-neutral-900 dark:text-white md:col-span-1">
-              {story.title}
-            </h3>
-            <p className="text-xs sm:text-sm text-neutral-600 dark:text-gray-300 leading-relaxed md:col-span-2">
-              {story.body}
+        {/* 5. Cursive / Serif Section */}
+        <BlurFade delay={BLUR_FADE_DELAY * 7}>
+          <div className="py-12 text-center space-y-3">
+            <h2 className="text-6xl sm:text-8xl font-black font-serif italic text-neutral-900 dark:text-white tracking-tight">
+              Thank you
+            </h2>
+            <p className="text-lg sm:text-2xl font-serif text-neutral-600 dark:text-gray-300">
+              Looking forward to <span className="italic font-bold">Connect</span> with You!
             </p>
           </div>
-        ))}
-      </div>
+        </BlurFade>
 
-      {/* 5. Cursive / Serif Section */}
-      <div className="py-12 text-center space-y-3">
-        <h2 className="text-6xl sm:text-8xl font-black font-serif italic text-neutral-900 dark:text-white tracking-tight">
-          Thank you
-        </h2>
-        <p className="text-lg sm:text-2xl font-serif text-neutral-600 dark:text-gray-300">
-          Looking forward to <span className="italic font-bold">Connect</span> with You!
-        </p>
-      </div>
-
-      {/* Contact */}
-      <ContactAndSignature />
+        {/* Contact */}
+        <BlurFade delay={BLUR_FADE_DELAY * 8}>
+          <ContactAndSignature />
+        </BlurFade>
       </div>
 
     </div>

@@ -7,6 +7,7 @@ import { Trash2, Loader2, MessageSquare, Sparkles, X } from 'lucide-react';
 import GuestbookModal from './GuestbookModal';
 import { CloudShader } from '@/components/ui/cloud-shader';
 import { timeAgo } from '../../../lib/utils/timeAgo';
+import BlurFade, { BLUR_FADE_DELAY } from '../../../components/ui/blur-fade';
 
 interface Entry {
   _id: string;
@@ -106,75 +107,79 @@ export default function GuestbookSection() {
   return (
     <div className="space-y-8 mt-4">
       {/* ─── Artistic Quote Banner with Cloud Shader & Rotating Circular Badge ─── */}
-      <div className="keep-dark relative overflow-hidden rounded-2xl h-48 sm:h-60 border border-zinc-200/80 dark:border-white/10 shadow-xl flex items-center justify-center p-6 text-center select-none group">
-        {/* Aceternity Cloud Shader Background */}
-        <CloudShader className="absolute inset-0 w-full h-full min-h-0 pointer-events-none" speed={1} count={6} />
+      <BlurFade delay={BLUR_FADE_DELAY * 1}>
+        <div className="keep-dark relative overflow-hidden rounded-2xl h-48 sm:h-60 border border-zinc-200/80 dark:border-white/10 shadow-xl flex items-center justify-center p-6 text-center select-none group">
+          {/* Aceternity Cloud Shader Background */}
+          <CloudShader className="absolute inset-0 w-full h-full min-h-0 pointer-events-none" speed={1} count={6} />
 
-        {/* Subtle Overlay Vignette for Text Contrast & Depth */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-black/25 pointer-events-none" />
+          {/* Subtle Overlay Vignette for Text Contrast & Depth */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-black/25 pointer-events-none" />
 
-        {/* Centered Atmospheric Serif Quote */}
-        <h2 className="relative z-10 font-serif italic text-2xl sm:text-3xl md:text-4xl text-white tracking-tight max-w-lg leading-snug drop-shadow-[0_2px_10px_rgba(0,0,0,0.65)]">
-          &ldquo;Write something. Future me will smile.&rdquo;
-        </h2>
+          {/* Centered Atmospheric Serif Quote */}
+          <h2 className="relative z-10 font-serif italic text-2xl sm:text-3xl md:text-4xl text-white tracking-tight max-w-lg leading-snug drop-shadow-[0_2px_10px_rgba(0,0,0,0.65)]">
+            &ldquo;Write something. Future me will smile.&rdquo;
+          </h2>
 
-        {/* Rotating Circular Stamp Badge in Bottom Right Corner */}
-        <div className="absolute -bottom-7 -right-7 sm:-bottom-8 sm:-right-8 w-28 h-28 sm:w-32 sm:h-32 pointer-events-none z-10 flex items-center justify-center">
-          <svg
-            className="w-full h-full animate-[spin_14s_linear_infinite]"
-            viewBox="0 0 100 100"
-          >
-            <path
-              id="circlePath"
-              d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
-              fill="none"
-            />
-            <text className="text-[9.5px] uppercase tracking-[3.8px] fill-white/85 font-mono font-medium drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]">
-              <textPath href="#circlePath">
-                think • design • execute •
-              </textPath>
-            </text>
-          </svg>
+          {/* Rotating Circular Stamp Badge in Bottom Right Corner */}
+          <div className="absolute -bottom-7 -right-7 sm:-bottom-8 sm:-right-8 w-28 h-28 sm:w-32 sm:h-32 pointer-events-none z-10 flex items-center justify-center">
+            <svg
+              className="w-full h-full animate-[spin_14s_linear_infinite]"
+              viewBox="0 0 100 100"
+            >
+              <path
+                id="circlePath"
+                d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
+                fill="none"
+              />
+              <text className="text-[9.5px] uppercase tracking-[3.8px] fill-white/85 font-mono font-medium drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]">
+                <textPath href="#circlePath">
+                  think • design • execute •
+                </textPath>
+              </text>
+            </svg>
+          </div>
         </div>
-      </div>
+      </BlurFade>
 
       {/* ─── Auth Action Area: Sign In or Leave a message ─── */}
-      <div className="pt-1">
-        {status === 'loading' ? (
-          <div className="h-10 flex items-center gap-3 text-sm text-zinc-500">
-            <Loader2 className="w-4 h-4 animate-spin text-amber-500" />
-            <span>Checking authentication...</span>
-          </div>
-        ) : status !== 'authenticated' || !session ? (
-          /* Logged-out State: Sign in button */
-          <div className="flex items-center gap-3">
-            <button
-              type="button"
-              onClick={() => setIsSignInModalOpen(true)}
-              className="keep-dark px-4 py-1.5 rounded-lg border border-amber-600/70 bg-[#22160d] hover:bg-[#2c1d12] text-amber-500 font-medium text-xs sm:text-sm shadow-sm transition-colors cursor-pointer"
-            >
-              <span className="text-amber-500 font-medium">Sign in</span>
-            </button>
-            <span className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 font-sans font-medium">
-              To leave a message
-            </span>
-          </div>
-        ) : (
-          /* Logged-in State: Leave a message button */
-          <div className="flex items-center gap-3">
-            <button
-              type="button"
-              onClick={() => setIsMessageModalOpen(true)}
-              className="keep-dark px-4 py-1.5 rounded-lg border border-zinc-900 dark:border-zinc-700/80 bg-zinc-900 dark:bg-[#1e1e22] text-white hover:bg-zinc-800 dark:hover:bg-[#27272c] font-medium text-xs sm:text-sm shadow-sm transition-colors cursor-pointer"
-            >
-              <span className="text-white font-medium">Leave a message</span>
-            </button>
-            <span className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 font-sans font-medium">
-              for future visitors
-            </span>
-          </div>
-        )}
-      </div>
+      <BlurFade delay={BLUR_FADE_DELAY * 2}>
+        <div className="pt-1">
+          {status === 'loading' ? (
+            <div className="h-10 flex items-center gap-3 text-sm text-zinc-500">
+              <Loader2 className="w-4 h-4 animate-spin text-amber-500" />
+              <span>Checking authentication...</span>
+            </div>
+          ) : status !== 'authenticated' || !session ? (
+            /* Logged-out State: Sign in button */
+            <div className="flex items-center gap-3">
+              <button
+                type="button"
+                onClick={() => setIsSignInModalOpen(true)}
+                className="keep-dark px-4 py-1.5 rounded-lg border border-amber-600/70 bg-[#22160d] hover:bg-[#2c1d12] text-amber-500 font-medium text-xs sm:text-sm shadow-sm transition-colors cursor-pointer"
+              >
+                <span className="text-amber-500 font-medium">Sign in</span>
+              </button>
+              <span className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 font-sans font-medium">
+                To leave a message
+              </span>
+            </div>
+          ) : (
+            /* Logged-in State: Leave a message button */
+            <div className="flex items-center gap-3">
+              <button
+                type="button"
+                onClick={() => setIsMessageModalOpen(true)}
+                className="keep-dark px-4 py-1.5 rounded-lg border border-zinc-900 dark:border-zinc-700/80 bg-zinc-900 dark:bg-[#1e1e22] text-white hover:bg-zinc-800 dark:hover:bg-[#27272c] font-medium text-xs sm:text-sm shadow-sm transition-colors cursor-pointer"
+              >
+                <span className="text-white font-medium">Leave a message</span>
+              </button>
+              <span className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 font-sans font-medium">
+                for future visitors
+              </span>
+            </div>
+          )}
+        </div>
+      </BlurFade>
 
       {/* ─── Recent Messages List ─── */}
       <div className="space-y-6 mt-8 sm:mt-10">
