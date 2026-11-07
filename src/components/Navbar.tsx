@@ -114,7 +114,9 @@ export default function Navbar() {
 
                     {/* Layer 3: Top Flare Glow beneath Filament */}
                     <div
-                      className="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-[6px] pointer-events-none z-10"
+                      className={`absolute top-0 left-1/2 -translate-x-1/2 ${
+                        item.iconOnly ? "w-8" : "w-16"
+                      } h-[6px] pointer-events-none z-10`}
                       style={{
                         background:
                           "radial-gradient(ellipse at center top, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 75%)",
@@ -123,7 +125,9 @@ export default function Navbar() {
 
                     {/* Layer 4: Solid Crisp Lamp Bar with Neon Bloom */}
                     <div
-                      className="absolute top-0 left-1/2 -translate-x-1/2 w-7 h-[2px] bg-white rounded-full z-20 shadow-[0_0_8px_1.5px_rgba(255,255,255,1),0_0_16px_3px_rgba(255,255,255,0.55)]"
+                      className={`absolute top-0 left-1/2 -translate-x-1/2 ${
+                        item.iconOnly ? "w-[22px]" : "w-7"
+                      } h-[2px] bg-white rounded-full z-20 shadow-[0_0_8px_1.5px_rgba(255,255,255,1),0_0_16px_3px_rgba(255,255,255,0.55)]`}
                     />
                   </motion.div>
                 )}
