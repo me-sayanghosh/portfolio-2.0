@@ -21,7 +21,7 @@ export default function ConnectSection() {
     <section className="pt-10 sm:pt-14 pb-4">
       {/* ─── Compact Heading: Connect. ─── */}
       <h2
-        className="text-3xl sm:text-[38px] font-normal text-white tracking-tight"
+        className="text-3xl sm:text-[38px] font-normal text-zinc-900 dark:text-white tracking-tight"
         style={{ fontFamily: "'Newsreader', 'Playfair Display', Georgia, serif" }}
       >
         Connect<span className="text-amber-500">.</span>
@@ -35,10 +35,10 @@ export default function ConnectSection() {
             href={link.href}
             target={link.label === 'Email' ? undefined : '_blank'}
             rel={link.label === 'Email' ? undefined : 'noopener noreferrer'}
-            className="group inline-flex items-center gap-1 px-3.5 py-1.5 rounded-full bg-[#18181b] hover:bg-[#27272a] border border-white/10 hover:border-white/20 text-xs font-normal text-neutral-300 hover:text-white transition-all duration-200 cursor-pointer shadow-sm"
+            className="group inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-zinc-100 hover:bg-zinc-200/80 dark:bg-[#18181b] dark:hover:bg-[#27272a] border border-zinc-200 hover:border-zinc-300 dark:border-white/10 dark:hover:border-white/20 text-xs font-medium text-zinc-700 hover:text-zinc-950 dark:text-neutral-300 dark:hover:text-white transition-all duration-200 cursor-pointer shadow-sm"
           >
             <span>{link.label}</span>
-            <ArrowUpRight className="w-3 h-3 text-neutral-400 group-hover:text-white transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0" />
+            <ArrowUpRight className="w-3.5 h-3.5 text-zinc-500 group-hover:text-zinc-900 dark:text-neutral-400 dark:group-hover:text-white transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0" />
           </a>
         ))}
       </div>
