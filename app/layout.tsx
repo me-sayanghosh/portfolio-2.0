@@ -39,6 +39,7 @@ const urbanist = Urbanist({
 });
 
 export const metadata = {
+  metadataBase: new URL('https://thesayan.vercel.app'),
   title: 'Sayan Ghosh | Full-Stack & AI Engineer Portfolio',
   description: 'Personal portfolio of Sayan Ghosh — Full-Stack Developer, AI Enthusiast, and Open-Source Builder based in Kalyani, West Bengal.',
   manifest: '/manifest.json',
