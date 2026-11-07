@@ -13,29 +13,24 @@ import { rootJsonLd } from '../src/lib/jsonLd';
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
   variable: '--font-sans',
   display: 'swap',
 });
 
 const bricolageGrotesque = Bricolage_Grotesque({
   subsets: ['latin'],
-  weight: ['700', '800'],
   variable: '--font-bricolage',
   display: 'swap',
 });
 
 const newsreader = Newsreader({
   subsets: ['latin'],
-  weight: ['400', '500', '600'],
-  style: ['normal', 'italic'],
   variable: '--font-serif',
   display: 'swap',
 });
 
 const urbanist = Urbanist({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
   variable: '--font-urbanist',
   display: 'swap',
 });
