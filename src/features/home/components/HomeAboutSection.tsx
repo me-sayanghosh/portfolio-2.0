@@ -207,6 +207,10 @@ export default function HomeAboutSection() {
               <img
                 src={tech.iconUrl}
                 alt={tech.name}
+                width={18}
+                height={18}
+                loading="lazy"
+                decoding="async"
                 className="w-4 h-4 sm:w-4.5 sm:h-4.5 object-contain filter grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:scale-110"
               />
               <span className="text-xs sm:text-sm font-medium text-gray-300 group-hover:text-white transition-colors">

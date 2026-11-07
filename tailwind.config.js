@@ -21,12 +21,12 @@ export default {
         }
       },
       fontFamily: {
-        sans: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
-        serif: ['"Newsreader"', '"Playfair Display"', 'Georgia', 'serif'],
-        display: ['"Bricolage Grotesque"', 'sans-serif'],
-        bricolage: ['"Bricolage Grotesque"', 'sans-serif'],
+        sans: ['var(--font-sans)', '"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
+        serif: ['var(--font-serif)', '"Newsreader"', '"Playfair Display"', 'Georgia', 'serif'],
+        display: ['var(--font-bricolage)', '"Bricolage Grotesque"', 'sans-serif'],
+        bricolage: ['var(--font-bricolage)', '"Bricolage Grotesque"', 'sans-serif'],
         helvetica: ['"Helvetica Neue"', 'Helvetica', 'Arial', 'sans-serif'],
-        urbanist: ['"Urbanist"', 'sans-serif'],
+        urbanist: ['var(--font-urbanist)', '"Urbanist"', 'sans-serif'],
         mono: ['monospace']
       },
       boxShadow: {

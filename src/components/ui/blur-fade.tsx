@@ -34,8 +34,8 @@ export default function BlurFade({
   const isInView = !inView || inViewResult;
 
   const defaultVariants: Variants = {
-    hidden: { y: yOffset, opacity: 0, filter: `blur(${blur})` },
-    visible: { y: 0, opacity: 1, filter: 'blur(0px)' },
+    hidden: { y: yOffset, opacity: 0 },
+    visible: { y: 0, opacity: 1 },
   };
 
   const combinedVariants = variant || defaultVariants;
@@ -48,11 +48,11 @@ export default function BlurFade({
       exit="hidden"
       variants={combinedVariants}
       transition={{
-        delay: 0.04 + delay,
+        delay: 0.02 + delay,
         duration,
-        ease: [0.16, 1, 0.3, 1], // Matches thatdevguy.in easeOutExpo curve
+        ease: [0.16, 1, 0.3, 1],
       }}
-      className={className}
+      className={`transform-gpu ${className || ''}`}
     >
       {children}
     </motion.div>

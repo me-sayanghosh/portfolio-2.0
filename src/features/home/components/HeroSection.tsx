@@ -37,6 +37,9 @@ export default function HeroSection({
             <img
               src="/assets/Cat.webp"
               alt="Grumpy Cat"
+              width={270}
+              height={210}
+              decoding="async"
               className="h-full w-full object-cover object-right"
             />
           </div>
@@ -66,6 +69,9 @@ export default function HeroSection({
             <img
               src="/assets/profile-avatar.webp"
               alt="Sayan Ghosh"
+              width={96}
+              height={96}
+              decoding="async"
               className="w-full h-full object-cover object-[center_15%]"
             />
           </div>
