@@ -172,8 +172,7 @@ export default function HomeAboutSection() {
       {/* Intro Paragraph 1 & 2 */}
       <BlurFade delay={BLUR_FADE_DELAY * 5}>
         <p className="text-xs sm:text-sm text-gray-300 leading-relaxed mb-3 font-sans">
-          <span className="wave-on-hover mr-1.5 inline-block text-base cursor-default select-none">👋</span>
-          A Final-year student who spends most days building full-stack products. Recently built{' '}
+          A Final-year student spends most days building full-stack products. Recently built{' '}
           <TextLinkPreview
             href="https://osci.osconnect.org/"
             text="OSConnect"

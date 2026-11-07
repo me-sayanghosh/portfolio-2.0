@@ -21,7 +21,7 @@ export function ModalProvider({ children }: { children: React.ReactNode }) {
   const [isHackathonModalOpen, setIsHackathonModalOpen] = useState(false);
 
   const openResume = () => {
-    window.open('/SayanResume.pdf', '_blank');
+    window.open('https://drive.google.com/file/d/1GhAigb1WHr6OWLokCNuCMpiZ2e2W_ZA5/view?usp=sharing', '_blank');
   };
 
   return (
