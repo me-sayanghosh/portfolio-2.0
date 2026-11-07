@@ -1,15 +1,17 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { Briefcase } from 'lucide-react';
+import { Briefcase, ArrowRight } from 'lucide-react';
 import { experiencesData } from '../../experience/data/experiencesData';
 
 export default function HomeExperienceSection() {
   const router = useRouter();
 
-  const featuredExperiences = experiencesData.slice(0, 3);
+  // Show only top 2 experiences on the home page
+  const featuredExperiences = experiencesData.slice(0, 2);
 
   return (
     <section className="py-6 max-w-4xl mx-auto px-4 sm:px-6">
@@ -61,13 +63,14 @@ export default function HomeExperienceSection() {
       </div>
 
       {/* View All Experience Button */}
-      <div className="flex justify-center mt-7">
-        <button
-          onClick={() => router.push('/experience')}
-          className="px-7 py-2.5 rounded-full border border-white/20 bg-[#181818] hover:bg-neutral-800 text-white font-medium text-xs sm:text-sm shadow-md transition-all active:scale-95 cursor-pointer"
+      <div className="flex justify-center mt-6">
+        <Link
+          href="/experience"
+          className="px-6 py-2.5 rounded-full border border-white/20 bg-[#181818] hover:bg-neutral-800 text-white font-medium text-xs sm:text-sm shadow-md transition-all active:scale-95 cursor-pointer flex items-center space-x-2 group"
         >
-          View All Experience
-        </button>
+          <span>View All Experience</span>
+          <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+        </Link>
       </div>
 
     </section>

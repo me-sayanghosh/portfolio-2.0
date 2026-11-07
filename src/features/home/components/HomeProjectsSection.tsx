@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { ArrowRight } from 'lucide-react';
 import { projectsData } from '../../projects/data/projectsData';
@@ -8,60 +9,71 @@ import { projectsData } from '../../projects/data/projectsData';
 export default function HomeProjectsSection() {
   const router = useRouter();
 
-  const featuredProjects = projectsData.slice(0, 4);
+  // Show top featured projects on the home page
+  const featuredProjects = projectsData.slice(0, 3);
 
   return (
     <section className="py-6 max-w-4xl mx-auto px-4 sm:px-6">
-      
       {/* Title with Bricolage Grotesque Font */}
       <h2
-        className="font-bricolage text-3xl sm:text-4xl font-bold text-white mb-6 tracking-tight"
+        className="font-bricolage text-3xl sm:text-4xl font-bold text-neutral-900 dark:text-white mb-6 tracking-tight"
         style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
       >
         Projects <span className="text-amber-500">.</span>
       </h2>
 
-      {/* Optimized Smooth Projects List */}
-      <div className="space-y-3.5 mb-8">
+      {/* Optimized Smooth Projects List (Matching thatdevguy.in layout) */}
+      <div className="space-y-3 mb-8">
         {featuredProjects.map((project) => (
-          <div
+          <Link
             key={project.id}
-            onClick={() => router.push(`/projects/${project.id}`)}
-            className="group bg-[#222222] border border-[#333333] hover:border-white/20 hover:bg-[#2a2a2a] rounded-2xl p-4 sm:p-5 flex items-center space-x-4 transition-colors duration-200 cursor-pointer shadow-md"
+            href={`/projects/${project.id}`}
+            className="group p-2.5 sm:p-3 transition-all duration-300 rounded-2xl bg-neutral-100/60 dark:bg-white/[0.03] hover:bg-neutral-200/60 dark:hover:bg-white/[0.06] flex items-center gap-3 sm:gap-4 border border-black/5 dark:border-white/10 hover:border-black/15 dark:hover:border-white/20 w-full shadow-xs hover:shadow-md cursor-pointer"
           >
-            {/* Custom App Logo with Hardware-Accelerated Smooth Hover Pop-up */}
-            <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-black flex items-center justify-center border border-white/10 flex-shrink-0 overflow-hidden transform-gpu group-hover:scale-110 transition-transform duration-300 ease-out shadow-sm">
-              <img
-                src={project.logoImg}
-                alt={project.title}
-                className="w-full h-full object-cover"
-              />
+            {/* Custom App Logo / Icon */}
+            <div className="w-11 h-11 sm:w-13 sm:h-13 rounded-xl bg-neutral-200 dark:bg-neutral-800 flex items-center justify-center border border-black/10 dark:border-white/10 flex-shrink-0 overflow-hidden transform-gpu group-hover:scale-105 transition-transform duration-300 ease-out shadow-xs">
+              {project.logoImg ? (
+                <img
+                  src={project.logoImg}
+                  alt={project.title}
+                  className="w-full h-full object-contain p-1"
+                />
+              ) : (
+                <span className="text-xl sm:text-2xl">{project.icon}</span>
+              )}
             </div>
 
             {/* Project Details */}
             <div className="flex-1 min-w-0">
-              <h3 className="text-base sm:text-lg font-bold text-white tracking-tight transition-colors duration-200">
-                {project.title}
-              </h3>
-              <p className="text-xs sm:text-sm text-gray-400 font-sans truncate">
+              <div className="flex items-center gap-2">
+                <h3 className="text-sm sm:text-base font-bold text-neutral-900 dark:text-white group-hover:text-amber-500 dark:group-hover:text-amber-400 tracking-tight transition-colors duration-200 truncate">
+                  {project.title}
+                </h3>
+                <span className="px-2 py-0.5 rounded-full text-[10px] font-medium border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 text-neutral-600 dark:text-neutral-400 shrink-0">
+                  {project.tag}
+                </span>
+              </div>
+              <p className="text-xs sm:text-sm text-neutral-500 dark:text-gray-400 font-sans truncate mt-0.5">
                 {project.subtitle}
               </p>
             </div>
-          </div>
+
+            {/* Subtle Right Arrow */}
+            <ArrowRight className="w-4 h-4 text-neutral-400 group-hover:text-amber-500 group-hover:translate-x-1 transition-all mr-1 sm:mr-2 shrink-0" />
+          </Link>
         ))}
       </div>
 
-      {/* see more cool stuff Button */}
+      {/* View All Projects Button */}
       <div className="flex justify-center mt-6">
-        <button
-          onClick={() => router.push('/projects')}
-          className="px-6 py-2.5 rounded-full border border-white/30 bg-[#222222] hover:bg-white/15 text-white font-semibold text-xs sm:text-sm shadow-lg transition-all active:scale-95 cursor-pointer flex items-center space-x-2"
+        <Link
+          href="/projects"
+          className="px-6 py-2.5 rounded-full border border-black/10 dark:border-white/20 bg-neutral-900 dark:bg-[#181818] hover:bg-neutral-800 dark:hover:bg-neutral-800 text-white font-medium text-xs sm:text-sm shadow-md transition-all active:scale-95 cursor-pointer flex items-center space-x-2 group"
         >
-          <span>see more cool stuff</span>
-          <ArrowRight className="w-4 h-4" />
-        </button>
+          <span>View All Projects</span>
+          <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+        </Link>
       </div>
-
     </section>
   );
 }
