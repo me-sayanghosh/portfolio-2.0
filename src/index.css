@@ -2,10 +2,38 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --background: #fafafa;
+  --foreground: #09090b;
+  --card: #ffffff;
+  --card-foreground: #09090b;
+  --border: #e4e4e7;
+  --muted: #f4f4f5;
+  --muted-foreground: #71717a;
+  --accent: #f4f4f5;
+}
+
+.dark {
+  --background: #121212;
+  --foreground: #fafafa;
+  --card: #18181b;
+  --card-foreground: #fafafa;
+  --border: rgba(255, 255, 255, 0.1);
+  --muted: #27272a;
+  --muted-foreground: #9f9fa9;
+  --accent: #27272a;
+}
+
 @layer base {
   body {
     font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
-    background-color: #171717;
+    background-color: #fafafa;
+    color: #09090b;
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+
+  .dark body {
+    background-color: #121212;
     color: #e2e8f0;
   }
 }
@@ -16,16 +44,143 @@
 }
 
 ::-webkit-scrollbar-track {
+  background: #f4f4f5;
+}
+
+.dark ::-webkit-scrollbar-track {
   background: #171717;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #2b2b2b;
+  background: #d4d4d8;
   border-radius: 4px;
 }
 
+.dark ::-webkit-scrollbar-thumb {
+  background: #2b2b2b;
+}
+
 ::-webkit-scrollbar-thumb:hover {
+  background: #a1a1aa;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
   background: #3a3a3a;
+}
+
+/* Smooth Light Mode Color System (Matching thatdevguy.in) */
+html:not(.dark) body {
+  background-color: #fafafa !important;
+  color: #09090b !important;
+}
+
+/* Cards & Section Containers in Light Mode */
+html:not(.dark) .bg-\[\#0D0F15\],
+html:not(.dark) .bg-\[\#0D0F17\],
+html:not(.dark) .bg-\[\#0C0F17\],
+html:not(.dark) .bg-\[\#141414\],
+html:not(.dark) .bg-\[\#18181b\],
+html:not(.dark) .bg-\[\#181818\],
+html:not(.dark) .bg-\[\#181818\]\/90,
+html:not(.dark) .bg-\[\#161616\],
+html:not(.dark) .bg-\[\#17110d\],
+html:not(.dark) .bg-\[\#1D1D1D\],
+html:not(.dark) .bg-\[\#030303\]:not(.keep-dark) {
+  background-color: #ffffff !important;
+  border-color: #e4e4e7 !important;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Card Hover States in Light Mode */
+html:not(.dark) .hover\:bg-\[\#221a14\]:hover,
+html:not(.dark) .hover\:bg-\[\#1f1f1f\]:hover,
+html:not(.dark) .hover\:bg-\[\#2a2a2a\]:hover,
+html:not(.dark) .hover\:bg-\[\#202020\]:hover,
+html:not(.dark) .hover\:bg-neutral-800:hover {
+  background-color: #f8fafc !important;
+  border-color: #cbd5e1 !important;
+}
+
+/* Tech Pills & Secondary Boxes in Light Mode */
+html:not(.dark) .bg-\[\#222222\]:not(.keep-dark),
+html:not(.dark) .bg-\[\#1a1a1a\]:not(.keep-dark),
+html:not(.dark) .bg-\[\#1f1f1f\]:not(.keep-dark),
+html:not(.dark) .bg-\[\#262626\]:not(.keep-dark),
+html:not(.dark) .bg-\[\#2a2a2a\]:not(.keep-dark),
+html:not(.dark) .bg-\[\#242424\]:not(.keep-dark),
+html:not(.dark) .bg-\[\#111111\]:not(.keep-dark),
+html:not(.dark) .bg-\[\#1b1b1b\]:not(.keep-dark) {
+  background-color: #f4f4f5 !important;
+  border-color: #e4e4e7 !important;
+  color: #18181b !important;
+}
+
+/* Tag Badges on Cards */
+html:not(.dark) .bg-black\/60 {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  color: #18181b !important;
+  border-color: #e4e4e7 !important;
+}
+
+/* Typography Overrides in Light Mode */
+html:not(.dark) h1:not(.keep-dark),
+html:not(.dark) h2:not(.keep-dark),
+html:not(.dark) h3:not(.keep-dark),
+html:not(.dark) h4:not(.keep-dark) {
+  color: #09090b !important;
+}
+
+html:not(.dark) .text-white:not(.keep-dark):not(.resume-btn) {
+  color: #09090b !important;
+}
+
+html:not(.dark) .text-gray-100:not(.keep-dark) {
+  color: #18181b !important;
+}
+
+html:not(.dark) p.text-gray-200:not(.keep-dark),
+html:not(.dark) .text-gray-200:not(.keep-dark) {
+  color: #27272a !important;
+}
+
+html:not(.dark) p.text-gray-300:not(.keep-dark),
+html:not(.dark) p.text-gray-400:not(.keep-dark),
+html:not(.dark) span.text-gray-400:not(.keep-dark),
+html:not(.dark) span.text-neutral-400:not(.keep-dark),
+html:not(.dark) .text-gray-300:not(.keep-dark),
+html:not(.dark) .text-gray-400:not(.keep-dark) {
+  color: #52525b !important;
+}
+
+/* Signature image in light mode */
+html:not(.dark) img[src*="signature"] {
+  filter: invert(1);
+  mix-blend-mode: multiply !important;
+}
+
+/* Footer giant text in light mode */
+html:not(.dark) footer h1 {
+  color: #e4e4e7 !important;
+}
+
+html:not(.dark) footer h1:hover {
+  color: #09090b !important;
+}
+
+/* Resume button remains sharp black in light mode */
+html:not(.dark) .resume-btn {
+  background-color: #09090b !important;
+  color: #ffffff !important;
+  border-color: #27272a !important;
+}
+
+/* Borders in Light Mode */
+html:not(.dark) .border-white\/10:not(.keep-dark),
+html:not(.dark) .border-white\/15:not(.keep-dark),
+html:not(.dark) .border-white\/20:not(.keep-dark),
+html:not(.dark) .border-white\/30:not(.keep-dark),
+html:not(.dark) .border-\[\#333333\]:not(.keep-dark) {
+  border-color: #e4e4e7 !important;
 }
 
 

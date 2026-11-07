@@ -51,3 +51,9 @@ Thumbs.db
 
 # Raw uncompressed media source folders
 Gallery/
+
+# Test & Scratch files
+scratch/
+*.test.*
+*.spec.*
+
