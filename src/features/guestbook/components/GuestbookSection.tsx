@@ -183,9 +183,11 @@ export default function GuestbookSection() {
 
       {/* ─── Recent Messages List ─── */}
       <div className="space-y-6 mt-8 sm:mt-10">
-        <h2 className="text-2xl sm:text-3xl font-serif font-normal tracking-tight text-zinc-900 dark:text-zinc-200">
-          Recent Messages
-        </h2>
+        <BlurFade delay={BLUR_FADE_DELAY * 3}>
+          <h2 className="text-2xl sm:text-3xl font-serif font-normal tracking-tight text-zinc-900 dark:text-zinc-200">
+            Recent Messages
+          </h2>
+        </BlurFade>
 
         {isLoading ? (
           /* Loading Skeletons */
@@ -202,70 +204,74 @@ export default function GuestbookSection() {
           </div>
         ) : entries.length === 0 ? (
           /* Empty State */
-          <div className="p-8 text-center rounded-2xl border border-dashed border-zinc-300 dark:border-white/10 text-zinc-500 dark:text-zinc-400">
-            <MessageSquare className="w-8 h-8 mx-auto mb-2 text-zinc-400" />
-            <p className="text-sm font-medium">No messages yet.</p>
-            <p className="text-xs text-zinc-400 mt-1">Be the first to leave your mark!</p>
-          </div>
+          <BlurFade delay={BLUR_FADE_DELAY * 4}>
+            <div className="p-8 text-center rounded-2xl border border-dashed border-zinc-300 dark:border-white/10 text-zinc-500 dark:text-zinc-400">
+              <MessageSquare className="w-8 h-8 mx-auto mb-2 text-zinc-400" />
+              <p className="text-sm font-medium">No messages yet.</p>
+              <p className="text-xs text-zinc-400 mt-1">Be the first to leave your mark!</p>
+            </div>
+          </BlurFade>
         ) : (
           /* Messages List */
           <div className="divide-y divide-zinc-200 dark:divide-zinc-800/80">
-            {entries.map((entry) => {
+            {entries.map((entry, index) => {
               const isOwner =
                 session?.user?.email &&
                 entry.email &&
                 session.user.email.toLowerCase() === entry.email.toLowerCase();
 
               return (
-                <div key={entry._id} className="py-4 flex justify-between items-start gap-4 group">
-                  <div className="flex gap-3.5 sm:gap-4 flex-1 min-w-0">
-                    {/* User Avatar */}
-                    {entry.image ? (
-                      <img
-                        src={entry.image}
-                        alt={entry.name || 'User'}
-                        className="rounded-full w-10 h-10 object-cover shrink-0 ring-1 ring-zinc-300 dark:ring-white/15"
-                      />
-                    ) : (
-                      <div className="rounded-full w-10 h-10 bg-zinc-200 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 font-semibold text-sm flex items-center justify-center shrink-0">
-                        {entry.name?.[0]?.toUpperCase() || 'U'}
-                      </div>
-                    )}
-
-                    {/* Content */}
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2.5 flex-wrap">
-                        <span className="font-semibold text-sm text-zinc-900 dark:text-white">
-                          {entry.name}
-                        </span>
-                        <span className="text-xs text-zinc-500 dark:text-zinc-400 font-sans">
-                          {timeAgo(entry.createdAt)}
-                        </span>
-                      </div>
-                      <p className="mt-1.5 text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed break-words whitespace-pre-wrap">
-                        {entry.message}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Delete Button (Owner Only) */}
-                  {isOwner && (
-                    <button
-                      type="button"
-                      onClick={() => handleDelete(entry._id)}
-                      disabled={deletingId === entry._id}
-                      title="Delete your message"
-                      aria-label="Delete message"
-                      className="opacity-70 group-hover:opacity-100 p-1.5 text-zinc-400 hover:text-red-500 hover:bg-red-500/10 rounded-lg transition-all cursor-pointer shrink-0"
-                    >
-                      {deletingId === entry._id ? (
-                        <Loader2 className="w-4 h-4 animate-spin text-red-500" />
+                <BlurFade key={entry._id} delay={BLUR_FADE_DELAY * 3 + index * 0.04}>
+                  <div className="py-4 flex justify-between items-start gap-4 group hover:bg-white/[0.02] transition-colors rounded-lg px-2">
+                    <div className="flex gap-3.5 sm:gap-4 flex-1 min-w-0">
+                      {/* User Avatar */}
+                      {entry.image ? (
+                        <img
+                          src={entry.image}
+                          alt={entry.name || 'User'}
+                          className="rounded-full w-10 h-10 object-cover shrink-0 ring-1 ring-zinc-300 dark:ring-white/15"
+                        />
                       ) : (
-                        <Trash2 className="w-4 h-4" />
+                        <div className="rounded-full w-10 h-10 bg-zinc-200 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 font-semibold text-sm flex items-center justify-center shrink-0">
+                          {entry.name?.[0]?.toUpperCase() || 'U'}
+                        </div>
                       )}
-                    </button>
-                  )}
-                </div>
+
+                      {/* Content */}
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2.5 flex-wrap">
+                          <span className="font-semibold text-sm text-zinc-900 dark:text-white">
+                            {entry.name}
+                          </span>
+                          <span className="text-xs text-zinc-500 dark:text-zinc-400 font-sans">
+                            {timeAgo(entry.createdAt)}
+                          </span>
+                        </div>
+                        <p className="mt-1.5 text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed break-words whitespace-pre-wrap">
+                          {entry.message}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Delete Button (Owner Only) */}
+                    {isOwner && (
+                      <button
+                        type="button"
+                        onClick={() => handleDelete(entry._id)}
+                        disabled={deletingId === entry._id}
+                        title="Delete your message"
+                        aria-label="Delete message"
+                        className="opacity-70 group-hover:opacity-100 p-1.5 text-zinc-400 hover:text-red-500 hover:bg-red-500/10 rounded-lg transition-all cursor-pointer shrink-0"
+                      >
+                        {deletingId === entry._id ? (
+                          <Loader2 className="w-4 h-4 animate-spin text-red-500" />
+                        ) : (
+                          <Trash2 className="w-4 h-4" />
+                        )}
+                      </button>
+                    )}
+                  </div>
+                </BlurFade>
               );
             })}
           </div>
