@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { ContactAndSignature } from '../../contact';
 import AboutMeBanner from './AboutMeBanner';
 import AboutCollageSection from './AboutCollageSection';
+import DirectionAwareAboutHero from '@/src/components/ui/direction-aware-selection';
 
 export default function AboutSection({ onOpenHireModal, onOpenResume }) {
   const router = useRouter();
@@ -56,10 +57,13 @@ export default function AboutSection({ onOpenHireModal, onOpenResume }) {
 
       {/* 3. Bio Section: Large First Paragraph + Small Highlighted Community/Hackathon Paragraphs */}
       <div className="space-y-6 pt-2">
-        {/* Paragraph 1: Original Large Text Size */}
-        <p className="text-xl sm:text-2xl md:text-3xl font-extrabold text-gray-100 leading-snug tracking-tight">
-          I'm a developer and builder from India who learns by doing — I dive into problems first and check the docs later. Years of corporate experience? Not yet. A track record of shipping live, full-stack products that solve real problems? Absolutely. From backend systems to AI-powered apps, I enjoy building things that work and scale, especially on the backend, where the hard problems live.
-        </p>
+        {/* Paragraph 1: Direction Aware Selection Micro-interaction */}
+        <DirectionAwareAboutHero
+          color="#3074FE"
+          showSize={true}
+          bounce={0.15}
+          hint="hover here"
+        />
 
         {/* Paragraph 2 & 3: Small Text Style with Orange Highlights */}
         <div className="space-y-3 text-sm sm:text-base font-normal text-gray-300 leading-relaxed tracking-normal">
