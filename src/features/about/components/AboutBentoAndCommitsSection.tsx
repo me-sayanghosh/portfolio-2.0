@@ -439,13 +439,13 @@ export default function AboutBentoAndCommitsSection() {
       {/* ─── ROW 2: "Commits Over Claims ." WITH GITHUB HEATMAP ──────────── */}
       <section className="space-y-4">
         {/* Title & Dynamic Year Switcher */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+        <div className="flex items-center justify-between gap-3">
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-normal tracking-tight text-neutral-900 dark:text-white flex items-baseline gap-1">
             Commits Over Claims<span className="text-amber-500">.</span>
           </h2>
 
-          {/* Interactive Year Selector */}
-          <div className="flex items-center gap-1 bg-neutral-100 dark:bg-white/[0.04] p-1 rounded-xl border border-black/5 dark:border-white/10 self-start sm:self-auto">
+          {/* Interactive Year Selector (Hidden on mobile) */}
+          <div className="hidden sm:flex items-center gap-0.5 bg-neutral-100 dark:bg-white/[0.04] p-0.5 rounded-lg border border-black/5 dark:border-white/10">
             {[
               { id: 'last', label: 'Last Year' },
               { id: '2026', label: '2026' },
@@ -455,7 +455,7 @@ export default function AboutBentoAndCommitsSection() {
                 key={y.id}
                 type="button"
                 onClick={() => setSelectedYear(y.id)}
-                className={`px-3 py-1 rounded-lg text-xs font-medium transition-all duration-200 cursor-pointer ${
+                className={`px-2.5 py-0.5 rounded-md text-[11px] font-medium transition-all duration-200 cursor-pointer ${
                   selectedYear === y.id
                     ? 'bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white shadow-xs font-semibold'
                     : 'text-neutral-500 hover:text-neutral-900 dark:hover:text-white'
