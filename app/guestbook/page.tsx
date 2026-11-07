@@ -4,6 +4,7 @@ import React from 'react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { GuestbookSection } from '../../src/features/guestbook';
+import { ConnectSection } from '../../src/features/contact';
 
 export default function GuestbookPage() {
   const router = useRouter();
@@ -44,6 +45,9 @@ export default function GuestbookPage() {
 
       {/* Guestbook Section (MongoDB + Google OAuth + Responsive UI) */}
       <GuestbookSection />
+
+      {/* Connect Section with Social Pills */}
+      <ConnectSection />
     </motion.div>
   );
 }
