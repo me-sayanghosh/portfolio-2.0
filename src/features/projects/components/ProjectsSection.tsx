@@ -36,7 +36,7 @@ export default function ProjectsSection({ onOpenHireModal }: ProjectsSectionProp
   };
 
   return (
-    <section className="pt-3 sm:pt-24 pb-16 max-w-5xl mx-auto px-4 sm:px-6">
+    <section className="pt-3 sm:pt-24 pb-16 max-w-4xl mx-auto px-4 sm:px-6">
       {/* Breadcrumb Navigation (Exact thatdevguy.in pattern) */}
       <nav aria-label="Breadcrumb" className="text-xs sm:text-sm text-neutral-500 dark:text-gray-400 mb-3 sm:mb-4 font-sans">
         <ol className="flex items-center gap-1.5">
