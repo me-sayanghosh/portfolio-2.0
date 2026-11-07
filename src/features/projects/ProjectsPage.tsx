@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import ProjectsSection from './components/ProjectsSection';
 
-export default function ProjectsPage({ onOpenHireModal }) {
+export default function ProjectsPage() {
   return (
     <motion.div
       key="projects-page"
@@ -11,7 +11,7 @@ export default function ProjectsPage({ onOpenHireModal }) {
       exit={{ opacity: 0, y: -15 }}
       transition={{ duration: 0.35, ease: 'easeInOut' }}
     >
-      <ProjectsSection onOpenHireModal={onOpenHireModal} />
+      <ProjectsSection />
     </motion.div>
   );
 }

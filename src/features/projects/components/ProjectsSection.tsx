@@ -6,11 +6,7 @@ import { useRouter } from 'next/navigation';
 import { projectsData } from '../data/projectsData';
 import { ContactAndSignature } from '../../contact';
 
-interface ProjectsSectionProps {
-  onOpenHireModal?: () => void;
-}
-
-export default function ProjectsSection({ onOpenHireModal }: ProjectsSectionProps) {
+export default function ProjectsSection() {
   const router = useRouter();
 
   // Dynamic gradient styling for category badge (matching thatdevguy.in)

@@ -8,7 +8,7 @@ import AboutCollageSection from './AboutCollageSection';
 import DirectionAwareAboutHero from '@/src/components/ui/direction-aware-selection';
 import AboutBentoAndCommitsSection from './AboutBentoAndCommitsSection';
 
-export default function AboutSection({ onOpenHireModal, onOpenResume }) {
+export default function AboutSection({ onOpenResume }: { onOpenResume?: () => void }) {
   const router = useRouter();
 
   const stories = [

@@ -9,11 +9,9 @@ import { ImagesBadge } from '../../../components/ui/images-badge';
 export default function HeroSection({
   onOpenResume,
   onOpenHackathonModal,
-  onOpenHireModal,
 }: {
   onOpenResume?: () => void;
   onOpenHackathonModal?: () => void;
-  onOpenHireModal?: () => void;
 }) {
   const router = useRouter();
   const [isAvatarModalOpen, setIsAvatarModalOpen] = useState(false);
@@ -25,14 +23,12 @@ export default function HeroSection({
       <div className="keep-dark bg-[#000000] border border-black/15 rounded-2xl relative overflow-hidden h-[180px] sm:h-[210px] shadow-2xl flex items-center justify-center">
         
         {/* Top-Right "Open for new projects" Badge */}
-        <button
-          onClick={onOpenHireModal}
-          className="keep-dark absolute top-2.5 right-2.5 sm:top-4 sm:right-4 z-20 flex items-center space-x-1.5 sm:space-x-2 px-2.5 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-[#222222]/90 hover:bg-[#2c2c2c] backdrop-blur-sm border border-white/10 hover:border-emerald-500/50 text-[10px] sm:text-xs font-medium text-white/80 hover:text-white shadow-md cursor-pointer transition-all active:scale-95"
-          title="Click to hire or get in touch"
+        <div
+          className="keep-dark absolute top-2.5 right-2.5 sm:top-4 sm:right-4 z-20 flex items-center space-x-1.5 sm:space-x-2 px-2.5 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-[#222222]/90 backdrop-blur-sm border border-white/10 text-[10px] sm:text-xs font-medium text-white/80 shadow-md select-none"
         >
           <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-emerald-300 animate-pulse shadow-[0_0_8px_#10b981]" />
-          <span className="keep-dark text-white/80 hover:text-white">Open for new projects</span>
-        </button>
+          <span className="keep-dark text-white/80">Open for new projects</span>
+        </div>
 
         {/* Large Grumpy White Cat Image filling full right side of black banner */}
         <div className="absolute right-0 top-0 bottom-0 w-[180px] xs:w-[220px] sm:w-[270px] pointer-events-none overflow-hidden rounded-r-2xl flex items-center justify-end opacity-80 sm:opacity-100">
