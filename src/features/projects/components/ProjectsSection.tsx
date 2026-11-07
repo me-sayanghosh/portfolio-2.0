@@ -1,91 +1,190 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useMemo } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { projectsData } from '../data/projectsData';
 import { ContactAndSignature } from '../../contact';
 
-export default function ProjectsSection({ onOpenHireModal }) {
+interface ProjectsSectionProps {
+  onOpenHireModal?: () => void;
+}
+
+export default function ProjectsSection({ onOpenHireModal }: ProjectsSectionProps) {
   const router = useRouter();
+  const [selectedTag, setSelectedTag] = useState<string>('All');
+
+  // Extract unique categories
+  const categories = useMemo(() => {
+    const tags = new Set<string>();
+    tags.add('All');
+    projectsData.forEach((p) => {
+      if (p.tag) tags.add(p.tag);
+    });
+    return Array.from(tags);
+  }, []);
+
+  // Filtered projects
+  const filteredProjects = useMemo(() => {
+    if (selectedTag === 'All') return projectsData;
+    return projectsData.filter(
+      (p) => p.tag?.toLowerCase() === selectedTag.toLowerCase()
+    );
+  }, [selectedTag]);
+
+  // Dynamic gradient styling for category badge (matching thatdevguy.in)
+  const getTagGradient = (tag: string) => {
+    const normalized = (tag || '').toLowerCase();
+    if (normalized.includes('web') || normalized.includes('fullstack')) {
+      return 'bg-gradient-to-r from-violet-600 to-violet-800 text-white';
+    }
+    if (
+      normalized.includes('tool') ||
+      normalized.includes('dev') ||
+      normalized.includes('ai')
+    ) {
+      return 'bg-gradient-to-r from-blue-600 to-indigo-700 text-white';
+    }
+    if (normalized.includes('analytics') || normalized.includes('data')) {
+      return 'bg-gradient-to-r from-slate-600 to-slate-800 text-white';
+    }
+    if (normalized.includes('game')) {
+      return 'bg-gradient-to-r from-emerald-600 to-teal-700 text-white';
+    }
+    return 'bg-gradient-to-r from-amber-600 to-amber-800 text-white';
+  };
 
   return (
-    <section className="pt-3 sm:pt-24 pb-16 max-w-4xl mx-auto px-4 sm:px-6">
-      {/* Breadcrumb Navigation */}
-      <div className="flex items-center space-x-2 text-xs sm:text-sm text-gray-400 mb-2.5 font-sans">
-        <span
-          onClick={() => router.push('/')}
-          className="hover:text-white cursor-pointer transition-colors"
-        >
-          Home
-        </span>
-        <span>/</span>
-        <span className="text-white font-medium">Projects</span>
-      </div>
+    <section className="pt-3 sm:pt-24 pb-16 max-w-5xl mx-auto px-4 sm:px-6">
+      {/* Breadcrumb Navigation (Exact thatdevguy.in pattern) */}
+      <nav aria-label="Breadcrumb" className="text-xs sm:text-sm text-neutral-500 dark:text-gray-400 mb-3 sm:mb-4 font-sans">
+        <ol className="flex items-center gap-1.5">
+          <li>
+            <Link
+              href="/"
+              className="hover:text-neutral-900 dark:hover:text-white transition-colors"
+            >
+              Home
+            </Link>
+          </li>
+          <li aria-hidden="true" className="text-neutral-400 dark:text-neutral-600">
+            /
+          </li>
+          <li aria-current="page" className="text-neutral-900 dark:text-white font-medium">
+            Projects
+          </li>
+        </ol>
+      </nav>
 
-      {/* Page Title & Description */}
-      <div className="mb-6 sm:mb-8">
+      {/* Header Block */}
+      <header className="flex flex-col gap-2 mb-6 sm:mb-8">
         <h1
-          className="font-bricolage text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight mb-2 sm:mb-2.5"
+          className="font-bricolage text-3xl sm:text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white tracking-tight"
           style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
         >
-          Projects<span className="text-amber-500">.</span>
+          Projects<span className="text-amber-500 ml-0.5">.</span>
         </h1>
-        <p className="text-xs sm:text-sm md:text-base text-gray-400 max-w-2xl leading-relaxed font-sans">
+        <p className="text-xs sm:text-sm md:text-base text-neutral-600 dark:text-gray-400 max-w-2xl leading-relaxed font-sans">
           Web apps, AI tools, Scalable Products and open-source software built by Sayan Ghosh.
         </p>
-      </div>
 
-      {/* 3-Column Projects Grid - Handcrafted Modern Design */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-16">
-        {projectsData.map((project) => (
-          <div
-            key={project.id}
-            onClick={() => router.push(`/projects/${project.id}`)}
-            className="group cursor-pointer bg-[#17110d] hover:bg-[#221a14] border border-white/10 hover:border-white/20 rounded-2xl p-3.5 sm:p-4 flex flex-col justify-between transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-amber-500/5 hover:-translate-y-1 transform-gpu"
-          >
-            {/* Top Preview Image Showcase */}
-            <div>
-              <div className="relative w-full aspect-[16/10] rounded-xl overflow-hidden mb-3.5 bg-[#242424] border border-white/10">
-                <img
-                  src={project.bannerImg}
-                  alt={project.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent pointer-events-none" />
+        {/* Category Filter Pills */}
+        <div className="flex flex-wrap items-center gap-2 mt-3 pt-2">
+          {categories.map((category) => {
+            const isActive = selectedTag === category;
+            return (
+              <button
+                key={category}
+                type="button"
+                onClick={() => setSelectedTag(category)}
+                className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-200 cursor-pointer ${
+                  isActive
+                    ? 'bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 shadow-sm'
+                    : 'bg-neutral-100 dark:bg-white/[0.04] text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-200 dark:hover:bg-white/[0.08] border border-black/5 dark:border-white/10'
+                }`}
+              >
+                {category === 'All' ? 'All Projects' : category}
+              </button>
+            );
+          })}
+        </div>
+      </header>
 
-                {/* Top-Left Category Tag Badge */}
-                <div className="absolute top-2.5 left-2.5 z-10">
-                  <span
-                    className={`px-2.5 py-0.5 rounded-full text-[10px] sm:text-[11px] font-medium tracking-tight shadow-md backdrop-blur-md ${
-                      project.tagBg || 'bg-black/60 text-gray-200 border border-white/15'
-                    }`}
-                  >
-                    {project.tag}
-                  </span>
+      {/* Projects Grid: 3-column squircle layout matching thatdevguy.in */}
+      <section aria-label="Project list" className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 mb-16">
+        {filteredProjects.map((project, index) => (
+          <article key={project.id} className="h-full">
+            <Link
+              href={`/projects/${project.id}`}
+              aria-label={`Open project ${project.title}`}
+              className="group block h-full focus:outline-none"
+            >
+              {/* Outer Squircle Card */}
+              <div
+                className="bf group relative overflow-hidden rounded-[48px] sm:rounded-[60px] group-hover:rounded-2xl transition-all duration-300 squircle bg-neutral-100/60 dark:bg-white/[0.03] hover:bg-neutral-200/60 dark:hover:bg-white/[0.06] border border-black/[0.08] dark:border-white/[0.08] hover:border-black/20 dark:hover:border-white/20 p-2 sm:p-2.5 h-full w-full flex flex-col justify-between shadow-xs hover:shadow-xl hover:shadow-amber-500/5 hover:-translate-y-0.5 transform-gpu"
+                style={{
+                  '--bf-delay': `${Math.min(index * 0.05, 0.4)}s`,
+                  '--bf-dur': '0.4s',
+                  '--bf-blur': '6px',
+                  '--bf-t0': 'translateY(35px)',
+                  '--bf-t1': 'translateY(0px)',
+                } as React.CSSProperties}
+              >
+                {/* Media Thumbnail Container with Nested Squircle Corners */}
+                <div className="relative aspect-video overflow-hidden rounded-[40px] sm:rounded-[52px] group-hover:rounded-xl transition-all duration-300 squircle border border-black/5 dark:border-white/5 bg-neutral-900/40">
+                  <img
+                    src={project.bannerImg}
+                    alt={`${project.title} — preview screenshot`}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent pointer-events-none" />
+
+                  {/* Top-Left Category Tag Badge */}
+                  <div className="absolute top-2.5 left-2.5 z-10">
+                    <span
+                      className={`inline-flex items-center rounded-md border border-white/20 px-2.5 py-0.5 text-[11px] sm:text-xs font-semibold shadow-md backdrop-blur-md ${getTagGradient(
+                        project.tag
+                      )}`}
+                    >
+                      {project.tag}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Content Details Area */}
+                <div className="p-3.5 sm:p-4 flex-1 flex flex-col justify-start">
+                  <div className="flex items-center gap-2.5 mb-1.5">
+                    {/* Small App Logo / Icon */}
+                    <div className="relative h-6 w-6 sm:h-7 sm:w-7 shrink-0 overflow-hidden rounded-xl bg-neutral-200 dark:bg-neutral-800/90 border border-black/10 dark:border-white/10 flex items-center justify-center shadow-xs">
+                      {project.logoImg ? (
+                        <img
+                          src={project.logoImg}
+                          alt={`${project.title} logo`}
+                          className="w-full h-full object-contain p-0.5"
+                        />
+                      ) : (
+                        <span className="text-xs sm:text-sm">{project.icon}</span>
+                      )}
+                    </div>
+
+                    {/* Project Title */}
+                    <h2 className="font-bricolage text-lg sm:text-xl font-bold tracking-tight text-neutral-900 dark:text-white group-hover:text-amber-500 dark:group-hover:text-amber-400 transition-colors line-clamp-1">
+                      {project.title}
+                    </h2>
+                  </div>
+
+                  {/* Project Subtitle */}
+                  <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 font-sans leading-relaxed line-clamp-2 px-0.5">
+                    {project.subtitle}
+                  </p>
                 </div>
               </div>
-
-              {/* Title & Icon Header */}
-              <div className="flex items-center justify-between px-0.5 mb-1">
-                <div className="flex items-center space-x-2 min-w-0">
-                  <span className="text-lg sm:text-xl flex-shrink-0">
-                    {project.icon}
-                  </span>
-                  <h3 className="font-bricolage text-base sm:text-lg font-bold text-white group-hover:text-amber-400 transition-colors tracking-tight line-clamp-1">
-                    {project.title}
-                  </h3>
-                </div>
-              </div>
-
-              {/* Short Subtitle Description */}
-              <p className="text-xs sm:text-sm text-gray-400 leading-relaxed font-sans line-clamp-2 px-0.5 mt-1">
-                {project.subtitle}
-              </p>
-            </div>
-          </div>
+            </Link>
+          </article>
         ))}
-      </div>
+      </section>
 
+      {/* Footer Contact & Signature Section */}
       <ContactAndSignature />
     </section>
   );

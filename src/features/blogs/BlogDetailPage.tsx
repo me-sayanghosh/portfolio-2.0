@@ -18,6 +18,38 @@ interface BlogDetailPageProps {
   blogId?: string;
 }
 
+function renderFormattedText(text: string) {
+  const parts: React.ReactNode[] = [];
+  const regex = /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g;
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+
+  while ((match = regex.exec(text)) !== null) {
+    if (match.index > lastIndex) {
+      parts.push(text.slice(lastIndex, match.index));
+    }
+    const label = match[1];
+    const url = match[2];
+    parts.push(
+      <a
+        key={`${match.index}-${url}`}
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-amber-400 hover:text-amber-300 underline underline-offset-2 transition-colors cursor-pointer"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {label}
+      </a>
+    );
+    lastIndex = regex.lastIndex;
+  }
+  if (lastIndex < text.length) {
+    parts.push(text.slice(lastIndex));
+  }
+  return parts.length > 0 ? parts : text;
+}
+
 export default function BlogDetailPage({ blogId }: BlogDetailPageProps) {
   const params = useParams();
   const router = useRouter();
@@ -170,7 +202,7 @@ export default function BlogDetailPage({ blogId }: BlogDetailPageProps) {
             {/* Section Body */}
             {section.body && (
               <p className="text-gray-300 leading-relaxed text-xs sm:text-base whitespace-pre-line">
-                {section.body}
+                {renderFormattedText(section.body)}
               </p>
             )}
 
@@ -179,7 +211,7 @@ export default function BlogDetailPage({ blogId }: BlogDetailPageProps) {
               <ul className="space-y-1.5 sm:space-y-2 pl-4 sm:pl-5 list-disc text-gray-300 marker:text-amber-500 text-xs sm:text-base">
                 {section.bullets.map((bullet, bIdx) => (
                   <li key={bIdx} className="leading-relaxed">
-                    {bullet}
+                    {renderFormattedText(bullet)}
                   </li>
                 ))}
               </ul>
@@ -188,7 +220,7 @@ export default function BlogDetailPage({ blogId }: BlogDetailPageProps) {
             {/* Callout quote box if any */}
             {section.callout && (
               <div className="p-3.5 sm:p-5 rounded-xl bg-amber-500/5 border-l-4 border-amber-500 my-3 sm:my-4 text-amber-200/90 text-xs sm:text-sm italic shadow-inner leading-relaxed">
-                {section.callout}
+                {renderFormattedText(section.callout)}
               </div>
             )}
 

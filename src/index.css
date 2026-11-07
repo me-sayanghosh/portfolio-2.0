@@ -271,3 +271,37 @@ html.lenis, html.lenis body {
   }
 }
 
+/* Squircle smooth geometry transition (Matching thatdevguy.in) */
+.squircle {
+  corner-shape: squircle;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.squircle:hover,
+.group:hover .squircle {
+  corner-shape: round;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Staggered Blur-Fade Animation (Matching thatdevguy.in) */
+.bf {
+  opacity: 1;
+  filter: blur(0px);
+  transform: var(--bf-t1, translateY(0));
+  animation: bf-in var(--bf-dur, 0.4s) ease-out var(--bf-delay, 40ms) backwards;
+}
+
+@keyframes bf-in {
+  0% {
+    opacity: 0;
+    filter: blur(var(--bf-blur, 6px));
+    transform: var(--bf-t0, translateY(35px));
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0px);
+    transform: var(--bf-t1, translateY(0));
+  }
+}
+
+

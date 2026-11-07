@@ -20,7 +20,7 @@ export default function HomeBlogSection() {
 
       {/* Editorial Divided Blog Feed Matching Requested Style */}
       <div className="divide-y divide-white/10 border-t border-b border-white/10 mb-6">
-        {blogsData.slice(0, 4).map((blog) => (
+        {blogsData.slice(0, 5).map((blog) => (
           <div
             key={blog.id}
             onClick={() => router.push(`/blogs/${blog.id}`)}
