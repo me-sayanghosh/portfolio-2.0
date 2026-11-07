@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname, useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
@@ -37,7 +38,7 @@ export default function Navbar() {
 
   useEffect(() => {
     setMounted(true);
-    const activeEl = navContainerRef.current?.querySelector<HTMLButtonElement>('[data-active="true"]');
+    const activeEl = navContainerRef.current?.querySelector<HTMLElement>('[data-active="true"]');
     if (activeEl) {
       setSpotlight({
         left: activeEl.offsetLeft,
@@ -67,7 +68,7 @@ export default function Navbar() {
     return pathname === path || (path !== "/" && pathname.startsWith(path));
   };
 
-  const handleNavClick = (path: string, el?: HTMLButtonElement) => {
+  const handleNavClick = (path: string, el?: HTMLElement) => {
     if (el) {
       setSpotlight({
         left: el.offsetLeft,
@@ -76,7 +77,6 @@ export default function Navbar() {
       });
     }
     setIsMobileMenuOpen(false);
-    router.push(path);
   };
 
   return (
@@ -153,8 +153,9 @@ export default function Navbar() {
               const Icon = item.icon;
 
               return (
-                <button
+                <Link
                   key={item.id}
+                  href={item.path}
                   data-active={active}
                   onClick={(e) => handleNavClick(item.path, e.currentTarget)}
                   title={item.label}
@@ -184,7 +185,7 @@ export default function Navbar() {
                       {item.label}
                     </span>
                   )}
-                </button>
+                </Link>
               );
             })}
           </div>
@@ -299,7 +300,7 @@ export default function Navbar() {
                     const Icon = item.icon;
 
                     return (
-                      <motion.button
+                      <motion.div
                         key={item.id}
                         initial={{ opacity: 0, y: -4 }}
                         animate={{
@@ -311,42 +312,46 @@ export default function Navbar() {
                             ease: [0.25, 1, 0.5, 1],
                           },
                         }}
-                        onClick={() => handleNavClick(item.path)}
-                        className={`relative flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl text-left transition-all duration-150 cursor-pointer select-none w-full active:scale-[0.99] overflow-hidden ${
-                          active
-                            ? "bg-zinc-100 border border-zinc-300 text-zinc-950 font-medium shadow-sm dark:bg-[#1e1e22] dark:border-white/20 dark:text-white dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.25)]"
-                            : "text-zinc-600 hover:text-black hover:bg-zinc-100/70 dark:text-neutral-400 dark:hover:text-white dark:hover:bg-white/[0.04] active:bg-zinc-200/50 dark:active:bg-white/[0.06]"
-                        }`}
                       >
-                        {active && (
-                          <>
-                            <div
-                              className="absolute inset-0 pointer-events-none z-10"
-                              style={{
-                                background: isDark
-                                  ? "radial-gradient(ellipse 60% 85% at 50% 0%, rgba(255, 255, 255, 0.70) 0%, rgba(255, 255, 255, 0.22) 40%, transparent 85%)"
-                                  : "radial-gradient(ellipse 60% 85% at 50% 0%, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0.03) 40%, transparent 85%)",
-                              }}
-                            />
-                            <div
-                              className={`absolute top-0 left-1/2 -translate-x-1/2 w-12 h-[2px] rounded-full z-20 ${
-                                isDark
-                                  ? "bg-white shadow-[0_0_6px_1px_rgba(255,255,255,0.95)]"
-                                  : "bg-zinc-800 shadow-[0_0_4px_1px_rgba(0,0,0,0.25)]"
-                              }`}
-                            />
-                          </>
-                        )}
-                        <Icon
-                          className={`w-[19px] h-[19px] shrink-0 relative z-10 transition-colors ${
+                        <Link
+                          href={item.path}
+                          onClick={() => handleNavClick(item.path)}
+                          className={`relative flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl text-left transition-all duration-150 cursor-pointer select-none w-full active:scale-[0.99] overflow-hidden ${
                             active
-                              ? "text-zinc-950 dark:text-white"
-                              : "text-zinc-500 dark:text-neutral-400"
+                              ? "bg-zinc-100 border border-zinc-300 text-zinc-950 font-medium shadow-sm dark:bg-[#1e1e22] dark:border-white/20 dark:text-white dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.25)]"
+                              : "text-zinc-600 hover:text-black hover:bg-zinc-100/70 dark:text-neutral-400 dark:hover:text-white dark:hover:bg-white/[0.04] active:bg-zinc-200/50 dark:active:bg-white/[0.06]"
                           }`}
-                          strokeWidth={1.75}
-                        />
-                        <span className="text-[14.5px] font-medium tracking-tight relative z-10 drop-shadow-[0_1px_2px_rgba(0,0,0,0.4)]">{item.label}</span>
-                      </motion.button>
+                        >
+                          {active && (
+                            <>
+                              <div
+                                className="absolute inset-0 pointer-events-none z-10"
+                                style={{
+                                  background: isDark
+                                    ? "radial-gradient(ellipse 60% 85% at 50% 0%, rgba(255, 255, 255, 0.70) 0%, rgba(255, 255, 255, 0.22) 40%, transparent 85%)"
+                                    : "radial-gradient(ellipse 60% 85% at 50% 0%, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0.03) 40%, transparent 85%)",
+                                }}
+                              />
+                              <div
+                                className={`absolute top-0 left-1/2 -translate-x-1/2 w-12 h-[2px] rounded-full z-20 ${
+                                  isDark
+                                    ? "bg-white shadow-[0_0_6px_1px_rgba(255,255,255,0.95)]"
+                                    : "bg-zinc-800 shadow-[0_0_4px_1px_rgba(0,0,0,0.25)]"
+                                }`}
+                              />
+                            </>
+                          )}
+                          <Icon
+                            className={`w-[19px] h-[19px] shrink-0 relative z-10 transition-colors ${
+                              active
+                                ? "text-zinc-950 dark:text-white"
+                                : "text-zinc-500 dark:text-neutral-400"
+                            }`}
+                            strokeWidth={1.75}
+                          />
+                          <span className="text-[14.5px] font-medium tracking-tight relative z-10 drop-shadow-[0_1px_2px_rgba(0,0,0,0.4)]">{item.label}</span>
+                        </Link>
+                      </motion.div>
                     );
                   })}
                 </div>

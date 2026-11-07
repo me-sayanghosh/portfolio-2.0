@@ -6,6 +6,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://thesayan.vercel.app';
   const currentDate = new Date().toISOString();
 
+  const getSafeDate = (d?: string) => {
+    if (!d) return currentDate;
+    const parsed = new Date(d);
+    return isNaN(parsed.getTime()) ? currentDate : parsed.toISOString().slice(0, 10);
+  };
+
   // Core static pages
   const staticPages: MetadataRoute.Sitemap = [
     {
@@ -63,7 +69,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Dynamic blog post pages
   const blogPages: MetadataRoute.Sitemap = blogsData.map((blog) => ({
     url: `${baseUrl}/blogs/${blog.id}`,
-    lastModified: new Date(blog.date).toISOString().slice(0, 10) || currentDate,
+    lastModified: getSafeDate(blog.date),
     changeFrequency: 'monthly',
     priority: 0.8,
   }));

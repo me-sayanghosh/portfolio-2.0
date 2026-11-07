@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { BlogDetailPage } from '../../../src/features/blogs';
 import { blogsData } from '../../../src/features/blogs/data/blogsData';
+import { BASE_URL, buildBlogPostingSchema, buildBreadcrumbSchema, createGraphJsonLd } from '../../../src/lib/jsonLd';
 
 export async function generateStaticParams() {
   return blogsData.map((blog) => ({
@@ -23,24 +24,30 @@ export async function generateMetadata({
     };
   }
 
+  const parsedDate = new Date(blog.date);
+  const isoPublished = isNaN(parsedDate.getTime()) ? new Date().toISOString() : parsedDate.toISOString();
+
   return {
     title: blog.title,
     description: blog.excerpt,
-    keywords: [...blog.tags, 'Sayan Ghosh', 'Engineering Blog', 'Software Architecture'],
+    keywords: [...blog.tags, 'Sayan Ghosh', 'Engineering Blog', 'Software Architecture', 'Web Development'],
     alternates: {
-      canonical: `https://thesayan.vercel.app/blogs/${blog.id}`,
+      canonical: `${BASE_URL}/blogs/${blog.id}`,
     },
     openGraph: {
       title: `${blog.title} | Sayan Ghosh`,
       description: blog.excerpt,
-      url: `https://thesayan.vercel.app/blogs/${blog.id}`,
+      url: `${BASE_URL}/blogs/${blog.id}`,
       type: 'article',
-      publishedTime: blog.date,
+      publishedTime: isoPublished,
       authors: [blog.author.name],
       images: [
         {
-          url: blog.coverImage,
+          url: `/blogs/${blog.id}/opengraph-image`,
+          width: 1200,
+          height: 630,
           alt: blog.title,
+          type: 'image/png',
         },
       ],
     },
@@ -48,7 +55,7 @@ export async function generateMetadata({
       card: 'summary_large_image',
       title: blog.title,
       description: blog.excerpt,
-      images: [blog.coverImage],
+      images: [`/blogs/${blog.id}/opengraph-image`],
     },
   };
 }
@@ -65,32 +72,19 @@ export default async function BlogDetailRoute({
     notFound();
   }
 
-  const blogJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
-    headline: blog.title,
-    description: blog.excerpt,
-    datePublished: blog.date,
-    author: {
-      '@type': 'Person',
-      name: blog.author.name,
-      url: 'https://thesayan.vercel.app',
-    },
-    publisher: {
-      '@type': 'Person',
-      name: 'Sayan Ghosh',
-      url: 'https://thesayan.vercel.app',
-    },
-    image: `https://thesayan.vercel.app${blog.coverImage}`,
-    url: `https://thesayan.vercel.app/blogs/${blog.id}`,
-    keywords: blog.tags.join(', '),
-  };
+  const blogPosting = buildBlogPostingSchema(blog);
+  const breadcrumbs = buildBreadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Blogs', url: '/blogs' },
+    { name: blog.title, url: `/blogs/${blog.id}` },
+  ]);
+  const jsonLd = createGraphJsonLd(blogPosting, breadcrumbs);
 
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <BlogDetailPage blogId={id} />
     </>

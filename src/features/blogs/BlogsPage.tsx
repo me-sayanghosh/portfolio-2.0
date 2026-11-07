@@ -1,15 +1,13 @@
 'use client';
 
 import React from 'react';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { blogsData } from './data/blogsData';
 import { ContactAndSignature } from '../contact';
 import BlurFade, { BLUR_FADE_DELAY } from '../../components/ui/blur-fade';
 
 export default function BlogsPage() {
-  const router = useRouter();
-
   return (
     <motion.div
       key="blogs-page"
@@ -21,16 +19,20 @@ export default function BlogsPage() {
     >
       {/* Breadcrumb Navigation & Page Title */}
       <BlurFade delay={BLUR_FADE_DELAY * 1}>
-        <div className="flex items-center space-x-2 text-xs sm:text-sm text-gray-400 mb-2.5 font-sans">
-          <span
-            onClick={() => router.push('/')}
-            className="hover:text-white cursor-pointer transition-colors"
-          >
-            Home
-          </span>
-          <span>/</span>
-          <span className="text-white font-medium">Blogs</span>
-        </div>
+        <nav aria-label="Breadcrumb" className="mb-2.5">
+          <ol className="flex items-center space-x-2 text-xs sm:text-sm text-gray-400 font-sans">
+            <li>
+              <Link
+                href="/"
+                className="hover:text-white transition-colors"
+              >
+                Home
+              </Link>
+            </li>
+            <li aria-hidden="true">/</li>
+            <li aria-current="page" className="text-white font-medium">Blogs</li>
+          </ol>
+        </nav>
 
         <div className="mb-6 sm:mb-8">
           <h1
@@ -49,9 +51,9 @@ export default function BlogsPage() {
       <div className="divide-y divide-white/10 border-t border-b border-white/10 mb-14 sm:mb-16">
         {blogsData.map((blog, idx) => (
           <BlurFade key={blog.id} delay={BLUR_FADE_DELAY * 2 + idx * 0.04}>
-            <div
-              onClick={() => router.push(`/blogs/${blog.id}`)}
-              className="py-3.5 sm:py-4 px-2 sm:px-3 hover:bg-white/[0.03] active:bg-white/[0.06] transition-colors cursor-pointer group select-none rounded-md"
+            <Link
+              href={`/blogs/${blog.id}`}
+              className="block py-3.5 sm:py-4 px-2 sm:px-3 hover:bg-white/[0.03] active:bg-white/[0.06] transition-colors cursor-pointer group select-none rounded-md"
             >
               <h2 className="text-sm sm:text-base font-bold text-white group-hover:text-amber-400 group-active:text-amber-400 transition-colors tracking-tight leading-snug">
                 {blog.title}
@@ -59,7 +61,7 @@ export default function BlogsPage() {
               <p className="text-xs sm:text-sm text-gray-400 font-sans mt-1 line-clamp-1 sm:line-clamp-2 leading-relaxed">
                 {blog.excerpt}
               </p>
-            </div>
+            </Link>
           </BlurFade>
         ))}
       </div>

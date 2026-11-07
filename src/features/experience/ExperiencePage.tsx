@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, ChevronUp, Briefcase, Code2, Layers, Users } from 'lucide-react';
@@ -83,16 +84,20 @@ export default function ExperiencePage() {
     >
       {/* Breadcrumb Navigation & Page Header */}
       <BlurFade delay={BLUR_FADE_DELAY * 1}>
-        <div className="flex items-center space-x-2 text-xs sm:text-sm text-gray-400 mb-2.5 font-sans">
-          <span
-            onClick={() => router.push('/')}
-            className="hover:text-white cursor-pointer transition-colors"
-          >
-            Home
-          </span>
-          <span>/</span>
-          <span className="text-white font-medium">Experience</span>
-        </div>
+        <nav aria-label="Breadcrumb" className="mb-2.5">
+          <ol className="flex items-center space-x-2 text-xs sm:text-sm text-gray-400 font-sans">
+            <li>
+              <Link
+                href="/"
+                className="hover:text-white transition-colors"
+              >
+                Home
+              </Link>
+            </li>
+            <li aria-hidden="true">/</li>
+            <li aria-current="page" className="text-white font-medium">Experience</li>
+          </ol>
+        </nav>
 
         <div className="mb-6 sm:mb-8">
           <h1

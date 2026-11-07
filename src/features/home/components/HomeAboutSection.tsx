@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion';
@@ -223,13 +224,13 @@ export default function HomeAboutSection() {
       {/* More About Me Button */}
       <BlurFade delay={BLUR_FADE_DELAY * 7}>
         <div className="flex justify-center">
-          <button
-            onClick={() => router.push('/about')}
+          <Link
+            href="/about"
             className="px-6 py-2 rounded-full border border-white/30 bg-[#222222] hover:bg-white/15 text-white font-semibold text-xs sm:text-sm shadow-lg transition-all active:scale-95 cursor-pointer flex items-center space-x-2 group"
           >
             <span>More About Me</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </button>
+          </Link>
         </div>
       </BlurFade>
 

@@ -8,6 +8,11 @@ export default function robots(): MetadataRoute.Robots {
         allow: '/',
         disallow: ['/api/'],
       },
+      {
+        userAgent: ['Googlebot', 'Bingbot', 'Applebot', 'DuckDuckBot'],
+        allow: '/',
+        disallow: ['/api/'],
+      },
     ],
     sitemap: 'https://thesayan.vercel.app/sitemap.xml',
     host: 'https://thesayan.vercel.app',
