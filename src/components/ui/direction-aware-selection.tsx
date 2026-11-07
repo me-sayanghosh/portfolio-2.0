@@ -129,7 +129,7 @@ export function SelectionHint({
       initial={false}
       animate={{ opacity: hidden ? 0 : 1, y: hidden && !reduceMotion ? -4 : 0 }}
       transition={{ duration: 0.2, ease: 'easeOut' }}
-      className="pointer-events-none absolute bottom-[86%] left-[0.1em] flex items-start text-neutral-400 select-none z-30"
+      className="pointer-events-none absolute bottom-[86%] left-[0.1em] flex items-start text-neutral-500 dark:text-neutral-400 select-none z-30"
     >
       <svg
         viewBox="0 0 80 46"
@@ -161,7 +161,7 @@ export function SelectionHint({
         initial={!reduceMotion && { opacity: 0, rotate: -14, scale: 0.8 }}
         animate={{ opacity: 1, rotate: -8, scale: 1 }}
         transition={{ type: 'spring', bounce: 0.5, duration: 0.5, delay: 0.25 }}
-        className="-mt-[0.55em] ml-[0.1em] origin-bottom-left text-[0.72em] leading-none font-semibold tracking-normal whitespace-nowrap text-neutral-300"
+        className="-mt-[0.55em] ml-[0.1em] origin-bottom-left text-[0.72em] leading-none font-semibold tracking-normal whitespace-nowrap text-neutral-600 dark:text-neutral-300"
         style={{ fontFamily: "Caveat, 'Bradley Hand', 'Segoe Print', cursive" }}
       >
         {label}
@@ -285,7 +285,7 @@ export function DirectionAwareItem({
       }}
       onBlur={clearSelection}
       className={cn(
-        'relative inline-flex items-baseline gap-[0.25em] whitespace-nowrap text-white font-medium outline-none select-none cursor-pointer',
+        'relative inline-flex items-baseline gap-[0.25em] whitespace-nowrap text-neutral-900 dark:text-white font-medium outline-none select-none cursor-pointer',
         className
       )}
     >
@@ -557,7 +557,7 @@ export function DirectionAwareAboutHero({
   return (
     <p
       className={cn(
-        'max-w-3xl text-xl sm:text-2xl md:text-3xl font-medium tracking-tight text-neutral-400 dark:text-neutral-400 leading-snug sm:leading-snug md:leading-snug',
+        'max-w-3xl text-xl sm:text-2xl md:text-3xl font-medium tracking-tight text-neutral-600 dark:text-neutral-400 leading-snug sm:leading-snug md:leading-snug',
         className
       )}
     >

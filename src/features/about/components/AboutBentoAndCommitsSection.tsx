@@ -2,6 +2,7 @@
 
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
+import { useTheme } from 'next-themes';
 import createGlobe from 'cobe';
 import { MapPin, SquareDashed } from 'lucide-react';
 
@@ -147,9 +148,17 @@ const TECH_ROW_2 = [
 
 // ─── 2. LOCATION GLOBE COMPONENT (COBE) ──────────────────────────────────────
 function InteractiveLocationGlobe() {
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const pointerInteracting = useRef<number | null>(null);
   const pointerInteractionMovement = useRef(0);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const isDark = mounted ? resolvedTheme !== 'light' : true;
 
   useEffect(() => {
     let phi = 0.8;
@@ -172,13 +181,13 @@ function InteractiveLocationGlobe() {
       height: 700 * 2,
       phi: 0.8,
       theta: 0.28,
-      dark: 1,
+      dark: isDark ? 1 : 0,
       diffuse: 1.2,
       mapSamples: 16000,
-      mapBrightness: 4.8,
-      baseColor: [0.12, 0.12, 0.14],
-      markerColor: [1, 1, 1],
-      glowColor: [0.15, 0.15, 0.18],
+      mapBrightness: isDark ? 4.8 : 3.4,
+      baseColor: isDark ? [0.12, 0.12, 0.14] : [1, 1, 1],
+      markerColor: isDark ? [1, 1, 1] : [0.15, 0.15, 0.15],
+      glowColor: isDark ? [0.15, 0.15, 0.18] : [0.93, 0.93, 0.96],
       markers: [
         // Kolkata, India coordinates
         { location: [22.5726, 88.3639], size: 0.085 },
@@ -204,7 +213,7 @@ function InteractiveLocationGlobe() {
       globe.destroy();
       window.removeEventListener('resize', onResize);
     };
-  }, []);
+  }, [isDark]);
 
   return (
     <div
@@ -253,11 +262,11 @@ interface ContributionDay {
 }
 
 const COLOR_LEVELS = [
-  'bg-[#161b22] border border-white/[0.04]', // Level 0 (Empty)
-  'bg-[#0e4429]',                           // Level 1
-  'bg-[#006d32]',                           // Level 2
-  'bg-[#26a641]',                           // Level 3
-  'bg-[#39d353]',                           // Level 4 (High)
+  'bg-[#ebedf0] dark:bg-[#161b22] border border-neutral-300/40 dark:border-white/[0.04]', // Level 0 (Empty)
+  'bg-[#9be9a8] dark:bg-[#0e4429]',                                                      // Level 1
+  'bg-[#40c463] dark:bg-[#006d32]',                                                      // Level 2
+  'bg-[#30a14e] dark:bg-[#26a641]',                                                      // Level 3
+  'bg-[#216e39] dark:bg-[#39d353]',                                                      // Level 4 (High)
 ];
 
 // Fallback contribution data generator matching high density
@@ -396,14 +405,14 @@ export default function AboutBentoAndCommitsSection() {
       {/* ─── ROW 1: BENTO CARDS ("I'm here" + "Skills") ───────────────────── */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Card 1: "I'm here" with Cobe 3D Globe */}
-        <div className="relative overflow-hidden rounded-2xl bg-[#121212] border border-white/10 p-5 h-[230px] sm:h-[250px] flex flex-col justify-between group shadow-lg">
+        <div className="relative overflow-hidden rounded-2xl bg-white dark:bg-[#121212] border border-neutral-200/80 dark:border-white/10 p-5 h-[230px] sm:h-[250px] flex flex-col justify-between group shadow-[0_2px_12px_rgba(0,0,0,0.04)] dark:shadow-lg transition-colors">
           {/* Card Header */}
           <div className="relative z-10 flex flex-col">
-            <h3 className="font-bold tracking-tight text-white text-base sm:text-lg flex items-center gap-2">
-              <MapPin className="h-4 w-4 text-zinc-400" />
+            <h3 className="font-bold tracking-tight text-neutral-900 dark:text-white text-base sm:text-lg flex items-center gap-2">
+              <MapPin className="h-4 w-4 text-neutral-500 dark:text-zinc-400" />
               <span>I&apos;m here</span>
             </h3>
-            <p className="text-xs sm:text-sm text-neutral-400 font-sans mt-0.5">
+            <p className="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 font-sans mt-0.5">
               Kolkata, India
             </p>
           </div>
@@ -413,22 +422,22 @@ export default function AboutBentoAndCommitsSection() {
         </div>
 
         {/* Card 2: "Skills" with Scrolling Marquee Rows */}
-        <div className="relative overflow-hidden rounded-2xl bg-[#121212] border border-white/10 p-5 h-[230px] sm:h-[250px] flex flex-col justify-between group shadow-lg">
+        <div className="relative overflow-hidden rounded-2xl bg-white dark:bg-[#121212] border border-neutral-200/80 dark:border-white/10 p-5 h-[230px] sm:h-[250px] flex flex-col justify-between group shadow-[0_2px_12px_rgba(0,0,0,0.04)] dark:shadow-lg transition-colors">
           {/* Card Header */}
           <div className="relative z-10 flex flex-col mb-2">
-            <h3 className="font-bold tracking-tight text-white text-base sm:text-lg flex items-center gap-2">
+            <h3 className="font-bold tracking-tight text-neutral-900 dark:text-white text-base sm:text-lg flex items-center gap-2">
               <SquareDashed className="h-4 w-4 text-blue-500" />
               <span>Skills</span>
             </h3>
-            <p className="text-xs sm:text-sm text-neutral-400 font-sans mt-0.5">
+            <p className="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 font-sans mt-0.5">
               Ughh, that&apos;s not enough
             </p>
           </div>
 
           {/* Scrolling Marquee Rows */}
-          <div className="relative flex flex-col justify-center gap-4 py-2 overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_12%,white_88%,transparent)]">
+          <div className="relative flex flex-col justify-center gap-4 py-2 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]">
             {/* Row 1: Marquee Left */}
-            <div className="flex w-max gap-6 animate-[marquee_22s_linear_infinite] group-hover:[animation-play-state:paused] text-white/85">
+            <div className="flex w-max gap-6 animate-[marquee_22s_linear_infinite] group-hover:[animation-play-state:paused] text-neutral-800 dark:text-white/85 transition-colors">
               {[...TECH_ROW_1, ...TECH_ROW_1].map((tech, idx) => (
                 <div
                   key={`row1-${tech.name}-${idx}`}
@@ -440,7 +449,7 @@ export default function AboutBentoAndCommitsSection() {
             </div>
 
             {/* Row 2: Marquee Right */}
-            <div className="flex w-max gap-6 animate-[marquee_24s_linear_infinite_reverse] group-hover:[animation-play-state:paused] text-white/85">
+            <div className="flex w-max gap-6 animate-[marquee_24s_linear_infinite_reverse] group-hover:[animation-play-state:paused] text-neutral-800 dark:text-white/85 transition-colors">
               {[...TECH_ROW_2, ...TECH_ROW_2].map((tech, idx) => (
                 <div
                   key={`row2-${tech.name}-${idx}`}
@@ -457,7 +466,7 @@ export default function AboutBentoAndCommitsSection() {
       {/* ─── ROW 2: "Commits Over Claims ." WITH GITHUB HEATMAP ──────────── */}
       <section className="space-y-4">
         {/* Title */}
-        <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-normal tracking-tight text-white flex items-baseline gap-1">
+        <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-normal tracking-tight text-neutral-900 dark:text-white flex items-baseline gap-1">
           Commits Over Claims<span className="text-amber-500">.</span>
         </h2>
 
@@ -468,7 +477,7 @@ export default function AboutBentoAndCommitsSection() {
         >
           <div className="w-full min-w-[700px] flex flex-col gap-2">
             {/* Month Labels Aligned With Starting Columns */}
-            <div className="relative h-4 w-full select-none text-[11px] sm:text-xs text-neutral-400 font-sans font-medium">
+            <div className="relative h-4 w-full select-none text-[11px] sm:text-xs text-neutral-600 dark:text-neutral-400 font-sans font-medium">
               {monthLabels.map(({ month, colIndex }) => (
                 <span
                   key={`${month}-${colIndex}`}
@@ -515,13 +524,13 @@ export default function AboutBentoAndCommitsSection() {
             </div>
 
             {/* Footer Summary & Legend */}
-            <div className="flex items-center justify-between text-xs sm:text-[13px] font-sans pt-1 text-neutral-400 select-none w-full">
-              <span className="font-medium text-white/90">
+            <div className="flex items-center justify-between text-xs sm:text-[13px] font-sans pt-1 text-neutral-600 dark:text-neutral-400 select-none w-full">
+              <span className="font-medium text-neutral-900 dark:text-white/90">
                 {totalContributions.toLocaleString()} contributions in the last year
               </span>
 
               {/* Less / More Legend */}
-              <div className="flex items-center gap-1.5 text-xs text-neutral-400">
+              <div className="flex items-center gap-1.5 text-xs text-neutral-600 dark:text-neutral-400">
                 <span>Less</span>
                 {COLOR_LEVELS.map((cls, idx) => (
                   <span
@@ -546,7 +555,7 @@ export default function AboutBentoAndCommitsSection() {
 
             return (
               <div
-                className={`pointer-events-none fixed z-[9999] -translate-x-1/2 px-3 py-1.5 rounded-md bg-[#161b22] border border-white/20 text-neutral-200 text-xs font-sans shadow-2xl whitespace-nowrap transition-transform duration-75 ease-out ${
+                className={`pointer-events-none fixed z-[9999] -translate-x-1/2 px-3 py-1.5 rounded-md bg-neutral-900/95 dark:bg-[#161b22] border border-neutral-700/60 dark:border-white/20 text-neutral-200 text-xs font-sans shadow-2xl whitespace-nowrap transition-transform duration-75 ease-out ${
                   isFlipped ? 'translate-y-2' : '-translate-y-full'
                 }`}
                 style={{
@@ -567,7 +576,7 @@ export default function AboutBentoAndCommitsSection() {
 
                 {/* Arrow Indicator */}
                 <div
-                  className={`absolute w-2 h-2 rotate-45 bg-[#161b22] border-white/20 ${
+                  className={`absolute w-2 h-2 rotate-45 bg-neutral-900/95 dark:bg-[#161b22] border-neutral-700/60 dark:border-white/20 ${
                     isFlipped
                       ? '-top-1 border-l border-t'
                       : '-bottom-1 border-r border-b'

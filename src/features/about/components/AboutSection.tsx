@@ -67,12 +67,12 @@ export default function AboutSection({ onOpenHireModal, onOpenResume }) {
         />
 
         {/* Paragraph 2 & 3: Small Text Style with Orange Highlights */}
-        <div className="space-y-3 text-sm sm:text-base font-normal text-gray-300 leading-relaxed tracking-normal">
+        <div className="space-y-3 text-sm sm:text-base font-normal text-neutral-600 dark:text-gray-300 leading-relaxed tracking-normal">
           <p>
-            Beyond coding, <span className="text-orange-400 font-semibold">I love communities and open source</span>. I was part of DevDotCom, a tech community of 2K+ members, and contribute to open-source projects whenever I can.
+            Beyond coding, <span className="text-orange-500 dark:text-orange-400 font-semibold">I love communities and open source</span>. I was part of DevDotCom, a tech community of 2K+ members, and contribute to open-source projects whenever I can.
           </p>
           <p>
-            I'm also a hackathon enthusiast, Finalist of <span className="text-orange-400 font-semibold">HackFest 2K26</span>. Always down to talk tech, debate an API structure, System Design, or team up on the next build.
+            I'm also a hackathon enthusiast, Finalist of <span className="text-orange-500 dark:text-orange-400 font-semibold">HackFest 2K26</span>. Always down to talk tech, debate an API structure, System Design, or team up on the next build.
           </p>
         </div>
       </div>
@@ -83,11 +83,11 @@ export default function AboutSection({ onOpenHireModal, onOpenResume }) {
       {/* 4. 2-Column Story Sections */}
       <div className="space-y-10 pt-6">
         {stories.map((story, index) => (
-          <div key={index} className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-6 border-t border-white/10">
-            <h3 className="text-lg font-bold text-white md:col-span-1">
+          <div key={index} className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-6 border-t border-neutral-200 dark:border-white/10">
+            <h3 className="text-lg font-bold text-neutral-900 dark:text-white md:col-span-1">
               {story.title}
             </h3>
-            <p className="text-xs sm:text-sm text-gray-300 leading-relaxed md:col-span-2">
+            <p className="text-xs sm:text-sm text-neutral-600 dark:text-gray-300 leading-relaxed md:col-span-2">
               {story.body}
             </p>
           </div>
@@ -96,10 +96,10 @@ export default function AboutSection({ onOpenHireModal, onOpenResume }) {
 
       {/* 5. Cursive / Serif Section */}
       <div className="py-12 text-center space-y-3">
-        <h2 className="text-6xl sm:text-8xl font-black font-serif italic text-white tracking-tight">
+        <h2 className="text-6xl sm:text-8xl font-black font-serif italic text-neutral-900 dark:text-white tracking-tight">
           Thank you
         </h2>
-        <p className="text-lg sm:text-2xl font-serif text-gray-300">
+        <p className="text-lg sm:text-2xl font-serif text-neutral-600 dark:text-gray-300">
           Looking forward to <span className="italic font-bold">Connect</span> with You!
         </p>
       </div>
