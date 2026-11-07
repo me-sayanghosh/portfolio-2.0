@@ -22,6 +22,7 @@ export default {
       },
       fontFamily: {
         sans: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
+        serif: ['"Newsreader"', '"Playfair Display"', 'Georgia', 'serif'],
         display: ['"Bricolage Grotesque"', 'sans-serif'],
         bricolage: ['"Bricolage Grotesque"', 'sans-serif'],
         helvetica: ['"Helvetica Neue"', 'Helvetica', 'Arial', 'sans-serif'],

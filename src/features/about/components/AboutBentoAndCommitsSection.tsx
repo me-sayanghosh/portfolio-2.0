@@ -269,48 +269,6 @@ const COLOR_LEVELS = [
   'bg-[#216e39] dark:bg-[#39d353]',                                                      // Level 4 (High)
 ];
 
-// Fallback contribution data generator matching high density
-function generateFallbackContributions(): ContributionDay[] {
-  const days: ContributionDay[] = [];
-  const now = new Date();
-  const totalDays = 53 * 7; // 371 days
-
-  for (let i = totalDays - 1; i >= 0; i--) {
-    const d = new Date(now);
-    d.setDate(d.getDate() - i);
-    const dateStr = d.toISOString().split('T')[0];
-
-    // Deterministic pseudo-random generation for rich realistic pattern
-    const seed = (i * 9301 + 49297) % 233280;
-    const rnd = seed / 233280;
-
-    let level = 0;
-    let count = 0;
-    if (rnd > 0.35) {
-      if (rnd > 0.88) {
-        level = 4;
-        count = Math.floor(rnd * 25) + 12;
-      } else if (rnd > 0.7) {
-        level = 3;
-        count = Math.floor(rnd * 15) + 7;
-      } else if (rnd > 0.5) {
-        level = 2;
-        count = Math.floor(rnd * 8) + 3;
-      } else {
-        level = 1;
-        count = Math.floor(rnd * 4) + 1;
-      }
-    }
-
-    days.push({
-      date: dateStr,
-      count,
-      level,
-    });
-  }
-  return days;
-}
-
 function formatContributionDate(dateStr: string): string {
   try {
     const [year, month, day] = dateStr.split('-').map(Number);
@@ -335,7 +293,10 @@ interface HoveredCellInfo {
 
 export default function AboutBentoAndCommitsSection() {
   const [contributions, setContributions] = useState<ContributionDay[]>([]);
-  const [totalContributions, setTotalContributions] = useState<number>(6803);
+  const [totalContributions, setTotalContributions] = useState<number | null>(null);
+  const [selectedYear, setSelectedYear] = useState<string>('last');
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
   const [hoveredCell, setHoveredCell] = useState<HoveredCellInfo | null>(null);
   const [mounted, setMounted] = useState(false);
 
@@ -351,26 +312,38 @@ export default function AboutBentoAndCommitsSection() {
   }, []);
 
   useEffect(() => {
-    // Initialize with rich fallback immediately
-    const fallback = generateFallbackContributions();
-    setContributions(fallback);
+    let isMounted = true;
+    setIsLoading(true);
+    setError(null);
 
-    // Fetch dynamic contributions from GitHub API
-    fetch('https://github-contributions-api.jogruber.de/v4/me-sayanghosh?y=last')
-      .then((res) => res.json())
+    // Fetch dynamic contributions via server-side cached API route
+    fetch(`/api/github/contributions?username=me-sayanghosh&year=${selectedYear}`)
+      .then((res) => {
+        if (!res.ok) throw new Error(`HTTP error ${res.status}`);
+        return res.json();
+      })
       .then((data) => {
-        if (data && Array.isArray(data.contributions) && data.contributions.length > 0) {
-          const fetchedTotal = data.total?.lastYear || data.total?.[new Date().getFullYear()];
-          if (fetchedTotal && fetchedTotal > 100) {
-            setTotalContributions(fetchedTotal);
-          }
+        if (!isMounted) return;
+        if (data && data.success && Array.isArray(data.contributions)) {
           setContributions(data.contributions);
+          setTotalContributions(data.total);
+        } else {
+          setError(data?.error || 'Failed to load GitHub activity');
         }
       })
       .catch((err) => {
-        console.warn('Using fallback contribution calendar data:', err);
+        if (!isMounted) return;
+        console.error('GitHub contributions fetch failed:', err);
+        setError('Unable to load GitHub contributions right now');
+      })
+      .finally(() => {
+        if (isMounted) setIsLoading(false);
       });
-  }, []);
+
+    return () => {
+      isMounted = false;
+    };
+  }, [selectedYear]);
 
   // Split contributions into columns of 7 days (weeks)
   const weeks: ContributionDay[][] = [];
@@ -465,10 +438,34 @@ export default function AboutBentoAndCommitsSection() {
 
       {/* ─── ROW 2: "Commits Over Claims ." WITH GITHUB HEATMAP ──────────── */}
       <section className="space-y-4">
-        {/* Title */}
-        <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-normal tracking-tight text-neutral-900 dark:text-white flex items-baseline gap-1">
-          Commits Over Claims<span className="text-amber-500">.</span>
-        </h2>
+        {/* Title & Dynamic Year Switcher */}
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-normal tracking-tight text-neutral-900 dark:text-white flex items-baseline gap-1">
+            Commits Over Claims<span className="text-amber-500">.</span>
+          </h2>
+
+          {/* Interactive Year Selector */}
+          <div className="flex items-center gap-1 bg-neutral-100 dark:bg-white/[0.04] p-1 rounded-xl border border-black/5 dark:border-white/10 self-start sm:self-auto">
+            {[
+              { id: 'last', label: 'Last Year' },
+              { id: '2026', label: '2026' },
+              { id: '2025', label: '2025' },
+            ].map((y) => (
+              <button
+                key={y.id}
+                type="button"
+                onClick={() => setSelectedYear(y.id)}
+                className={`px-3 py-1 rounded-lg text-xs font-medium transition-all duration-200 cursor-pointer ${
+                  selectedYear === y.id
+                    ? 'bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white shadow-xs font-semibold'
+                    : 'text-neutral-500 hover:text-neutral-900 dark:hover:text-white'
+                }`}
+              >
+                {y.label}
+              </button>
+            ))}
+          </div>
+        </div>
 
         {/* Calendar Box */}
         <div
@@ -492,41 +489,78 @@ export default function AboutBentoAndCommitsSection() {
             </div>
 
             {/* 53 Columns Grid Spanning Full Width (Matching Bento Cards) */}
-            <div
-              className="grid w-full gap-[3px] select-none"
-              style={{
-                gridTemplateColumns: `repeat(${weeks.length || 53}, minmax(0, 1fr))`,
-              }}
-              onMouseLeave={() => setHoveredCell(null)}
-            >
-              {weeks.map((week, wIdx) => (
-                <div key={wIdx} className="flex flex-col gap-[3px]">
-                  {week.map((day, dIdx) => (
-                    <div
-                      key={`${wIdx}-${dIdx}`}
-                      onMouseEnter={(e) => {
-                        const rect = e.currentTarget.getBoundingClientRect();
-                        setHoveredCell({
-                          day,
-                          x: rect.left + rect.width / 2,
-                          top: rect.top,
-                          bottom: rect.bottom,
-                        });
-                      }}
-                      onMouseLeave={() => setHoveredCell(null)}
-                      className={`aspect-square w-full rounded-[2px] transition-transform duration-100 cursor-pointer hover:scale-125 hover:z-10 ${
-                        COLOR_LEVELS[day.level] || COLOR_LEVELS[0]
-                      }`}
-                    />
-                  ))}
-                </div>
-              ))}
-            </div>
+            {error && !weeks.length ? (
+              <div className="flex items-center justify-center py-10 text-xs text-neutral-500 dark:text-neutral-400">
+                <span>{error}</span>
+                <button
+                  type="button"
+                  onClick={() => setSelectedYear((y) => (y === 'last' ? 'last' : 'last'))}
+                  className="ml-3 px-2.5 py-1 text-xs rounded-md bg-neutral-100 dark:bg-white/10 hover:bg-neutral-200 dark:hover:bg-white/20 text-neutral-700 dark:text-white transition-colors cursor-pointer"
+                >
+                  Retry
+                </button>
+              </div>
+            ) : isLoading && !weeks.length ? (
+              <div
+                className="grid w-full gap-[3px] select-none animate-pulse"
+                style={{
+                  gridTemplateColumns: 'repeat(53, minmax(0, 1fr))',
+                }}
+              >
+                {Array.from({ length: 53 }).map((_, wIdx) => (
+                  <div key={wIdx} className="flex flex-col gap-[3px]">
+                    {Array.from({ length: 7 }).map((_, dIdx) => (
+                      <div
+                        key={dIdx}
+                        className="aspect-square w-full rounded-[2px] bg-neutral-200/50 dark:bg-white/[0.04]"
+                      />
+                    ))}
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div
+                className={`grid w-full gap-[3px] select-none transition-opacity duration-300 ${
+                  isLoading ? 'opacity-60' : 'opacity-100'
+                }`}
+                style={{
+                  gridTemplateColumns: `repeat(${weeks.length || 53}, minmax(0, 1fr))`,
+                }}
+                onMouseLeave={() => setHoveredCell(null)}
+              >
+                {weeks.map((week, wIdx) => (
+                  <div key={wIdx} className="flex flex-col gap-[3px]">
+                    {week.map((day, dIdx) => (
+                      <div
+                        key={`${wIdx}-${dIdx}`}
+                        onMouseEnter={(e) => {
+                          const rect = e.currentTarget.getBoundingClientRect();
+                          setHoveredCell({
+                            day,
+                            x: rect.left + rect.width / 2,
+                            top: rect.top,
+                            bottom: rect.bottom,
+                          });
+                        }}
+                        onMouseLeave={() => setHoveredCell(null)}
+                        className={`aspect-square w-full rounded-[2px] transition-transform duration-100 cursor-pointer hover:scale-125 hover:z-10 ${
+                          COLOR_LEVELS[day.level] || COLOR_LEVELS[0]
+                        }`}
+                      />
+                    ))}
+                  </div>
+                ))}
+              </div>
+            )}
 
             {/* Footer Summary & Legend */}
             <div className="flex items-center justify-between text-xs sm:text-[13px] font-sans pt-1 text-neutral-600 dark:text-neutral-400 select-none w-full">
               <span className="font-medium text-neutral-900 dark:text-white/90">
-                {totalContributions.toLocaleString()} contributions in the last year
+                {totalContributions !== null
+                  ? `${totalContributions.toLocaleString()} contributions ${
+                      selectedYear === 'last' ? 'in the last year' : `in ${selectedYear}`
+                    }`
+                  : 'Loading contributions...'}
               </span>
 
               {/* Less / More Legend */}
