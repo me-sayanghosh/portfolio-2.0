@@ -129,7 +129,7 @@ export function SelectionHint({
       initial={false}
       animate={{ opacity: hidden ? 0 : 1, y: hidden && !reduceMotion ? -4 : 0 }}
       transition={{ duration: 0.2, ease: 'easeOut' }}
-      className="pointer-events-none absolute bottom-[82%] left-[58%] flex items-start text-neutral-400 select-none z-30"
+      className="pointer-events-none absolute bottom-[86%] left-[0.1em] flex items-start text-neutral-400 select-none z-30"
     >
       <svg
         viewBox="0 0 80 46"
@@ -450,11 +450,11 @@ export function DirectionAwareAboutHero({
     words: ['developer', 'and', 'builder'],
     icon: (filled) => (
       <img
-        src="/assets/profile-avatar.webp"
+        src="/assets/sayan-avatar.jpg"
         alt="Sayan Ghosh"
         draggable={false}
         className={cn(
-          'size-full rounded-full object-cover',
+          'size-full rounded-full object-cover object-[center_28%]',
           filled
             ? 'mix-blend-luminosity ring-1 ring-white/70'
             : 'outline -outline-offset-1 outline-black/10 dark:outline-white/10'
