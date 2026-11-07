@@ -6,6 +6,7 @@ import { ModalProvider } from '../src/context/ModalContext';
 import RegisterSW from '../src/components/RegisterSW';
 import PWAInstallPrompt from '../src/components/PWAInstallPrompt';
 import { ThemeProvider } from '../src/components/ThemeProvider';
+import AuthProvider from '../src/components/AuthProvider';
 
 export const metadata = {
   title: 'Sayan Ghosh | Full-Stack & AI Engineer Portfolio',
@@ -46,17 +47,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="bg-[#fafafa] dark:bg-[#121212] text-neutral-900 dark:text-white transition-colors duration-300 min-h-screen font-sans antialiased selection:bg-amber-500/30 selection:text-amber-800 dark:selection:text-amber-200">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
-          <RegisterSW />
-          <ModalProvider>
-            <SmoothScroll>
-              <Navbar />
-              <main className="min-h-screen pb-24 md:pb-0">
-                {children}
-              </main>
-              <Footer />
-              <PWAInstallPrompt />
-            </SmoothScroll>
-          </ModalProvider>
+          <AuthProvider>
+            <RegisterSW />
+            <ModalProvider>
+              <SmoothScroll>
+                <Navbar />
+                <main className="min-h-screen pb-24 md:pb-0">
+                  {children}
+                </main>
+                <Footer />
+                <PWAInstallPrompt />
+              </SmoothScroll>
+            </ModalProvider>
+          </AuthProvider>
         </ThemeProvider>
       </body>
     </html>
