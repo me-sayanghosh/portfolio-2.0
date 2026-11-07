@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { ArrowRight } from 'lucide-react';
 import { projectsData } from '../../projects/data/projectsData';
@@ -8,7 +9,8 @@ import { projectsData } from '../../projects/data/projectsData';
 export default function HomeProjectsSection() {
   const router = useRouter();
 
-  const featuredProjects = projectsData.slice(0, 4);
+  // Show only top 2 projects on the home page
+  const featuredProjects = projectsData.slice(0, 2);
 
   return (
     <section className="py-6 max-w-4xl mx-auto px-4 sm:px-6">
@@ -51,15 +53,15 @@ export default function HomeProjectsSection() {
         ))}
       </div>
 
-      {/* see more cool stuff Button */}
+      {/* View All Projects Button */}
       <div className="flex justify-center mt-6">
-        <button
-          onClick={() => router.push('/projects')}
-          className="px-6 py-2.5 rounded-full border border-white/30 bg-[#222222] hover:bg-white/15 text-white font-semibold text-xs sm:text-sm shadow-lg transition-all active:scale-95 cursor-pointer flex items-center space-x-2"
+        <Link
+          href="/projects"
+          className="px-6 py-2.5 rounded-full border border-white/20 bg-[#181818] hover:bg-neutral-800 text-white font-medium text-xs sm:text-sm shadow-md transition-all active:scale-95 cursor-pointer flex items-center space-x-2 group"
         >
-          <span>see more cool stuff</span>
-          <ArrowRight className="w-4 h-4" />
-        </button>
+          <span>View All Projects</span>
+          <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+        </Link>
       </div>
 
     </section>

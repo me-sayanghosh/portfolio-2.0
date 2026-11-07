@@ -39,8 +39,8 @@ const FILL_VARIANTS = {
   shown: { clipPath: 'inset(0% 0% 0% 0%)' },
 };
 
-const PADDING_X = 10;
-const PADDING_Y = 6;
+const PADDING_X = 8;
+const PADDING_Y = 3.5;
 
 function getDirection(e: React.PointerEvent<HTMLElement>): Direction {
   const rect = e.currentTarget.getBoundingClientRect();
@@ -129,7 +129,7 @@ export function SelectionHint({
       initial={false}
       animate={{ opacity: hidden ? 0 : 1, y: hidden && !reduceMotion ? -4 : 0 }}
       transition={{ duration: 0.2, ease: 'easeOut' }}
-      className="pointer-events-none absolute bottom-[78%] left-[58%] flex items-start text-neutral-400 select-none z-30"
+      className="pointer-events-none absolute bottom-[82%] left-[58%] flex items-start text-neutral-400 select-none z-30"
     >
       <svg
         viewBox="0 0 80 46"
@@ -285,7 +285,7 @@ export function DirectionAwareItem({
       }}
       onBlur={clearSelection}
       className={cn(
-        'relative inline-flex items-baseline gap-[0.3em] whitespace-nowrap text-white font-medium outline-none select-none cursor-pointer',
+        'relative inline-flex items-baseline gap-[0.25em] whitespace-nowrap text-white font-medium outline-none select-none cursor-pointer',
         className
       )}
     >
@@ -302,7 +302,7 @@ export function DirectionAwareItem({
             const dir = getDirection(e);
             setDirection((d) => ({ ...d, exit: dir }));
           }}
-          className="inline-flex size-[1.1em] self-center items-center justify-center relative shrink-0"
+          className="inline-flex size-[1.05em] self-center items-center justify-center relative shrink-0"
         >
           {item.icon(false, selected?.layer === 0)}
         </span>
@@ -557,7 +557,7 @@ export function DirectionAwareAboutHero({
   return (
     <p
       className={cn(
-        'max-w-3xl text-xl sm:text-2xl md:text-3xl font-medium tracking-tight text-neutral-400 dark:text-neutral-400 leading-[1.7] md:leading-[1.7]',
+        'max-w-3xl text-xl sm:text-2xl md:text-3xl font-medium tracking-tight text-neutral-400 dark:text-neutral-400 leading-snug sm:leading-snug md:leading-snug',
         className
       )}
     >
