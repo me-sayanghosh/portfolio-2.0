@@ -80,6 +80,9 @@ const MasonryItem = ({ item, onItemClick, handleMouseEnter, handleMouseLeave }: 
   );
 };
 
+const MASONRY_QUERIES = ['(min-width: 768px)'];
+const MASONRY_VALUES = [3];
+
 const Masonry = ({
   items,
   onItemClick,
@@ -89,12 +92,12 @@ const Masonry = ({
   animateFrom = 'bottom',
   scaleOnHover = true,
   hoverScale = 0.95,
-  blurToFocus = true,
+  blurToFocus = false,
   colorShiftOnHover = false
 }: any) => {
   const columns = useMedia(
-    ['(min-width: 768px)'],
-    [3],
+    MASONRY_QUERIES,
+    MASONRY_VALUES,
     2
   );
 

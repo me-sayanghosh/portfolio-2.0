@@ -1,40 +1,44 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import Lenis from 'lenis';
 import gsap from 'gsap';
 
 export default function SmoothScroll({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
-    // Initialize Lenis Ultra Smooth Scroll Engine
+    // Initialize Lenis with crisp, responsive scrolling
     const lenis = new Lenis({
-      duration: 1.8,
-      easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
+      duration: 1.0,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
-      wheelMultiplier: 1.15,
-      touchMultiplier: 2.0,
+      wheelMultiplier: 1.0,
+      touchMultiplier: 1.0,
       autoResize: true,
     });
+    lenisRef.current = lenis;
 
-    // Synchronize Lenis raf updates with GSAP Ticker at 60fps/120fps
+    // Synchronize Lenis updates with GSAP ticker
     const updateGsapTicker = (time: number) => {
       lenis.raf(time * 1000);
     };
 
     gsap.ticker.add(updateGsapTicker);
-    gsap.ticker.lagSmoothing(0);
-
-    // Instant reset to top when navigating routes
-    window.scrollTo(0, 0);
-    lenis.scrollTo(0, { immediate: true });
 
     return () => {
       gsap.ticker.remove(updateGsapTicker);
       lenis.destroy();
+      lenisRef.current = null;
     };
+  }, []);
+
+  // Instant reset to top when navigating routes without destroying Lenis
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    lenisRef.current?.scrollTo(0, { immediate: true });
   }, [pathname]);
 
   return <>{children}</>;

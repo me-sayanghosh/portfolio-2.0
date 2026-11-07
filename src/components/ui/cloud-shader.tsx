@@ -317,8 +317,10 @@ export const CloudShader = ({
     resize();
 
     const start = performance.now();
+    let isIntersecting = false;
+
     const draw = (now: number) => {
-      if (!running) return;
+      if (!running || !isIntersecting) return;
       const p = paramsRef.current;
       const elapsed = reduceMotion ? 0 : ((now - start) / 1000) * p.speed;
       const cloud = parseHex(p.cloudColor);
@@ -334,12 +336,24 @@ export const CloudShader = ({
       frame = requestAnimationFrame(draw);
     };
 
-    frame = requestAnimationFrame(draw);
+    const intersectionObserver = new IntersectionObserver(([entry]) => {
+      const becameVisible = entry.isIntersecting;
+      if (becameVisible && !isIntersecting) {
+        isIntersecting = true;
+        frame = requestAnimationFrame(draw);
+      } else if (!becameVisible && isIntersecting) {
+        isIntersecting = false;
+        cancelAnimationFrame(frame);
+      }
+    }, { threshold: 0.05 });
+
+    intersectionObserver.observe(canvas);
 
     return () => {
       running = false;
       cancelAnimationFrame(frame);
       observer.disconnect();
+      intersectionObserver.disconnect();
       gl.deleteBuffer(buffer);
       gl.deleteProgram(program);
       gl.deleteShader(vert);

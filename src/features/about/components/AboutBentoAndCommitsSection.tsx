@@ -176,14 +176,14 @@ function InteractiveLocationGlobe() {
     onResize();
 
     const globe = createGlobe(canvas, {
-      devicePixelRatio: Math.min(window.devicePixelRatio || 1, 2),
+      devicePixelRatio: Math.min(window.devicePixelRatio || 1, 1.5),
       width: 700 * 2,
       height: 700 * 2,
       phi: 0.8,
       theta: 0.28,
       dark: isDark ? 1 : 0,
       diffuse: 1.2,
-      mapSamples: 16000,
+      mapSamples: 9000,
       mapBrightness: isDark ? 4.8 : 3.4,
       baseColor: isDark ? [0.12, 0.12, 0.14] : [1, 1, 1],
       markerColor: isDark ? [1, 1, 1] : [0.15, 0.15, 0.15],
@@ -194,7 +194,10 @@ function InteractiveLocationGlobe() {
       ],
     });
 
+    let isVisible = false;
+
     const animate = () => {
+      if (!isVisible) return;
       if (!pointerInteracting.current) {
         phi += 0.0035;
       }
@@ -206,9 +209,22 @@ function InteractiveLocationGlobe() {
       });
       animFrame = requestAnimationFrame(animate);
     };
-    animFrame = requestAnimationFrame(animate);
+
+    const observer = new IntersectionObserver(([entry]) => {
+      const becameVisible = entry.isIntersecting;
+      if (becameVisible && !isVisible) {
+        isVisible = true;
+        animFrame = requestAnimationFrame(animate);
+      } else if (!becameVisible && isVisible) {
+        isVisible = false;
+        cancelAnimationFrame(animFrame);
+      }
+    }, { threshold: 0.05 });
+
+    observer.observe(canvas);
 
     return () => {
+      observer.disconnect();
       cancelAnimationFrame(animFrame);
       globe.destroy();
       window.removeEventListener('resize', onResize);
