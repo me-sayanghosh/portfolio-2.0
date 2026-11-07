@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { GalleryPage } from '../../src/features/gallery';
+import GalleryPage from '../../src/features/gallery/GalleryPage';
 import { BASE_URL, buildBreadcrumbSchema } from '../../src/lib/jsonLd';
 
 export const metadata: Metadata = {

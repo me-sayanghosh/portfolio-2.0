@@ -50,7 +50,7 @@ Thumbs.db
 *.sw?
 
 # Raw uncompressed media source folders
-Gallery/
+/Gallery/
 
 # Test & Scratch files
 scratch/
