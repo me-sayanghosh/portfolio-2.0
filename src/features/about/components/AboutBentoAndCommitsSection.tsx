@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import createGlobe from 'cobe';
 import { MapPin, SquareDashed } from 'lucide-react';
 
@@ -251,21 +252,6 @@ interface ContributionDay {
   level: number;
 }
 
-const MONTH_NAMES = [
-  'Nov',
-  'Dec',
-  'Jan',
-  'Feb',
-  'Mar',
-  'Apr',
-  'May',
-  'Jun',
-  'Jul',
-  'Aug',
-  'Sep',
-  'Oct',
-];
-
 const COLOR_LEVELS = [
   'bg-[#161b22] border border-white/[0.04]', // Level 0 (Empty)
   'bg-[#0e4429]',                           // Level 1
@@ -331,12 +317,29 @@ function formatContributionDate(dateStr: string): string {
   }
 }
 
+interface HoveredCellInfo {
+  day: ContributionDay;
+  x: number;
+  top: number;
+  bottom: number;
+}
+
 export default function AboutBentoAndCommitsSection() {
   const [contributions, setContributions] = useState<ContributionDay[]>([]);
   const [totalContributions, setTotalContributions] = useState<number>(6803);
-  const [hoveredDay, setHoveredDay] = useState<ContributionDay | null>(null);
-  const [tooltipPos, setTooltipPos] = useState<{ x: number; y: number } | null>(null);
-  const calendarContainerRef = useRef<HTMLDivElement>(null);
+  const [hoveredCell, setHoveredCell] = useState<HoveredCellInfo | null>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    const handleScrollOrResize = () => setHoveredCell(null);
+    window.addEventListener('scroll', handleScrollOrResize, { passive: true });
+    window.addEventListener('resize', handleScrollOrResize, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScrollOrResize);
+      window.removeEventListener('resize', handleScrollOrResize);
+    };
+  }, []);
 
   useEffect(() => {
     // Initialize with rich fallback immediately
@@ -365,6 +368,28 @@ export default function AboutBentoAndCommitsSection() {
   for (let i = 0; i < contributions.length; i += 7) {
     weeks.push(contributions.slice(i, i + 7));
   }
+
+  // Calculate month labels aligned to week columns
+  const monthLabels = useMemo(() => {
+    if (!weeks.length) return [];
+    const labels: { month: string; colIndex: number }[] = [];
+    let prevMonth = '';
+
+    weeks.forEach((week, wIdx) => {
+      const day = week[0];
+      if (!day?.date) return;
+      const date = new Date(day.date + 'T00:00:00');
+      const month = date.toLocaleDateString('en-US', { month: 'short' });
+      if (month !== prevMonth) {
+        if (wIdx <= weeks.length - 3) {
+          labels.push({ month, colIndex: wIdx });
+        }
+        prevMonth = month;
+      }
+    });
+
+    return labels;
+  }, [weeks]);
 
   return (
     <div className="pt-8 pb-4 space-y-10">
@@ -437,100 +462,60 @@ export default function AboutBentoAndCommitsSection() {
         </h2>
 
         {/* Calendar Box */}
-        <div className="w-full overflow-x-auto pb-4 pt-6 scrollbar-thin">
-          <div
-            ref={calendarContainerRef}
-            className="relative min-w-[680px] sm:min-w-[740px] flex flex-col gap-2"
-          >
-            {/* Month Labels */}
-            <div className="flex justify-between text-[11px] sm:text-xs text-neutral-400 font-sans font-medium px-1 select-none">
-              {MONTH_NAMES.map((m, i) => (
-                <span key={`${m}-${i}`}>{m}</span>
+        <div
+          className="w-full overflow-x-auto pb-2 pt-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+          onScroll={() => setHoveredCell(null)}
+        >
+          <div className="w-full min-w-[700px] flex flex-col gap-2">
+            {/* Month Labels Aligned With Starting Columns */}
+            <div className="relative h-4 w-full select-none text-[11px] sm:text-xs text-neutral-400 font-sans font-medium">
+              {monthLabels.map(({ month, colIndex }) => (
+                <span
+                  key={`${month}-${colIndex}`}
+                  className="absolute"
+                  style={{
+                    left: `${(colIndex / (weeks.length || 53)) * 100}%`,
+                  }}
+                >
+                  {month}
+                </span>
               ))}
             </div>
 
-            {/* 7 Rows Grid (Weeks as Columns) */}
+            {/* 53 Columns Grid Spanning Full Width (Matching Bento Cards) */}
             <div
-              className="grid grid-flow-col grid-rows-7 gap-1 w-max relative"
-              onMouseLeave={() => {
-                setHoveredDay(null);
-                setTooltipPos(null);
+              className="grid w-full gap-[3px] select-none"
+              style={{
+                gridTemplateColumns: `repeat(${weeks.length || 53}, minmax(0, 1fr))`,
               }}
+              onMouseLeave={() => setHoveredCell(null)}
             >
-              {weeks.map((week, wIdx) =>
-                week.map((day, dIdx) => (
-                  <div
-                    key={`${wIdx}-${dIdx}`}
-                    onMouseEnter={(e) => {
-                      setHoveredDay(day);
-                      if (calendarContainerRef.current) {
-                        const rect = calendarContainerRef.current.getBoundingClientRect();
-                        setTooltipPos({
-                          x: e.clientX - rect.left,
-                          y: e.clientY - rect.top,
+              {weeks.map((week, wIdx) => (
+                <div key={wIdx} className="flex flex-col gap-[3px]">
+                  {week.map((day, dIdx) => (
+                    <div
+                      key={`${wIdx}-${dIdx}`}
+                      onMouseEnter={(e) => {
+                        const rect = e.currentTarget.getBoundingClientRect();
+                        setHoveredCell({
+                          day,
+                          x: rect.left + rect.width / 2,
+                          top: rect.top,
+                          bottom: rect.bottom,
                         });
-                      }
-                    }}
-                    onMouseMove={(e) => {
-                      if (calendarContainerRef.current) {
-                        const rect = calendarContainerRef.current.getBoundingClientRect();
-                        setTooltipPos({
-                          x: e.clientX - rect.left,
-                          y: e.clientY - rect.top,
-                        });
-                      }
-                    }}
-                    className={`w-[11px] h-[11px] sm:w-3 sm:h-3 rounded-[2px] transition-all duration-100 cursor-pointer hover:scale-125 hover:z-20 ${
-                      COLOR_LEVELS[day.level] || COLOR_LEVELS[0]
-                    }`}
-                  />
-                ))
-              )}
+                      }}
+                      onMouseLeave={() => setHoveredCell(null)}
+                      className={`aspect-square w-full rounded-[2px] transition-transform duration-100 cursor-pointer hover:scale-125 hover:z-10 ${
+                        COLOR_LEVELS[day.level] || COLOR_LEVELS[0]
+                      }`}
+                    />
+                  ))}
+                </div>
+              ))}
             </div>
 
-            {/* Floating Cursor-Anchored Tooltip */}
-            {hoveredDay && tooltipPos && (() => {
-              const containerWidth = calendarContainerRef.current?.offsetWidth || 740;
-              const tooltipLeft = Math.max(90, Math.min(tooltipPos.x, containerWidth - 90));
-              const arrowOffset = Math.max(-65, Math.min(65, tooltipPos.x - tooltipLeft));
-              const isFlipped = tooltipPos.y < 46;
-
-              return (
-                <div
-                  className={`pointer-events-none absolute z-50 -translate-x-1/2 px-2.5 py-1.5 rounded-lg bg-neutral-900/95 border border-white/20 text-neutral-300 text-xs font-sans shadow-2xl backdrop-blur-md whitespace-nowrap transition-transform duration-75 ease-out ${
-                    isFlipped ? 'translate-y-2' : '-translate-y-full mb-2'
-                  }`}
-                  style={{
-                    left: tooltipLeft,
-                    top: isFlipped ? tooltipPos.y : tooltipPos.y - 8,
-                  }}
-                >
-                  <p className="leading-tight text-[11.5px]">
-                    <span className="font-semibold text-white">
-                      {hoveredDay.count === 0 ? 'No' : hoveredDay.count}{' '}
-                      contribution{hoveredDay.count === 1 ? '' : 's'}
-                    </span>{' '}
-                    on{' '}
-                    <span className="text-neutral-200">
-                      {formatContributionDate(hoveredDay.date)}
-                    </span>
-                  </p>
-
-                  {/* Arrow Indicator */}
-                  <div
-                    className={`absolute w-2 h-2 rotate-45 bg-neutral-900 border-white/20 ${
-                      isFlipped
-                        ? '-top-1 border-l border-t'
-                        : '-bottom-1 border-r border-b'
-                    }`}
-                    style={{ left: `calc(50% + ${arrowOffset}px - 4px)` }}
-                  />
-                </div>
-              );
-            })()}
-
             {/* Footer Summary & Legend */}
-            <div className="flex items-center justify-between text-xs sm:text-[13px] font-sans pt-1 text-neutral-400 select-none">
+            <div className="flex items-center justify-between text-xs sm:text-[13px] font-sans pt-1 text-neutral-400 select-none w-full">
               <span className="font-medium text-white/90">
                 {totalContributions.toLocaleString()} contributions in the last year
               </span>
@@ -549,6 +534,51 @@ export default function AboutBentoAndCommitsSection() {
             </div>
           </div>
         </div>
+
+        {/* Floating Tooltip via Portal (Never clipped by container or overflow) */}
+        {mounted && hoveredCell && createPortal(
+          (() => {
+            const isFlipped = hoveredCell.top < 65;
+            const halfWidth = 125;
+            const windowW = typeof window !== 'undefined' ? window.innerWidth : 1000;
+            const safeLeft = Math.max(halfWidth + 12, Math.min(hoveredCell.x, windowW - halfWidth - 12));
+            const arrowOffset = Math.max(-halfWidth + 24, Math.min(halfWidth - 24, hoveredCell.x - safeLeft));
+
+            return (
+              <div
+                className={`pointer-events-none fixed z-[9999] -translate-x-1/2 px-3 py-1.5 rounded-md bg-[#161b22] border border-white/20 text-neutral-200 text-xs font-sans shadow-2xl whitespace-nowrap transition-transform duration-75 ease-out ${
+                  isFlipped ? 'translate-y-2' : '-translate-y-full'
+                }`}
+                style={{
+                  left: safeLeft,
+                  top: isFlipped ? hoveredCell.bottom : hoveredCell.top - 8,
+                }}
+              >
+                <p className="leading-tight text-[11.5px] select-none">
+                  <span className="font-semibold text-white">
+                    {hoveredCell.day.count === 0 ? 'No' : hoveredCell.day.count}{' '}
+                    contribution{hoveredCell.day.count === 1 ? '' : 's'}
+                  </span>{' '}
+                  on{' '}
+                  <span className="text-neutral-300">
+                    {formatContributionDate(hoveredCell.day.date)}
+                  </span>
+                </p>
+
+                {/* Arrow Indicator */}
+                <div
+                  className={`absolute w-2 h-2 rotate-45 bg-[#161b22] border-white/20 ${
+                    isFlipped
+                      ? '-top-1 border-l border-t'
+                      : '-bottom-1 border-r border-b'
+                  }`}
+                  style={{ left: `calc(50% + ${arrowOffset}px - 4px)` }}
+                />
+              </div>
+            );
+          })(),
+          document.body
+        )}
       </section>
     </div>
   );
