@@ -129,7 +129,7 @@ export function SelectionHint({
       initial={false}
       animate={{ opacity: hidden ? 0 : 1, y: hidden && !reduceMotion ? -4 : 0 }}
       transition={{ duration: 0.2, ease: 'easeOut' }}
-      className="pointer-events-none absolute bottom-[78%] left-[58%] flex items-start text-amber-500/80 dark:text-amber-400/80 select-none z-30"
+      className="pointer-events-none absolute bottom-[78%] left-[58%] flex items-start text-neutral-400 select-none z-30"
     >
       <svg
         viewBox="0 0 80 46"
@@ -161,7 +161,7 @@ export function SelectionHint({
         initial={!reduceMotion && { opacity: 0, rotate: -14, scale: 0.8 }}
         animate={{ opacity: 1, rotate: -8, scale: 1 }}
         transition={{ type: 'spring', bounce: 0.5, duration: 0.5, delay: 0.25 }}
-        className="-mt-[0.55em] ml-[0.1em] origin-bottom-left text-[0.72em] leading-none font-semibold tracking-normal whitespace-nowrap"
+        className="-mt-[0.55em] ml-[0.1em] origin-bottom-left text-[0.72em] leading-none font-semibold tracking-normal whitespace-nowrap text-neutral-300"
         style={{ fontFamily: "Caveat, 'Bradley Hand', 'Segoe Print', cursive" }}
       >
         {label}
@@ -285,7 +285,7 @@ export function DirectionAwareItem({
       }}
       onBlur={clearSelection}
       className={cn(
-        'relative inline-flex items-baseline gap-[0.3em] whitespace-nowrap text-inherit outline-none select-none cursor-pointer',
+        'relative inline-flex items-baseline gap-[0.3em] whitespace-nowrap text-white font-medium outline-none select-none cursor-pointer',
         className
       )}
     >
@@ -302,7 +302,7 @@ export function DirectionAwareItem({
             const dir = getDirection(e);
             setDirection((d) => ({ ...d, exit: dir }));
           }}
-          className="inline-flex size-[1.15em] self-center items-center justify-center relative"
+          className="inline-flex size-[1.1em] self-center items-center justify-center relative shrink-0"
         >
           {item.icon(false, selected?.layer === 0)}
         </span>
@@ -316,7 +316,7 @@ export function DirectionAwareItem({
             key={idx}
             ref={setRef(layerIdx)}
             onPointerEnter={() => selectLayer(layerIdx)}
-            className="inline-block transition-colors"
+            className="inline-block"
           >
             {word}
           </span>
@@ -329,7 +329,7 @@ export function DirectionAwareItem({
           <motion.span
             key="icon-fill"
             aria-hidden
-            className="pointer-events-none absolute isolate text-white rounded-lg overflow-hidden"
+            className="pointer-events-none absolute isolate text-white"
             style={{ ...iconBox, backgroundColor: color }}
             custom={direction.enter}
             variants={FILL_VARIANTS as any}
@@ -357,13 +357,13 @@ export function DirectionAwareItem({
         )}
       </AnimatePresence>
 
-      {/* Figma Selection Frame with 4 Resize Corner Handles */}
+      {/* Figma Selection Frame with 4 Corner Handles */}
       <AnimatePresence>
         {frameBox && (
           <motion.span
             key="selection-frame"
             aria-hidden
-            className="pointer-events-none absolute border-2 rounded-[2px]"
+            className="pointer-events-none absolute border-2"
             style={{ borderColor: color }}
             initial={{ opacity: 0, scale: 0.92, ...frameBox }}
             animate={{ opacity: 1, scale: 1, ...frameBox }}
@@ -373,7 +373,7 @@ export function DirectionAwareItem({
             {CORNER_POSITIONS.map((pos, idx) => (
               <motion.span
                 key={pos}
-                className={cn('absolute size-2 border-2 bg-background dark:bg-black', pos)}
+                className={cn('absolute size-2 border-2 bg-white dark:bg-black', pos)}
                 style={{ borderColor: color }}
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
@@ -397,7 +397,7 @@ export function DirectionAwareItem({
       {showSize && selected && frameBox && (
         <motion.span
           aria-hidden
-          className="pointer-events-none absolute z-20 -translate-x-1/2 rounded-[4px] px-1.5 py-0.5 font-sans text-[11px] leading-3 font-semibold tracking-normal whitespace-nowrap text-white tabular-nums shadow-md"
+          className="pointer-events-none absolute z-10 -translate-x-1/2 rounded-[4px] px-1.5 py-0.5 font-sans text-[11px] leading-3 font-medium tracking-normal whitespace-nowrap text-white tabular-nums"
           style={{ backgroundColor: color }}
           initial={{
             opacity: 0,
@@ -444,143 +444,105 @@ export function DirectionAwareAboutHero({
   const reduceMotion = useReducedMotion() ?? false;
   const [hintHidden, setHintHidden] = useState(false);
 
+  // 1. Sayan's Real Avatar -> developer and builder
   const developerItem: DirectionAwareItemData = {
     label: 'developer and builder',
     words: ['developer', 'and', 'builder'],
-    icon: (filled, isSelected) => (
-      <span
-        className={cn(
-          'size-full rounded-md flex items-center justify-center font-mono text-[0.7em] font-bold transition-all',
-          filled
-            ? 'text-white'
-            : isSelected
-            ? 'text-[#3074FE] dark:text-[#5c93ff]'
-            : 'text-amber-500 dark:text-amber-400 bg-amber-500/10 dark:bg-amber-400/10 border border-amber-500/20'
-        )}
-      >
-        &lt;/&gt;
-      </span>
-    ),
-  };
-
-  const indiaItem: DirectionAwareItemData = {
-    label: 'from India',
-    words: ['from', 'India'],
     icon: (filled) => (
-      <span
+      <img
+        src="/assets/profile-avatar.webp"
+        alt="Sayan Ghosh"
+        draggable={false}
         className={cn(
-          'size-full rounded-full flex items-center justify-center text-[0.85em] leading-none',
-          filled ? 'ring-1 ring-white/70' : ''
+          'size-full rounded-full object-cover',
+          filled
+            ? 'mix-blend-luminosity ring-1 ring-white/70'
+            : 'outline -outline-offset-1 outline-black/10 dark:outline-white/10'
         )}
-      >
-        🇮🇳
-      </span>
+      />
     ),
   };
 
+  // 2. Full-stack Products -> Clean Dark Box with Minimal Icon
   const fullstackItem: DirectionAwareItemData = {
     label: 'live, full-stack products',
     words: ['live,', 'full-stack', 'products'],
-    icon: (filled, isSelected) => (
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
+    icon: (filled) => (
+      <span
         className={cn(
-          'size-full transition-colors',
-          filled
-            ? 'stroke-white'
-            : isSelected
-            ? 'stroke-[#3074FE]'
-            : 'stroke-amber-400'
+          'size-full rounded-[22%] flex items-center justify-center bg-black dark:bg-zinc-900 border border-white/20 text-white',
+          filled ? 'ring-1 ring-white/70' : 'dark:ring-1 dark:ring-white/15'
         )}
       >
-        <polygon points="12 2 2 7 12 12 22 7 12 2" />
-        <polyline points="2 17 12 22 22 17" />
-        <polyline points="2 12 12 17 22 12" />
-      </svg>
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="size-[0.65em]"
+        >
+          <polygon points="12 2 2 7 12 12 22 7 12 2" />
+          <polyline points="2 17 12 22 22 17" />
+          <polyline points="2 12 12 17 22 12" />
+        </svg>
+      </span>
     ),
   };
 
+  // 3. Backend Systems -> Clean Deep Blue/Sky Minimal Icon
   const backendItem: DirectionAwareItemData = {
     label: 'backend systems',
     words: ['backend', 'systems'],
-    icon: (filled, isSelected) => (
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
+    icon: (filled) => (
+      <span
         className={cn(
-          'size-full transition-colors',
-          filled
-            ? 'stroke-white'
-            : isSelected
-            ? 'stroke-[#3074FE]'
-            : 'stroke-amber-400'
+          'size-full rounded-[22%] flex items-center justify-center bg-[#0f172a] text-[#38bdf8] border border-sky-500/25',
+          filled ? 'ring-1 ring-white/70' : ''
         )}
       >
-        <rect width="20" height="8" x="2" y="2" rx="2" ry="2" />
-        <rect width="20" height="8" x="2" y="14" rx="2" ry="2" />
-        <line x1="6" x2="6.01" y1="6" y2="6" />
-        <line x1="6" x2="6.01" y1="18" y2="18" />
-      </svg>
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="size-[0.65em]"
+        >
+          <rect width="20" height="8" x="2" y="2" rx="2" ry="2" />
+          <rect width="20" height="8" x="2" y="14" rx="2" ry="2" />
+          <line x1="6" x2="6.01" y1="6" y2="6" />
+          <line x1="6" x2="6.01" y1="18" y2="18" />
+        </svg>
+      </span>
     ),
   };
 
+  // 4. AI-Powered Apps -> Clean Violet Minimal Icon
   const aiItem: DirectionAwareItemData = {
     label: 'AI-powered apps',
     words: ['AI-powered', 'apps'],
-    icon: (filled, isSelected) => (
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
+    icon: (filled) => (
+      <span
         className={cn(
-          'size-full transition-colors',
-          filled
-            ? 'stroke-white'
-            : isSelected
-            ? 'stroke-[#3074FE]'
-            : 'stroke-amber-400'
+          'size-full rounded-[22%] flex items-center justify-center bg-[#2e1065] text-[#c084fc] border border-purple-500/25',
+          filled ? 'ring-1 ring-white/70' : ''
         )}
       >
-        <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />
-      </svg>
-    ),
-  };
-
-  const hardProblemsItem: DirectionAwareItemData = {
-    label: 'where the hard problems live',
-    words: ['where', 'the', 'hard', 'problems', 'live.'],
-    icon: (filled, isSelected) => (
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className={cn(
-          'size-full transition-colors',
-          filled
-            ? 'stroke-white'
-            : isSelected
-            ? 'stroke-[#3074FE]'
-            : 'stroke-amber-400'
-        )}
-      >
-        <path d="m4 17 6-6-6-6" />
-        <path d="M12 19h8" />
-      </svg>
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="size-[0.65em]"
+        >
+          <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />
+        </svg>
+      </span>
     ),
   };
 
@@ -595,7 +557,7 @@ export function DirectionAwareAboutHero({
   return (
     <p
       className={cn(
-        'text-xl sm:text-2xl md:text-3xl font-extrabold text-gray-100 leading-snug tracking-tight text-pretty',
+        'max-w-3xl text-xl sm:text-2xl md:text-3xl font-medium tracking-tight text-neutral-400 dark:text-neutral-400 leading-[1.7] md:leading-[1.7]',
         className
       )}
     >
@@ -614,15 +576,14 @@ export function DirectionAwareAboutHero({
           ) : null}
         </DirectionAwareItem>
       </span>{' '}
-      <DirectionAwareItem item={indiaItem} {...sharedProps} /> who learns by doing
-      — I dive into problems first and check the docs later. Years of corporate
-      experience? Not yet. A track record of shipping{' '}
-      <DirectionAwareItem item={fullstackItem} {...sharedProps} /> that solve
-      real problems? Absolutely. From{' '}
+      from India who learns by doing — I dive into problems first and check the
+      docs later. Years of corporate experience? Not yet. A track record of
+      shipping <DirectionAwareItem item={fullstackItem} {...sharedProps} /> that
+      solve real problems? Absolutely. From{' '}
       <DirectionAwareItem item={backendItem} {...sharedProps} /> to{' '}
       <DirectionAwareItem item={aiItem} {...sharedProps} />, I enjoy building
-      things that work and scale, especially on the backend,{' '}
-      <DirectionAwareItem item={hardProblemsItem} {...sharedProps} />
+      things that work and scale, especially on the backend, where the hard
+      problems live.
     </p>
   );
 }
