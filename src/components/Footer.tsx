@@ -15,9 +15,9 @@ export default function Footer() {
     <footer className="py-12 border-t border-white/10 max-w-4xl mx-auto px-4 sm:px-6">
       {/* Giant Typography from Figma Footer */}
       <div className="text-center mb-10">
-        <h1 className="text-5xl sm:text-7xl md:text-8xl font-black text-[#333845] hover:text-white transition-colors duration-500 tracking-tight select-none">
+        <div role="heading" aria-level={2} className="text-5xl sm:text-7xl md:text-8xl font-black text-[#333845] hover:text-white transition-colors duration-500 tracking-tight select-none">
           Made by Sayan
-        </h1>
+        </div>
       </div>
 
       {/* Footer Subtitles */}

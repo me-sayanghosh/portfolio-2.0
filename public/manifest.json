@@ -43,6 +43,13 @@
       "icons": [{ "src": "/icons/icon-192x192.png", "sizes": "192x192" }]
     },
     {
+      "name": "Engineering Blogs",
+      "short_name": "Blogs",
+      "description": "Read technical articles and architecture breakdowns",
+      "url": "/blogs",
+      "icons": [{ "src": "/icons/icon-192x192.png", "sizes": "192x192" }]
+    },
+    {
       "name": "About Me",
       "short_name": "About",
       "description": "Learn more about Sayan Ghosh",

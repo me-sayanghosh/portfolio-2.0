@@ -45,14 +45,15 @@ export default function HeroSection({
           </div>
 
           {/* Banner Title - Centered Vertically & Horizontally in Black Banner */}
-          <h1
+          <p
+            role="doc-subtitle"
             className="keep-dark font-bricolage font-bold text-2xl xs:text-3xl sm:text-[40px] text-white text-center z-10 px-4 leading-tight sm:leading-[48px] tracking-[-1.6px]"
             style={{
               fontFamily: "'Bricolage Grotesque', sans-serif"
             }}
           >
             Finally found me!!
-          </h1>
+          </p>
 
         </div>
       </BlurFade>
@@ -68,7 +69,7 @@ export default function HeroSection({
           >
             <img
               src="/assets/profile-avatar.webp"
-              alt="Sayan Ghosh"
+              alt="Sayan Ghosh - Full-Stack Developer and AI Engineer"
               width={96}
               height={96}
               decoding="async"
@@ -93,14 +94,14 @@ export default function HeroSection({
         {/* Name & Verified Badge */}
         <BlurFade delay={BLUR_FADE_DELAY * 3}>
           <div className="flex items-center space-x-2.5 mb-1.5">
-            <h2
+            <h1
               className="font-bricolage font-bold text-2xl xs:text-3xl sm:text-[40px] text-white leading-tight sm:leading-[48px] tracking-[-1.6px]"
               style={{
                 fontFamily: "'Bricolage Grotesque', sans-serif"
               }}
             >
               Sayan Ghosh
-            </h2>
+            </h1>
             {/* Verified Blue Badge */}
             <svg className="w-6 h-6 sm:w-7 sm:h-7 text-[#1D9BF0] fill-current flex-shrink-0" viewBox="0 0 24 24">
               <path d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.79-4-4-4-.495 0-.965.084-1.4.238C14.55 2.475 13.18 1.6 11.6 1.6c-1.58 0-2.95.875-3.6 2.148-.435-.154-.905-.238-1.4-.238-2.21 0-4 1.79-4 4 0 .495.084.965.238 1.4C1.575 9.55.7 10.92.7 12.5c0 1.58.875 2.95 2.148 3.6-.154.435-.238.905-.238 1.4 0 2.21 1.79 4 4 4 .495 0 .965-.084 1.4-.238 1.35 1.273 2.72 2.148 4.3 2.148 1.58 0 2.95-.875 3.6-2.148.435.154.905.238 1.4.238 2.21 0 4-1.79 4-4 0-.495-.084-.965-.238-1.4 1.273-1.35 2.148-2.72 2.148-4.3zM9.6 17.2l-4.4-4.4 1.4-1.4 3 3 7.6-7.6 1.4 1.4-9 9z" />

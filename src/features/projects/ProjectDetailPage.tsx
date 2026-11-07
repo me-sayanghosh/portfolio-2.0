@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { notFound, useParams, useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Github, ExternalLink, Terminal, Download, Copy, Check } from 'lucide-react';
@@ -40,41 +41,48 @@ export default function ProjectDetailPage({ projectId }: ProjectDetailPageProps)
       className="pt-3 sm:pt-24 pb-16 max-w-4xl mx-auto px-4 sm:px-6"
     >
       {/* Breadcrumb Navigation */}
-      <div className="flex items-center space-x-2 text-xs sm:text-sm text-gray-400 mb-2.5 sm:mb-4 font-sans">
-        <span
-          onClick={() => router.push('/')}
-          className="hover:text-white cursor-pointer transition-colors"
-        >
-          Home
-        </span>
-        <span>/</span>
-        <span
-          onClick={() => router.push('/projects')}
-          className="hover:text-white cursor-pointer transition-colors"
-        >
-          Projects
-        </span>
-        <span>/</span>
-        <span className="text-amber-400 font-medium">{project.title}</span>
-      </div>
+      <nav aria-label="Breadcrumb" className="mb-2.5 sm:mb-4">
+        <ol className="flex items-center space-x-2 text-xs sm:text-sm text-gray-400 font-sans">
+          <li>
+            <Link
+              href="/"
+              className="hover:text-white transition-colors"
+            >
+              Home
+            </Link>
+          </li>
+          <li aria-hidden="true">/</li>
+          <li>
+            <Link
+              href="/projects"
+              className="hover:text-white transition-colors"
+            >
+              Projects
+            </Link>
+          </li>
+          <li aria-hidden="true">/</li>
+          <li aria-current="page" className="text-amber-400 font-medium">{project.title}</li>
+        </ol>
+      </nav>
 
       {/* Header Row matching Picture 1 */}
       <div className="flex items-center space-x-3.5 mb-8">
         {/* Circular Back Button Arrow */}
-        <button
-          onClick={() => router.push('/projects')}
+        <Link
+          href="/projects"
           className="w-10 h-10 rounded-full border border-white/15 bg-white/5 flex items-center justify-center text-gray-300 hover:text-white hover:bg-white/10 transition-all shrink-0 active:scale-95 cursor-pointer"
           title="Back to Projects"
+          aria-label="Back to Projects"
         >
           <ArrowLeft className="w-5 h-5" />
-        </button>
+        </Link>
 
         {/* Square White Icon Container */}
         <div className="w-14 h-14 rounded-2xl bg-white border border-white/20 p-2.5 flex items-center justify-center shadow-md shrink-0 overflow-hidden">
           {project.logoImg ? (
             <img
               src={project.logoImg}
-              alt={project.title}
+              alt={`${project.title} app logo`}
               className="w-full h-full object-contain"
             />
           ) : (
@@ -105,7 +113,7 @@ export default function ProjectDetailPage({ projectId }: ProjectDetailPageProps)
       <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden border border-white/15 shadow-2xl mb-6 bg-black">
         <img
           src={project.bannerImg}
-          alt={project.title}
+          alt={`${project.title} — full-stack architecture and UI showcase`}
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />

@@ -1,14 +1,12 @@
 'use client';
 
 import React from 'react';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import GuestbookSection from './components/GuestbookSection';
 import { ConnectSection } from '../contact';
 
 export default function GuestbookPage() {
-  const router = useRouter();
-
   return (
     <motion.div
       key="guestbook-page"
@@ -19,16 +17,20 @@ export default function GuestbookPage() {
       className="pt-3 sm:pt-24 pb-16 max-w-4xl mx-auto px-4 sm:px-6"
     >
       {/* Breadcrumb */}
-      <div className="flex items-center space-x-2 text-xs sm:text-sm text-zinc-500 dark:text-gray-400 mb-2.5 font-sans">
-        <span
-          onClick={() => router.push('/')}
-          className="hover:text-zinc-950 dark:hover:text-white cursor-pointer transition-colors"
-        >
-          Home
-        </span>
-        <span>/</span>
-        <span className="text-zinc-950 dark:text-white font-medium">Guestbook</span>
-      </div>
+      <nav aria-label="Breadcrumb" className="mb-2.5">
+        <ol className="flex items-center space-x-2 text-xs sm:text-sm text-zinc-500 dark:text-gray-400 font-sans">
+          <li>
+            <Link
+              href="/"
+              className="hover:text-zinc-950 dark:hover:text-white transition-colors"
+            >
+              Home
+            </Link>
+          </li>
+          <li aria-hidden="true">/</li>
+          <li aria-current="page" className="text-zinc-950 dark:text-white font-medium">Guestbook</li>
+        </ol>
+      </nav>
 
       {/* Header */}
       <div className="mb-6 sm:mb-8">

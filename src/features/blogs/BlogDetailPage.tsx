@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { notFound, useParams, useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import {
@@ -88,25 +89,31 @@ export default function BlogDetailPage({ blogId }: BlogDetailPageProps) {
       className="pt-3 sm:pt-24 pb-16 sm:pb-24 max-w-4xl mx-auto px-4 sm:px-6"
     >
       {/* Breadcrumb Navigation */}
-      <div className="flex items-center space-x-2 text-xs sm:text-sm text-gray-400 mb-2.5 sm:mb-4 font-sans">
-        <span
-          onClick={() => router.push('/')}
-          className="hover:text-white cursor-pointer transition-colors"
-        >
-          Home
-        </span>
-        <span>/</span>
-        <span
-          onClick={() => router.push('/blogs')}
-          className="hover:text-white cursor-pointer transition-colors"
-        >
-          Blogs
-        </span>
-        <span>/</span>
-        <span className="text-amber-400 font-medium truncate max-w-[140px] sm:max-w-md">
-          {blog.title}
-        </span>
-      </div>
+      <nav aria-label="Breadcrumb" className="mb-2.5 sm:mb-4">
+        <ol className="flex items-center space-x-2 text-xs sm:text-sm text-gray-400 font-sans">
+          <li>
+            <Link
+              href="/"
+              className="hover:text-white transition-colors"
+            >
+              Home
+            </Link>
+          </li>
+          <li aria-hidden="true">/</li>
+          <li>
+            <Link
+              href="/blogs"
+              className="hover:text-white transition-colors"
+            >
+              Blogs
+            </Link>
+          </li>
+          <li aria-hidden="true">/</li>
+          <li aria-current="page" className="text-amber-400 font-medium truncate max-w-[140px] sm:max-w-md">
+            {blog.title}
+          </li>
+        </ol>
+      </nav>
 
       {/* Article Header */}
       <header className="mb-6 sm:mb-8 space-y-3 sm:space-y-4">
@@ -270,20 +277,20 @@ export default function BlogDetailPage({ blogId }: BlogDetailPageProps) {
             <h3 className="font-bricolage text-lg sm:text-2xl font-bold text-white tracking-tight">
               More Articles
             </h3>
-            <button
-              onClick={() => router.push('/blogs')}
+            <Link
+              href="/blogs"
               className="text-xs sm:text-sm text-amber-500 hover:text-amber-400 font-semibold flex items-center gap-1 transition-colors cursor-pointer"
             >
               <span>View All</span>
               <ArrowRight className="w-3.5 h-3.5" />
-            </button>
+            </Link>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
             {moreArticles.map((article) => (
-              <div
+              <Link
                 key={article.id}
-                onClick={() => router.push(`/blogs/${article.id}`)}
+                href={`/blogs/${article.id}`}
                 className="group cursor-pointer p-3.5 sm:p-5 rounded-xl bg-[#161616] hover:bg-[#202020] border border-white/10 hover:border-amber-500/30 active:scale-[0.99] active:bg-[#222222] transition-all duration-300 shadow-md flex flex-col justify-between"
               >
                 <div>
@@ -310,7 +317,7 @@ export default function BlogDetailPage({ blogId }: BlogDetailPageProps) {
                   <span>{article.date}</span>
                   <ArrowRight className="w-3.5 h-3.5 text-amber-500 group-hover:translate-x-1 transition-transform" />
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
