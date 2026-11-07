@@ -45,11 +45,12 @@ export default function Navbar() {
   }
 
   const getActiveIndex = () => {
+    if (pathname === "/") return 0;
     if (pathname === "/about" || pathname.startsWith("/about")) return 1;
     if (pathname === "/experience" || pathname.startsWith("/experience")) return 2;
     if (pathname === "/projects" || pathname.startsWith("/projects")) return 3;
     if (pathname === "/blogs" || pathname.startsWith("/blogs")) return 4;
-    return 0;
+    return -1;
   };
 
   const activeIndex = getActiveIndex();
@@ -60,7 +61,7 @@ export default function Navbar() {
   };
 
   const handleNavClick = (path: string) => {
-    // Navigate to route without closing dropdown or altering menu state
+    setIsMobileMenuOpen(false);
     router.push(path);
   };
 
@@ -70,39 +71,41 @@ export default function Navbar() {
       <div className="hidden md:flex fixed top-5 left-1/2 -translate-x-1/2 z-50">
         <div className="w-[420px] sm:w-[460px] h-[46px] border border-white/10 rounded-[30px] p-[5px] flex flex-row items-center justify-between bg-[#1f1f1f]/95 backdrop-blur-xl shadow-2xl relative">
           {/* Persistent Pure-Horizontal Animated Spotlight Slider */}
-          <motion.div
-            animate={{ x: `${activeIndex * 100}%` }}
-            transition={{
-              type: "spring",
-              stiffness: 380,
-              damping: 32,
-              mass: 0.7,
-            }}
-            className="absolute top-[5px] left-[5px] w-[calc((100%-10px)/5)] h-[36px] rounded-[22px] border border-white/15 bg-[#262626] overflow-hidden transform-gpu pointer-events-none z-0"
-          >
-            {/* Layer 1: GPU-Accelerated Spotlight Beam Glow */}
-            <div
-              className="absolute top-0 left-1/2 -translate-x-1/2 w-[56px] h-[32px] pointer-events-none z-10"
-              style={{
-                background:
-                  "radial-gradient(ellipse 55% 85% at 50% 0%, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.25) 45%, rgba(255, 255, 255, 0) 100%)",
+          {activeIndex >= 0 && (
+            <motion.div
+              animate={{ x: `${activeIndex * 100}%` }}
+              transition={{
+                type: "spring",
+                stiffness: 380,
+                damping: 32,
+                mass: 0.7,
               }}
-            />
+              className="absolute top-[5px] left-[5px] w-[calc((100%-10px)/5)] h-[36px] rounded-[22px] border border-white/15 bg-[#262626] overflow-hidden transform-gpu pointer-events-none z-0"
+            >
+              {/* Layer 1: GPU-Accelerated Spotlight Beam Glow */}
+              <div
+                className="absolute top-0 left-1/2 -translate-x-1/2 w-[56px] h-[32px] pointer-events-none z-10"
+                style={{
+                  background:
+                    "radial-gradient(ellipse 55% 85% at 50% 0%, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.25) 45%, rgba(255, 255, 255, 0) 100%)",
+                }}
+              />
 
-            {/* Layer 2: Soft Ambient Base Glow */}
-            <div
-              className="absolute top-1 left-1/2 -translate-x-1/2 w-[36px] h-[20px] pointer-events-none z-0 opacity-50"
-              style={{
-                background:
-                  "radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 80%)",
-              }}
-            />
+              {/* Layer 2: Soft Ambient Base Glow */}
+              <div
+                className="absolute top-1 left-1/2 -translate-x-1/2 w-[36px] h-[20px] pointer-events-none z-0 opacity-50"
+                style={{
+                  background:
+                    "radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 80%)",
+                }}
+              />
 
-            {/* Layer 3: Solid Top Lamp Bar with Crisp Flare */}
-            <div
-              className="absolute top-0 left-1/2 -translate-x-1/2 w-[26px] h-[2px] bg-white rounded-full z-20 shadow-[0_0_8px_1px_rgba(255,255,255,0.9)]"
-            />
-          </motion.div>
+              {/* Layer 3: Solid Top Lamp Bar with Crisp Flare */}
+              <div
+                className="absolute top-0 left-1/2 -translate-x-1/2 w-[26px] h-[2px] bg-white rounded-full z-20 shadow-[0_0_8px_1px_rgba(255,255,255,0.9)]"
+              />
+            </motion.div>
+          )}
 
           {/* Tab Buttons */}
           {tabs.map((tab, idx) => {

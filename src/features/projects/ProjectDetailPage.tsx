@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import { notFound, useParams, useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Github, ExternalLink, Terminal, Download, Copy, Check } from 'lucide-react';
 import { projectsData } from './data/projectsData';
@@ -17,7 +17,11 @@ export default function ProjectDetailPage({ onOpenHireModal, projectId }: Projec
   const id = projectId || params?.id;
   const [copied, setCopied] = useState(false);
 
-  const project = projectsData.find((p) => p.id === id) || projectsData[0];
+  const project = projectsData.find((p) => p.id === id);
+
+  if (!project) {
+    notFound();
+  }
 
   const handleCopyCode = () => {
     if (project.setupGuide) {

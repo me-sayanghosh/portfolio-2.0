@@ -26,7 +26,7 @@ export default function HomeProjectsSection() {
         {featuredProjects.map((project) => (
           <div
             key={project.id}
-            onClick={() => router.push('/projects')}
+            onClick={() => router.push(`/projects/${project.id}`)}
             className="group bg-[#222222] border border-[#333333] hover:border-white/20 hover:bg-[#2a2a2a] rounded-2xl p-4 sm:p-5 flex items-center space-x-4 transition-colors duration-200 cursor-pointer shadow-md"
           >
             {/* Custom App Logo with Hardware-Accelerated Smooth Hover Pop-up */}

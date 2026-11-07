@@ -6,7 +6,15 @@ import { Linkedin, Mail, Github, Instagram, X } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { ImagesBadge } from '../../../components/ui/images-badge';
 
-export default function HeroSection({ onOpenResume, onOpenHackathonModal }) {
+export default function HeroSection({
+  onOpenResume,
+  onOpenHackathonModal,
+  onOpenHireModal,
+}: {
+  onOpenResume?: () => void;
+  onOpenHackathonModal?: () => void;
+  onOpenHireModal?: () => void;
+}) {
   const router = useRouter();
   const [isAvatarModalOpen, setIsAvatarModalOpen] = useState(false);
 
@@ -17,10 +25,14 @@ export default function HeroSection({ onOpenResume, onOpenHackathonModal }) {
       <div className="bg-[#000000] border border-black/15 rounded-2xl relative overflow-hidden h-[180px] sm:h-[210px] shadow-2xl flex items-center justify-center">
         
         {/* Top-Right "Open for new projects" Badge */}
-        <div className="absolute top-2.5 right-2.5 sm:top-4 sm:right-4 z-20 flex items-center space-x-1.5 sm:space-x-2 px-2.5 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-[#222222]/90 backdrop-blur-sm border border-white/10 text-[10px] sm:text-xs font-medium text-white/80 shadow-md">
+        <button
+          onClick={onOpenHireModal}
+          className="absolute top-2.5 right-2.5 sm:top-4 sm:right-4 z-20 flex items-center space-x-1.5 sm:space-x-2 px-2.5 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-[#222222]/90 hover:bg-[#2c2c2c] backdrop-blur-sm border border-white/10 hover:border-emerald-500/50 text-[10px] sm:text-xs font-medium text-white/80 hover:text-white shadow-md cursor-pointer transition-all active:scale-95"
+          title="Click to hire or get in touch"
+        >
           <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-emerald-300 animate-pulse shadow-[0_0_8px_#10b981]" />
           <span>Open for new projects</span>
-        </div>
+        </button>
 
         {/* Large Grumpy White Cat Image filling full right side of black banner */}
         <div className="absolute right-0 top-0 bottom-0 w-[180px] xs:w-[220px] sm:w-[270px] pointer-events-none overflow-hidden rounded-r-2xl flex items-center justify-end opacity-80 sm:opacity-100">
@@ -60,7 +72,7 @@ export default function HeroSection({ onOpenResume, onOpenHackathonModal }) {
 
         {/* My Resume Button (Matching Figma Screenshot) */}
         <a
-          href="https://drive.google.com/file/d/1BDbRffBGX90nvU7LLViVe49WQHWtxnj3/view?usp=sharing"
+          href="/SayanResume.pdf"
           target="_blank"
           rel="noopener noreferrer"
           className="resume-btn mt-3 px-4 py-1 sm:px-5 sm:py-1.5 rounded-full border border-white/40 bg-black/80 text-white font-urbanist text-xs sm:text-sm font-medium tracking-tight italic active:scale-95 cursor-pointer shadow-md inline-block"
@@ -107,6 +119,7 @@ export default function HeroSection({ onOpenResume, onOpenHackathonModal }) {
                 href="https://x.com/SayanDev01"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Twitter / X profile"
                 className="text-gray-300 hover:text-white transition-colors"
               >
                 <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24">
@@ -128,6 +141,7 @@ export default function HeroSection({ onOpenResume, onOpenHackathonModal }) {
                 href="https://www.linkedin.com/in/sayan-ghosh-b7aaa5293/"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="LinkedIn profile"
                 className="text-gray-300 hover:text-white transition-colors"
               >
                 <Linkedin className="w-6 h-6" />
@@ -147,6 +161,7 @@ export default function HeroSection({ onOpenResume, onOpenHackathonModal }) {
                 href="https://mail.google.com/mail/?view=cm&fs=1&to=sayanghosh1887@gmail.com"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Send email to Sayan Ghosh"
                 className="text-gray-300 hover:text-white transition-colors"
               >
                 <Mail className="w-6 h-6" />
@@ -166,6 +181,7 @@ export default function HeroSection({ onOpenResume, onOpenHackathonModal }) {
                 href="https://github.com/me-sayanghosh"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="GitHub profile"
                 className="text-gray-300 hover:text-white transition-colors"
               >
                 <Github className="w-6 h-6" />
@@ -185,6 +201,7 @@ export default function HeroSection({ onOpenResume, onOpenHackathonModal }) {
                 href="https://www.instagram.com/sayann.exe/"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Instagram profile"
                 className="text-gray-300 hover:text-white transition-colors"
               >
                 <Instagram className="w-6 h-6" />

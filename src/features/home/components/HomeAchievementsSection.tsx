@@ -1,7 +1,12 @@
+'use client';
+
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useModal } from '../../../context/ModalContext';
 
 export default function HomeAchievementsSection() {
+  const { openHackathonModal } = useModal();
+
   const achievements = [
     {
       id: 'app-e-teaser',
@@ -11,7 +16,7 @@ export default function HomeAchievementsSection() {
     {
       id: 'gfg-hackfest',
       title: 'HackFest Finalist',
-      event: 'GeeksforGeeks - Hackfest 2k26'
+      event: 'GeeksforGeeks - Hackfest 2k26 (Click to view story)'
     },
     {
       id: 'jistech-winner',
@@ -36,11 +41,17 @@ export default function HomeAchievementsSection() {
         {achievements.map((ach) => (
           <motion.div
             key={ach.id}
+            id={ach.id}
             whileHover={{ x: 10 }}
             transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-            className="space-y-1 group cursor-pointer"
+            onClick={() => {
+              if (ach.id === 'gfg-hackfest') {
+                openHackathonModal();
+              }
+            }}
+            className={`space-y-1 group ${ach.id === 'gfg-hackfest' ? 'cursor-pointer' : ''}`}
           >
-            <h3 className="text-base sm:text-lg font-bold text-white tracking-tight">
+            <h3 className="text-base sm:text-lg font-bold text-white tracking-tight group-hover:text-amber-400 transition-colors">
               {ach.title}
             </h3>
             <p className="text-xs sm:text-sm text-gray-400 font-sans">

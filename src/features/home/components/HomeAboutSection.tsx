@@ -137,7 +137,7 @@ export default function HomeAboutSection() {
     },
     {
       name: 'AWS',
-      iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg'
+      iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg'
     },
     {
       name: 'Docker',
@@ -180,7 +180,7 @@ export default function HomeAboutSection() {
           imgSrc="/assets/osconnect-preview.webp"
           alt="Open Source Connect India"
         />
-        , that uses 1000+ users. Currently Building{' '}
+        , used by 1000+ users. Currently Building{' '}
         <TextLinkPreview
           href="https://drop-talk.vercel.app/"
           text="DropTalk"

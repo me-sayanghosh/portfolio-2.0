@@ -29,7 +29,7 @@ export function ModalProvider({ children }: { children: React.ReactNode }) {
   const [isHireModalOpen, setIsHireModalOpen] = useState(false);
 
   const openResume = () => {
-    window.open('https://drive.google.com/file/d/1DHve9dCBtZaNsVG_SMCtDCqEZXKMvxxB/view?usp=sharing', '_blank');
+    window.open('/SayanResume.pdf', '_blank');
   };
 
   return (
