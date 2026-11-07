@@ -316,10 +316,27 @@ function generateFallbackContributions(): ContributionDay[] {
   return days;
 }
 
+function formatContributionDate(dateStr: string): string {
+  try {
+    const [year, month, day] = dateStr.split('-').map(Number);
+    const date = new Date(year, month - 1, day);
+    return date.toLocaleDateString('en-US', {
+      weekday: 'short',
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric',
+    });
+  } catch {
+    return dateStr;
+  }
+}
+
 export default function AboutBentoAndCommitsSection() {
   const [contributions, setContributions] = useState<ContributionDay[]>([]);
   const [totalContributions, setTotalContributions] = useState<number>(6803);
   const [hoveredDay, setHoveredDay] = useState<ContributionDay | null>(null);
+  const [tooltipPos, setTooltipPos] = useState<{ x: number; y: number } | null>(null);
+  const calendarContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Initialize with rich fallback immediately
@@ -420,8 +437,11 @@ export default function AboutBentoAndCommitsSection() {
         </h2>
 
         {/* Calendar Box */}
-        <div className="w-full overflow-x-auto pb-2 scrollbar-thin">
-          <div className="min-w-[680px] sm:min-w-[740px] flex flex-col gap-2">
+        <div className="w-full overflow-x-auto pb-4 pt-6 scrollbar-thin">
+          <div
+            ref={calendarContainerRef}
+            className="relative min-w-[680px] sm:min-w-[740px] flex flex-col gap-2"
+          >
             {/* Month Labels */}
             <div className="flex justify-between text-[11px] sm:text-xs text-neutral-400 font-sans font-medium px-1 select-none">
               {MONTH_NAMES.map((m, i) => (
@@ -430,20 +450,84 @@ export default function AboutBentoAndCommitsSection() {
             </div>
 
             {/* 7 Rows Grid (Weeks as Columns) */}
-            <div className="grid grid-flow-col grid-rows-7 gap-1 w-max">
+            <div
+              className="grid grid-flow-col grid-rows-7 gap-1 w-max relative"
+              onMouseLeave={() => {
+                setHoveredDay(null);
+                setTooltipPos(null);
+              }}
+            >
               {weeks.map((week, wIdx) =>
                 week.map((day, dIdx) => (
                   <div
                     key={`${wIdx}-${dIdx}`}
-                    onMouseEnter={() => setHoveredDay(day)}
-                    onMouseLeave={() => setHoveredDay(null)}
-                    className={`w-[11px] h-[11px] sm:w-3 sm:h-3 rounded-[2px] transition-colors duration-150 cursor-pointer ${
+                    onMouseEnter={(e) => {
+                      setHoveredDay(day);
+                      if (calendarContainerRef.current) {
+                        const rect = calendarContainerRef.current.getBoundingClientRect();
+                        setTooltipPos({
+                          x: e.clientX - rect.left,
+                          y: e.clientY - rect.top,
+                        });
+                      }
+                    }}
+                    onMouseMove={(e) => {
+                      if (calendarContainerRef.current) {
+                        const rect = calendarContainerRef.current.getBoundingClientRect();
+                        setTooltipPos({
+                          x: e.clientX - rect.left,
+                          y: e.clientY - rect.top,
+                        });
+                      }
+                    }}
+                    className={`w-[11px] h-[11px] sm:w-3 sm:h-3 rounded-[2px] transition-all duration-100 cursor-pointer hover:scale-125 hover:z-20 ${
                       COLOR_LEVELS[day.level] || COLOR_LEVELS[0]
                     }`}
                   />
                 ))
               )}
             </div>
+
+            {/* Floating Cursor-Anchored Tooltip */}
+            {hoveredDay && tooltipPos && (() => {
+              const containerWidth = calendarContainerRef.current?.offsetWidth || 740;
+              const tooltipLeft = Math.max(90, Math.min(tooltipPos.x, containerWidth - 90));
+              const arrowOffset = Math.max(-65, Math.min(65, tooltipPos.x - tooltipLeft));
+              const isFlipped = tooltipPos.y < 46;
+
+              return (
+                <div
+                  className={`pointer-events-none absolute z-50 -translate-x-1/2 px-2.5 py-1.5 rounded-lg bg-neutral-900/95 border border-white/20 text-neutral-300 text-xs font-sans shadow-2xl backdrop-blur-md whitespace-nowrap transition-transform duration-75 ease-out ${
+                    isFlipped ? 'translate-y-2' : '-translate-y-full mb-2'
+                  }`}
+                  style={{
+                    left: tooltipLeft,
+                    top: isFlipped ? tooltipPos.y : tooltipPos.y - 8,
+                  }}
+                >
+                  <p className="leading-tight text-[11.5px]">
+                    <span className="font-semibold text-white">
+                      {hoveredDay.count === 0 ? 'No' : hoveredDay.count}{' '}
+                      contribution{hoveredDay.count === 1 ? '' : 's'}
+                    </span>{' '}
+                    on{' '}
+                    <span className="text-neutral-200">
+                      {formatContributionDate(hoveredDay.date)}
+                    </span>
+                  </p>
+
+                  {/* Arrow Indicator */}
+                  <div
+                    className={`absolute w-2 h-2 rotate-45 bg-neutral-900 border-white/20 ${
+                      isFlipped
+                        ? '-top-1 border-l border-t'
+                        : '-bottom-1 border-r border-b'
+                    }`}
+                    style={{ left: `calc(50% + ${arrowOffset}px - 4px)` }}
+                  />
+                </div>
+              );
+            })()}
 
             {/* Footer Summary & Legend */}
             <div className="flex items-center justify-between text-xs sm:text-[13px] font-sans pt-1 text-neutral-400 select-none">
@@ -463,14 +547,6 @@ export default function AboutBentoAndCommitsSection() {
                 <span>More</span>
               </div>
             </div>
-
-            {/* Hover Tooltip Indicator */}
-            {hoveredDay && (
-              <div className="text-[11px] text-neutral-400 font-mono pt-0.5">
-                {hoveredDay.count} contribution{hoveredDay.count === 1 ? '' : 's'} on{' '}
-                {hoveredDay.date}
-              </div>
-            )}
           </div>
         </div>
       </section>
