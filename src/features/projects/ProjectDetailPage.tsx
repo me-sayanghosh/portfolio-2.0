@@ -7,11 +7,10 @@ import { ArrowLeft, Github, ExternalLink, Terminal, Download, Copy, Check } from
 import { projectsData } from './data/projectsData';
 
 interface ProjectDetailPageProps {
-  onOpenHireModal?: () => void;
   projectId?: string;
 }
 
-export default function ProjectDetailPage({ onOpenHireModal, projectId }: ProjectDetailPageProps) {
+export default function ProjectDetailPage({ projectId }: ProjectDetailPageProps) {
   const params = useParams();
   const router = useRouter();
   const id = projectId || params?.id;

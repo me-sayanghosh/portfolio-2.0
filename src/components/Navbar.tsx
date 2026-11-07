@@ -270,37 +270,28 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Floating Dropdown Menu Card */}
+          {/* Floating Dropdown Menu Card (Smooth Accordion Slide-Down) */}
           <AnimatePresence>
             {isMobileMenuOpen && (
               <motion.div
-                initial={{ opacity: 0, height: 0, marginTop: 0 }}
+                initial={{ opacity: 0, height: 0 }}
                 animate={{
                   opacity: 1,
                   height: "auto",
-                  marginTop: 8,
                   transition: {
-                    height: {
-                      type: "spring",
-                      stiffness: 340,
-                      damping: 30,
-                      mass: 0.8,
-                    },
-                    opacity: { duration: 0.2, ease: "easeOut" },
-                    marginTop: { duration: 0.18 },
+                    height: { duration: 0.28, ease: [0.25, 1, 0.5, 1] },
+                    opacity: { duration: 0.22, ease: "easeOut" },
                   },
                 }}
                 exit={{
                   opacity: 0,
                   height: 0,
-                  marginTop: 0,
                   transition: {
-                    height: { duration: 0.22, ease: [0.16, 1, 0.3, 1] },
-                    opacity: { duration: 0.14, ease: "easeIn" },
-                    marginTop: { duration: 0.18 },
+                    height: { duration: 0.22, ease: [0.25, 1, 0.5, 1] },
+                    opacity: { duration: 0.16, ease: "easeIn" },
                   },
                 }}
-                className="overflow-hidden"
+                className="overflow-hidden mt-2"
               >
                 <div className="p-2 rounded-[20px] bg-white/95 dark:bg-[#141414]/95 backdrop-blur-2xl border border-zinc-200 dark:border-white/10 shadow-[0_12px_40px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_60px_rgba(0,0,0,0.85)] flex flex-col space-y-0.5 transition-colors">
                   {NAV_ITEMS.map((item, index) => {
@@ -316,8 +307,8 @@ export default function Navbar() {
                           y: 0,
                           transition: {
                             delay: 0.02 + index * 0.02,
-                            duration: 0.18,
-                            ease: "easeOut",
+                            duration: 0.2,
+                            ease: [0.25, 1, 0.5, 1],
                           },
                         }}
                         onClick={() => handleNavClick(item.path)}

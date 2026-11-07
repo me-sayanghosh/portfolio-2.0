@@ -439,13 +439,13 @@ export default function AboutBentoAndCommitsSection() {
       {/* ─── ROW 2: "Commits Over Claims ." WITH GITHUB HEATMAP ──────────── */}
       <section className="space-y-4">
         {/* Title & Dynamic Year Switcher */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+        <div className="flex items-center justify-between gap-3">
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-normal tracking-tight text-neutral-900 dark:text-white flex items-baseline gap-1">
             Commits Over Claims<span className="text-amber-500">.</span>
           </h2>
 
-          {/* Interactive Year Selector */}
-          <div className="flex items-center gap-1 bg-neutral-100 dark:bg-white/[0.04] p-1 rounded-xl border border-black/5 dark:border-white/10 self-start sm:self-auto">
+          {/* Interactive Year Selector (Hidden on mobile) */}
+          <div className="hidden sm:flex items-center gap-0.5 bg-neutral-100 dark:bg-white/[0.04] p-0.5 rounded-lg border border-black/5 dark:border-white/10">
             {[
               { id: 'last', label: 'Last Year' },
               { id: '2026', label: '2026' },
@@ -455,7 +455,7 @@ export default function AboutBentoAndCommitsSection() {
                 key={y.id}
                 type="button"
                 onClick={() => setSelectedYear(y.id)}
-                className={`px-3 py-1 rounded-lg text-xs font-medium transition-all duration-200 cursor-pointer ${
+                className={`px-2.5 py-0.5 rounded-md text-[11px] font-medium transition-all duration-200 cursor-pointer ${
                   selectedYear === y.id
                     ? 'bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white shadow-xs font-semibold'
                     : 'text-neutral-500 hover:text-neutral-900 dark:hover:text-white'
@@ -467,114 +467,116 @@ export default function AboutBentoAndCommitsSection() {
           </div>
         </div>
 
-        {/* Calendar Box */}
-        <div
-          className="w-full overflow-x-auto pb-2 pt-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
-          onScroll={() => setHoveredCell(null)}
-        >
-          <div className="w-full min-w-[700px] flex flex-col gap-2">
-            {/* Month Labels Aligned With Starting Columns */}
-            <div className="relative h-4 w-full select-none text-[11px] sm:text-xs text-neutral-600 dark:text-neutral-400 font-sans font-medium">
-              {monthLabels.map(({ month, colIndex }) => (
-                <span
-                  key={`${month}-${colIndex}`}
-                  className="absolute"
+        {/* Slideable Heatmap: ONLY the heatmap (month labels + grid) is slideable on mobile */}
+        <div className="relative w-full overflow-hidden">
+          <div
+            className="w-full overflow-x-auto pb-2 pt-1 touch-pan-x [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+            onScroll={() => setHoveredCell(null)}
+          >
+            <div className="min-w-[650px] sm:min-w-[700px] md:min-w-full flex flex-col gap-2">
+              {/* Month Labels Aligned With Starting Columns */}
+              <div className="relative h-4 w-full select-none text-[11px] sm:text-xs text-neutral-600 dark:text-neutral-400 font-sans font-medium">
+                {monthLabels.map(({ month, colIndex }) => (
+                  <span
+                    key={`${month}-${colIndex}`}
+                    className="absolute"
+                    style={{
+                      left: `${(colIndex / (weeks.length || 53)) * 100}%`,
+                    }}
+                  >
+                    {month}
+                  </span>
+                ))}
+              </div>
+
+              {/* 53 Columns Grid Spanning Full Width (Matching Bento Cards) */}
+              {error && !weeks.length ? (
+                <div className="flex items-center justify-center py-10 text-xs text-neutral-500 dark:text-neutral-400">
+                  <span>{error}</span>
+                  <button
+                    type="button"
+                    onClick={() => setSelectedYear((y) => (y === 'last' ? 'last' : 'last'))}
+                    className="ml-3 px-2.5 py-1 text-xs rounded-md bg-neutral-100 dark:bg-white/10 hover:bg-neutral-200 dark:hover:bg-white/20 text-neutral-700 dark:text-white transition-colors cursor-pointer"
+                  >
+                    Retry
+                  </button>
+                </div>
+              ) : isLoading && !weeks.length ? (
+                <div
+                  className="grid w-full gap-[3px] select-none animate-pulse"
                   style={{
-                    left: `${(colIndex / (weeks.length || 53)) * 100}%`,
+                    gridTemplateColumns: 'repeat(53, minmax(0, 1fr))',
                   }}
                 >
-                  {month}
-                </span>
-              ))}
-            </div>
-
-            {/* 53 Columns Grid Spanning Full Width (Matching Bento Cards) */}
-            {error && !weeks.length ? (
-              <div className="flex items-center justify-center py-10 text-xs text-neutral-500 dark:text-neutral-400">
-                <span>{error}</span>
-                <button
-                  type="button"
-                  onClick={() => setSelectedYear((y) => (y === 'last' ? 'last' : 'last'))}
-                  className="ml-3 px-2.5 py-1 text-xs rounded-md bg-neutral-100 dark:bg-white/10 hover:bg-neutral-200 dark:hover:bg-white/20 text-neutral-700 dark:text-white transition-colors cursor-pointer"
+                  {Array.from({ length: 53 }).map((_, wIdx) => (
+                    <div key={wIdx} className="flex flex-col gap-[3px]">
+                      {Array.from({ length: 7 }).map((_, dIdx) => (
+                        <div
+                          key={dIdx}
+                          className="aspect-square w-full rounded-[2px] bg-neutral-200/50 dark:bg-white/[0.04]"
+                        />
+                      ))}
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div
+                  className={`grid w-full gap-[3px] select-none transition-opacity duration-300 ${
+                    isLoading ? 'opacity-60' : 'opacity-100'
+                  }`}
+                  style={{
+                    gridTemplateColumns: `repeat(${weeks.length || 53}, minmax(0, 1fr))`,
+                  }}
+                  onMouseLeave={() => setHoveredCell(null)}
                 >
-                  Retry
-                </button>
-              </div>
-            ) : isLoading && !weeks.length ? (
-              <div
-                className="grid w-full gap-[3px] select-none animate-pulse"
-                style={{
-                  gridTemplateColumns: 'repeat(53, minmax(0, 1fr))',
-                }}
-              >
-                {Array.from({ length: 53 }).map((_, wIdx) => (
-                  <div key={wIdx} className="flex flex-col gap-[3px]">
-                    {Array.from({ length: 7 }).map((_, dIdx) => (
-                      <div
-                        key={dIdx}
-                        className="aspect-square w-full rounded-[2px] bg-neutral-200/50 dark:bg-white/[0.04]"
-                      />
-                    ))}
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div
-                className={`grid w-full gap-[3px] select-none transition-opacity duration-300 ${
-                  isLoading ? 'opacity-60' : 'opacity-100'
-                }`}
-                style={{
-                  gridTemplateColumns: `repeat(${weeks.length || 53}, minmax(0, 1fr))`,
-                }}
-                onMouseLeave={() => setHoveredCell(null)}
-              >
-                {weeks.map((week, wIdx) => (
-                  <div key={wIdx} className="flex flex-col gap-[3px]">
-                    {week.map((day, dIdx) => (
-                      <div
-                        key={`${wIdx}-${dIdx}`}
-                        onMouseEnter={(e) => {
-                          const rect = e.currentTarget.getBoundingClientRect();
-                          setHoveredCell({
-                            day,
-                            x: rect.left + rect.width / 2,
-                            top: rect.top,
-                            bottom: rect.bottom,
-                          });
-                        }}
-                        onMouseLeave={() => setHoveredCell(null)}
-                        className={`aspect-square w-full rounded-[2px] transition-transform duration-100 cursor-pointer hover:scale-125 hover:z-10 ${
-                          COLOR_LEVELS[day.level] || COLOR_LEVELS[0]
-                        }`}
-                      />
-                    ))}
-                  </div>
-                ))}
-              </div>
-            )}
-
-            {/* Footer Summary & Legend */}
-            <div className="flex items-center justify-between text-xs sm:text-[13px] font-sans pt-1 text-neutral-600 dark:text-neutral-400 select-none w-full">
-              <span className="font-medium text-neutral-900 dark:text-white/90">
-                {totalContributions !== null
-                  ? `${totalContributions.toLocaleString()} contributions ${
-                      selectedYear === 'last' ? 'in the last year' : `in ${selectedYear}`
-                    }`
-                  : 'Loading contributions...'}
-              </span>
-
-              {/* Less / More Legend */}
-              <div className="flex items-center gap-1.5 text-xs text-neutral-600 dark:text-neutral-400">
-                <span>Less</span>
-                {COLOR_LEVELS.map((cls, idx) => (
-                  <span
-                    key={`legend-${idx}`}
-                    className={`w-2.5 h-2.5 rounded-[2px] inline-block ${cls}`}
-                  />
-                ))}
-                <span>More</span>
-              </div>
+                  {weeks.map((week, wIdx) => (
+                    <div key={wIdx} className="flex flex-col gap-[3px]">
+                      {week.map((day, dIdx) => (
+                        <div
+                          key={`${wIdx}-${dIdx}`}
+                          onMouseEnter={(e) => {
+                            const rect = e.currentTarget.getBoundingClientRect();
+                            setHoveredCell({
+                              day,
+                              x: rect.left + rect.width / 2,
+                              top: rect.top,
+                              bottom: rect.bottom,
+                            });
+                          }}
+                          onMouseLeave={() => setHoveredCell(null)}
+                          className={`aspect-square w-full rounded-[2px] transition-transform duration-100 cursor-pointer hover:scale-125 hover:z-10 ${
+                            COLOR_LEVELS[day.level] || COLOR_LEVELS[0]
+                          }`}
+                        />
+                      ))}
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
+          </div>
+        </div>
+
+        {/* Footer Summary & Legend (STATIC, NOT slideable, stays visible across mobile screen) */}
+        <div className="flex flex-wrap items-center justify-between gap-2 text-xs sm:text-[13px] font-sans pt-1 text-neutral-600 dark:text-neutral-400 select-none w-full">
+          <span className="font-medium text-neutral-900 dark:text-white/90">
+            {totalContributions !== null
+              ? `${totalContributions.toLocaleString()} contributions ${
+                  selectedYear === 'last' ? 'in the last year' : `in ${selectedYear}`
+                }`
+              : 'Loading contributions...'}
+          </span>
+
+          {/* Less / More Legend */}
+          <div className="flex items-center gap-1.5 text-xs text-neutral-600 dark:text-neutral-400">
+            <span>Less</span>
+            {COLOR_LEVELS.map((cls, idx) => (
+              <span
+                key={`legend-${idx}`}
+                className={`w-2.5 h-2.5 rounded-[2px] inline-block ${cls}`}
+              />
+            ))}
+            <span>More</span>
           </div>
         </div>
 

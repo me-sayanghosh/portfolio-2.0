@@ -7,6 +7,7 @@ import { Trash2, Loader2, MessageSquare, Sparkles, X } from 'lucide-react';
 import GuestbookModal from './GuestbookModal';
 import { CloudShader } from '@/components/ui/cloud-shader';
 import { timeAgo } from '../../../lib/utils/timeAgo';
+import BlurFade, { BLUR_FADE_DELAY } from '../../../components/ui/blur-fade';
 
 interface Entry {
   _id: string;
@@ -106,81 +107,87 @@ export default function GuestbookSection() {
   return (
     <div className="space-y-8 mt-4">
       {/* ─── Artistic Quote Banner with Cloud Shader & Rotating Circular Badge ─── */}
-      <div className="relative overflow-hidden rounded-2xl h-48 sm:h-60 border border-zinc-200/80 dark:border-white/10 shadow-xl flex items-center justify-center p-6 text-center select-none group">
-        {/* Aceternity Cloud Shader Background */}
-        <CloudShader className="absolute inset-0 w-full h-full min-h-0 pointer-events-none" speed={1} count={6} />
+      <BlurFade delay={BLUR_FADE_DELAY * 1}>
+        <div className="keep-dark relative overflow-hidden rounded-2xl h-48 sm:h-60 border border-zinc-200/80 dark:border-white/10 shadow-xl flex items-center justify-center p-6 text-center select-none group">
+          {/* Aceternity Cloud Shader Background */}
+          <CloudShader className="absolute inset-0 w-full h-full min-h-0 pointer-events-none" speed={1} count={6} />
 
-        {/* Subtle Overlay Vignette for Text Contrast & Depth */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-black/25 pointer-events-none" />
+          {/* Subtle Overlay Vignette for Text Contrast & Depth */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-black/25 pointer-events-none" />
 
-        {/* Centered Atmospheric Serif Quote */}
-        <h2 className="relative z-10 font-serif italic text-2xl sm:text-3xl md:text-4xl text-white tracking-tight max-w-lg leading-snug drop-shadow-[0_2px_10px_rgba(0,0,0,0.65)]">
-          &ldquo;Write something. Future me will smile.&rdquo;
-        </h2>
+          {/* Centered Atmospheric Serif Quote */}
+          <h2 className="relative z-10 font-serif italic text-2xl sm:text-3xl md:text-4xl text-white tracking-tight max-w-lg leading-snug drop-shadow-[0_2px_10px_rgba(0,0,0,0.65)]">
+            &ldquo;Write something. Future me will smile.&rdquo;
+          </h2>
 
-        {/* Rotating Circular Stamp Badge in Bottom Right Corner */}
-        <div className="absolute -bottom-7 -right-7 sm:-bottom-8 sm:-right-8 w-28 h-28 sm:w-32 sm:h-32 pointer-events-none z-10 flex items-center justify-center">
-          <svg
-            className="w-full h-full animate-[spin_14s_linear_infinite]"
-            viewBox="0 0 100 100"
-          >
-            <path
-              id="circlePath"
-              d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
-              fill="none"
-            />
-            <text className="text-[9.5px] uppercase tracking-[3.8px] fill-white/85 font-mono font-medium drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]">
-              <textPath href="#circlePath">
-                think • design • execute •
-              </textPath>
-            </text>
-          </svg>
+          {/* Rotating Circular Stamp Badge in Bottom Right Corner */}
+          <div className="absolute -bottom-7 -right-7 sm:-bottom-8 sm:-right-8 w-28 h-28 sm:w-32 sm:h-32 pointer-events-none z-10 flex items-center justify-center">
+            <svg
+              className="w-full h-full animate-[spin_14s_linear_infinite]"
+              viewBox="0 0 100 100"
+            >
+              <path
+                id="circlePath"
+                d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
+                fill="none"
+              />
+              <text className="text-[9.5px] uppercase tracking-[3.8px] fill-white/85 font-mono font-medium drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]">
+                <textPath href="#circlePath">
+                  think • design • execute •
+                </textPath>
+              </text>
+            </svg>
+          </div>
         </div>
-      </div>
+      </BlurFade>
 
       {/* ─── Auth Action Area: Sign In or Leave a message ─── */}
-      <div className="pt-1">
-        {status === 'loading' ? (
-          <div className="h-10 flex items-center gap-3 text-sm text-zinc-500">
-            <Loader2 className="w-4 h-4 animate-spin text-amber-500" />
-            <span>Checking authentication...</span>
-          </div>
-        ) : status !== 'authenticated' || !session ? (
-          /* Logged-out State: Sign in button */
-          <div className="flex items-center gap-3">
-            <button
-              type="button"
-              onClick={() => setIsSignInModalOpen(true)}
-              className="px-4 py-1.5 rounded-lg border border-amber-600/70 bg-[#22160d]/90 hover:bg-[#2c1d12] text-amber-500 font-medium text-xs sm:text-sm shadow-sm transition-colors cursor-pointer"
-            >
-              Sign in
-            </button>
-            <span className="text-xs sm:text-sm text-zinc-300 font-sans font-medium">
-              To leave a message
-            </span>
-          </div>
-        ) : (
-          /* Logged-in State: Leave a message button */
-          <div className="flex items-center gap-3">
-            <button
-              type="button"
-              onClick={() => setIsMessageModalOpen(true)}
-              className="px-4 py-1.5 rounded-lg border border-zinc-700/80 bg-[#1e1e22] hover:bg-[#27272c] text-white font-medium text-xs sm:text-sm shadow-sm transition-colors cursor-pointer"
-            >
-              Leave a message
-            </button>
-            <span className="text-xs sm:text-sm text-zinc-300 font-sans font-medium">
-              for future visitors
-            </span>
-          </div>
-        )}
-      </div>
+      <BlurFade delay={BLUR_FADE_DELAY * 2}>
+        <div className="pt-1">
+          {status === 'loading' ? (
+            <div className="h-10 flex items-center gap-3 text-sm text-zinc-500">
+              <Loader2 className="w-4 h-4 animate-spin text-amber-500" />
+              <span>Checking authentication...</span>
+            </div>
+          ) : status !== 'authenticated' || !session ? (
+            /* Logged-out State: Sign in button */
+            <div className="flex items-center gap-3">
+              <button
+                type="button"
+                onClick={() => setIsSignInModalOpen(true)}
+                className="keep-dark px-4 py-1.5 rounded-lg border border-amber-600/70 bg-[#22160d] hover:bg-[#2c1d12] text-amber-500 font-medium text-xs sm:text-sm shadow-sm transition-colors cursor-pointer"
+              >
+                <span className="text-amber-500 font-medium">Sign in</span>
+              </button>
+              <span className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 font-sans font-medium">
+                To leave a message
+              </span>
+            </div>
+          ) : (
+            /* Logged-in State: Leave a message button */
+            <div className="flex items-center gap-3">
+              <button
+                type="button"
+                onClick={() => setIsMessageModalOpen(true)}
+                className="keep-dark px-4 py-1.5 rounded-lg border border-zinc-900 dark:border-zinc-700/80 bg-zinc-900 dark:bg-[#1e1e22] text-white hover:bg-zinc-800 dark:hover:bg-[#27272c] font-medium text-xs sm:text-sm shadow-sm transition-colors cursor-pointer"
+              >
+                <span className="text-white font-medium">Leave a message</span>
+              </button>
+              <span className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 font-sans font-medium">
+                for future visitors
+              </span>
+            </div>
+          )}
+        </div>
+      </BlurFade>
 
       {/* ─── Recent Messages List ─── */}
       <div className="space-y-6 mt-8 sm:mt-10">
-        <h2 className="text-2xl sm:text-3xl font-serif font-normal tracking-tight text-zinc-300 dark:text-zinc-300">
-          Recent Messages
-        </h2>
+        <BlurFade delay={BLUR_FADE_DELAY * 3}>
+          <h2 className="text-2xl sm:text-3xl font-serif font-normal tracking-tight text-zinc-900 dark:text-zinc-200">
+            Recent Messages
+          </h2>
+        </BlurFade>
 
         {isLoading ? (
           /* Loading Skeletons */
@@ -197,70 +204,74 @@ export default function GuestbookSection() {
           </div>
         ) : entries.length === 0 ? (
           /* Empty State */
-          <div className="p-8 text-center rounded-2xl border border-dashed border-zinc-300 dark:border-white/10 text-zinc-500 dark:text-zinc-400">
-            <MessageSquare className="w-8 h-8 mx-auto mb-2 text-zinc-400" />
-            <p className="text-sm font-medium">No messages yet.</p>
-            <p className="text-xs text-zinc-400 mt-1">Be the first to leave your mark!</p>
-          </div>
+          <BlurFade delay={BLUR_FADE_DELAY * 4}>
+            <div className="p-8 text-center rounded-2xl border border-dashed border-zinc-300 dark:border-white/10 text-zinc-500 dark:text-zinc-400">
+              <MessageSquare className="w-8 h-8 mx-auto mb-2 text-zinc-400" />
+              <p className="text-sm font-medium">No messages yet.</p>
+              <p className="text-xs text-zinc-400 mt-1">Be the first to leave your mark!</p>
+            </div>
+          </BlurFade>
         ) : (
           /* Messages List */
           <div className="divide-y divide-zinc-200 dark:divide-zinc-800/80">
-            {entries.map((entry) => {
+            {entries.map((entry, index) => {
               const isOwner =
                 session?.user?.email &&
                 entry.email &&
                 session.user.email.toLowerCase() === entry.email.toLowerCase();
 
               return (
-                <div key={entry._id} className="py-4 flex justify-between items-start gap-4 group">
-                  <div className="flex gap-3.5 sm:gap-4 flex-1 min-w-0">
-                    {/* User Avatar */}
-                    {entry.image ? (
-                      <img
-                        src={entry.image}
-                        alt={entry.name || 'User'}
-                        className="rounded-full w-10 h-10 object-cover shrink-0 ring-1 ring-zinc-300 dark:ring-white/15"
-                      />
-                    ) : (
-                      <div className="rounded-full w-10 h-10 bg-zinc-200 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 font-semibold text-sm flex items-center justify-center shrink-0">
-                        {entry.name?.[0]?.toUpperCase() || 'U'}
-                      </div>
-                    )}
-
-                    {/* Content */}
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2.5 flex-wrap">
-                        <span className="font-semibold text-sm text-zinc-900 dark:text-white">
-                          {entry.name}
-                        </span>
-                        <span className="text-xs text-zinc-500 dark:text-zinc-400 font-sans">
-                          {timeAgo(entry.createdAt)}
-                        </span>
-                      </div>
-                      <p className="mt-1.5 text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed break-words whitespace-pre-wrap">
-                        {entry.message}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Delete Button (Owner Only) */}
-                  {isOwner && (
-                    <button
-                      type="button"
-                      onClick={() => handleDelete(entry._id)}
-                      disabled={deletingId === entry._id}
-                      title="Delete your message"
-                      aria-label="Delete message"
-                      className="opacity-70 group-hover:opacity-100 p-1.5 text-zinc-400 hover:text-red-500 hover:bg-red-500/10 rounded-lg transition-all cursor-pointer shrink-0"
-                    >
-                      {deletingId === entry._id ? (
-                        <Loader2 className="w-4 h-4 animate-spin text-red-500" />
+                <BlurFade key={entry._id} delay={BLUR_FADE_DELAY * 3 + index * 0.04}>
+                  <div className="py-4 flex justify-between items-start gap-4 group hover:bg-white/[0.02] transition-colors rounded-lg px-2">
+                    <div className="flex gap-3.5 sm:gap-4 flex-1 min-w-0">
+                      {/* User Avatar */}
+                      {entry.image ? (
+                        <img
+                          src={entry.image}
+                          alt={entry.name || 'User'}
+                          className="rounded-full w-10 h-10 object-cover shrink-0 ring-1 ring-zinc-300 dark:ring-white/15"
+                        />
                       ) : (
-                        <Trash2 className="w-4 h-4" />
+                        <div className="rounded-full w-10 h-10 bg-zinc-200 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 font-semibold text-sm flex items-center justify-center shrink-0">
+                          {entry.name?.[0]?.toUpperCase() || 'U'}
+                        </div>
                       )}
-                    </button>
-                  )}
-                </div>
+
+                      {/* Content */}
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2.5 flex-wrap">
+                          <span className="font-semibold text-sm text-zinc-900 dark:text-white">
+                            {entry.name}
+                          </span>
+                          <span className="text-xs text-zinc-500 dark:text-zinc-400 font-sans">
+                            {timeAgo(entry.createdAt)}
+                          </span>
+                        </div>
+                        <p className="mt-1.5 text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed break-words whitespace-pre-wrap">
+                          {entry.message}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Delete Button (Owner Only) */}
+                    {isOwner && (
+                      <button
+                        type="button"
+                        onClick={() => handleDelete(entry._id)}
+                        disabled={deletingId === entry._id}
+                        title="Delete your message"
+                        aria-label="Delete message"
+                        className="opacity-70 group-hover:opacity-100 p-1.5 text-zinc-400 hover:text-red-500 hover:bg-red-500/10 rounded-lg transition-all cursor-pointer shrink-0"
+                      >
+                        {deletingId === entry._id ? (
+                          <Loader2 className="w-4 h-4 animate-spin text-red-500" />
+                        ) : (
+                          <Trash2 className="w-4 h-4" />
+                        )}
+                      </button>
+                    )}
+                  </div>
+                </BlurFade>
               );
             })}
           </div>
@@ -286,18 +297,18 @@ export default function GuestbookSection() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 10 }}
               transition={{ duration: 0.2, ease: 'easeOut' }}
-              className="relative w-full max-w-sm sm:max-w-md rounded-2xl bg-[#141416] border border-zinc-800 shadow-2xl p-6 z-10"
+              className="relative w-full max-w-sm sm:max-w-md rounded-2xl bg-white dark:bg-[#141416] border border-zinc-200 dark:border-zinc-800 shadow-2xl p-6 z-10"
             >
               {/* Header with Title & Close Icon */}
               <div className="flex items-center justify-between mb-4">
-                <h2 className="text-xl sm:text-2xl font-bold text-white font-sans">
+                <h2 className="text-xl sm:text-2xl font-bold text-zinc-900 dark:text-white font-sans">
                   Write Something Nice :3
                 </h2>
                 <button
                   type="button"
                   onClick={() => setIsMessageModalOpen(false)}
                   aria-label="Close dialog"
-                  className="p-1 rounded-lg text-zinc-400 hover:text-white transition-colors cursor-pointer"
+                  className="p-1 rounded-lg text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors cursor-pointer"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -315,7 +326,7 @@ export default function GuestbookSection() {
                     maxLength={500}
                     required
                     disabled={isSubmitting}
-                    className="w-full rounded-xl bg-[#1e1e22] border border-zinc-700/80 p-3.5 text-sm text-white placeholder:text-zinc-500 focus:outline-none focus:border-zinc-500 transition-colors resize-none"
+                    className="w-full rounded-xl bg-zinc-50 dark:bg-[#1e1e22] border border-zinc-200 dark:border-zinc-700/80 p-3.5 text-sm text-zinc-900 dark:text-white placeholder:text-zinc-400 dark:placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-amber-500/50 dark:focus:border-zinc-500 transition-all resize-none"
                   />
                 </div>
 
@@ -326,10 +337,10 @@ export default function GuestbookSection() {
                 <button
                   type="submit"
                   disabled={isSubmitting || !messageText.trim()}
-                  className="inline-flex items-center justify-center gap-2 px-5 py-2 rounded-lg text-sm font-medium bg-[#52525b] hover:bg-[#5f5f69] text-white transition-colors disabled:opacity-50 disabled:pointer-events-none cursor-pointer"
+                  className="keep-dark inline-flex items-center justify-center gap-2 px-5 py-2 rounded-lg text-sm font-medium bg-zinc-900 hover:bg-zinc-800 text-white dark:bg-[#52525b] dark:hover:bg-[#5f5f69] transition-colors disabled:opacity-50 disabled:pointer-events-none cursor-pointer"
                 >
                   {isSubmitting && <Loader2 className="w-4 h-4 animate-spin text-white" />}
-                  <span>Sign</span>
+                  <span className="text-white">Sign</span>
                 </button>
               </form>
             </motion.div>

@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import BlurFade, { BLUR_FADE_DELAY } from '../../../components/ui/blur-fade';
 
 interface TextLinkPreviewProps {
   href: string;
@@ -168,64 +169,66 @@ export default function HomeAboutSection() {
   return (
     <section className="py-6 max-w-4xl mx-auto px-4 sm:px-6">
       
-      {/* Title */}
-      
+      {/* Intro Paragraph 1 & 2 */}
+      <BlurFade delay={BLUR_FADE_DELAY * 5}>
+        <p className="text-xs sm:text-sm text-gray-300 leading-relaxed mb-3 font-sans">
+          <span className="wave-on-hover mr-1.5 inline-block text-base cursor-default select-none">👋</span>
+          A Final-year student who spends most days building full-stack products. Recently built{' '}
+          <TextLinkPreview
+            href="https://osci.osconnect.org/"
+            text="OSConnect"
+            imgSrc="/assets/osconnect-preview.webp"
+            alt="Open Source Connect India"
+          />
+          , used by 1500+ users. Currently Building{' '}
+          <TextLinkPreview
+            href="https://drop-talk.vercel.app/"
+            text="DropTalk"
+            imgSrc="/assets/droptalk-banner.webp"
+            alt="DropTalk Workspace"
+          />
+          , shipping features, fixing bugs, and learning things you don't get from tutorials.
+        </p>
 
-      {/* Intro Paragraph 1 */}
-      <p className="text-xs sm:text-sm text-gray-300 leading-relaxed mb-3 font-sans">
-        A Final-year student who spends most days building full-stack products. Recently built{' '}
-        <TextLinkPreview
-          href="https://osci.osconnect.org/"
-          text="OSConnect"
-          imgSrc="/assets/osconnect-preview.webp"
-          alt="Open Source Connect India"
-        />
-        , used by 1500+ users. Currently Building{' '}
-        <TextLinkPreview
-          href="https://drop-talk.vercel.app/"
-          text="DropTalk"
-          imgSrc="/assets/droptalk-banner.webp"
-          alt="DropTalk Workspace"
-        />
-        , shipping features, fixing bugs, and learning things you don't get from tutorials.
-      </p>
-
-      {/* Connecting Lines to Skills */}
-      <p className="text-xs sm:text-sm text-gray-400 leading-relaxed mb-6 font-sans">
-        Driven by curiosity and hands-on execution, I specialize in architecting scalable backend APIs and responsive web interfaces. Here are the core tools and technologies I work with:
-      </p>
-      
-      
+        {/* Connecting Lines to Skills */}
+        <p className="text-xs sm:text-sm text-gray-400 leading-relaxed mb-6 font-sans">
+          Driven by curiosity and hands-on execution, I specialize in architecting scalable backend APIs and responsive web interfaces. Here are the core tools and technologies I work with:
+        </p>
+      </BlurFade>
 
       {/* Tech Stack Pills Grid: Grayscale B&W by default -> Full Color on Hover */}
-      <div className="flex flex-wrap gap-2 sm:gap-2.5 mb-8">
-        {techStack.map((tech, i) => (
-          <div
-            key={i}
-            className="group flex items-center space-x-2 px-3 py-1.5 rounded-xl bg-[#222222] border border-[#333333] hover:border-white/30 hover:bg-[#2a2a2a] transition-all duration-300 cursor-pointer shadow-sm"
-          >
-            <img
-              src={tech.iconUrl}
-              alt={tech.name}
-              className="w-4 h-4 sm:w-4.5 sm:h-4.5 object-contain filter grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:scale-110"
-            />
-            <span className="text-xs sm:text-sm font-medium text-gray-300 group-hover:text-white transition-colors">
-              {tech.name}
-            </span>
-          </div>
-        ))}
-      </div>
+      <BlurFade delay={BLUR_FADE_DELAY * 6}>
+        <div className="flex flex-wrap gap-2 sm:gap-2.5 mb-8">
+          {techStack.map((tech, i) => (
+            <div
+              key={i}
+              className="group flex items-center space-x-2 px-3 py-1.5 rounded-xl bg-[#222222] border border-[#333333] hover:border-white/30 hover:bg-[#2a2a2a] transition-all duration-300 cursor-pointer shadow-sm hover:scale-105"
+            >
+              <img
+                src={tech.iconUrl}
+                alt={tech.name}
+                className="w-4 h-4 sm:w-4.5 sm:h-4.5 object-contain filter grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:scale-110"
+              />
+              <span className="text-xs sm:text-sm font-medium text-gray-300 group-hover:text-white transition-colors">
+                {tech.name}
+              </span>
+            </div>
+          ))}
+        </div>
+      </BlurFade>
 
       {/* More About Me Button */}
-      <div className="flex justify-center">
-        <button
-          onClick={() => router.push('/about')}
-          className="px-6 py-2 rounded-full border border-white/30 bg-[#222222] hover:bg-white/15 text-white font-semibold text-xs sm:text-sm shadow-lg transition-all active:scale-95 cursor-pointer flex items-center space-x-2"
-        >
-          <span>More About Me</span>
-          <ArrowRight className="w-4 h-4" />
-        </button>
-      </div>
+      <BlurFade delay={BLUR_FADE_DELAY * 7}>
+        <div className="flex justify-center">
+          <button
+            onClick={() => router.push('/about')}
+            className="px-6 py-2 rounded-full border border-white/30 bg-[#222222] hover:bg-white/15 text-white font-semibold text-xs sm:text-sm shadow-lg transition-all active:scale-95 cursor-pointer flex items-center space-x-2 group"
+          >
+            <span>More About Me</span>
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </button>
+        </div>
+      </BlurFade>
 
     </section>
   );

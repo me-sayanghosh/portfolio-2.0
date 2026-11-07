@@ -9,7 +9,7 @@ import HomeExperienceSection from './components/HomeExperienceSection';
 import HomeAchievementsSection from './components/HomeAchievementsSection';
 import { ContactAndSignature } from '../contact';
 
-export default function HomePage({ onOpenResume, onOpenHackathonModal, onOpenHireModal }) {
+export default function HomePage({ onOpenResume, onOpenHackathonModal }: { onOpenResume?: () => void; onOpenHackathonModal?: () => void }) {
   return (
     <motion.div
       key="home-page"
@@ -21,7 +21,6 @@ export default function HomePage({ onOpenResume, onOpenHackathonModal, onOpenHir
       <HeroSection
         onOpenResume={onOpenResume}
         onOpenHackathonModal={onOpenHackathonModal}
-        onOpenHireModal={onOpenHireModal}
       />
       
       {/* About & Skills Section */}
