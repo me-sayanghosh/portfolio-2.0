@@ -555,7 +555,7 @@ export default function AboutBentoAndCommitsSection() {
 
             return (
               <div
-                className={`pointer-events-none fixed z-[9999] -translate-x-1/2 px-3 py-1.5 rounded-md bg-neutral-900/95 dark:bg-[#161b22] border border-neutral-700/60 dark:border-white/20 text-neutral-200 text-xs font-sans shadow-2xl whitespace-nowrap transition-transform duration-75 ease-out ${
+                className={`pointer-events-none fixed z-[9999] -translate-x-1/2 px-3 py-1.5 rounded-md bg-white dark:bg-[#161b22] border border-neutral-200 dark:border-white/20 text-xs font-sans shadow-lg dark:shadow-2xl whitespace-nowrap transition-transform duration-75 ease-out ${
                   isFlipped ? 'translate-y-2' : '-translate-y-full'
                 }`}
                 style={{
@@ -563,20 +563,20 @@ export default function AboutBentoAndCommitsSection() {
                   top: isFlipped ? hoveredCell.bottom : hoveredCell.top - 8,
                 }}
               >
-                <p className="leading-tight text-[11.5px] select-none">
-                  <span className="font-semibold text-white">
+                <p className="leading-tight text-[11.5px] select-none text-neutral-600 dark:text-neutral-300">
+                  <span className="font-semibold text-neutral-900 dark:text-white">
                     {hoveredCell.day.count === 0 ? 'No' : hoveredCell.day.count}{' '}
                     contribution{hoveredCell.day.count === 1 ? '' : 's'}
                   </span>{' '}
-                  on{' '}
-                  <span className="text-neutral-300">
+                  <span className="text-neutral-500 dark:text-neutral-400">on</span>{' '}
+                  <span className="font-medium text-neutral-700 dark:text-neutral-300">
                     {formatContributionDate(hoveredCell.day.date)}
                   </span>
                 </p>
 
                 {/* Arrow Indicator */}
                 <div
-                  className={`absolute w-2 h-2 rotate-45 bg-neutral-900/95 dark:bg-[#161b22] border-neutral-700/60 dark:border-white/20 ${
+                  className={`absolute w-2 h-2 rotate-45 bg-white dark:bg-[#161b22] border-neutral-200 dark:border-white/20 ${
                     isFlipped
                       ? '-top-1 border-l border-t'
                       : '-bottom-1 border-r border-b'

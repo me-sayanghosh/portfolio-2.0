@@ -1,0 +1,147 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <defs>
+    <radialGradient id="physGlow1" cx="20%" cy="25%" r="65%">
+      <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#080a0f" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="physGlow2" cx="80%" cy="75%" r="55%">
+      <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#080a0f" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="physCard" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#141a29" stop-opacity="0.96"/>
+      <stop offset="100%" stop-color="#0e121e" stop-opacity="0.92"/>
+    </linearGradient>
+    <linearGradient id="bluePurpleText" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="60%" stop-color="#60a5fa"/>
+      <stop offset="100%" stop-color="#c084fc"/>
+    </linearGradient>
+    <filter id="physShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="20" stdDeviation="25" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="675" fill="#080b12"/>
+  <rect width="1200" height="675" fill="url(#physGlow1)"/>
+  <rect width="1200" height="675" fill="url(#physGlow2)"/>
+
+  <!-- Subtle Blueprint Grid -->
+  <g stroke="#ffffff" stroke-opacity="0.035" stroke-width="1">
+    <path d="M0 75 H1200 M0 150 H1200 M0 225 H1200 M0 300 H1200 M0 375 H1200 M0 450 H1200 M0 525 H1200 M0 600 H1200"/>
+    <path d="M150 0 V675 M300 0 V675 M450 0 V675 M600 0 V675 M750 0 V675 M900 0 V675 M1050 0 V675"/>
+  </g>
+
+  <!-- Left: Content -->
+  <g transform="translate(80, 110)">
+    <!-- Category Pill -->
+    <rect x="0" y="0" width="220" height="34" rx="17" fill="#3b82f6" fill-opacity="0.15" stroke="#3b82f6" stroke-opacity="0.4" stroke-width="1.2"/>
+    <circle cx="18" cy="17" r="4.5" fill="#60a5fa"/>
+    <text x="32" y="22" font-family="-apple-system, sans-serif" font-size="12" font-weight="700" fill="#bfdbfe" letter-spacing="1.2">EMBEDDED HARDWARE &amp; AI</text>
+
+    <!-- Main Title -->
+    <text x="0" y="85" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="46" font-weight="900" fill="#ffffff" letter-spacing="-1.2">
+      0.2% of Chips,
+    </text>
+    <text x="0" y="140" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="46" font-weight="900" fill="url(#bluePurpleText)" letter-spacing="-1.2">
+      50% of Revenue.
+    </text>
+
+    <!-- Neon Lime Highlight Pill -->
+    <g transform="translate(0, 165)">
+      <rect x="0" y="0" width="350" height="42" rx="8" fill="#bef264"/>
+      <text x="14" y="28" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="22" font-weight="900" fill="#0f172a" letter-spacing="-0.5">PHYSICAL AI IS THE NEXT WAVE.</text>
+    </g>
+
+    <!-- Subtitle -->
+    <text x="0" y="250" font-family="-apple-system, sans-serif" font-size="17" fill="#94a3b8" font-weight="400">
+      Datacenter AI silicon captured unprecedented profits on razor-thin volume.
+    </text>
+    <text x="0" y="276" font-family="-apple-system, sans-serif" font-size="17" fill="#94a3b8" font-weight="400">
+      The next trillion-dollar frontier: 1–10 TOPS embedded NPUs in robots &amp; vehicles.
+    </text>
+
+    <!-- Metrics Callouts -->
+    <g transform="translate(0, 320)">
+      <rect x="0" y="0" width="150" height="58" rx="12" fill="#141c2c" stroke="#3b82f6" stroke-opacity="0.3" stroke-width="1.2"/>
+      <text x="16" y="24" font-family="monospace" font-size="11" fill="#60a5fa" font-weight="600">CHIP VOLUME</text>
+      <text x="16" y="48" font-family="-apple-system, sans-serif" font-size="22" font-weight="800" fill="#ffffff">0.2% <tspan font-size="12" fill="#94a3b8">OF SILICON</tspan></text>
+
+      <rect x="165" y="0" width="150" height="58" rx="12" fill="#1e172a" stroke="#8b5cf6" stroke-opacity="0.3" stroke-width="1.2"/>
+      <text x="181" y="24" font-family="monospace" font-size="11" fill="#c084fc" font-weight="600">REVENUE CAPTURE</text>
+      <text x="181" y="48" font-family="-apple-system, sans-serif" font-size="22" font-weight="800" fill="#ffffff">50% <tspan font-size="12" fill="#c084fc">SHARE</tspan></text>
+
+      <rect x="330" y="0" width="165" height="58" rx="12" fill="#12231c" stroke="#10b981" stroke-opacity="0.3" stroke-width="1.2"/>
+      <text x="346" y="24" font-family="monospace" font-size="11" fill="#34d399" font-weight="600">EDGE NPU SWEET SPOT</text>
+      <text x="346" y="48" font-family="-apple-system, sans-serif" font-size="22" font-weight="800" fill="#ffffff">1–10 <tspan font-size="12" fill="#94a3b8">TOPS</tspan></text>
+    </g>
+
+    <!-- Footer Tag -->
+    <g transform="translate(0, 425)">
+      <text x="0" y="0" font-family="monospace" font-size="12" fill="#64748b" letter-spacing="0.5">
+        DATA: EDGE AI AND VISION ALLIANCE · PROMWAD EMBEDDED TRENDS 2026
+      </text>
+    </g>
+  </g>
+
+  <!-- Right: Physical AI Architecture & Memory Wall Card -->
+  <g transform="translate(680, 85)" filter="url(#physShadow)">
+    <rect width="440" height="495" rx="20" fill="url(#physCard)" stroke="#ffffff" stroke-opacity="0.1" stroke-width="1.5"/>
+
+    <rect width="440" height="46" rx="20" fill="#1a2133" stroke="#ffffff" stroke-opacity="0.06" stroke-width="1"/>
+    <circle cx="24" cy="23" r="5" fill="#ef4444"/>
+    <circle cx="40" cy="23" r="5" fill="#f59e0b"/>
+    <circle cx="56" cy="23" r="5" fill="#10b981"/>
+    <text x="220" y="28" text-anchor="middle" font-family="monospace" font-size="12" fill="#94a3b8">physical-edge-architecture.v</text>
+
+    <g transform="translate(28, 75)">
+      <text x="0" y="16" font-family="-apple-system, sans-serif" font-size="14" font-weight="700" fill="#ffffff">The Physical AI Compute Envelope</text>
+
+      <!-- Architecture Block 1: 1-10 TOPS NPU -->
+      <g transform="translate(0, 32)">
+        <rect x="0" y="0" width="384" height="68" rx="10" fill="#152033" stroke="#3b82f6" stroke-opacity="0.4" stroke-width="1"/>
+        <text x="14" y="24" font-family="-apple-system, sans-serif" font-size="12" font-weight="700" fill="#60a5fa">INTEGRATED ON-CHIP NPU (1–10 TOPS)</text>
+        <text x="14" y="46" font-family="monospace" font-size="12" fill="#cbd5e1">INT8 Vision (YOLOv11), Real-time Sensor Fusion, SLMs</text>
+      </g>
+
+      <!-- Architecture Block 2: The Memory Wall Bottleneck -->
+      <g transform="translate(0, 112)">
+        <rect x="0" y="0" width="384" height="84" rx="10" fill="#241a2a" stroke="#c084fc" stroke-opacity="0.4" stroke-width="1"/>
+        <text x="14" y="22" font-family="-apple-system, sans-serif" font-size="12" font-weight="700" fill="#c084fc">THE REAL BOTTLENECK: MEMORY BANDWIDTH</text>
+        <text x="14" y="44" font-family="-apple-system, sans-serif" font-size="12" fill="#f3e8ff">
+          Raw TOPS are meaningless if weights stall on DDR bus.
+        </text>
+        <text x="14" y="66" font-family="monospace" font-size="11" fill="#a855f7">
+          Key theme at Embedded World 2026: SRAM vs LPDDR5
+        </text>
+      </g>
+
+      <!-- Target Applications Pill Matrix -->
+      <g transform="translate(0, 210)">
+        <text x="0" y="16" font-family="-apple-system, sans-serif" font-size="13" font-weight="700" fill="#cbd5e1">Physical AI Deployment Vectors</text>
+        
+        <g transform="translate(0, 28)">
+          <rect x="0" y="0" width="118" height="32" rx="6" fill="#1e293b"/>
+          <text x="59" y="20" text-anchor="middle" font-family="monospace" font-size="11" fill="#38bdf8">Robotic Arms</text>
+
+          <rect x="128" y="0" width="118" height="32" rx="6" fill="#1e293b"/>
+          <text x="187" y="20" text-anchor="middle" font-family="monospace" font-size="11" fill="#c084fc">ADAS Vehicles</text>
+
+          <rect x="256" y="0" width="128" height="32" rx="6" fill="#1e293b"/>
+          <text x="320" y="20" text-anchor="middle" font-family="monospace" font-size="11" fill="#34d399">Smart Factory</text>
+        </g>
+      </g>
+
+      <!-- Offline Edge Independence Banner -->
+      <g transform="translate(0, 288)">
+        <rect x="0" y="0" width="384" height="62" rx="10" fill="#0f251c" stroke="#10b981" stroke-opacity="0.4" stroke-width="1"/>
+        <circle cx="22" cy="31" r="10" fill="#10b981" fill-opacity="0.2"/>
+        <path d="M17 31 L20 34 L27 27" stroke="#34d399" stroke-width="2" fill="none"/>
+        <text x="40" y="26" font-family="-apple-system, sans-serif" font-size="12" font-weight="700" fill="#34d399">ZERO NETWORK DEPENDENCY</text>
+        <text x="40" y="46" font-family="-apple-system, sans-serif" font-size="11" fill="#cbd5e1">
+          Local sub-10ms latency inference without cloud uplink
+        </text>
+      </g>
+    </g>
+  </g>
+</svg>

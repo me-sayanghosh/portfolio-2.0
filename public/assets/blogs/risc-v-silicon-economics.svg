@@ -1,0 +1,139 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <defs>
+    <radialGradient id="riscvGlow1" cx="20%" cy="25%" r="65%">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#080a0f" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="riscvGlow2" cx="80%" cy="75%" r="55%">
+      <stop offset="0%" stop-color="#0284c7" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#080a0f" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="riscvCard" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#111a19" stop-opacity="0.96"/>
+      <stop offset="100%" stop-color="#0c1214" stop-opacity="0.92"/>
+    </linearGradient>
+    <linearGradient id="greenBlueText" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="60%" stop-color="#34d399"/>
+      <stop offset="100%" stop-color="#38bdf8"/>
+    </linearGradient>
+    <filter id="riscvShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="20" stdDeviation="25" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="675" fill="#080d0d"/>
+  <rect width="1200" height="675" fill="url(#riscvGlow1)"/>
+  <rect width="1200" height="675" fill="url(#riscvGlow2)"/>
+
+  <!-- Subtle Blueprint Grid -->
+  <g stroke="#ffffff" stroke-opacity="0.035" stroke-width="1">
+    <path d="M0 75 H1200 M0 150 H1200 M0 225 H1200 M0 300 H1200 M0 375 H1200 M0 450 H1200 M0 525 H1200 M0 600 H1200"/>
+    <path d="M150 0 V675 M300 0 V675 M450 0 V675 M600 0 V675 M750 0 V675 M900 0 V675 M1050 0 V675"/>
+  </g>
+
+  <!-- Left: Content -->
+  <g transform="translate(80, 110)">
+    <!-- Category Pill -->
+    <rect x="0" y="0" width="225" height="34" rx="17" fill="#10b981" fill-opacity="0.14" stroke="#10b981" stroke-opacity="0.4" stroke-width="1.2"/>
+    <circle cx="18" cy="17" r="4.5" fill="#34d399"/>
+    <text x="32" y="22" font-family="-apple-system, sans-serif" font-size="12" font-weight="700" fill="#a7f3d0" letter-spacing="1.2">OPEN SILICON HARDWARE</text>
+
+    <!-- Main Title -->
+    <text x="0" y="85" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="46" font-weight="900" fill="#ffffff" letter-spacing="-1.2">
+      RISC-V by the Numbers:
+    </text>
+    <text x="0" y="140" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="46" font-weight="900" fill="url(#greenBlueText)" letter-spacing="-1.2">
+      Watch Chip Shipments,
+    </text>
+
+    <!-- Neon Lime Highlight Pill -->
+    <g transform="translate(0, 165)">
+      <rect x="0" y="0" width="310" height="42" rx="8" fill="#a3e635"/>
+      <text x="14" y="28" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="22" font-weight="900" fill="#0f172a" letter-spacing="-0.5">NOT MARKET DOLLARS.</text>
+    </g>
+
+    <!-- Subtitle -->
+    <text x="0" y="250" font-family="-apple-system, sans-serif" font-size="17" fill="#94a3b8" font-weight="400">
+      SHD projects 6.9B units in 2025 soaring to 35.9B by 2031 ($318B value).
+    </text>
+    <text x="0" y="276" font-family="-apple-system, sans-serif" font-size="17" fill="#94a3b8" font-weight="400">
+      Why analysts size it at $4.85B: IP license fees vs. end-silicon shipments.
+    </text>
+
+    <!-- Metrics Callouts -->
+    <g transform="translate(0, 320)">
+      <rect x="0" y="0" width="150" height="58" rx="12" fill="#13241e" stroke="#10b981" stroke-opacity="0.3" stroke-width="1.2"/>
+      <text x="16" y="24" font-family="monospace" font-size="11" fill="#34d399" font-weight="600">2025 SHIPMENTS</text>
+      <text x="16" y="48" font-family="-apple-system, sans-serif" font-size="22" font-weight="800" fill="#ffffff">6.9B <tspan font-size="13" fill="#34d399">+37%</tspan></text>
+
+      <rect x="165" y="0" width="150" height="58" rx="12" fill="#112229" stroke="#0284c7" stroke-opacity="0.3" stroke-width="1.2"/>
+      <text x="181" y="24" font-family="monospace" font-size="11" fill="#38bdf8" font-weight="600">2031 FORECAST</text>
+      <text x="181" y="48" font-family="-apple-system, sans-serif" font-size="22" font-weight="800" fill="#ffffff">35.9B <tspan font-size="12" fill="#94a3b8">SoCs</tspan></text>
+
+      <rect x="330" y="0" width="165" height="58" rx="12" fill="#201c15" stroke="#eab308" stroke-opacity="0.3" stroke-width="1.2"/>
+      <text x="346" y="24" font-family="monospace" font-size="11" fill="#facc15" font-weight="600">TOTAL SILICON VALUE</text>
+      <text x="346" y="48" font-family="-apple-system, sans-serif" font-size="22" font-weight="800" fill="#ffffff">$318B <tspan font-size="12" fill="#94a3b8">2031</tspan></text>
+    </g>
+
+    <!-- Footer Tag -->
+    <g transform="translate(0, 425)">
+      <text x="0" y="0" font-family="monospace" font-size="12" fill="#64748b" letter-spacing="0.5">
+        DATA: SHD GROUP 2026 FORECAST · RISC-V INTERNATIONAL · MARKETSANDMARKETS
+      </text>
+    </g>
+  </g>
+
+  <!-- Right: Architecture & Market Breakdown Card -->
+  <g transform="translate(680, 85)" filter="url(#riscvShadow)">
+    <rect width="440" height="495" rx="20" fill="url(#riscvCard)" stroke="#ffffff" stroke-opacity="0.1" stroke-width="1.5"/>
+
+    <rect width="440" height="46" rx="20" fill="#152422" stroke="#ffffff" stroke-opacity="0.06" stroke-width="1"/>
+    <circle cx="24" cy="23" r="5" fill="#ef4444"/>
+    <circle cx="40" cy="23" r="5" fill="#f59e0b"/>
+    <circle cx="56" cy="23" r="5" fill="#10b981"/>
+    <text x="220" y="28" text-anchor="middle" font-family="monospace" font-size="12" fill="#94a3b8">riscv-silicon-breakdown.asm</text>
+
+    <g transform="translate(28, 75)">
+      <text x="0" y="16" font-family="-apple-system, sans-serif" font-size="14" font-weight="700" fill="#ffffff">The $318B vs $4.85B Valuation Puzzle</text>
+
+      <!-- The Core Distinction Box -->
+      <g transform="translate(0, 32)">
+        <rect x="0" y="0" width="384" height="74" rx="10" fill="#142621" stroke="#10b981" stroke-opacity="0.3" stroke-width="1"/>
+        <text x="14" y="24" font-family="-apple-system, sans-serif" font-size="12" font-weight="700" fill="#34d399">SHD METRIC: TOTAL CHIP REVENUE</text>
+        <text x="14" y="48" font-family="-apple-system, sans-serif" font-size="20" font-weight="800" fill="#ffffff">$318 Billion <tspan font-size="12" font-weight="400" fill="#94a3b8">(End-SoC Hardware)</tspan></text>
+      </g>
+
+      <g transform="translate(0, 116)">
+        <rect x="0" y="0" width="384" height="74" rx="10" fill="#142028" stroke="#0284c7" stroke-opacity="0.3" stroke-width="1"/>
+        <text x="14" y="24" font-family="-apple-system, sans-serif" font-size="12" font-weight="700" fill="#38bdf8">MARKETSANDMARKETS: IP ROYALTIES</text>
+        <text x="14" y="48" font-family="-apple-system, sans-serif" font-size="20" font-weight="800" fill="#ffffff">$4.85 Billion <tspan font-size="12" font-weight="400" fill="#94a3b8">(Core IP Licensing &amp; EDA)</tspan></text>
+      </g>
+
+      <!-- Where RISC-V Dominates -->
+      <g transform="translate(0, 205)">
+        <text x="0" y="16" font-family="-apple-system, sans-serif" font-size="13" font-weight="700" fill="#cbd5e1">Where Open Silicon Actually Wins Today</text>
+        
+        <g transform="translate(0, 28)">
+          <rect x="0" y="0" width="120" height="32" rx="6" fill="#1b2824"/>
+          <text x="60" y="20" text-anchor="middle" font-family="monospace" font-size="11" fill="#34d399">SSD Controllers</text>
+
+          <rect x="130" y="0" width="120" height="32" rx="6" fill="#1b2824"/>
+          <text x="190" y="20" text-anchor="middle" font-family="monospace" font-size="11" fill="#38bdf8">Security Enclaves</text>
+
+          <rect x="260" y="0" width="124" height="32" rx="6" fill="#1b2824"/>
+          <text x="322" y="20" text-anchor="middle" font-family="monospace" font-size="11" fill="#facc15">Automotive ASIL</text>
+        </g>
+      </g>
+
+      <!-- Mythbuster Warning Banner -->
+      <g transform="translate(0, 290)">
+        <rect x="0" y="0" width="384" height="60" rx="10" fill="#291a18" stroke="#ef4444" stroke-opacity="0.3" stroke-width="1"/>
+        <text x="14" y="22" font-family="-apple-system, sans-serif" font-size="11" font-weight="700" fill="#fca5a5">UNVERIFIED CLAIM DEBUNKED</text>
+        <text x="14" y="42" font-family="-apple-system, sans-serif" font-size="12" fill="#f1f5f9">
+          The "25% global market share" claim is an uncorroborated myth.
+        </text>
+      </g>
+    </g>
+  </g>
+</svg>

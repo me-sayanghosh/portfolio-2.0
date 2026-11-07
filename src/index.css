@@ -123,32 +123,32 @@ html:not(.dark) .bg-black\/60 {
 }
 
 /* Typography Overrides in Light Mode */
-html:not(.dark) h1:not(.keep-dark),
-html:not(.dark) h2:not(.keep-dark),
-html:not(.dark) h3:not(.keep-dark),
-html:not(.dark) h4:not(.keep-dark) {
+html:not(.dark) h1:not(.keep-dark):not(.keep-dark *),
+html:not(.dark) h2:not(.keep-dark):not(.keep-dark *),
+html:not(.dark) h3:not(.keep-dark):not(.keep-dark *),
+html:not(.dark) h4:not(.keep-dark):not(.keep-dark *) {
   color: #09090b !important;
 }
 
-html:not(.dark) .text-white:not(.keep-dark):not(.resume-btn) {
+html:not(.dark) .text-white:not(.keep-dark):not(.keep-dark *):not(.resume-btn) {
   color: #09090b !important;
 }
 
-html:not(.dark) .text-gray-100:not(.keep-dark) {
+html:not(.dark) .text-gray-100:not(.keep-dark):not(.keep-dark *) {
   color: #18181b !important;
 }
 
-html:not(.dark) p.text-gray-200:not(.keep-dark),
-html:not(.dark) .text-gray-200:not(.keep-dark) {
+html:not(.dark) p.text-gray-200:not(.keep-dark):not(.keep-dark *),
+html:not(.dark) .text-gray-200:not(.keep-dark):not(.keep-dark *) {
   color: #27272a !important;
 }
 
-html:not(.dark) p.text-gray-300:not(.keep-dark),
-html:not(.dark) p.text-gray-400:not(.keep-dark),
-html:not(.dark) span.text-gray-400:not(.keep-dark),
-html:not(.dark) span.text-neutral-400:not(.keep-dark),
-html:not(.dark) .text-gray-300:not(.keep-dark),
-html:not(.dark) .text-gray-400:not(.keep-dark) {
+html:not(.dark) p.text-gray-300:not(.keep-dark):not(.keep-dark *),
+html:not(.dark) p.text-gray-400:not(.keep-dark):not(.keep-dark *),
+html:not(.dark) span.text-gray-400:not(.keep-dark):not(.keep-dark *),
+html:not(.dark) span.text-neutral-400:not(.keep-dark):not(.keep-dark *),
+html:not(.dark) .text-gray-300:not(.keep-dark):not(.keep-dark *),
+html:not(.dark) .text-gray-400:not(.keep-dark):not(.keep-dark *) {
   color: #52525b !important;
 }
 

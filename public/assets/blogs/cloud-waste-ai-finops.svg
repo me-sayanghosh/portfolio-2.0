@@ -1,0 +1,137 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <defs>
+    <radialGradient id="wasteGlow1" cx="20%" cy="25%" r="65%">
+      <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#080a0f" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="wasteGlow2" cx="80%" cy="75%" r="55%">
+      <stop offset="0%" stop-color="#f97316" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#080a0f" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="wasteCard" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#121824" stop-opacity="0.96"/>
+      <stop offset="100%" stop-color="#0c1017" stop-opacity="0.92"/>
+    </linearGradient>
+    <linearGradient id="cyanOrangeText" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="60%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#fb923c"/>
+    </linearGradient>
+    <filter id="wasteShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="20" stdDeviation="25" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="675" fill="#090b10"/>
+  <rect width="1200" height="675" fill="url(#wasteGlow1)"/>
+  <rect width="1200" height="675" fill="url(#wasteGlow2)"/>
+
+  <!-- Subtle Blueprint Grid -->
+  <g stroke="#ffffff" stroke-opacity="0.035" stroke-width="1">
+    <path d="M0 75 H1200 M0 150 H1200 M0 225 H1200 M0 300 H1200 M0 375 H1200 M0 450 H1200 M0 525 H1200 M0 600 H1200"/>
+    <path d="M150 0 V675 M300 0 V675 M450 0 V675 M600 0 V675 M750 0 V675 M900 0 V675 M1050 0 V675"/>
+  </g>
+
+  <!-- Left: Content -->
+  <g transform="translate(80, 110)">
+    <!-- Category Pill -->
+    <rect x="0" y="0" width="230" height="34" rx="17" fill="#06b6d4" fill-opacity="0.14" stroke="#06b6d4" stroke-opacity="0.4" stroke-width="1.2"/>
+    <circle cx="18" cy="17" r="4.5" fill="#22d3ee"/>
+    <text x="32" y="22" font-family="-apple-system, sans-serif" font-size="12" font-weight="700" fill="#a5f3fc" letter-spacing="1.2">FINOPS &amp; CLOUD ARCHITECTURE</text>
+
+    <!-- Main Title -->
+    <text x="0" y="85" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="46" font-weight="900" fill="#ffffff" letter-spacing="-1.2">
+      Cloud Waste Is Rising
+    </text>
+    <text x="0" y="140" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="46" font-weight="900" fill="url(#cyanOrangeText)" letter-spacing="-1.2">
+      Again After 5 Years.
+    </text>
+
+    <!-- Neon Orange/Amber Highlight Pill -->
+    <g transform="translate(0, 165)">
+      <rect x="0" y="0" width="290" height="42" rx="8" fill="#fb923c"/>
+      <text x="14" y="28" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="23" font-weight="900" fill="#0f172a" letter-spacing="-0.5">AND AI IS THE REASON.</text>
+    </g>
+
+    <!-- Subtitle -->
+    <text x="0" y="250" font-family="-apple-system, sans-serif" font-size="17" fill="#94a3b8" font-weight="400">
+      Flexera's 2026 report reveals cloud spend waste jumped to 29%.
+    </text>
+    <text x="0" y="276" font-family="-apple-system, sans-serif" font-size="17" fill="#94a3b8" font-weight="400">
+      Where AI inference costs leak: idle GPUs, oversized pods &amp; zombie vectors.
+    </text>
+
+    <!-- Key Metrics Pills -->
+    <g transform="translate(0, 320)">
+      <rect x="0" y="0" width="150" height="58" rx="12" fill="#241711" stroke="#f97316" stroke-opacity="0.3" stroke-width="1.2"/>
+      <text x="16" y="24" font-family="monospace" font-size="11" fill="#fb923c" font-weight="600">2026 CLOUD WASTE</text>
+      <text x="16" y="48" font-family="-apple-system, sans-serif" font-size="22" font-weight="800" fill="#ffffff">29% <tspan font-size="13" fill="#fb923c">▲ +2%</tspan></text>
+
+      <rect x="165" y="0" width="150" height="58" rx="12" fill="#122026" stroke="#06b6d4" stroke-opacity="0.3" stroke-width="1.2"/>
+      <text x="181" y="24" font-family="monospace" font-size="11" fill="#38bdf8" font-weight="600">PEAK REVERSAL</text>
+      <text x="181" y="48" font-family="-apple-system, sans-serif" font-size="22" font-weight="800" fill="#ffffff">1st in 5 Yrs</text>
+
+      <rect x="330" y="0" width="165" height="58" rx="12" fill="#1a1824" stroke="#a855f7" stroke-opacity="0.3" stroke-width="1.2"/>
+      <text x="346" y="24" font-family="monospace" font-size="11" fill="#c084fc" font-weight="600">ACTIVE FINOPS</text>
+      <text x="346" y="48" font-family="-apple-system, sans-serif" font-size="22" font-weight="800" fill="#ffffff">98% <tspan font-size="12" fill="#94a3b8">MANAGING</tspan></text>
+    </g>
+
+    <!-- Footer Tag -->
+    <g transform="translate(0, 425)">
+      <text x="0" y="0" font-family="monospace" font-size="12" fill="#64748b" letter-spacing="0.5">
+        DATA: FLEXERA 2026 STATE OF THE CLOUD REPORT · FINOPS FOUNDATION
+      </text>
+    </g>
+  </g>
+
+  <!-- Right: FinOps Leakage Card -->
+  <g transform="translate(680, 85)" filter="url(#wasteShadow)">
+    <rect width="440" height="495" rx="20" fill="url(#wasteCard)" stroke="#ffffff" stroke-opacity="0.1" stroke-width="1.5"/>
+
+    <rect width="440" height="46" rx="20" fill="#181f2a" stroke="#ffffff" stroke-opacity="0.06" stroke-width="1"/>
+    <circle cx="24" cy="23" r="5" fill="#ef4444"/>
+    <circle cx="40" cy="23" r="5" fill="#f59e0b"/>
+    <circle cx="56" cy="23" r="5" fill="#10b981"/>
+    <text x="220" y="28" text-anchor="middle" font-family="monospace" font-size="12" fill="#94a3b8">finops-gpu-leakage-audit.ts</text>
+
+    <g transform="translate(28, 75)">
+      <text x="0" y="16" font-family="-apple-system, sans-serif" font-size="14" font-weight="700" fill="#ffffff">Where AI Cloud Budgets Bleed</text>
+
+      <!-- Leakage Item 1: Idle GPU Instances -->
+      <g transform="translate(0, 30)">
+        <text x="0" y="16" font-family="-apple-system, sans-serif" font-size="13" font-weight="600" fill="#e2e8f0">Idle Dedicated GPUs (A100 / H100)</text>
+        <text x="384" y="16" text-anchor="end" font-family="monospace" font-size="13" font-weight="700" fill="#f97316">42% Cost Leak</text>
+        <rect x="0" y="26" width="384" height="8" rx="4" fill="#242c38"/>
+        <rect x="0" y="26" width="310" height="8" rx="4" fill="#f97316"/>
+        <text x="0" y="48" font-family="monospace" font-size="11" fill="#94a3b8">Unused reserved instances without Scale-to-Zero</text>
+      </g>
+
+      <!-- Leakage Item 2: Overprovisioned Pods -->
+      <g transform="translate(0, 95)">
+        <text x="0" y="16" font-family="-apple-system, sans-serif" font-size="13" font-weight="600" fill="#e2e8f0">Overprovisioned Inference Pods</text>
+        <text x="384" y="16" text-anchor="end" font-family="monospace" font-size="13" font-weight="700" fill="#fbbf24">33% Cost Leak</text>
+        <rect x="0" y="26" width="384" height="8" rx="4" fill="#242c38"/>
+        <rect x="0" y="26" width="240" height="8" rx="4" fill="#fbbf24"/>
+        <text x="0" y="48" font-family="monospace" font-size="11" fill="#94a3b8">Requesting 64GB VRAM for 8GB INT8 quantized models</text>
+      </g>
+
+      <!-- Leakage Item 3: Zombie Vector DBs -->
+      <g transform="translate(0, 160)">
+        <text x="0" y="16" font-family="-apple-system, sans-serif" font-size="13" font-weight="600" fill="#e2e8f0">Zombie Vector Indexes &amp; Stale Embeddings</text>
+        <text x="384" y="16" text-anchor="end" font-family="monospace" font-size="13" font-weight="700" fill="#38bdf8">25% Cost Leak</text>
+        <rect x="0" y="26" width="384" height="8" rx="4" fill="#242c38"/>
+        <rect x="0" y="26" width="180" height="8" rx="4" fill="#38bdf8"/>
+        <text x="0" y="48" font-family="monospace" font-size="11" fill="#94a3b8">Unpruned 1536-dim embedding replicas running 24/7</text>
+      </g>
+
+      <!-- FinOps Remediation Box -->
+      <g transform="translate(0, 240)">
+        <rect x="0" y="0" width="384" height="110" rx="12" fill="#0f1f1a" stroke="#10b981" stroke-opacity="0.4" stroke-width="1.2"/>
+        <text x="16" y="24" font-family="-apple-system, sans-serif" font-size="12" font-weight="700" fill="#34d399">DEVELOPER REMEDIATION PLAYBOOK</text>
+        <text x="16" y="50" font-family="monospace" font-size="11" fill="#cbd5e1">1. Karpenter scale-to-zero on dev GPU nodes</text>
+        <text x="16" y="70" font-family="monospace" font-size="11" fill="#cbd5e1">2. Run vLLM dynamic request batching</text>
+        <text x="16" y="90" font-family="monospace" font-size="11" fill="#cbd5e1">3. Quantize models to INT4/FP8 before sizing</text>
+      </g>
+    </g>
+  </g>
+</svg>
