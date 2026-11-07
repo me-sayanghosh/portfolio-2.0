@@ -65,86 +65,89 @@ export default function Navbar() {
   return (
     <>
       {/* ─── Desktop Squarish Spotlight Navbar (md and above) ─── */}
-      <nav aria-label="Main Navigation" className="hidden md:flex fixed top-5 left-1/2 -translate-x-1/2 z-50">
-        <div className="h-[52px] border border-white/10 rounded-2xl p-1.5 flex flex-row items-center gap-1 bg-[#121212]/95 backdrop-blur-2xl shadow-[0_16px_40px_rgba(0,0,0,0.8)] relative">
-          {navItems.map((item) => {
-            const active = isItemActive(item.path);
-            const Icon = item.icon;
+      <nav aria-label="Main Navigation" className="hidden md:flex fixed top-5 left-1/2 -translate-x-1/2 z-50 w-full max-w-4xl px-4 sm:px-6">
+        <div className="w-full h-[52px] border border-white/10 rounded-2xl p-1.5 flex flex-row items-center justify-between bg-[#121212]/95 backdrop-blur-2xl shadow-[0_16px_40px_rgba(0,0,0,0.8)] relative">
+          {/* Left: Navigation Items with Spotlight */}
+          <div className="flex items-center gap-1">
+            {navItems.map((item) => {
+              const active = isItemActive(item.path);
+              const Icon = item.icon;
 
-            return (
-              <button
-                key={item.id}
-                onClick={() => router.push(item.path)}
-                title={item.label}
-                aria-label={item.label}
-                className={`relative h-full rounded-xl flex items-center justify-center gap-2 text-[13.5px] font-medium transition-colors duration-200 select-none cursor-pointer z-10 active:scale-95 ${
-                  item.iconOnly ? "w-10 px-0" : "px-3.5"
-                } ${
-                  active ? "text-white" : "text-neutral-400 hover:text-white hover:bg-white/[0.04]"
-                }`}
-              >
-                {active && (
-                  <motion.div
-                    layoutId="desktop-navbar-spotlight"
-                    transition={{
-                      type: "spring",
-                      stiffness: 380,
-                      damping: 30,
-                      mass: 0.8,
-                    }}
-                    className="absolute inset-0 rounded-xl border border-white/15 bg-[#222222] overflow-hidden pointer-events-none -z-10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.18),0_2px_8px_rgba(0,0,0,0.5)]"
-                  >
-                    {/* Layer 1: Downward Spotlight Beam (Fans out across width and fades towards bottom) */}
-                    <div
-                      className="absolute inset-0 pointer-events-none z-10"
-                      style={{
-                        background:
-                          "radial-gradient(ellipse 70% 85% at 50% 0%, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.14) 45%, rgba(255, 255, 255, 0) 80%)",
+              return (
+                <button
+                  key={item.id}
+                  onClick={() => router.push(item.path)}
+                  title={item.label}
+                  aria-label={item.label}
+                  className={`relative h-[38px] rounded-xl flex items-center justify-center gap-2 text-[13.5px] font-medium transition-colors duration-200 select-none cursor-pointer z-10 active:scale-95 ${
+                    item.iconOnly ? "w-10 px-0" : "px-3.5"
+                  } ${
+                    active ? "text-white" : "text-neutral-400 hover:text-white hover:bg-white/[0.04]"
+                  }`}
+                >
+                  {active && (
+                    <motion.div
+                      layoutId="desktop-navbar-spotlight"
+                      transition={{
+                        type: "spring",
+                        stiffness: 380,
+                        damping: 30,
+                        mass: 0.8,
                       }}
-                    />
+                      className="absolute inset-0 rounded-xl border border-white/15 bg-[#222222] overflow-hidden pointer-events-none -z-10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.18),0_2px_8px_rgba(0,0,0,0.5)]"
+                    >
+                      {/* Layer 1: Downward Spotlight Beam */}
+                      <div
+                        className="absolute inset-0 pointer-events-none z-10"
+                        style={{
+                          background:
+                            "radial-gradient(ellipse 70% 85% at 50% 0%, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.14) 45%, rgba(255, 255, 255, 0) 80%)",
+                        }}
+                      />
 
-                    {/* Layer 2: Soft Ambient Base Glow */}
-                    <div
-                      className="absolute inset-0 pointer-events-none z-0"
-                      style={{
-                        background:
-                          "radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.12) 0%, transparent 65%)",
-                      }}
-                    />
+                      {/* Layer 2: Soft Ambient Base Glow */}
+                      <div
+                        className="absolute inset-0 pointer-events-none z-0"
+                        style={{
+                          background:
+                            "radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.12) 0%, transparent 65%)",
+                        }}
+                      />
 
-                    {/* Layer 3: Top Flare Glow beneath Filament */}
-                    <div
-                      className={`absolute top-0 left-1/2 -translate-x-1/2 ${
-                        item.iconOnly ? "w-8" : "w-16"
-                      } h-[6px] pointer-events-none z-10`}
-                      style={{
-                        background:
-                          "radial-gradient(ellipse at center top, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 75%)",
-                      }}
-                    />
+                      {/* Layer 3: Top Flare Glow beneath Filament */}
+                      <div
+                        className={`absolute top-0 left-1/2 -translate-x-1/2 ${
+                          item.iconOnly ? "w-8" : "w-16"
+                        } h-[6px] pointer-events-none z-10`}
+                        style={{
+                          background:
+                            "radial-gradient(ellipse at center top, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 75%)",
+                        }}
+                      />
 
-                    {/* Layer 4: Solid Crisp Lamp Bar with Neon Bloom */}
-                    <div
-                      className={`absolute top-0 left-1/2 -translate-x-1/2 ${
-                        item.iconOnly ? "w-[22px]" : "w-7"
-                      } h-[2px] bg-white rounded-full z-20 shadow-[0_0_8px_1.5px_rgba(255,255,255,1),0_0_16px_3px_rgba(255,255,255,0.55)]`}
-                    />
-                  </motion.div>
-                )}
+                      {/* Layer 4: Solid Crisp Lamp Bar with Neon Bloom */}
+                      <div
+                        className={`absolute top-0 left-1/2 -translate-x-1/2 ${
+                          item.iconOnly ? "w-[22px]" : "w-7"
+                        } h-[2px] bg-white rounded-full z-20 shadow-[0_0_8px_1.5px_rgba(255,255,255,1),0_0_16px_3px_rgba(255,255,255,0.55)]`}
+                      />
+                    </motion.div>
+                  )}
 
-                <Icon className="w-4 h-4 shrink-0" strokeWidth={1.85} />
-                {!item.iconOnly && <span>{item.label}</span>}
-              </button>
-            );
-          })}
+                  <Icon className="w-4 h-4 shrink-0" strokeWidth={1.85} />
+                  {!item.iconOnly && <span>{item.label}</span>}
+                </button>
+              );
+            })}
+          </div>
 
-          {/* Far Right: Theme Toggle Button (No divider, clean spacing) */}
+          {/* Far Right: Theme Toggle Button */}
           <button
             type="button"
             onClick={toggleTheme}
             aria-label="Toggle theme"
             title="Toggle theme"
-            className="w-10 h-full rounded-xl flex items-center justify-center text-neutral-400 hover:text-white hover:bg-white/[0.04] active:scale-90 transition-all cursor-pointer shrink-0 ml-0.5"
+            className="w-10 h-[38px] rounded-xl flex items-center justify-center text-neutral-400 hover:text-white hover:bg-white/[0.04] active:scale-90 transition-all cursor-pointer shrink-0"
           >
             {isDarkMode ? (
               <Moon className="w-4 h-4" strokeWidth={1.85} />
