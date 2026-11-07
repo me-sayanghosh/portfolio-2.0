@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname, useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
@@ -22,6 +22,14 @@ export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { theme, setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+
+  // References and state for the sliding spotlight indicator
+  const itemRefs = useRef<Record<string, HTMLButtonElement | null>>({});
+  const [spotlightBounds, setSpotlightBounds] = useState<{
+    left: number;
+    width: number;
+    isIconOnly: boolean;
+  } | null>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -65,7 +73,44 @@ export default function Navbar() {
     return pathname === path || (path !== "/" && pathname.startsWith(path));
   };
 
-  const handleNavClick = (path: string) => {
+  const updateSpotlight = useCallback(() => {
+    const activeItem = navItems.find((item) => isItemActive(item.path));
+    if (activeItem) {
+      const el = itemRefs.current[activeItem.id];
+      if (el) {
+        setSpotlightBounds({
+          left: el.offsetLeft,
+          width: el.offsetWidth,
+          isIconOnly: Boolean(activeItem.iconOnly),
+        });
+        return;
+      }
+    }
+    setSpotlightBounds(null);
+  }, [pathname]);
+
+  useEffect(() => {
+    updateSpotlight();
+  }, [updateSpotlight, mounted]);
+
+  useEffect(() => {
+    window.addEventListener("resize", updateSpotlight);
+    return () => window.removeEventListener("resize", updateSpotlight);
+  }, [updateSpotlight]);
+
+  const handleDesktopNavClick = (item: (typeof navItems)[0]) => {
+    const el = itemRefs.current[item.id];
+    if (el) {
+      setSpotlightBounds({
+        left: el.offsetLeft,
+        width: el.offsetWidth,
+        isIconOnly: Boolean(item.iconOnly),
+      });
+    }
+    router.push(item.path);
+  };
+
+  const handleMobileNavClick = (path: string) => {
     setIsMobileMenuOpen(false);
     router.push(path);
   };
@@ -76,7 +121,69 @@ export default function Navbar() {
       <nav aria-label="Main Navigation" className="hidden md:flex fixed top-5 left-1/2 -translate-x-1/2 z-50 w-full max-w-4xl px-4 sm:px-6">
         <div className="w-full h-[52px] border border-zinc-200/90 dark:border-white/10 rounded-2xl p-1.5 flex flex-row items-center justify-between bg-white/85 dark:bg-[#121212]/95 backdrop-blur-2xl shadow-[0_8px_24px_rgba(0,0,0,0.06)] dark:shadow-[0_16px_40px_rgba(0,0,0,0.8)] relative transition-colors duration-250">
           {/* Left: Navigation Items with Spotlight */}
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1 relative">
+            {/* Sliding Spotlight Box (Immune to scroll position, animates strictly on X-axis) */}
+            {mounted && spotlightBounds && (
+              <motion.div
+                initial={false}
+                animate={{
+                  x: spotlightBounds.left,
+                  width: spotlightBounds.width,
+                  opacity: 1,
+                }}
+                transition={{
+                  type: "spring",
+                  stiffness: 380,
+                  damping: 30,
+                  mass: 0.8,
+                }}
+                className="absolute top-0 h-[38px] rounded-xl border border-zinc-300 dark:border-white/20 bg-zinc-100 dark:bg-[#1e1e22] overflow-hidden pointer-events-none z-0 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.9),0_2px_6px_rgba(0,0,0,0.05)] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.25),0_2px_8px_rgba(0,0,0,0.5)] transition-colors duration-200"
+              >
+                {/* Layer 1: Downward Spotlight Beam (Cone) */}
+                <div
+                  className="absolute inset-0 pointer-events-none z-10"
+                  style={{
+                    background: isDark
+                      ? "radial-gradient(ellipse 75% 85% at 50% 0%, rgba(255, 255, 255, 0.70) 0%, rgba(255, 255, 255, 0.28) 35%, rgba(255, 255, 255, 0.08) 65%, transparent 85%)"
+                      : "radial-gradient(ellipse 75% 85% at 50% 0%, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0.03) 35%, transparent 70%)",
+                  }}
+                />
+
+                {/* Layer 2: Soft Ambient Base Glow */}
+                {isDark && (
+                  <div
+                    className="absolute inset-0 pointer-events-none z-0"
+                    style={{
+                      background: "radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.15) 0%, transparent 70%)",
+                    }}
+                  />
+                )}
+
+                {/* Layer 3: Top Flare Glow beneath Filament */}
+                <div
+                  className={`absolute top-0 left-1/2 -translate-x-1/2 ${
+                    spotlightBounds.isIconOnly ? "w-7" : "w-14"
+                  } h-[8px] pointer-events-none z-10 transition-all duration-200`}
+                  style={{
+                    background: isDark
+                      ? "radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0) 75%)"
+                      : "radial-gradient(ellipse at 50% 0%, rgba(0, 0, 0, 0.15) 0%, transparent 75%)",
+                  }}
+                />
+
+                {/* Layer 4: Solid Crisp Lamp Bar with Clean Neon Bloom */}
+                <div
+                  className={`absolute top-0 left-1/2 -translate-x-1/2 ${
+                    spotlightBounds.isIconOnly ? "w-[22px]" : "w-11"
+                  } h-[2px] rounded-full z-20 transition-all duration-200 ${
+                    isDark
+                      ? "bg-white shadow-[0_0_6px_1px_rgba(255,255,255,0.95),0_0_12px_2px_rgba(255,255,255,0.45)]"
+                      : "bg-zinc-800 shadow-[0_0_4px_1px_rgba(0,0,0,0.25)]"
+                  }`}
+                />
+              </motion.div>
+            )}
+
             {navItems.map((item) => {
               const active = isItemActive(item.path);
               const Icon = item.icon;
@@ -84,7 +191,10 @@ export default function Navbar() {
               return (
                 <button
                   key={item.id}
-                  onClick={() => router.push(item.path)}
+                  ref={(el) => {
+                    itemRefs.current[item.id] = el;
+                  }}
+                  onClick={() => handleDesktopNavClick(item)}
                   title={item.label}
                   aria-label={item.label}
                   className={`relative h-[38px] rounded-xl flex items-center justify-center gap-2 text-[13.5px] font-medium transition-colors duration-200 select-none cursor-pointer z-10 active:scale-95 ${
@@ -95,62 +205,6 @@ export default function Navbar() {
                       : "text-zinc-600 hover:text-zinc-950 hover:bg-zinc-100/70 dark:text-neutral-400 dark:hover:text-white dark:hover:bg-white/[0.04]"
                   }`}
                 >
-                  {active && (
-                    <motion.div
-                      layoutId="desktop-navbar-spotlight"
-                      transition={{
-                        type: "spring",
-                        stiffness: 380,
-                        damping: 30,
-                        mass: 0.8,
-                      }}
-                      className="absolute inset-0 rounded-xl border border-zinc-300 dark:border-white/20 bg-zinc-100 dark:bg-[#1e1e22] overflow-hidden pointer-events-none z-0 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.9),0_2px_6px_rgba(0,0,0,0.05)] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.25),0_2px_8px_rgba(0,0,0,0.5)] transition-colors duration-200"
-                    >
-                      {/* Layer 1: Downward Spotlight Beam (Cone) */}
-                      <div
-                        className="absolute inset-0 pointer-events-none z-10"
-                        style={{
-                          background: isDark
-                            ? "radial-gradient(ellipse 75% 85% at 50% 0%, rgba(255, 255, 255, 0.70) 0%, rgba(255, 255, 255, 0.28) 35%, rgba(255, 255, 255, 0.08) 65%, transparent 85%)"
-                            : "radial-gradient(ellipse 75% 85% at 50% 0%, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0.03) 35%, transparent 70%)",
-                        }}
-                      />
-
-                      {/* Layer 2: Soft Ambient Base Glow */}
-                      {isDark && (
-                        <div
-                          className="absolute inset-0 pointer-events-none z-0"
-                          style={{
-                            background: "radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.15) 0%, transparent 70%)",
-                          }}
-                        />
-                      )}
-
-                      {/* Layer 3: Top Flare Glow beneath Filament */}
-                      <div
-                        className={`absolute top-0 left-1/2 -translate-x-1/2 ${
-                          item.iconOnly ? "w-7" : "w-14"
-                        } h-[8px] pointer-events-none z-10`}
-                        style={{
-                          background: isDark
-                            ? "radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0) 75%)"
-                            : "radial-gradient(ellipse at 50% 0%, rgba(0, 0, 0, 0.15) 0%, transparent 75%)",
-                        }}
-                      />
-
-                      {/* Layer 4: Solid Crisp Lamp Bar with Clean Neon Bloom (Exact match with Image 2) */}
-                      <div
-                        className={`absolute top-0 left-1/2 -translate-x-1/2 ${
-                          item.iconOnly ? "w-[22px]" : "w-11"
-                        } h-[2px] rounded-full z-20 ${
-                          isDark
-                            ? "bg-white shadow-[0_0_6px_1px_rgba(255,255,255,0.95),0_0_12px_2px_rgba(255,255,255,0.45)]"
-                            : "bg-zinc-800 shadow-[0_0_4px_1px_rgba(0,0,0,0.25)]"
-                        }`}
-                      />
-                    </motion.div>
-                  )}
-
                   <Icon
                     className={`w-4 h-4 shrink-0 relative z-10 transition-colors ${
                       active ? "text-zinc-950 dark:text-white" : ""
@@ -304,7 +358,7 @@ export default function Navbar() {
                             ease: "easeOut",
                           },
                         }}
-                        onClick={() => handleNavClick(item.path)}
+                        onClick={() => handleMobileNavClick(item.path)}
                         className={`relative flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl text-left transition-all duration-150 cursor-pointer select-none w-full active:scale-[0.99] overflow-hidden ${
                           active
                             ? "bg-zinc-100 border border-zinc-300 text-zinc-950 font-medium shadow-sm dark:bg-[#1e1e22] dark:border-white/20 dark:text-white dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.25)]"
