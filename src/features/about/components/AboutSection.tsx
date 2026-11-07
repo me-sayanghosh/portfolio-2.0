@@ -6,6 +6,7 @@ import { ContactAndSignature } from '../../contact';
 import AboutMeBanner from './AboutMeBanner';
 import AboutCollageSection from './AboutCollageSection';
 import DirectionAwareAboutHero from '@/src/components/ui/direction-aware-selection';
+import AboutBentoAndCommitsSection from './AboutBentoAndCommitsSection';
 
 export default function AboutSection({ onOpenHireModal, onOpenResume }) {
   const router = useRouter();
@@ -75,6 +76,9 @@ export default function AboutSection({ onOpenHireModal, onOpenResume }) {
           </p>
         </div>
       </div>
+
+      {/* Bento Grid ("I'm here" + "Skills") & GitHub Heatmap ("Commits Over Claims .") */}
+      <AboutBentoAndCommitsSection />
 
       {/* 4. 2-Column Story Sections */}
       <div className="space-y-10 pt-6">
