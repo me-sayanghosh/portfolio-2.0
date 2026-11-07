@@ -1,9 +1,9 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { useSession, signOut } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { LogOut, Trash2, Loader2, MessageSquare, Sparkles } from 'lucide-react';
+import { Trash2, Loader2, MessageSquare, Sparkles, X } from 'lucide-react';
 import GuestbookModal from './GuestbookModal';
 import { CloudShader } from '@/components/ui/cloud-shader';
 import { timeAgo } from '../../../lib/utils/timeAgo';
@@ -23,7 +23,8 @@ export default function GuestbookSection() {
   const [isLoading, setIsLoading] = useState(true);
   const [messageText, setMessageText] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
+  const [isMessageModalOpen, setIsMessageModalOpen] = useState(false);
   const [deletingId, setDeletingId] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
@@ -70,6 +71,7 @@ export default function GuestbookSection() {
       if (data.entry) {
         setEntries((prev) => [data.entry, ...prev]);
         setMessageText('');
+        setIsMessageModalOpen(false);
       }
     } catch (err: any) {
       setErrorMessage(err.message || 'Something went wrong. Please try again.');
@@ -136,110 +138,47 @@ export default function GuestbookSection() {
         </div>
       </div>
 
-      {/* ─── Auth Area: Sign In Prompt or User Form ─── */}
-      <div className="pt-2">
+      {/* ─── Auth Action Area: Sign In or Leave a message ─── */}
+      <div className="pt-1">
         {status === 'loading' ? (
-          <div className="h-12 flex items-center gap-3 text-sm text-zinc-500">
+          <div className="h-10 flex items-center gap-3 text-sm text-zinc-500">
             <Loader2 className="w-4 h-4 animate-spin text-amber-500" />
             <span>Checking authentication...</span>
           </div>
         ) : status !== 'authenticated' || !session ? (
-          /* Logged-out State: Sign In Button with Gradient & Pulse */
-          <div className="flex items-center gap-3 flex-wrap">
+          /* Logged-out State: Sign in button */
+          <div className="flex items-center gap-3">
             <button
               type="button"
-              onClick={() => setIsModalOpen(true)}
-              className="cursor-pointer inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl text-sm font-medium h-10 px-5 group relative overflow-hidden border border-amber-500/50 bg-gradient-to-r from-amber-500/10 to-red-500/10 text-amber-700 dark:text-amber-400 shadow-sm transition-all duration-300 hover:scale-105 hover:border-amber-500 hover:shadow-lg hover:shadow-amber-500/25 active:scale-95"
+              onClick={() => setIsSignInModalOpen(true)}
+              className="px-4 py-1.5 rounded-lg border border-amber-600/70 bg-[#22160d]/90 hover:bg-[#2c1d12] text-amber-500 font-medium text-xs sm:text-sm shadow-sm transition-colors cursor-pointer"
             >
-              <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-amber-400/30 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
-              <Sparkles className="w-4 h-4 text-amber-500 relative z-10" />
-              <span className="relative z-10 font-semibold">Sign in</span>
+              Sign in
             </button>
-            <span className="text-sm text-zinc-500 dark:text-zinc-400 font-sans animate-pulse">
+            <span className="text-xs sm:text-sm text-zinc-300 font-sans font-medium">
               To leave a message
             </span>
           </div>
         ) : (
-          /* Logged-in State: User Profile Bar + Message Input Form */
-          <div className="space-y-4 p-4 sm:p-5 rounded-2xl bg-white/70 dark:bg-[#18181b]/80 border border-zinc-200 dark:border-white/10 backdrop-blur-md shadow-sm">
-            {/* User Info & Sign Out */}
-            <div className="flex items-center justify-between gap-3 border-b border-zinc-200/80 dark:border-white/10 pb-3">
-              <div className="flex items-center gap-3">
-                {session.user?.image ? (
-                  <img
-                    src={session.user.image}
-                    alt={session.user.name || 'User'}
-                    className="w-9 h-9 rounded-full object-cover ring-2 ring-amber-500/40"
-                  />
-                ) : (
-                  <div className="w-9 h-9 rounded-full bg-amber-500/20 text-amber-500 flex items-center justify-center font-bold text-sm">
-                    {session.user?.name?.[0] || 'U'}
-                  </div>
-                )}
-                <div>
-                  <div className="text-sm font-medium text-zinc-900 dark:text-white leading-none">
-                    {session.user?.name}
-                  </div>
-                  <div className="text-xs text-zinc-500 dark:text-zinc-400 mt-1">
-                    {session.user?.email}
-                  </div>
-                </div>
-              </div>
-
-              <button
-                type="button"
-                onClick={() => signOut()}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-zinc-600 dark:text-zinc-400 hover:text-red-600 dark:hover:text-red-400 hover:bg-red-500/10 border border-zinc-200 dark:border-white/10 transition-colors cursor-pointer"
-                title="Sign out"
-              >
-                <LogOut className="w-3.5 h-3.5" />
-                <span>Sign out</span>
-              </button>
-            </div>
-
-            {/* Input Form */}
-            <form onSubmit={handleSubmit} className="space-y-3">
-              <h3 className="text-lg font-bold text-zinc-900 dark:text-white font-bricolage">
-                Write Something Nice :3
-              </h3>
-
-              <div className="relative">
-                <textarea
-                  id="guestbook-message"
-                  value={messageText}
-                  onChange={(e) => setMessageText(e.target.value)}
-                  placeholder="Leave a message..."
-                  rows={3}
-                  maxLength={500}
-                  required
-                  disabled={isSubmitting}
-                  className="w-full rounded-xl bg-zinc-100/90 dark:bg-[#1f1f23] border border-zinc-200 dark:border-white/10 p-3.5 text-sm text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-amber-500/50 transition-all resize-none"
-                />
-                <span className="absolute bottom-2.5 right-3 text-[11px] text-zinc-400 font-mono">
-                  {messageText.length} / 500
-                </span>
-              </div>
-
-              {errorMessage && (
-                <p className="text-xs text-red-500 font-medium">{errorMessage}</p>
-              )}
-
-              <button
-                type="submit"
-                disabled={isSubmitting || !messageText.trim()}
-                className="cursor-pointer inline-flex items-center justify-center gap-2 px-5 py-2 rounded-xl text-sm font-semibold bg-amber-500 hover:bg-amber-600 text-black shadow-md hover:shadow-amber-500/25 transition-all duration-200 disabled:opacity-50 disabled:pointer-events-none active:scale-95"
-              >
-                {isSubmitting && <Loader2 className="w-4 h-4 animate-spin" />}
-                <span>Sign</span>
-              </button>
-            </form>
+          /* Logged-in State: Leave a message button */
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              onClick={() => setIsMessageModalOpen(true)}
+              className="px-4 py-1.5 rounded-lg border border-zinc-700/80 bg-[#1e1e22] hover:bg-[#27272c] text-white font-medium text-xs sm:text-sm shadow-sm transition-colors cursor-pointer"
+            >
+              Leave a message
+            </button>
+            <span className="text-xs sm:text-sm text-zinc-300 font-sans font-medium">
+              for future visitors
+            </span>
           </div>
         )}
       </div>
 
       {/* ─── Recent Messages List ─── */}
-      <div className="space-y-6 mt-10">
-        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-200 font-bricolage">
+      <div className="space-y-6 mt-8 sm:mt-10">
+        <h2 className="text-2xl sm:text-3xl font-serif font-normal tracking-tight text-zinc-300 dark:text-zinc-300">
           Recent Messages
         </h2>
 
@@ -328,10 +267,80 @@ export default function GuestbookSection() {
         )}
       </div>
 
+      {/* ─── Leave a Message Modal Dialog (Image 3) ─── */}
+      <AnimatePresence>
+        {isMessageModalOpen && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsMessageModalOpen(false)}
+              className="fixed inset-0 bg-black/75 backdrop-blur-sm"
+            />
+
+            {/* Dialog Card */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 10 }}
+              transition={{ duration: 0.2, ease: 'easeOut' }}
+              className="relative w-full max-w-sm sm:max-w-md rounded-2xl bg-[#141416] border border-zinc-800 shadow-2xl p-6 z-10"
+            >
+              {/* Header with Title & Close Icon */}
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-xl sm:text-2xl font-bold text-white font-sans">
+                  Write Something Nice :3
+                </h2>
+                <button
+                  type="button"
+                  onClick={() => setIsMessageModalOpen(false)}
+                  aria-label="Close dialog"
+                  className="p-1 rounded-lg text-zinc-400 hover:text-white transition-colors cursor-pointer"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* Form */}
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div>
+                  <textarea
+                    id="modal-guestbook-message"
+                    value={messageText}
+                    onChange={(e) => setMessageText(e.target.value)}
+                    placeholder="Leave a message..."
+                    rows={4}
+                    maxLength={500}
+                    required
+                    disabled={isSubmitting}
+                    className="w-full rounded-xl bg-[#1e1e22] border border-zinc-700/80 p-3.5 text-sm text-white placeholder:text-zinc-500 focus:outline-none focus:border-zinc-500 transition-colors resize-none"
+                  />
+                </div>
+
+                {errorMessage && (
+                  <p className="text-xs text-red-500 font-medium">{errorMessage}</p>
+                )}
+
+                <button
+                  type="submit"
+                  disabled={isSubmitting || !messageText.trim()}
+                  className="inline-flex items-center justify-center gap-2 px-5 py-2 rounded-lg text-sm font-medium bg-[#52525b] hover:bg-[#5f5f69] text-white transition-colors disabled:opacity-50 disabled:pointer-events-none cursor-pointer"
+                >
+                  {isSubmitting && <Loader2 className="w-4 h-4 animate-spin text-white" />}
+                  <span>Sign</span>
+                </button>
+              </form>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
       {/* ─── Sign In Dialog Modal ─── */}
       <GuestbookModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
+        isOpen={isSignInModalOpen}
+        onClose={() => setIsSignInModalOpen(false)}
       />
     </div>
   );
