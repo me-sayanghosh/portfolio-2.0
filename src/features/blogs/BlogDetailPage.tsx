@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import { notFound, useParams, useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import {
   Calendar,
@@ -25,7 +25,11 @@ export default function BlogDetailPage({ blogId }: BlogDetailPageProps) {
   const [copiedLink, setCopiedLink] = useState(false);
   const [copiedSnippetIndex, setCopiedSnippetIndex] = useState<number | null>(null);
 
-  const blog = blogsData.find((b) => b.id === id || b.slug === id) || blogsData[0];
+  const blog = blogsData.find((b) => b.id === id || b.slug === id);
+
+  if (!blog) {
+    notFound();
+  }
   const moreArticles = blogsData.filter((b) => b.id !== blog.id).slice(0, 2);
 
   const handleCopyLink = () => {

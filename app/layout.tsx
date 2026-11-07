@@ -5,6 +5,7 @@ import SmoothScroll from '../src/components/SmoothScroll';
 import { ModalProvider } from '../src/context/ModalContext';
 import RegisterSW from '../src/components/RegisterSW';
 import PWAInstallPrompt from '../src/components/PWAInstallPrompt';
+import { ThemeProvider } from '../src/components/ThemeProvider';
 
 export const metadata = {
   title: 'Sayan Ghosh | Full-Stack & AI Engineer Portfolio',
@@ -34,7 +35,7 @@ export const viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -43,18 +44,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           rel="stylesheet"
         />
       </head>
-      <body className="bg-[#121212] text-white selection:bg-amber-500/30 selection:text-amber-200 min-h-screen font-sans antialiased">
-        <RegisterSW />
-        <ModalProvider>
-          <SmoothScroll>
-            <Navbar />
-            <main className="min-h-screen pb-24 md:pb-0">
-              {children}
-            </main>
-            <Footer />
-            <PWAInstallPrompt />
-          </SmoothScroll>
-        </ModalProvider>
+      <body className="bg-[#fafafa] dark:bg-[#121212] text-neutral-900 dark:text-white transition-colors duration-300 min-h-screen font-sans antialiased selection:bg-amber-500/30 selection:text-amber-800 dark:selection:text-amber-200">
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
+          <RegisterSW />
+          <ModalProvider>
+            <SmoothScroll>
+              <Navbar />
+              <main className="min-h-screen pb-24 md:pb-0">
+                {children}
+              </main>
+              <Footer />
+              <PWAInstallPrompt />
+            </SmoothScroll>
+          </ModalProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

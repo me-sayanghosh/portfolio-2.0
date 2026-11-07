@@ -48,3 +48,12 @@ Thumbs.db
 *.njsproj
 *.sln
 *.sw?
+
+# Raw uncompressed media source folders
+Gallery/
+
+# Test & Scratch files
+scratch/
+*.test.*
+*.spec.*
+

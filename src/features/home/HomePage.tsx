@@ -21,6 +21,7 @@ export default function HomePage({ onOpenResume, onOpenHackathonModal, onOpenHir
       <HeroSection
         onOpenResume={onOpenResume}
         onOpenHackathonModal={onOpenHackathonModal}
+        onOpenHireModal={onOpenHireModal}
       />
       
       {/* About & Skills Section */}

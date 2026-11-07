@@ -4,7 +4,7 @@ import React from 'react';
 
 export default function AboutCollageSection({ onOpenResume }) {
   return (
-    <div className="relative w-full aspect-[762/720] rounded-2xl overflow-hidden shadow-lg border border-white/0 bg-[#0D0F15] select-none group/canvas">
+    <div className="keep-dark relative w-full aspect-[762/720] rounded-2xl overflow-hidden shadow-lg border border-white/0 bg-[#0D0F15] select-none group/canvas">
       
       {/* Background Grid Image Asset */}
       <img
@@ -15,10 +15,9 @@ export default function AboutCollageSection({ onOpenResume }) {
 
       {/* Top Right "My Resume" Button (Home Page Style) */}
       <a
-        href="https://drive.google.com/file/d/1BDbRffBGX90nvU7LLViVe49WQHWtxnj3/view?usp=sharing"
+        href="/SayanResume.pdf"
         target="_blank"
         rel="noopener noreferrer"
-        onClick={onOpenResume}
         style={{ position: 'absolute', top: '14px', right: '14px', left: 'auto' }}
         className="resume-btn px-3 py-1 sm:px-5 sm:py-1.5 rounded-full border border-white/40 bg-[#0D0F15] text-white font-urbanist text-[11px] sm:text-sm font-medium tracking-tight italic active:scale-95 cursor-pointer shadow-lg z-50 transition-transform flex items-center justify-center"
       >
