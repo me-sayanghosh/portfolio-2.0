@@ -180,7 +180,7 @@ export default function HomeAboutSection() {
           imgSrc="/assets/osconnect-preview.webp"
           alt="Open Source Connect India"
         />
-        , used by 1000+ users. Currently Building{' '}
+        , used by 1500+ users. Currently Building{' '}
         <TextLinkPreview
           href="https://drop-talk.vercel.app/"
           text="DropTalk"
