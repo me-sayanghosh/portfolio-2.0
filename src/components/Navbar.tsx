@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname, useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
@@ -16,6 +16,15 @@ import {
   Menu,
 } from "lucide-react";
 
+const NAV_ITEMS = [
+  { id: "home", label: "Home", path: "/", icon: House, iconOnly: true },
+  { id: "about", label: "About", path: "/about", icon: CircleUser },
+  { id: "projects", label: "Projects", path: "/projects", icon: Monitor },
+  { id: "experience", label: "Experience", path: "/experience", icon: Briefcase },
+  { id: "blogs", label: "Blogs", path: "/blogs", icon: BookOpen },
+  { id: "guestbook", label: "Guestbook", path: "/guestbook", icon: Users },
+];
+
 export default function Navbar() {
   const pathname = usePathname();
   const router = useRouter();
@@ -23,17 +32,20 @@ export default function Navbar() {
   const { theme, setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
-  // References and state for the sliding spotlight indicator
-  const itemRefs = useRef<Record<string, HTMLButtonElement | null>>({});
-  const [spotlightBounds, setSpotlightBounds] = useState<{
-    left: number;
-    width: number;
-    isIconOnly: boolean;
-  } | null>(null);
+  const navContainerRef = useRef<HTMLDivElement>(null);
+  const [spotlight, setSpotlight] = useState<{ left: number; width: number; isIconOnly: boolean } | null>(null);
 
   useEffect(() => {
     setMounted(true);
-  }, []);
+    const activeEl = navContainerRef.current?.querySelector<HTMLButtonElement>('[data-active="true"]');
+    if (activeEl) {
+      setSpotlight({
+        left: activeEl.offsetLeft,
+        width: activeEl.offsetWidth,
+        isIconOnly: activeEl.offsetWidth <= 44,
+      });
+    }
+  }, [pathname]);
 
   const isDark = mounted ? (resolvedTheme === "dark" || theme === "dark") : true;
 
@@ -41,25 +53,7 @@ export default function Navbar() {
     setTheme(isDark ? "light" : "dark");
   };
 
-  const navItems = [
-    { id: "home", label: "Home", path: "/", icon: House, iconOnly: true },
-    { id: "about", label: "About", path: "/about", icon: CircleUser },
-    { id: "projects", label: "Projects", path: "/projects", icon: Monitor },
-    { id: "experience", label: "Experience", path: "/experience", icon: Briefcase },
-    { id: "blogs", label: "Blogs", path: "/blogs", icon: BookOpen },
-    { id: "guestbook", label: "Guestbook", path: "/guestbook", icon: Users },
-  ];
-
-  const mobileMenuItems = [
-    { id: "home", label: "Home", path: "/", icon: House },
-    { id: "about", label: "About", path: "/about", icon: CircleUser },
-    { id: "projects", label: "Projects", path: "/projects", icon: Monitor },
-    { id: "experience", label: "Experience", path: "/experience", icon: Briefcase },
-    { id: "blogs", label: "Blogs", path: "/blogs", icon: BookOpen },
-    { id: "guestbook", label: "Guestbook", path: "/guestbook", icon: Users },
-  ];
-
-  // Hide navbar on gallery page and individual project detail pages e.g. /projects/:id
+  // Hide navbar on gallery and project detail pages
   if (
     pathname === "/gallery" ||
     pathname.startsWith("/gallery") ||
@@ -73,44 +67,14 @@ export default function Navbar() {
     return pathname === path || (path !== "/" && pathname.startsWith(path));
   };
 
-  const updateSpotlight = useCallback(() => {
-    const activeItem = navItems.find((item) => isItemActive(item.path));
-    if (activeItem) {
-      const el = itemRefs.current[activeItem.id];
-      if (el) {
-        setSpotlightBounds({
-          left: el.offsetLeft,
-          width: el.offsetWidth,
-          isIconOnly: Boolean(activeItem.iconOnly),
-        });
-        return;
-      }
-    }
-    setSpotlightBounds(null);
-  }, [pathname]);
-
-  useEffect(() => {
-    updateSpotlight();
-  }, [updateSpotlight, mounted]);
-
-  useEffect(() => {
-    window.addEventListener("resize", updateSpotlight);
-    return () => window.removeEventListener("resize", updateSpotlight);
-  }, [updateSpotlight]);
-
-  const handleDesktopNavClick = (item: (typeof navItems)[0]) => {
-    const el = itemRefs.current[item.id];
+  const handleNavClick = (path: string, el?: HTMLButtonElement) => {
     if (el) {
-      setSpotlightBounds({
+      setSpotlight({
         left: el.offsetLeft,
         width: el.offsetWidth,
-        isIconOnly: Boolean(item.iconOnly),
+        isIconOnly: el.offsetWidth <= 44,
       });
     }
-    router.push(item.path);
-  };
-
-  const handleMobileNavClick = (path: string) => {
     setIsMobileMenuOpen(false);
     router.push(path);
   };
@@ -120,15 +84,15 @@ export default function Navbar() {
       {/* ─── Desktop Squarish Spotlight Navbar (md and above) ─── */}
       <nav aria-label="Main Navigation" className="hidden md:flex fixed top-5 left-1/2 -translate-x-1/2 z-50 w-full max-w-4xl px-4 sm:px-6">
         <div className="w-full h-[52px] border border-zinc-200/90 dark:border-white/10 rounded-2xl p-1.5 flex flex-row items-center justify-between bg-white/85 dark:bg-[#121212]/95 backdrop-blur-2xl shadow-[0_8px_24px_rgba(0,0,0,0.06)] dark:shadow-[0_16px_40px_rgba(0,0,0,0.8)] relative transition-colors duration-250">
-          {/* Left: Navigation Items with Spotlight */}
-          <div className="flex items-center gap-1 relative">
+          {/* Left: Navigation Items with Sliding Spotlight */}
+          <div ref={navContainerRef} className="flex items-center gap-1 relative">
             {/* Sliding Spotlight Box (Immune to scroll position, animates strictly on X-axis) */}
-            {mounted && spotlightBounds && (
+            {mounted && spotlight && (
               <motion.div
                 initial={false}
                 animate={{
-                  x: spotlightBounds.left,
-                  width: spotlightBounds.width,
+                  x: spotlight.left,
+                  width: spotlight.width,
                   opacity: 1,
                 }}
                 transition={{
@@ -162,7 +126,7 @@ export default function Navbar() {
                 {/* Layer 3: Top Flare Glow beneath Filament */}
                 <div
                   className={`absolute top-0 left-1/2 -translate-x-1/2 ${
-                    spotlightBounds.isIconOnly ? "w-7" : "w-14"
+                    spotlight.isIconOnly ? "w-7" : "w-14"
                   } h-[8px] pointer-events-none z-10 transition-all duration-200`}
                   style={{
                     background: isDark
@@ -174,7 +138,7 @@ export default function Navbar() {
                 {/* Layer 4: Solid Crisp Lamp Bar with Clean Neon Bloom */}
                 <div
                   className={`absolute top-0 left-1/2 -translate-x-1/2 ${
-                    spotlightBounds.isIconOnly ? "w-[22px]" : "w-11"
+                    spotlight.isIconOnly ? "w-[22px]" : "w-11"
                   } h-[2px] rounded-full z-20 transition-all duration-200 ${
                     isDark
                       ? "bg-white shadow-[0_0_6px_1px_rgba(255,255,255,0.95),0_0_12px_2px_rgba(255,255,255,0.45)]"
@@ -184,17 +148,15 @@ export default function Navbar() {
               </motion.div>
             )}
 
-            {navItems.map((item) => {
+            {NAV_ITEMS.map((item) => {
               const active = isItemActive(item.path);
               const Icon = item.icon;
 
               return (
                 <button
                   key={item.id}
-                  ref={(el) => {
-                    itemRefs.current[item.id] = el;
-                  }}
-                  onClick={() => handleDesktopNavClick(item)}
+                  data-active={active}
+                  onClick={(e) => handleNavClick(item.path, e.currentTarget)}
                   title={item.label}
                   aria-label={item.label}
                   className={`relative h-[38px] rounded-xl flex items-center justify-center gap-2 text-[13.5px] font-medium transition-colors duration-200 select-none cursor-pointer z-10 active:scale-95 ${
@@ -251,7 +213,7 @@ export default function Navbar() {
           <div className="h-[52px] p-1.5 px-2 rounded-2xl bg-white/85 dark:bg-[#141414]/90 backdrop-blur-xl border border-zinc-200/80 dark:border-white/10 shadow-[0_8px_24px_rgba(0,0,0,0.06)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.6)] flex items-center justify-between transition-colors">
             {/* Left: Home Icon Pill Button */}
             <button
-              onClick={() => router.push("/")}
+              onClick={() => handleNavClick("/")}
               aria-label="Home"
               className={`w-9 h-9 rounded-xl flex items-center justify-center transition-all cursor-pointer active:scale-95 relative overflow-hidden ${
                 pathname === "/"
@@ -341,7 +303,7 @@ export default function Navbar() {
                 className="overflow-hidden"
               >
                 <div className="p-2 rounded-[20px] bg-white/95 dark:bg-[#141414]/95 backdrop-blur-2xl border border-zinc-200 dark:border-white/10 shadow-[0_12px_40px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_60px_rgba(0,0,0,0.85)] flex flex-col space-y-0.5 transition-colors">
-                  {mobileMenuItems.map((item, index) => {
+                  {NAV_ITEMS.map((item, index) => {
                     const active = isItemActive(item.path);
                     const Icon = item.icon;
 
@@ -358,7 +320,7 @@ export default function Navbar() {
                             ease: "easeOut",
                           },
                         }}
-                        onClick={() => handleMobileNavClick(item.path)}
+                        onClick={() => handleNavClick(item.path)}
                         className={`relative flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl text-left transition-all duration-150 cursor-pointer select-none w-full active:scale-[0.99] overflow-hidden ${
                           active
                             ? "bg-zinc-100 border border-zinc-300 text-zinc-950 font-medium shadow-sm dark:bg-[#1e1e22] dark:border-white/20 dark:text-white dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.25)]"
