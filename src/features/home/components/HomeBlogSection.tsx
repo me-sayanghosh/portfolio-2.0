@@ -40,10 +40,10 @@ export default function HomeBlogSection() {
       <div className="flex justify-center mt-5 sm:mt-6">
         <button
           onClick={() => router.push('/blogs')}
-          className="px-6 py-2.5 rounded-full border border-white/20 bg-[#161616] hover:bg-neutral-800 active:scale-95 text-white font-medium text-xs sm:text-sm shadow-md transition-all cursor-pointer flex items-center space-x-2"
+          className="keep-dark px-6 py-2.5 rounded-full border border-black/10 dark:border-white/20 bg-neutral-900 dark:bg-[#161616] hover:bg-neutral-800 active:scale-95 text-white font-medium text-xs sm:text-sm shadow-md transition-all cursor-pointer flex items-center space-x-2 group"
         >
-          <span>View All Blogs</span>
-          <ArrowRight className="w-4 h-4" />
+          <span className="text-white">View All Blogs</span>
+          <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-0.5 transition-transform" />
         </button>
       </div>
     </section>
