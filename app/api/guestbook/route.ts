@@ -12,24 +12,7 @@ let memoryEntries: Array<{
   image?: string;
   message: string;
   createdAt: string;
-}> = [
-  {
-    _id: 'sample-1',
-    name: 'Akash Nath',
-    email: 'akash@example.com',
-    image: 'https://avatars.githubusercontent.com/u/100131577?v=4',
-    message: 'One of the coolest developers ever 🔥 inspiration material! Amazing portfolio 🚀',
-    createdAt: new Date(Date.now() - 1000 * 60 * 60 * 24 * 30).toISOString(),
-  },
-  {
-    _id: 'sample-2',
-    name: 'Subhadip Saha',
-    email: 'subhadip@example.com',
-    image: 'https://lh3.googleusercontent.com/a/ACg8ocKpibfOP8NZm9_lJuZ4fEAivmxX_FpemLY5c54_6IIFYnFa0Qm7=s96-c',
-    message: 'Awesome portfolio and clean UI execution! Keep building and inspiring <3',
-    createdAt: new Date(Date.now() - 1000 * 60 * 60 * 24 * 120).toISOString(),
-  },
-];
+}> = [];
 
 export async function GET() {
   try {
