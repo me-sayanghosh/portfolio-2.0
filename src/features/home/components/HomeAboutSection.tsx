@@ -202,7 +202,7 @@ export default function HomeAboutSection() {
           {techStack.map((tech, i) => (
             <div
               key={i}
-              className="group flex items-center space-x-2 px-3 py-1.5 rounded-xl bg-[#222222] border border-[#333333] hover:border-white/30 hover:bg-[#2a2a2a] transition-all duration-300 cursor-pointer shadow-sm hover:scale-105"
+              className="group flex items-center space-x-2 px-3 py-1.5 rounded-xl bg-[#222222] border border-[#333333] hover:border-white/30 hover:bg-[#2a2a2a] transition-all duration-300 cursor-pointer shadow-sm"
             >
               <img
                 src={tech.iconUrl}
@@ -211,7 +211,7 @@ export default function HomeAboutSection() {
                 height={18}
                 loading="lazy"
                 decoding="async"
-                className="w-4 h-4 sm:w-4.5 sm:h-4.5 object-contain filter grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:scale-110"
+                className="w-4 h-4 sm:w-4.5 sm:h-4.5 object-contain filter grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
               />
               <span className="text-xs sm:text-sm font-medium text-gray-300 group-hover:text-white transition-colors">
                 {tech.name}
